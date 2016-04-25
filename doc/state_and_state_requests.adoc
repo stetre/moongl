@@ -1,0 +1,52 @@
+
+== State and State Requests
+
+=== Simple Queries
+
+[[gl.get]]
+* *gl.get* (_pname_ [, _index_]) +
+-> _value(s)_ +
+[small]#_pname_: '_context flags_' for GL_CONTEXT_FLAGS, '_major version_' for GL_MAJOR_VERSION, etc. +
+The _index_ argument may be mandatory or optional, depending on _pname_. +
+Rfr: https://www.opengl.org/wiki/GLAPI/glGet[glGet].#
+
+[[gl.enable]]
+* *gl.enable* (_cap_ [,_index_]) +
+*gl.disable* (_cap_ [,_index_]) +
+* *gl.is_enabled* (_cap_ [,_index_]) +
+-> _boolean_ +
+[small]#_cap_: '_blend_' for GL_BLEND, '_depth test_' for GL_DEPTH_TEST, 
+'_clip distance 5_' for GL_CLIP_DISTANCE5, etc. +
+Rfr: https://www.opengl.org/wiki/GLAPI/glEnable[glEnable], 
+Rfr: https://www.opengl.org/wiki/GLAPI/glIsEnable[glIsEnabled].#
+
+=== String Queries
+
+[[gl.get_string]]
+* *gl.get_string* (_pname_ [, _index_]) +
+-> _value(s)_ +
+[small]#_pname_: '_renderer_', '_vendor_', '_version_', '_extensions_', '_shading language version_'. +
+The _index_ argument may be mandatory or optional, depending on _pname_. +
+Rfr: https://www.opengl.org/wiki/GLAPI/glGetString[glGetString].#
+
+=== Internal Format Queries
+
+[[gl.get_internalformat]]
+* *gl.get_internalformat* (_target_, _intformat_, _pname_) +
+-> _value(s)_ +
+[small]#_target_: '_1d_' for GL_TEXTURE_1D, '_1d array_' for GL_TEXTURE_1D_ARRAY, etc. +
+_intformat_: '_stencil index_' for GL_STENCIL_INDEX, '_r8 snorm_' for GL_R8_SNORM, etc. +
+_pname_: '_num sample counts_' for GL_NUM_SAMPLE_COUNTS, '_samples_' for GL_SAMPLES, etc. +
+Rfr: https://www.opengl.org/wiki/GLAPI/glGetInternalformat[glGetInternalformat].#
+
+
+=== Transform Feedback Queries
+
+[[gl.get_]]
+* *gl.get_transform_feedback* (_xfb_, _pname_) +
+-> _value_ +
+[small]#_pname_: '_paused_', '_active_', '_buffer binding_', '_buffer start_', '_buffer size_'. +
+Rfr: https://www.opengl.org/sdk/docs/man/html/glGetTransformFeedback.xhtml[glGetTransformFeedback].#
+
+<<<
+

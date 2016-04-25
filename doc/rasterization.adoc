@@ -1,0 +1,60 @@
+
+== Rasterization
+
+* <<gl.enable, gl.enable/disable/is_enabled>>
+
+=== Multisampling
+
+[[gl.get_multisample]]
+* *gl.get_multisample* (_pname_) +
+-> _value(s)_ +
+[small]#_pname_: '_sample position_'. +
+Rfr: https://www.opengl.org/wiki/GLAPI/glGetMultisample[glGetMultisample].#
+
+[[gl.min_sample_shading]]
+* *gl.min_sample_shading* (_value_) +
+[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glMinSampleShading[glMinSampleShading].#
+
+=== Points
+
+[[gl.point_size]]
+* *gl.point_size* (_size_) +
+[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glPointSize[glPointSize].#
+
+[[gl.point_parameter]]
+* *gl.point_parameter* (_pname_) +
+-> _value(s)_ +
+[small]#_pname_: '_fade threshold size_' for GL_POINT_FADE_THRESHOLD_SIZE, etc. +
+Rfr: https://www.opengl.org/wiki/GLAPI/glPointParameter[glPointParameter].#
+
+=== Line Segments
+
+[[gl.line_width]]
+* *gl.line_width* (_width_) +
+[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glLineWidth[glLineWidth].#
+
+=== Polygons
+
+[[gl.front_face]]
+* *gl.front_face* (_dir_) +
+[small]#_dir_: '_ccw_', '_cw_'. +
+Rfr: https://www.opengl.org/wiki/GLAPI/glFrontFace[glFrontFace].#
+
+[[gl.cull_face]]
+* *gl.cull_face* (_mode_) +
+[small]#_mode_: '_front_', '_back_', '_front and back_'. +
+Rfr: https://www.opengl.org/wiki/GLAPI/glCullFace[glCullFace].#
+
+=== Polygon Rast. & Depth Offset
+
+[[gl.polygon_mode]]
+* *gl.polygon_mode* (_face_, _mode_) +
+[small]#_face_: '_front and back_'. +
+_mode_: '_point_', '_line_', '_fill_'. +
+Rfr: https://www.opengl.org/wiki/GLAPI/glPolygonMode[glPolygonMode].#
+
+[[gl.polygon_offset]]
+* *gl.polygon_offset* (_factor_, _units_) +
+[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glPolygonOffset[glPolygonOffset].#
+
+<<<

@@ -1,0 +1,48 @@
+
+== Vertex Attributes
+
+[[gl.bind_attrib_location]]
+* *gl.bind_attrib_location* (_program_, _index_, _name_) +
+[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glBindAttribLocation[glBindAttribLocation].#
+
+[[gl.get_active_attrib]]
+* *gl.get_active_attrib* (_program_, _index_) +
+-> _name_, <<glsltype, _glsltype_>>, _size_ +
+[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glGetActiveAttrib[glGetActiveAttrib].#
+
+[[gl.get_attrib_location]]
+* *gl.get_attrib_location* (_program_, _name_) +
+-> _location_ +
+[small]#Don't use this function, use <<gl.bind_attrib_location,gl.bind_attrib_location>>( ) 
+instead. +
+Rfr: https://www.opengl.org/wiki/GLAPI/glGetAttribLocation[glGetAttribLocation].#
+// see:  https://youtu.be/IXxc9yNBpuo?t=3073
+
+=== Transform Feedback Variables
+
+[[gl.transform_feedback_varyings]]
+* *gl.transform_feedback_varyings* (_program_, _mode_, _varying1_ [, _varying2_, _..._ ]) +
+[small]#_mode_: '_interleaved attribs_', '_separate attribs_'. +
+Rfr: https://www.opengl.org/wiki/GLAPI/glTransformFeedbackVaryings[glTransformFeedbackVaryings].#
+
+[[gl.get_transform_feedback_varying]]
+* *gl.get_transform_feedback_varying* (_program_, _index_) +
+-> _name_, <<glsltype, _glsltype_>>, _size_ +
+[small]#_mode_: '_interleaved attribs_', '_separate attribs_'. +
+Rfr: https://www.opengl.org/wiki/GLAPI/glGetTransformFeedbackVarying[glGetTransformFeedbackVarying].#
+
+
+=== Shader Execution
+
+[[gl.validate_program]]
+* *gl.validate_program* (_program_) +
+[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glValidateProgram[glValidateProgram].#
+
+[[gl.validate_program_pipeline]]
+* *gl.validate_program_pipeline* (_pipeline_) +
+[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glValidateProgramPipeline[glValidateProgramPipeline].#
+
+* <<gl.patch_parameter, gl.patch_parameter>>
+
+<<<
+

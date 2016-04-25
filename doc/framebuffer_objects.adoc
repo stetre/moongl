@@ -1,0 +1,143 @@
+
+== Framebuffer Objects
+
+=== Binding and Managing
+
+[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Framebuffer_Objects[Framebuffer Objects].#
+
+[[gl.gen_framebuffers]]
+* *gl.gen_framebuffers* ([_n_ = 1]) +
+-> _framebuffer1_, _framebuffer2_, _..._
+
+[[gl.create_framebuffers]]
+* *gl.create_framebuffers* (_framebuffer1_ [, _framebuffer2_, _..._])
+
+[[gl.delete_framebuffers]]
+* *gl.delete_framebuffers* (_framebuffer1_ [, _framebuffer2_, _..._])
+
+[[gl.bind_framebuffer]]
+* *gl.bind_framebuffer* (_target_ [, _framebuffer_]) +
+[small]#_target_: '_draw_', '_read_'. +
+If _framebuffer_ = _nil_, unbinds the current framebuffer bound to _target_.#
+
+[[gl.is_framebuffer]]
+* *gl.is_framebuffer* (_framebuffer_) +
+-> _boolean_
+
+[[gl.new_framebuffer]]
+* *gl.new_framebuffer* (_target_) +
+-> _framebuffer_ +
+[small]#Gen & bind one framebuffer.#
+
+=== Framebuffer Object Parameters
+
+[[gl.framebuffer_parameter]]
+* *gl.framebuffer_parameter* (_target_|_framebuffer_, _pname_, _value_) +
+[small]#_target_: '_draw_', '_read_'. +
+_pname_: '_default width_' for GL_FRAMEBUFFER_DEFAULT_WIDTH, etc.#
+
+=== Framebuffer Object Queries
+
+[[gl.get_framebuffer_parameter]]
+* *gl.get_framebuffer_parameter* (_target_|_framebuffer_, _pname_) +
+-> _value(s)_ +
+[small]#_target_: '_draw_', '_read_'. +
+_pname_: '_default width_' for GL_FRAMEBUFFER_DEFAULT_WIDTH, etc.#
+
+[[gl.get_framebuffer_attachment_parameter]]
+* *gl.get_framebuffer_attachment_parameter* (_target_|_framebuffer_, _attachment_, _pname_) +
+-> _value(s)_ +
+[small]#_target_: '_draw_', '_read_'. +
+_attachment_: '_depth_' for GL_DEPTH, '_front left_' for GL_FRONT_LEFT, etc. +
+_pname_: '_object type_' for GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE, etc.#
+
+
+=== Renderbuffer Objects
+
+[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Framebuffer_Objects[Framebuffer Objects].#
+
+[[gl.bind_renderbuffer]]
+* *gl.bind_renderbuffer* (_target_ [, _renderbuffer_]) +
+[small]#_target_: '_renderbuffer_'. +
+If _renderbuffer_ = _nil_, unbinds the current renderbuffer bound to _target_.#
+
+[[gl.gen_renderbuffers]]
+* *gl.gen_renderbuffers* ([_n_ = 1]) +
+-> _renderbuffer1_, _renderbuffer2_, _..._
+
+[[gl.create_renderbuffers]]
+* *gl.create_renderbuffers* (_renderbuffer1_ [, _renderbuffer2_, _..._])
+
+[[gl.delete_renderbuffers]]
+* *gl.delete_renderbuffers* (_renderbuffer1_ [, _renderbuffer2_, _..._])
+
+[[gl.is_renderbuffer]]
+* *gl.is_renderbuffer* (_renderbuffer_) +
+-> _boolean_
+
+[[gl.new_renderbuffer]]
+* *gl.new_renderbuffer* (_target_) +
+-> _renderbuffer_ +
+[small]#Gen & bind one renderbuffer.#
+
+[[gl.renderbuffer_storage_multisample]]
+* *gl.renderbuffer_storage_multisample* (_target_|_renderbuffer_, _samples_, _internalformat_, _width_, _height_) +
+[small]#_target_: '_renderbuffer_'.#
+
+[[gl.renderbuffer_storage]]
+* *gl.renderbuffer_storage* (_target_|_renderbuffer_, _internalformat_, _width_, _height_) +
+[small]#_target_: '_renderbuffer_'.#
+
+
+=== Renderbuffer Object Queries
+
+[[gl.get_renderbuffer_parameter]]
+* *gl.get_renderbuffer_parameter* (_target_|_renderbuffer_, _pname_) +
+-> _value(s)_ +
+[small]#_target_: '_renderbuffer_'. +
+_pname_: '_width_' for GL_RENDERBUFFER_WIDTH, '_internal format_' for GL_RENDERBUFFER_INTERNAL_FORMAT, etc.# 
+
+
+=== Attaching Renderbuffer Images
+
+[[gl.framebuffer_renderbuffer]]
+* *gl.framebuffer_renderbuffer* (_target_|_framebuffer_, _attachment_, _rbtarget_, _renderbuffer_) +
+[small]#_target_: '_draw_', '_read_'. +
+_attachment_: '_depth_' for GL_DEPTH_ATTACHMENT, '_color attachment i_' for GL_COLOR_ATTACHMENTi, etc. +
+_rbtarget_: '_renderbuffer_'.#
+
+=== Attaching Texture Images
+
+[[gl.framebuffer_texture]]
+* *gl.framebuffer_texture* (_target_|_framebuffer_, _attachment_, _texture_, _level_)
+
+[[gl.framebuffer_texture_1d]]
+* *gl.framebuffer_texture_1d* (_target_, _attachment_, _textarget_, _texture_, _level_) +
+[small]#_textarget_: '_1d_'.#
+
+[[gl.framebuffer_texture_2d]]
+* *gl.framebuffer_texture_2d* (_target_, _attachment_, _textarget_, _texture_, _level_) +
+[small]#_textarget_: '_2d_' for GL_TEXTURE_2D, '_cube map positive x_' for GL_TEXTURE_CUBE_MAP_POSITIVE_X, etc..#
+
+[[gl.framebuffer_texture_3d]]
+* *gl.framebuffer_texture_3d* (_target_, _attachment_, _textarget_, _texture_, _level_, _layer_) +
+[small]#_textarget_: '_3d_'.#
+
+[[gl.framebuffer_texture_layer]]
+* *gl.framebuffer_texture_layer* (_target_|_framebuffer_, _attachment_, _texture_, _level_, _layer_)
+
+=== Feedback Loops
+
+[[gl.texture_barrier]]
+* *gl.texture_barrier* ( )
+
+=== Framebuffer Completeness 
+
+[[gl.check_framebuffer_status]]
+* *gl.check_framebuffer_status* (_target_ [, _framebuffer_]) +
+-> _status_ +
+[small]#_target_: '_draw_', '_read_'. +
+_status_: '_complete_' for GL_FRAMEBUFFER_COMPLETE, '_incomplete attachment_' for GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT, etc.#
+
+<<<
+

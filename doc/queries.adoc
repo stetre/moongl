@@ -1,0 +1,45 @@
+
+== Asynchronous Queries
+
+[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Queries_and_Timers[Queries and Timers].#
+
+[[gl.gen_queries]]
+* *gl.gen_queries* ([_n_ = 1]) +
+-> _id1_, _id2_, _..._
+
+[[gl.create_queries]]
+* *gl.create_queries* (_target_, _id1_ [, _id2_, _..._]) +
+[small]#_target_: '_any samples passed_' for GL_ANY_SAMPLE_PASSED, etc.#
+
+[[gl.delete_queries]]
+* *gl.delete_queries* (_id1_ [, _id2_, _..._])
+
+[[gl.begin_query]]
+* *gl.begin_query* (_target_, _id_ [, _index_])
+
+[[gl.end_query]]
+* *gl.end_query* (_target_ [, _index_])
+
+[[gl.is_query]]
+* *gl.is_query* (_id_) +
+-> _boolean_
+
+[[gl.get_query]]
+* *gl.get_query* (_target_, _pname_ [, _index_]) +
+-> _value_ +
+[small]#_pname_: '_current query_', '_query counter bits_'.#
+
+
+== Timer Queries
+
+[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Queries_and_Timers[Queries and Timers].#
+
+[[gl.query_counter]]
+* *gl.query_counter* (_id_)
+
+[[gl.get_timestamp]]
+* *gl.get_timestamp* ( ) +
+-> _time_
+
+<<<
+

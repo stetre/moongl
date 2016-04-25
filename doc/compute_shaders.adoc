@@ -1,0 +1,13 @@
+
+== Compute Shaders
+
+[[gl.dispatch_compute]]
+* *gl.dispatch_compute* (_numx_, _numy_, _numz_) +
+[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glDispatchCompute[glDispatchCompute].#
+
+[[gl.dispatch_compute_indirect]]
+* *gl.dispatch_compute_indirect* (_indirect_) +
+[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glDispatchComputeIndirect[glDispatchComputeIndirect].#
+
+<<<
+

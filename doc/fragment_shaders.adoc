@@ -1,0 +1,20 @@
+
+== Fragment Shaders
+
+[[gl.bind_frag_data_location]]
+* *gl.bind_frag_data_location* (_program_, _color_, _name_ [, _index_]) +
+[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glBindFragDataLocation[glBindFragDataLocation], 
+https://www.opengl.org/wiki/GLAPI/glBindFragDataLocationIndexed[glBindFragDataLocationIndexed].#
+
+[[gl.get_frag_data_location]]
+* *gl.get_frag_data_location* (_program_, _name_) +
+-> _location_ +
+[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glGetFragDataLocation[glGetFragDataLocation].#
+
+[[gl.get_frag_data_index]]
+* *gl.get_frag_data_index* (_program_, _name_) +
+-> _index_ +
+[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glGetFragDataIndex[glGetFragDataIndex].#
+
+<<<
+

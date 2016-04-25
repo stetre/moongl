@@ -1,0 +1,35 @@
+
+== Introduction
+
+MoonGL is an almost-one-to-one binding library to OpenGL, and it is intended to be
+used in the same way one would use OpenGL, except, of course, for coding in Lua 
+instead of C or pass:[C++]. 
+In particular, this means that tasks like creating a GL context and handling
+input are not addressed by MoonGL, and one needs to resort to <<see-also, external modules>>.
+
+This document purposedly reflects the structure of the 
+https://www.opengl.org/sdk/docs/[OpenGL 4.5 Reference card],
+so that one can easily find the correspondence between MoonGL and OpenGL API, by
+comparing the two documents. Links to corresponding sections of the 
+https://www.opengl.org/wiki/Main_Page[OpenGL Wiki] are also provided for this purpose.
+
+As a general loose rule, each OpenGL function has a similarly named MoonGL binding
+function. For example, *glClear*( ) is bound to by *gl.clear*( ), *glClearBuffer*( ) 
+by *gl.clear_buffer*( ), and so on.
+The mapping between OpenGL and MoonGL functions is not exactly one-to-one, however.
+This is mainly because MoonGL leverages Lua's function overloading capabilities, whereas
+OpenGL, being a C API, has a lot of functions with slightly different names that are
+logically the same overloaded function. MoonGL also adds a few functions that are not
+present in the OpenGL API, like the *gl.new_xxx*( ) functions that combine generation
+and binding of a single object, and a few utilities for <<datahandling, data handling>>
+and for <<gl.make_program, compiling shader programs>>.
+
+Parameter values that in OpenGL are #defined as integer codes become strings in MoonGL 
+(as is customary in Lua). There is usually an easily recognizable pattern to derive the 
+correct MoonGL string from the OpenGL #define name, for example the buffer target codes 
+GL_ARRAY_BUFFER and GL_ELEMENT_ARRAY_BUFFER become '_array_' and '_element array_', 
+respectively (the string is typically obtained by removing the GL_ prefix and possibly 
+some redundant part from the #define name, replacing underscores with spaces, and going 
+from upper-case to lower-case letters).
+
+<<<

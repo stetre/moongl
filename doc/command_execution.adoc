@@ -1,0 +1,55 @@
+
+== GLEW Initialization
+
+* *gl.init* ( ) +
+[small]#Binding to *glewInit*(). This function must be called as soon as a GL
+context is obtained, in order to correctly initialize OpenGL's function pointers,
+before calling any other MoonGL function (see the example below). Failing to do 
+so would likely cause a segmentation fault.#
+
+.Example: OpenGL initialization with MoonGLFW
+[source,lua]
+----
+gl = require("moongl")
+glfw = require("moonglfw")
+
+-- Create a window and make its GL context current:
+window = glfw.create_window(600, 400, "Hello, MoonGL!")
+glfw.make_context_current(window)
+
+-- This is actually glewInit():
+gl.init()
+
+- ... now it is safe to call MoonGL functions ...
+
+----
+
+== Command Execution
+
+=== OpenGL Errors
+
+The *glGetError* function is not exposed. It is used internally by MoonGL, 
+which checks for errors each time it executes an OpenGL command and raises
+an error if the command did not succeed.
+
+=== Graphics Reset Recovery
+
+[[gl.get_graphics_reset_status]]
+* *gl.get_graphics_reset_status* ( ) +
+-> _status_ +
+[small]#Rfr: https://www.opengl.org/sdk/docs/man/html/glGetGraphicsResetStatus.xhtml[glGetGraphicsResetStatus].#
+
+* <<gl.get, gl.get>>
+
+=== Flush and Finish
+
+[[gl.flush]]
+* *gl.flush* ( ) +
+[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glFlush[glFlush].#
+
+[[gl.finish]]
+* *gl.finish* ( ) +
+[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glFinish[glFinish].#
+
+<<<
+
