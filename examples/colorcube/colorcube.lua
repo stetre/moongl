@@ -123,7 +123,7 @@ end
 -- callbacks -----------------------------------------------------------------
 
 function keyboard(_, key)
-   if key=='escape' or key=='q' or key=='Q' then
+   if key=='escape' or key=='q' then
       os.exit()
    end
 end

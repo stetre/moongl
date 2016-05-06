@@ -90,7 +90,7 @@ function init()
 end
 
 function keyboard(_, key)
-	if key=="escape" or key=="Q" or key=="q" then
+	if key=="escape" or key=="q" then
 		os.exit()
 	end
 end
