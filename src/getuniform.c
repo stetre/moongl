@@ -186,8 +186,10 @@ static int GetUniformLocation(lua_State *L)
     const GLchar *name = luaL_checkstring(L, 2);
     GLint loc = glGetUniformLocation(program, name);
     CheckError(L);
+/*
     if(loc==-1)
-        return luaL_error(L, "invalid name '%s'", name);
+		return luaL_error(L, "invalid name '%s'", name);
+*/
     lua_pushinteger(L, loc);
     return 1;
     }
