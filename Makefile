@@ -10,6 +10,9 @@ build:
 install:
 	@cd src;		$(MAKE) $@
 
+uninstall:
+	@cd src;		$(MAKE) $@
+
 clean :
 	@cd src;		$(MAKE) $@
 #	@cd examples;	$(MAKE) $@

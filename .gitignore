@@ -1,4 +1,5 @@
 *.log
+*.so
 core.*
 local/
 tutorials/
