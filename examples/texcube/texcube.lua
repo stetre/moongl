@@ -205,7 +205,7 @@ init()
 
 glfw.set_key_callback(window, keyboard)
 glfw.set_mouse_button_callback(window, mouse)
-glfw.set_window_size_callback(window, reshape)
+glfw.set_framebuffer_size_callback(window, reshape)
 
 print("Use mouse buttons to change the rotation axis (left=x, middle=y, right=z)")
 

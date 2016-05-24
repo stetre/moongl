@@ -18,7 +18,7 @@ window = glfw.create_window(600, 400, "Hello, World!")
 glfw.make_context_current(window)
 gl.init() -- this is actually glewInit()
 
-glfw.set_window_size_callback(window, reshape)
+glfw.set_framebuffer_size_callback(window, reshape)
 
 while not glfw.window_should_close(window) do
    glfw.poll_events()

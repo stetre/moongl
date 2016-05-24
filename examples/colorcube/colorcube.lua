@@ -124,7 +124,7 @@ end
 
 function keyboard(_, key)
    if key=='escape' or key=='q' then
-      os.exit()
+      glfw.set_window_should_close(window, true)
    end
 end
 
@@ -138,7 +138,7 @@ function mouse(_, button, action )
 end
 
 function reshape(_, w, h)
-	gl.viewport(0, 0, w, h)
+   gl.viewport(0, 0, w, h)
 end
 
 -- main ------------------------------------------------------------------------
@@ -153,13 +153,13 @@ init()
 
 glfw.set_key_callback(window, keyboard)
 glfw.set_mouse_button_callback(window, mouse)
-glfw.set_window_size_callback(window, reshape)
+glfw.set_framebuffer_size_callback(window, reshape)
 
 
 print("Use mouse buttons to change the rotation axis (left=x, middle=y, right=z)")
 
 while not glfw.window_should_close(window) do
-	glfw.poll_events()
+   glfw.poll_events()
 
    Theta[Axis] = Theta[Axis] + 0.5
    if Theta[Axis] > 360.0 then

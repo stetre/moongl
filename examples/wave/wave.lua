@@ -109,7 +109,7 @@ glfw.make_context_current(window)
 gl.init()
 
 glfw.set_key_callback(window, keyboard)
-glfw.set_window_size_callback(window, reshape)
+glfw.set_framebuffer_size_callback(window, reshape)
 
 init()
 
