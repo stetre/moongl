@@ -161,7 +161,7 @@ static int DebugMessageCallback(lua_State *L)
         return luaL_argerror(L, 1, "function expected");
     lua_pushvalue(L, 1);
     lua_setfield(L, LUA_REGISTRYINDEX, CALLBACK);
-    glDebugMessageCallback(Callback, (void*)L);
+    glDebugMessageCallback((GLDEBUGPROC)Callback, (void*)L);
     CheckError(L);
     return 0;
     }

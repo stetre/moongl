@@ -2,7 +2,7 @@
 
 MoonGL is a Lua binding library for [OpenGL](https://www.opengl.org/).
 
-It runs on GNU/Linux and requires 
+It runs on GNU/Linux and on Windows (MSYS2/MinGW) and requires 
 [Lua](http://www.lua.org/) (>=5.3), 
 [OpenGL](https://www.opengl.org/) (>=3.3), and
 [GLEW](http://glew.sourceforge.net/).
@@ -16,9 +16,13 @@ _Authored by:_ _[Stefano Trettel](https://www.linkedin.com/in/stetre)_
 
 MIT/X11 license (same as Lua). See [LICENSE](./LICENSE).
 
-#### Documentation, Getting and installing, etc.
+#### Documentation
 
 See the [Reference Manual](https://stetre.github.io/moongl/doc/index.html).
+
+#### Getting and installing
+
+See [INSTALL](./INSTALL.md).
 
 #### Example
 

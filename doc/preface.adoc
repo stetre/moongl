@@ -20,6 +20,11 @@ https://www.opengl.org/sdk/docs[OpenGL Documentation].
 
 === Getting and installing
 
+For installation intructions, refer to the README file in the 
+https://github.com/stetre/moongl[*MoonGL official repository*]
+on GitHub.
+
+////
 The *official repository* of MoonGL is on GitHub at the following link:
 *https://github.com/stetre/moongl* .
 
@@ -62,6 +67,7 @@ There may be issues when compiling against implementations of OpenGL versions ne
 the one mentioned above. In particular, I expect problems with version 4.5 due to 
 https://www.khronos.org/bugzilla/show_bug.cgi?id=1394[this bug] (for a workaround,
 look in the file src/whole_framebuffer.c). Any feedback is welcome.
+////
 
 === Module organization
 

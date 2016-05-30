@@ -35,7 +35,7 @@ static int AddVersions(lua_State *L)
     lua_pushstring(L, "_GLEW_VERSION");
 #if 1
     lua_pushfstring(L, "GLEW %s", glewGetString(GLEW_VERSION));
-    CheckError(L);
+    //CheckError(L); @@ problemi in MINGW
 #else
     lua_pushfstring(L, "GLEW %s (major=%s, minor=%s, micro=%s)", 
                     glewGetString(GLEW_VERSION),

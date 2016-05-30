@@ -259,7 +259,7 @@ static int VertexAttribPointer(lua_State *L)
     GLenum type = checktype(L, 3);
     GLboolean normalized = checkboolean(L, 4);
     GLsizei stride = luaL_checkinteger(L, 5);
-    const void *pointer = (void*)luaL_checkinteger(L, 6);
+    intptr_t pointer = luaL_checkinteger(L, 6);
     switch(type)
         {
         case GL_BYTE:
@@ -274,10 +274,10 @@ static int VertexAttribPointer(lua_State *L)
         case GL_UNSIGNED_INT_2_10_10_10_REV:
         case GL_UNSIGNED_INT_10F_11F_11F_REV:
         case GL_FIXED:
-                glVertexAttribPointer(index, size, type, normalized, stride, pointer);
+                glVertexAttribPointer(index, size, type, normalized, stride, (void*)pointer);
                 break;
         case GL_DOUBLE:
-                glVertexAttribLPointer(index, size, GL_DOUBLE, stride, pointer);
+                glVertexAttribLPointer(index, size, GL_DOUBLE, stride, (void*)pointer);
                 break;
         default:
             return luaL_error(L, UNEXPECTED_ERROR);

@@ -15,6 +15,8 @@ C_DIR = $(PREFIX)/lib/lua/$(V)
 H_DIR = $(PREFIX)/include
 # Directory where to install C libraries:
 S_DIR = $(PREFIX)/lib
+# Directory where to install DLLs:
+D_DIR = $(PREFIX)/bin
 
 ifeq ("$(V)","")
 $(error Missing Lua version)
@@ -24,8 +26,34 @@ ifeq ("$(PREFIX)","")
 $(error Missing base install directory)
 endif
 
+ifeq ($(D),1)
+DEBUG=1
+endif
+
+ifeq ("$(platform)","")
+platform=linux
+endif
+MINGW=
+LINUX=
+
+
+ifeq ("$(platform)","linux")
+LINUX=1
+INCDIR = -I/usr/include
+LIBDIR = -L/usr/lib
+LIBS = -lGLEW -lGLU -lGL -lm
+endif
+ifeq ("$(platform)","mingw")
+MINGW=1
+INCDIR = -I/usr/local/include
+LIBDIR = -L/usr/bin -L/usr/local/bin -L/usr/local/lib
+LIBS = -lglew32 -lglu32 -lopengl32 -lm
+endif
+
+
 # Translates 5.3 into 503:
 LUAVER=$(shell lua -e "print((string.gsub("$(V)",'%.','0')))")
+LUADLL=lua$(shell lua -e "print((string.gsub("$(V)",'%.','')))")
 
 # Check the Lua version of the installed lua interpreter:
 INSTLUAVER=$(shell lua -e "print(_VERSION:sub(5))")
@@ -38,65 +66,57 @@ Tgt	:= moongl
 Src := $(wildcard *.c)
 Objs := $(Src:.c=.o)
 
-INCDIR = -I/usr/include
-LIBDIR = -L/usr/lib
-
-LIBS := $(LIBDIR)
-LIBS += -lGLEW
-LIBS += -lGLU
-LIBS += -lGL
-LIBS += -lm
-#LIBS += -llua
  
 COPT	+= -O2
-#COPT	+= -O0 -g
 COPT	+= -Wall -Wextra -Wpedantic
-COPT    += -fpic
 COPT    += -std=gnu99
 COPT    += -DLUAVER=$(LUAVER)
-ifeq ($(D),1)
+ifdef LINUX
+COPT    += -fpic
+COPT	+= -DLINUX
+endif
+ifdef MINGW
+COPT	+= -DMINGW
+endif
+ifdef DEBUG
 COPT	+= -DDEBUG
 COPT 	+= -Wshadow -Wsign-compare -Wundef -Wwrite-strings
 COPT	+= -Wdisabled-optimization -Wdeclaration-after-statement
 COPT    += -Wmissing-prototypes -Wstrict-prototypes -Wnested-externs
 COPT    += -Wc++-compat -Wold-style-definition
 endif
-COPT	+= $(INCDIR)
 
 override CFLAGS = $(COPT) $(INCDIR)
 
 default: build
 
-
 clean:
-	@-rm -f $(Tgt).so
+	@-rm -f *.so *.dll *.o *.err *.map *.S *~ *.log
 	@-rm -f $(Tgt).symbols
-	@-rm -f *~
-	@-rm -f *.log
-	@-rm -f *.o *.err *.map *.S
-
-check:
-	@-echo $(Tgt)".so will be installed in "$(C_DIR)
-	@-echo $(Tgt)"/*.lua will be installed in "$(L_DIR)"/"$(Tgt)
-	@-echo $(Tgt)".h will be installed in "$(H_DIR)
-	@-echo lib$(Tgt)".so will be installed in "$(S_DIR)
-	@-echo
 
 install:
 	@-mkdir -pv $(H_DIR)
 	@-mkdir -pv $(C_DIR)
 	@-mkdir -pv $(S_DIR)
 	@-mkdir -pv $(L_DIR)
+	@-mkdir -pv $(D_DIR)
 	@-cp -fpv $(Tgt).h $(H_DIR)
+	@-cp -fpvr ../$(Tgt) $(L_DIR)
+ifdef LINUX
 	@-cp -fpv $(Tgt).so $(C_DIR)
 	@-ln -fsv $(C_DIR)/$(Tgt).so $(S_DIR)/lib$(Tgt).so
-	@-cp -fpvr ../$(Tgt) $(L_DIR)
+endif
+ifdef MINGW
+	@-cp -fpv $(Tgt).dll $(D_DIR)
+endif
+
 
 uninstall:
 	@-rm -f $(H_DIR)/$(Tgt).h
 	@-rm -f $(C_DIR)/$(Tgt).so
 	@-rm -f $(S_DIR)/lib$(Tgt).so
 	@-rm -fr $(L_DIR)/$(Tgt)
+	@-rm -f $(D_DIR)/$(Tgt).dll
 
 build:	clean $(Tgt) 
 
@@ -104,7 +124,13 @@ symbols: build
 	@objdump -T $(Tgt).so > $(Tgt).symbols
 
 $(Tgt):		$(Objs)
-	@-$(CC) -shared -Wl,-soname,$(Tgt).so,$(LIBS) -o $(Tgt).so $(Objs) $(LIBS)
+ifdef LINUX
+	@-$(CC) -shared -o $(Tgt).so $(Objs) $(LIBDIR) $(LIBS)
+endif
+ifdef MINGW
+	@-$(CC) -shared -o $(Tgt).dll $(Objs) $(LIBDIR) $(LIBS) -l$(LUADLL)
+endif
 	@-rm -f $(Objs)
 	@echo
+
 

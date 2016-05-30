@@ -762,8 +762,8 @@ p.tableblock.header { color: #6d6e71; }
 <h1>MoonGL Reference Manual</h1>
 <div class="details">
 <span id="author" class="author">Stefano Trettel</span><br>
-<span id="revnumber">version 0.2,</span>
-<span id="revdate">2016-05-17</span>
+<span id="revnumber">version 0.3,</span>
+<span id="revdate">2016-05-30</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -982,61 +982,9 @@ p.tableblock.header { color: #6d6e71; }
 <div class="sect2">
 <h3 id="_getting_and_installing">Getting and installing</h3>
 <div class="paragraph">
-<p>The <strong>official repository</strong> of MoonGL is on GitHub at the following link:
-<strong><a href="https://github.com/stetre/moongl" class="bare">https://github.com/stetre/moongl</a></strong> .</p>
-</div>
-<div class="paragraph">
-<p>MoonGL runs on GNU/Linux and requires
-<strong><a href="http://www.lua.org">Lua</a></strong> version 5.3 or greater,
-<strong><a href="https://www.opengl.org/">OpenGL</a></strong> (&gt;=3.3), and
-<strong><a href="http://glew.sourceforge.net/">GLEW</a></strong>.</p>
-</div>
-<div class="paragraph">
-<p>To install MoonGL, download the
-<a href="https://github.com/stetre/moongl/releases">latest release</a> and do the following:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell"># ... download moongl-0.1.tar.gz ...
-[ ]$ tar -zxpvf moongl-0.1.tar.gz
-[ ]$ cd moongl-0.1
-[moongl-0.1]$ make
-[moongl-0.1]$ make check
-[moongl-0.1]$ sudo make install</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The <em>$make check</em> command shows you what will be installed and where (please read
-its output before executing <em>$make install</em>).
-By default, MoonGL installs its components in subdirectories of <code>/usr/local/</code>
-(and creates such directories, if needed).
-This behaviour can be changed by defining PREFIX with the desired alternative
-base installation directory. For example, this will install the components
-in <code>/home/joe/local</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="pygments highlight"><code data-lang="shell">[moongl-0.1]$ make
-[moongl-0.1]$ make install PREFIX=/home/joe/local</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-At the time of this writing, I have compiled and used this software only on Ubuntu 15
-with OpenGL 3.3.0 (NVIDIA 340.96). Most functions are not tested, and will be only when
-(and if) I&#8217;ll discover that I need them.
-There may be issues when compiling against implementations of OpenGL versions newer than
-the one mentioned above. In particular, I expect problems with version 4.5 due to
-<a href="https://www.khronos.org/bugzilla/show_bug.cgi?id=1394">this bug</a> (for a workaround,
-look in the file src/whole_framebuffer.c). Any feedback is welcome.
-</td>
-</tr>
-</table>
+<p>For installation intructions, refer to the README file in the
+<a href="https://github.com/stetre/moongl"><strong>MoonGL official repository</strong></a>
+on GitHub.</p>
 </div>
 </div>
 <div class="sect2">
@@ -4352,8 +4300,8 @@ Values: '<em>none</em>', '<em>stencil index</em>', '<em>depth component</em>', '
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 0.2<br>
-Last updated 2016-05-17 11:43:19 CEST
+Version 0.3<br>
+Last updated 2016-05-30 15:49:31 CEST
 </div>
 </div>
 </body>

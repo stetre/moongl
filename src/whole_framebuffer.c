@@ -349,7 +349,7 @@ static int ClearBufferfi(lua_State *L)
     stencil = luaL_checkinteger(L, arg++);
     if(named)
         {
-#if 1
+#if 0
 /*@@NOTE: The prototype for glClearNamedFramebufferfi() in glcorearb.h is/was wrong,
  *        (rfr: https://www.khronos.org/bugzilla/show_bug.cgi?id=1394 ),
  *        so this may not compile with OpenGL v4.5.
@@ -360,7 +360,6 @@ static int ClearBufferfi(lua_State *L)
 #else
         (void)framebuffer;
         NOT_AVAILABLE;
-        
 #endif
         }
     else

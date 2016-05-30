@@ -56,8 +56,7 @@ static int TextureImage(lua_State *L)
  * texture_image(target, level, intfmt, format, type, data|buffer, width, height, depth)
  */
     {
-    
-    const void* data;
+    intptr_t data;
     GLsizei width, height, depth;
     int arg = 1;
     GLenum target = CheckTarget(L, arg++);
@@ -67,29 +66,29 @@ static int TextureImage(lua_State *L)
     GLenum type = checktype(L, arg++);
     if(lua_type(L, arg) == LUA_TSTRING)
         {
-        data = (void*)luaL_checkstring(L, arg++);
+        data = (intptr_t)luaL_checkstring(L, arg++);
         }
     else
         {
-         /* data may be a buffer name (if a buffer is bound to GL_PIXEL_UNPACK_BUFFER) */
-        data = (void*)luaL_checkinteger(L, arg++);
+        /* data may be a buffer name (if a buffer is bound to GL_PIXEL_UNPACK_BUFFER) */
+        data = luaL_checkinteger(L, arg++);
         }
     width = luaL_checkinteger(L, arg++);
     if(lua_isnoneornil(L, arg))
         {
-        glTexImage1D(target,level,intfmt,width,border,format,type,data);
+        glTexImage1D(target,level,intfmt,width,border,format,type,(void*)data);
         CheckError(L);
         return 0;
         }
     height = luaL_checkinteger(L, arg++);
     if(lua_isnoneornil(L, arg))
         {
-        glTexImage2D(target,level,intfmt,width,height,border,format,type,data);
+        glTexImage2D(target,level,intfmt,width,height,border,format,type,(void*)data);
         CheckError(L);
         return 0;
         }
     depth = luaL_checkinteger(L, arg++);
-    glTexImage3D(target,level,intfmt,width,height,depth,border,format,type,data);
+    glTexImage3D(target,level,intfmt,width,height,depth,border,format,type,(void*)data);
     CheckError(L);
     return 0;
     }
@@ -145,7 +144,7 @@ static int TextureSubImage(lua_State *L)
  * texture_sub_image(target|texture, level, format, type, data|buffer, xofs, yofs, zofs, w, h, d)
  */
     {
-    const void* data;
+    intptr_t data;
     int arg = 1;
     GLint v1, v2, v3, v4, v5, v6;
     GLenum target;
@@ -154,17 +153,17 @@ static int TextureSubImage(lua_State *L)
     GLenum format = checkformat(L, arg++);
     GLenum type = checktype(L, arg++);
     if(lua_type(L, arg) == LUA_TSTRING)
-        data = (void*)luaL_checkstring(L, arg++);
+        data = (intptr_t)luaL_checkstring(L, arg++);
     else /* data may be a buffer name (if a buffer is bound to GL_PIXEL_UNPACK_BUFFER) */
-        data = (void*)luaL_checkinteger(L, arg++);
+        data = luaL_checkinteger(L, arg++);
     v1 = luaL_checkinteger(L, arg++);
     v2 = luaL_checkinteger(L, arg++);
     if(lua_isnoneornil(L, arg))
         {
         if(texture==0)
-            glTexSubImage1D(target, level, v1, v2, format, type, data);
+            glTexSubImage1D(target, level, v1, v2, format, type, (void*)data);
         else
-            glTextureSubImage1D(texture, level, v1, v2, format, type, data);
+            glTextureSubImage1D(texture, level, v1, v2, format, type, (void*)data);
         CheckError(L);
         return 0;
         }
@@ -173,18 +172,18 @@ static int TextureSubImage(lua_State *L)
     if(lua_isnoneornil(L, arg))
         {
         if(texture==0)
-            glTexSubImage2D(target, level, v1, v2, v3, v4, format, type, data);
+            glTexSubImage2D(target, level, v1, v2, v3, v4, format, type, (void*)data);
         else
-            glTextureSubImage2D(texture, level, v1, v2, v3, v4, format, type, data);
+            glTextureSubImage2D(texture, level, v1, v2, v3, v4, format, type, (void*)data);
         CheckError(L);
         return 0;
         }
     v5 = luaL_checkinteger(L, arg++);
     v6 = luaL_checkinteger(L, arg++);
     if(texture==0)
-        glTexSubImage3D(target,level, v1, v2, v3, v4, v5, v6,format,type,data);
+        glTexSubImage3D(target,level, v1, v2, v3, v4, v5, v6,format,type,(void*)data);
     else
-        glTextureSubImage3D(texture,level,v1, v2, v3, v4, v5, v6,format,type,data); 
+        glTextureSubImage3D(texture,level,v1, v2, v3, v4, v5, v6,format,type,(void*)data); 
     CheckError(L);
     return 0;
     }
@@ -560,8 +559,7 @@ static int GetTextureImage(lua_State *L)
  * -> bstring (or nil if buffer is passed)
  */
     {
-    void *buffer;
-    char* data = NULL;
+    intptr_t buffer, data = 0;
     GLsizei bufsz = 0;
     int arg = 1;
     GLenum target;
@@ -572,22 +570,22 @@ static int GetTextureImage(lua_State *L)
     if(lua_isnoneornil(L, arg))
         {
         bufsz = BufSize(L);
-        data = (char*)Malloc(L, bufsz *sizeof(char));
+        data = (intptr_t)Malloc(L, bufsz *sizeof(char));
         if(texture==0)
             glGetTexImage(target, level, format, type, (void*)data);
         else
             glGetTextureImage(texture, level, format, type, bufsz, (void*)data);
-        CheckErrorFree(L, data);
-        lua_pushlstring(L, data, bufsz);
-        Free(L, data);
+        CheckErrorFree(L, (void*)data);
+        lua_pushlstring(L, (char*)data, bufsz);
+        Free(L, (void*)data);
         return 1;
         }
     /* buffer should be bound to GL_PIXEL_PACK_BUFFER... */
-    buffer = (void*)luaL_checkinteger(L, arg++);
+    buffer = luaL_checkinteger(L, arg++);
     if(texture==0)
-        glGetTexImage(target, level, format, type, buffer);
+        glGetTexImage(target, level, format, type, (void*)buffer);
     else
-        glGetTextureImage(texture, level, format, type, 0, buffer);
+        glGetTextureImage(texture, level, format, type, 0, (void*)buffer);
     CheckError(L);
     return 0;
     }

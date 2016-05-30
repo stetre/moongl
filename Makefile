@@ -1,9 +1,6 @@
 
 default: build
 
-check:
-	@cd src;		$(MAKE) -s $@
-
 build:
 	@cd src;		$(MAKE) $@
 
