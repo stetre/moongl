@@ -22,7 +22,14 @@ See the [Reference Manual](https://stetre.github.io/moongl/doc/index.html).
 
 #### Getting and installing
 
-See [INSTALL](./INSTALL.md).
+Setup the build environment as described [here](./SETUP.md), then:
+
+```sh
+$ git clone https://github.com/stetre/moongl
+$ cd moongl
+moongl$ make
+moongl$ make install # or 'sudo make install' (Ubuntu)
+```
 
 #### Example
 

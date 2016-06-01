@@ -1,5 +1,7 @@
 *.log
 *.so
+*.dll
+*.o
 core.*
 local/
 tutorials/

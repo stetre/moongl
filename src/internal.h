@@ -43,21 +43,7 @@
  * MoonGL's string references on the Lua registry also start with 'moongl_'.
  */
 
-#if LUA_VERSION_NUM < 503 /* defined in lua.h */
-#error "MoonGL requires Lua v5.3 or greater"
-#endif
-
-#ifndef GL_VERSION_3_3
-#error "MoonGL requires OpenGL v3.3 or greater"
-#endif
-
-#if (LUAVER != LUA_VERSION_NUM)
-#pragma message ("lua.h version is "TOSTR(LUA_VERSION_NUM))
-#error "Lua version mismatch"
-#endif
-
 #include "wrangler.h"
-
 #include "enum.h"
 #include "bitfield.h"
 #include "func.h"
