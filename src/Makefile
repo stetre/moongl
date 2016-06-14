@@ -5,23 +5,25 @@ else
 LINUX=1
 endif
 
-# Lua version:
-V=5.3
-# Base install directory:
+# Lua version
+LUAVER?=5.3
+
+# Base install directory
 ifdef LINUX
-PREFIX = /usr/local
+PREFIX?=/usr/local
 endif
 ifdef MINGW
-PREFIX = $(MINGW_PREFIX)
+PREFIX?=$(MINGW_PREFIX)
 endif
-# Directory where to install Lua modules:
-L_DIR = $(PREFIX)/share/lua/$(V)
-# Directory where to install C modules:
-C_DIR = $(PREFIX)/lib/lua/$(V)
-# Directory where to install C headers:
-H_DIR = $(PREFIX)/include
-# Directory where to install C libraries:
-S_DIR = $(PREFIX)/lib
+
+# Directory where to install Lua modules
+L_DIR=$(PREFIX)/share/lua/$(LUAVER)
+# Directory where to install Lua C modules
+C_DIR=$(PREFIX)/lib/lua/$(LUAVER)
+# Directory where to install C headers
+H_DIR=$(PREFIX)/include
+# Directory where to install C libraries
+S_DIR=$(PREFIX)/lib
 
 ifeq ($(D),1)
 DEBUG=1
@@ -45,6 +47,7 @@ COPT	+= -O2
 #COPT	+= -O0 -g
 COPT	+= -Wall -Wextra -Wpedantic
 COPT    += -std=gnu99
+COPT 	+= -DLUAVER=$(LUAVER)
 ifdef LINUX
 COPT    += -fpic
 COPT	+= -DLINUX
@@ -63,6 +66,14 @@ endif
 override CFLAGS = $(COPT) $(INCDIR)
 
 default: build
+
+where:
+	@echo "PREFIX="$(PREFIX)
+	@echo "LUAVER="$(LUAVER)
+	@echo $(L_DIR)
+	@echo $(C_DIR)
+	@echo $(H_DIR)
+	@echo $(S_DIR)
 
 clean:
 	@-rm -f *.so *.dll *.o *.err *.map *.S *~ *.log
