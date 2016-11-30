@@ -20,11 +20,10 @@
 
 [[gl.bind_buffer]]
 * *bind_buffer*(<<buffertarget,_target_>> [, _buffer_]) +
-[small]#If _buffer_ = _nil_, unbinds the current buffer bound to _target_.#
-
+*unbind_buffer*(<<buffertarget,_target_>>) _NONGL_
 
 [[gl.new_buffer]]
-* _buffer_ = *new_buffer*(<<buffertarget,_target_>>) +
+* _buffer_ = *new_buffer*(<<buffertarget,_target_>>) _NONGL_ +
 [small]#Gen & bind one buffer.#
 
 === Create/Modify Buffer Object Data

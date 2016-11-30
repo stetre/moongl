@@ -16,14 +16,14 @@
 
 [[gl.bind_transform_feedback]]
 * *bind_transform_feedback*(_target_, [_xfb_]) +
-[small]#_target_: '_transform feedback_'. +
-If _xfb_ = _nil_, unbinds the currently bound vertex transform feedback.#
+*unbind_transform_feedback*(_target_) _NONGL_ +
+[small]#_target_: '_transform feedback_'.#
 
 [[gl.create_transform_feedbacks]]
 * *create_transform_feedbacks*(_xfb1_ [, _xfb2_, _..._])
 
 [[gl.new_transform_feedback]]
-* _xfb_= *new_transform_feedback*(_target_ ) +
+* _xfb_= *new_transform_feedback*(_target_ ) _NONGL_ +
 [small]#Gen & bind one transform feedback.#
 
 [[gl.begin_transform_feedback]]

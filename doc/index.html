@@ -1061,32 +1061,55 @@ depend on it (and viceversa):</p>
 used in the same way one would use OpenGL, except, of course, for coding in Lua
 instead of C or C++.
 In particular, this means that tasks like creating a GL context and handling
-input are not addressed by MoonGL, and one needs to resort to <a href="#see-also">external modules</a>.</p>
+input are not addressed by MoonGL, and one needs to resort to <a href="#see-also">external modules</a>
+(some of them are needed to run the examples).</p>
 </div>
 <div class="paragraph">
 <p>This document purposedly reflects the structure of the
 <a href="https://www.opengl.org/sdk/docs/">OpenGL 4.5 Reference card</a>,
-so that one can easily find the correspondence between MoonGL and OpenGL API, by
+so that one can easily find the correspondence between MoonGL and OpenGL API by
 comparing the two documents. Links to corresponding sections of the
 <a href="https://www.opengl.org/wiki/Main_Page">OpenGL Wiki</a> are also provided for this purpose.</p>
 </div>
 <div class="paragraph">
-<p>As a general loose rule, each OpenGL function has a similarly named MoonGL binding
-function. For example, <strong>glClear</strong>( ) is bound to by <strong>gl.clear</strong>( ), <strong>glClearBuffer</strong>( )
-by <strong>gl.clear_buffer</strong>( ), and so on.
-The mapping between OpenGL and MoonGL functions is not exactly one-to-one, however.
+<p>As a general rule, each OpenGL function is bound to by a MoonGL function whose name is
+a <a href="https://en.wikipedia.org/wiki/Snake_case">snake_case</a> version of the original.
+For example, <strong>glClear</strong>( ) is bound to by <strong>gl.clear</strong>( ), <strong>glClearBuffer</strong>( )
+by <strong>gl.clear_buffer</strong>( ), and so on.</p>
+</div>
+<div class="paragraph">
+<p>The mapping between OpenGL and MoonGL functions is not exactly one-to-one, however.
 This is mainly because MoonGL leverages Lua&#8217;s function overloading capabilities, whereas
 OpenGL, being a C API, has a lot of functions with slightly different names that are
-logically the same overloaded function. MoonGL also adds a few functions that are not
-present in the OpenGL API, like the <strong>gl.new_xxx</strong>( ) functions that combine generation
-and binding of a single object, and a few utilities for <a href="#datahandling">data handling</a>
-and for <a href="#gl.make_program">compiling shader programs</a>.</p>
+logically the same overloaded function.</p>
+</div>
+<div class="paragraph">
+<p>MoonGL also adds a few functions (tagged with <em>NONGL</em> in this manual) that are not present
+in the OpenGL API. Among these:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>new_xxx</strong>( ) functions that combine generation and binding of a single object;</p>
+</li>
+<li>
+<p><strong>unbind_xxx</strong>( ) functions to unbind objects (these are just wrappers of the corresponding
+<strong>bind_xxx</strong>( ) which have the same effect if they receive a <em>nil</em> or <em>0</em> as object name);</p>
+</li>
+<li>
+<p><a href="#datahandling">data handling functions</a>, to convert data from Lua arrays to binary strings
+and viceversa;</p>
+</li>
+<li>
+<p>utilities for <a href="#gl.make_program">compiling shader programs</a>.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Parameter values that in OpenGL are #defined as integer codes become strings in MoonGL
 (as is customary in Lua). There is usually an easily recognizable pattern to derive the
-correct MoonGL string from the OpenGL #define name, for example the buffer target codes
-GL_ARRAY_BUFFER and GL_ELEMENT_ARRAY_BUFFER become '<em>array</em>' and '<em>element array</em>',
+correct MoonGL string from the OpenGL #define name. For example, the buffer target codes
+<strong>GL_ARRAY_BUFFER</strong> and <strong>GL_ELEMENT_ARRAY_BUFFER</strong> become <strong>'<em>array</em>'</strong> and <strong>'<em>element array</em>'</strong>,
 respectively (the string is typically obtained by removing the GL_ prefix and possibly
 some redundant part from the #define name, replacing underscores with spaces, and going
 from upper-case to lower-case letters).</p>
@@ -1353,14 +1376,14 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml">glGetSyn
 <ul>
 <li>
 <p><strong>bind_buffer</strong>(<a href="#buffertarget"><em>target</em></a> [, <em>buffer</em>])<br>
-<span class="small">If <em>buffer</em> = <em>nil</em>, unbinds the current buffer bound to <em>target</em>.</span></p>
+<strong>unbind_buffer</strong>(<a href="#buffertarget"><em>target</em></a>) <em>NONGL</em></p>
 </li>
 </ul>
 </div>
 <div id="gl.new_buffer" class="ulist">
 <ul>
 <li>
-<p><em>buffer</em> = <strong>new_buffer</strong>(<a href="#buffertarget"><em>target</em></a>)<br>
+<p><em>buffer</em> = <strong>new_buffer</strong>(<a href="#buffertarget"><em>target</em></a>) <em>NONGL</em><br>
 <span class="small">Gen &amp; bind one buffer.</span></p>
 </li>
 </ul>
@@ -1667,9 +1690,9 @@ the creation of shading programs.</p>
 <ul>
 <li>
 <p><em>program</em>, <em>shader1</em>, <em>shader2</em>, <em>&#8230;&#8203;</em> =
-<strong>make_program</strong>(<a href="#shadertype"><em>shadertype1</em></a>, <em>filename1</em> [, <a href="#shadertype"><em>shadertype2</em></a>, <em>filename2</em>, <em>&#8230;&#8203;</em>])<br>
+<strong>make_program</strong>(<a href="#shadertype"><em>shadertype1</em></a>, <em>filename1</em> [, <a href="#shadertype"><em>shadertype2</em></a>, <em>filename2</em>, <em>&#8230;&#8203;</em>]) <em>NONGL</em><br>
 <em>program</em>, <em>shader1</em>, <em>shader2</em>, <em>&#8230;&#8203;</em> =
-<strong>make_program_s</strong>(<a href="#shadertype"><em>shadertype1</em></a>, <em>sourcestring1</em> [, <a href="#shadertype"><em>shadertype2</em></a>, <em>sourcestring2</em>, <em>&#8230;&#8203;</em>])<br>
+<strong>make_program_s</strong>(<a href="#shadertype"><em>shadertype1</em></a>, <em>sourcestring1</em> [, <a href="#shadertype"><em>shadertype2</em></a>, <em>sourcestring2</em>, <em>&#8230;&#8203;</em>]) <em>NONGL</em><br>
 <span class="small">Both these functions create, compile and link a program with the passed shaders,
 and return the names assigned to them by OpenGL.
 They also check for errors at each compilation step.
@@ -1677,7 +1700,7 @@ The only difference between the two is that the former loads the shaders' code f
 while the latter (with the trailing '_s') loads the code from strings.</span></p>
 </li>
 <li>
-<p><strong>clean_program</strong>(<em>program</em>, <em>shader1</em>, <em>shader2</em>, <em>&#8230;&#8203;</em>)<br>
+<p><strong>clean_program</strong>(<em>program</em>, <em>shader1</em>, <em>shader2</em>, <em>&#8230;&#8203;</em>) <em>NONGL</em><br>
 <span class="small">Given the names of a program and of the shaders attached to it, detaches the
 shaders, and deletes them and the program.</span></p>
 </li>
@@ -1759,18 +1782,18 @@ shaders, and deletes them and the program.</span></p>
 </li>
 </ul>
 </div>
-<div id="gl.is_program_pipelines" class="ulist">
+<div id="gl.is_program_pipeline" class="ulist">
 <ul>
 <li>
-<p><em>boolean</em> = <strong>is_program_pipelines</strong>(<em>pipeline</em>)</p>
+<p><em>boolean</em> = <strong>is_program_pipeline</strong>(<em>pipeline</em>)</p>
 </li>
 </ul>
 </div>
-<div id="gl.bind_program_pipelines" class="ulist">
+<div id="gl.bind_program_pipeline" class="ulist">
 <ul>
 <li>
-<p><strong>bind_program_pipelines</strong>(<em>pipeline</em>)<br>
-<span class="small">If <em>pipeline</em> = <em>nil</em>, unbinds the current bound pipeline.</span></p>
+<p><strong>bind_program_pipeline</strong>(<em>pipeline</em>)<br>
+<strong>unbind_program_pipeline</strong>( ) <em>NONGL</em></p>
 </li>
 </ul>
 </div>
@@ -2145,7 +2168,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glActiveTexture">glActiveTexture
 <ul>
 <li>
 <p><strong>bind_texture</strong>(<a href="#texturetarget"><em>target</em></a> [, <em>texture</em>])<br>
-<span class="small">If <em>texture</em> = <em>nil</em>, unbinds the current texture bound to <em>target</em>.</span></p>
+<strong>unbind_texture</strong>(<a href="#texturetarget"><em>target</em></a>) <em>NONGL</em></p>
 </li>
 </ul>
 </div>
@@ -2187,7 +2210,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glActiveTexture">glActiveTexture
 <div id="gl.new_texture" class="ulist">
 <ul>
 <li>
-<p><em>texture</em> = <strong>new_texture</strong>(<a href="#texturetarget"><em>target</em></a>)<br>
+<p><em>texture</em> = <strong>new_texture</strong>(<a href="#texturetarget"><em>target</em></a>) <em>NONGL</em><br>
 <span class="small">Gen &amp; bind one texture.</span></p>
 </li>
 </ul>
@@ -2223,7 +2246,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glActiveTexture">glActiveTexture
 <ul>
 <li>
 <p><strong>bind_sampler</strong>(<em>unit</em>, [<em>sampler</em>])<br>
-<span class="small">If <em>sampler</em> = <em>nil</em>, unbinds the currently bound sampler.</span></p>
+<strong>unbind_sampler</strong>(<em>unit</em>) <em>NONGL</em></p>
 </li>
 </ul>
 </div>
@@ -2244,7 +2267,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glActiveTexture">glActiveTexture
 <div id="gl.new_sampler" class="ulist">
 <ul>
 <li>
-<p><em>sampler</em> = <strong>new_sampler</strong>(<em>unit</em>)<br>
+<p><em>sampler</em> = <strong>new_sampler</strong>(<em>unit</em>) <em>NONGL</em><br>
 <span class="small">Gen &amp; bind one sampler.</span></p>
 </li>
 </ul>
@@ -2638,8 +2661,8 @@ Rfr:
 <ul>
 <li>
 <p><strong>bind_framebuffer</strong>(<em>target</em> [, <em>framebuffer</em>])<br>
-<span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>'.<br>
-If <em>framebuffer</em> = <em>nil</em>, unbinds the current framebuffer bound to <em>target</em>.</span></p>
+<strong>unbind_framebuffer</strong>(<em>target</em>) <em>NONGL</em><br>
+<span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>'.</span></p>
 </li>
 </ul>
 </div>
@@ -2653,7 +2676,7 @@ If <em>framebuffer</em> = <em>nil</em>, unbinds the current framebuffer bound to
 <div id="gl.new_framebuffer" class="ulist">
 <ul>
 <li>
-<p><em>framebuffer</em> = <strong>new_framebuffer</strong>(<em>target</em>)<br>
+<p><em>framebuffer</em> = <strong>new_framebuffer</strong>(<em>target</em>) <em>NONGL</em><br>
 <span class="small">Gen &amp; bind one framebuffer.</span></p>
 </li>
 </ul>
@@ -2702,8 +2725,8 @@ If <em>framebuffer</em> = <em>nil</em>, unbinds the current framebuffer bound to
 <ul>
 <li>
 <p><strong>bind_renderbuffer</strong>(<em>target</em> [, <em>renderbuffer</em>])<br>
-<span class="small"><em>target</em>: '<em>renderbuffer</em>'.<br>
-If <em>renderbuffer</em> = <em>nil</em>, unbinds the current renderbuffer bound to <em>target</em>.</span></p>
+<strong>unbind_renderbuffer</strong>(<em>target</em>) <em>NONGL</em><br>
+<span class="small"><em>target</em>: '<em>renderbuffer</em>'.</span></p>
 </li>
 </ul>
 </div>
@@ -2738,7 +2761,7 @@ If <em>renderbuffer</em> = <em>nil</em>, unbinds the current renderbuffer bound 
 <div id="gl.new_renderbuffer" class="ulist">
 <ul>
 <li>
-<p><em>renderbuffer</em> = <strong>new_renderbuffer</strong>(<em>target</em>)<br>
+<p><em>renderbuffer</em> = <strong>new_renderbuffer</strong>(<em>target</em>) <em>NONGL</em><br>
 <span class="small">Gen &amp; bind one renderbuffer.</span></p>
 </li>
 </ul>
@@ -2930,7 +2953,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPatchParameter">glPatchParamet
 <ul>
 <li>
 <p><strong>bind_vertex_array</strong>([<em>array</em>])<br>
-<span class="small">If <em>array</em> = <em>nil</em>, unbinds the currently bound vertex array.</span></p>
+<strong>unbind_vertex_array</strong>( ) <em>NONGL</em></p>
 </li>
 </ul>
 </div>
@@ -2951,7 +2974,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPatchParameter">glPatchParamet
 <div id="gl.new_vertex_array" class="ulist">
 <ul>
 <li>
-<p><em>array</em> = <strong>new_vertex_array</strong>( )<br>
+<p><em>array</em> = <strong>new_vertex_array</strong>( ) <em>NONGL</em><br>
 <span class="small">Gen &amp; bind one array.</span></p>
 </li>
 </ul>
@@ -3258,8 +3281,8 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetTransformFeedbackVarying">g
 <ul>
 <li>
 <p><strong>bind_transform_feedback</strong>(<em>target</em>, [<em>xfb</em>])<br>
-<span class="small"><em>target</em>: '<em>transform feedback</em>'.<br>
-If <em>xfb</em> = <em>nil</em>, unbinds the currently bound vertex transform feedback.</span></p>
+<strong>unbind_transform_feedback</strong>(<em>target</em>) <em>NONGL</em><br>
+<span class="small"><em>target</em>: '<em>transform feedback</em>'.</span></p>
 </li>
 </ul>
 </div>
@@ -3273,7 +3296,7 @@ If <em>xfb</em> = <em>nil</em>, unbinds the currently bound vertex transform fee
 <div id="gl.new_transform_feedback" class="ulist">
 <ul>
 <li>
-<p><em>xfb</em>= <strong>new_transform_feedback</strong>(<em>target</em> )<br>
+<p><em>xfb</em>= <strong>new_transform_feedback</strong>(<em>target</em> ) <em>NONGL</em><br>
 <span class="small">Gen &amp; bind one transform feedback.</span></p>
 </li>
 </ul>
@@ -4115,7 +4138,7 @@ for example, <a href="#gl.buffer_data">buffer_data</a>( ) and
 <div id="gl.flatten" class="ulist">
 <ul>
 <li>
-<p><em>val1</em>, <em>&#8230;&#8203;</em>, <em>valN</em> = <strong>flatten</strong>(<em>table</em>)<br>
+<p><em>val1</em>, <em>&#8230;&#8203;</em>, <em>valN</em> = <strong>flatten</strong>(<em>table</em>) <em>NONGL</em><br>
 <span class="small">Flattens out the given <em>table</em> and returns the terminal elements in the order they are found.
 Similar to Lua&#8217;s
 <a href="http://www.lua.org/manual/5.3/manual.html#pdf-table.unpack">table.unpack</a>( ),
@@ -4126,7 +4149,7 @@ it also unpacks any nested table. Only the array part of the table(s) is conside
 <div id="gl.sizeof" class="ulist">
 <ul>
 <li>
-<p><em>size</em> = <strong>sizeof</strong>(<a href="#type"><em>type</em></a>)<br>
+<p><em>size</em> = <strong>sizeof</strong>(<a href="#type"><em>type</em></a>) <em>NONGL</em><br>
 <span class="small">Returns the size, in bytes, of the GL <em>type</em>.</span></p>
 </li>
 </ul>
@@ -4134,13 +4157,13 @@ it also unpacks any nested table. Only the array part of the table(s) is conside
 <div id="gl.pack" class="ulist">
 <ul>
 <li>
-<p><em>bstring</em> = <strong>pack</strong>(<a href="#type"><em>type</em></a>, <em>val1</em>, <em>&#8230;&#8203;</em>, <em>valN</em>)<br>
-<em>bstring</em> = <strong>pack</strong>(<a href="#type"><em>type</em></a>, <em>table</em>)<br>
+<p><em>bstring</em> = <strong>pack</strong>(<a href="#type"><em>type</em></a>, <em>val1</em>, <em>&#8230;&#8203;</em>, <em>valN</em>) <em>NONGL</em><br>
+<em>bstring</em> = <strong>pack</strong>(<a href="#type"><em>type</em></a>, <em>table</em>) <em>NONGL</em><br>
 <span class="small">Packs the numbers <em>val1</em>, <em>&#8230;&#8203;</em>, <em>valN</em> in a binary string, encoding them
 according to <em>type</em>. The values may be passed also in a (possibly nested) table <em>t</em>.</span></p>
 </li>
 <li>
-<p><em>val1</em>, <em>&#8230;&#8203;</em>, <em>valN</em> = <strong>unpack</strong>(<a href="#type"><em>type</em></a>, <em>bstring</em>)<br>
+<p><em>val1</em>, <em>&#8230;&#8203;</em>, <em>valN</em> = <strong>unpack</strong>(<a href="#type"><em>type</em></a>, <em>bstring</em>) <em>NONGL</em><br>
 <span class="small">Unpacks the binary string <em>bstring</em>, interpreting it as a sequence of values
 enncoded according to <em>type</em>, and returns the extracted values. The length of the
 binary string must be a multiple of <em>gl.sizeof(type)</em>.</span></p>

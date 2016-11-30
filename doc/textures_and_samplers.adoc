@@ -18,7 +18,7 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glActiveTexture[glActiveTexture].#
 
 [[gl.bind_texture]]
 * *bind_texture*(<<texturetarget,_target_>> [, _texture_]) +
-[small]#If _texture_ = _nil_, unbinds the current texture bound to _target_.#
+*unbind_texture*(<<texturetarget,_target_>>) _NONGL_
 
 [[gl.bind_textures]]
 * *bind_textures*(_first_, _texture1_ [, _texture2_, _..._ ])
@@ -36,7 +36,7 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glActiveTexture[glActiveTexture].#
 * _boolean_ = *is_texture*( )
 
 [[gl.new_texture]]
-* _texture_ = *new_texture*(<<texturetarget,_target_>>) +
+* _texture_ = *new_texture*(<<texturetarget,_target_>>) _NONGL_ +
 [small]#Gen & bind one texture.#
 
 === Sampler Objects
@@ -54,7 +54,7 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glActiveTexture[glActiveTexture].#
 
 [[gl.bind_sampler]]
 * *bind_sampler*(_unit_, [_sampler_]) +
-[small]#If _sampler_ = _nil_, unbinds the currently bound sampler.#
+*unbind_sampler*(_unit_) _NONGL_
 
 [[gl.bind_samplers]]
 * *bind_samplers*(_first_, _sampler1_ [, _sampler2_, _..._]) +
@@ -63,7 +63,7 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glActiveTexture[glActiveTexture].#
 * _boolean_ = *is_sampler*(_sampler_)
 
 [[gl.new_sampler]]
-* _sampler_ = *new_sampler*(_unit_) +
+* _sampler_ = *new_sampler*(_unit_) _NONGL_ +
 [small]#Gen & bind one sampler.#
 
 [[gl.sampler_parameter]]

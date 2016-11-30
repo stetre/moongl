@@ -92,6 +92,7 @@ int luaopen_moongl(lua_State *L)
     /* Add functions implemented in Lua */
     lua_pushvalue(L, -1); lua_setglobal(L, "moongl");
     if(luaL_dostring(L, "require('moongl.make')") != 0) lua_error(L);
+    if(luaL_dostring(L, "require('moongl.nongl')") != 0) lua_error(L);
     lua_pushnil(L);  lua_setglobal(L, "moongl");
 
     return 1;

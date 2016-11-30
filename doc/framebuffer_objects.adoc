@@ -16,14 +16,14 @@
 
 [[gl.bind_framebuffer]]
 * *bind_framebuffer*(_target_ [, _framebuffer_]) +
-[small]#_target_: '_draw_', '_read_'. +
-If _framebuffer_ = _nil_, unbinds the current framebuffer bound to _target_.#
+*unbind_framebuffer*(_target_) _NONGL_ +
+[small]#_target_: '_draw_', '_read_'.#
 
 [[gl.is_framebuffer]]
 * _boolean_ = *is_framebuffer*(_framebuffer_)
 
 [[gl.new_framebuffer]]
-* _framebuffer_ = *new_framebuffer*(_target_) +
+* _framebuffer_ = *new_framebuffer*(_target_) _NONGL_ +
 [small]#Gen & bind one framebuffer.#
 
 === Framebuffer Object Parameters
@@ -53,8 +53,8 @@ _pname_: '_object type_' for GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE, etc.#
 
 [[gl.bind_renderbuffer]]
 * *bind_renderbuffer*(_target_ [, _renderbuffer_]) +
-[small]#_target_: '_renderbuffer_'. +
-If _renderbuffer_ = _nil_, unbinds the current renderbuffer bound to _target_.#
+*unbind_renderbuffer*(_target_) _NONGL_ +
+[small]#_target_: '_renderbuffer_'.#
 
 [[gl.gen_renderbuffers]]
 * _renderbuffer1_, _renderbuffer2_, _..._ = *gen_renderbuffers*([_n_ = 1])
@@ -69,7 +69,7 @@ If _renderbuffer_ = _nil_, unbinds the current renderbuffer bound to _target_.#
 * _boolean_ = *is_renderbuffer*(_renderbuffer_)
 
 [[gl.new_renderbuffer]]
-* _renderbuffer_ = *new_renderbuffer*(_target_) +
+* _renderbuffer_ = *new_renderbuffer*(_target_) _NONGL_ +
 [small]#Gen & bind one renderbuffer.#
 
 [[gl.renderbuffer_storage_multisample]]

@@ -145,7 +145,7 @@ function init()
    assert(image, soil.last_result())
    gl.texture_image('2d', 0, 'rgb', 'rgb', 'ubyte', image, width, height)
    gl.generate_mipmap('2d')
-   gl.bind_texture('2d', 0) -- Unbind texture
+   gl.unbind_texture('2d')
 
    -- Load the second texture ('powered by Lua' logo)
    texture2 = gl.new_texture('2d')
@@ -157,7 +157,7 @@ function init()
    assert(image, soil.last_result())
    gl.texture_image('2d', 0, 'rgb', 'rgb', 'ubyte', image, width, height)
    gl.generate_mipmap('2d')
-   gl.bind_texture('2d', 0)
+   gl.unbind_texture('2d')
 
    -- Clean up some memory:
    image = nil

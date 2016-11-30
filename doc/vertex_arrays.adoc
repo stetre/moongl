@@ -16,7 +16,7 @@
 
 [[gl.bind_vertex_array]]
 * *bind_vertex_array*([_array_]) +
-[small]#If _array_ = _nil_, unbinds the currently bound vertex array.#
+*unbind_vertex_array*( ) _NONGL_
 
 [[gl.is_vertex_array]]
 * _boolean_ = *is_vertex_array*(_array_)
@@ -25,7 +25,7 @@
 * *vertex_array_element_buffer*(_array_, _buffer_)
 
 [[gl.new_vertex_array]]
-* _array_ = *new_vertex_array*( ) +
+* _array_ = *new_vertex_array*( ) _NONGL_ +
 [small]#Gen & bind one array.#
 
 === Generic Vertex Attribute Arrays
