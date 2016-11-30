@@ -63,6 +63,7 @@ static int IsSupported(lua_State *L)
     return 1;
     }
 
+#if 0
 static int GetExtension(lua_State *L)
     {
     const char *what = luaL_checkstring(L, 1);
@@ -70,6 +71,7 @@ static int GetExtension(lua_State *L)
     CheckError(L);
     return 1;
     }
+#endif
 
 static int Versions(lua_State *L)
     {
@@ -135,7 +137,7 @@ static const struct luaL_Reg Functions[] =
     {
         { "init", Init },
         { "is_supported", IsSupported },
-        { "get_extension", GetExtension }, /* for glew version < 1.3.0 only */
+/*       { "get_extension", GetExtension },  for glew version < 1.3.0 only */
         { "versions", Versions },
         { NULL, NULL } /* sentinel */
     };

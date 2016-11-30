@@ -46,15 +46,12 @@ See also <<datahandling, 'Data handling utilities'>>.#
 See also <<datahandling, 'Data handling utilities'>>.#
 
 [[gl.clear_buffer_data]]
-* <<format, _format_>>, <<type, _type_>> [, <<data,_data_>>]) = 
-*clear_buffer_data*(<<buffertarget,_target_>>|_buffer_, <<intformat, _intformat_>>) +
+* *clear_buffer_data*(<<buffertarget,_target_>>|_buffer_, <<intformat, _intformat_>>, <<format, _format_>>, <<type, _type_>> [, <<data,_data_>>]) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glClearBufferData[glClearBufferData].
 See also <<datahandling, 'Data handling utilities'>>.#
 
 [[gl.clear_buffer_sub_data]]
-* _offset_, _size_, <<format, _format_>>, <<type, _type_>> [, <<data,_data_>>]) = 
-*clear_buffer_sub_data*(<<buffertarget,_target_>>|_buffer_, <<intformat, _intformat_>>) +
-
+* *clear_buffer_sub_data*(<<buffertarget,_target_>>|_buffer_, <<intformat, _intformat_>>), _offset_, _size_, <<format, _format_>>, <<type, _type_>> [, <<data,_data_>>]) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glClearBufferSubData[glClearBufferSubData].
 See also <<datahandling, 'Data handling utilities'>>.#
 

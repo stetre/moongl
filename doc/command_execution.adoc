@@ -1,11 +1,15 @@
 
-== GLEW Initialization
+== Initialization
 
+
+=== GLEW Init
+[[gl.init]]
 * *init*( ) +
-[small]#Binding to *glewInit*(). This function must be called as soon as a GL
-context is obtained, in order to correctly initialize OpenGL's function pointers,
-before calling any other MoonGL function (see the example below). Failing to do 
-so would likely cause a segmentation fault.#
+[small]#Binding to http://glew.sourceforge.net/basic.html[glewInit]().#
+
+IMPORTANT: The <<gl.init, gl.init>>( ) function must be called as soon as a GL context is obtained,
+in order to correctly initialize OpenGL's function pointers, *before calling any other MoonGL function*
+(see the example below). Failing to do so would likely cause a segmentation fault.
 
 .Example: OpenGL initialization with MoonGLFW
 [source,lua]
@@ -20,9 +24,32 @@ glfw.make_context_current(window)
 -- This is actually glewInit():
 gl.init()
 
-- ... now it is safe to call MoonGL functions ...
+-- ... now it is safe to call MoonGL functions ...
 
 ----
+
+=== Other GLEW bindings
+
+* _boolean_ = *is_supported*(_string_) +
+[small]#Binding to http://glew.sourceforge.net/basic.html[glewIsSupported]() (accepts the same strings).#
+
+.Example
+[source,lua]
+----
+if not gl.is_supported("GL_VERSION_4_5") then
+  error("Sorry, OpenGL 4.5 is not supported by your system")
+end
+----
+
+=== Version information
+
+The *gl* table contains the following version fields:
+
+* *pass:[_VERSION]*: a string describing the MoonGL version (e.g. '_MoonGL 0.4_'), and
+* *pass:[_GLEW_VERSION]*: a string describing the GLEW version (e.g. '_GLEW 1.13.0_').
+
+To retrieve the OpenGL version, use the <<gl.get, get>>() function (this can be
+done only after initialization).
 
 == Command Execution
 
@@ -36,6 +63,7 @@ an error if the command did not succeed.
 
 [[gl.get_graphics_reset_status]]
 * _status_ = *get_graphics_reset_status*( ) +
+[small]#_status_: '_no error_' for GL_NO_ERROR, '_guilty context reset_' for GL_GUILTY_CONTEXT_RESET, etc.# +
 [small]#Rfr: https://www.opengl.org/sdk/docs/man/html/glGetGraphicsResetStatus.xhtml[glGetGraphicsResetStatus].#
 
 * <<gl.get, get>>

@@ -778,7 +778,13 @@ p.tableblock.header { color: #6d6e71; }
 </ul>
 </li>
 <li><a href="#_introduction">Introduction</a></li>
-<li><a href="#_glew_initialization">GLEW Initialization</a></li>
+<li><a href="#_initialization">Initialization</a>
+<ul class="sectlevel2">
+<li><a href="#_glew_init">GLEW Init</a></li>
+<li><a href="#_other_glew_bindings">Other GLEW bindings</a></li>
+<li><a href="#_version_information">Version information</a></li>
+</ul>
+</li>
 <li><a href="#_command_execution">Command Execution</a>
 <ul class="sectlevel2">
 <li><a href="#_opengl_errors">OpenGL Errors</a></li>
@@ -1118,18 +1124,31 @@ from upper-case to lower-case letters).</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_glew_initialization">GLEW Initialization</h2>
+<h2 id="_initialization">Initialization</h2>
 <div class="sectionbody">
-<div class="ulist">
+<div class="sect2">
+<h3 id="_glew_init">GLEW Init</h3>
+<div id="gl.init" class="ulist">
 <ul>
 <li>
 <p><strong>init</strong>( )<br>
-<span class="small">Binding to <strong>glewInit</strong>(). This function must be called as soon as a GL
-context is obtained, in order to correctly initialize OpenGL&#8217;s function pointers,
-before calling any other MoonGL function (see the example below). Failing to do
-so would likely cause a segmentation fault.</span></p>
+<span class="small">Binding to <a href="http://glew.sourceforge.net/basic.html">glewInit</a>().</span></p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+The <a href="#gl.init">gl.init</a>( ) function must be called as soon as a GL context is obtained,
+in order to correctly initialize OpenGL&#8217;s function pointers, <strong>before calling any other MoonGL function</strong>
+(see the example below). Failing to do so would likely cause a segmentation fault.
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="title">Example: OpenGL initialization with MoonGLFW</div>
@@ -1144,7 +1163,47 @@ so would likely cause a segmentation fault.</span></p>
 <span class="tok-c1">-- This is actually glewInit():</span>
 <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">init</span><span class="tok-p">()</span>
 
-<span class="tok-o">-</span> <span class="tok-o">...</span> <span class="tok-n">now</span> <span class="tok-n">it</span> <span class="tok-n">is</span> <span class="tok-n">safe</span> <span class="tok-n">to</span> <span class="tok-n">call</span> <span class="tok-n">MoonGL</span> <span class="tok-n">functions</span> <span class="tok-o">...</span></code></pre>
+<span class="tok-c1">-- ... now it is safe to call MoonGL functions ...</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_other_glew_bindings">Other GLEW bindings</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><em>boolean</em> = <strong>is_supported</strong>(<em>string</em>)<br>
+<span class="small">Binding to <a href="http://glew.sourceforge.net/basic.html">glewIsSupported</a>() (accepts the same strings).</span></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="lua"><span class="tok-k">if</span> <span class="tok-ow">not</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">is_supported</span><span class="tok-p">(</span><span class="tok-s2">&quot;</span><span class="tok-s">GL_VERSION_4_5&quot;</span><span class="tok-p">)</span> <span class="tok-k">then</span>
+  <span class="tok-nb">error</span><span class="tok-p">(</span><span class="tok-s2">&quot;</span><span class="tok-s">Sorry, OpenGL 4.5 is not supported by your system&quot;</span><span class="tok-p">)</span>
+<span class="tok-k">end</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_version_information">Version information</h3>
+<div class="paragraph">
+<p>The <strong>gl</strong> table contains the following version fields:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>_VERSION</strong>: a string describing the MoonGL version (e.g. '<em>MoonGL 0.4</em>'), and</p>
+</li>
+<li>
+<p><strong>_GLEW_VERSION</strong>: a string describing the GLEW version (e.g. '<em>GLEW 1.13.0</em>').</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To retrieve the OpenGL version, use the <a href="#gl.get">get</a>() function (this can be
+done only after initialization).</p>
 </div>
 </div>
 </div>
@@ -1166,6 +1225,7 @@ an error if the command did not succeed.</p>
 <ul>
 <li>
 <p><em>status</em> = <strong>get_graphics_reset_status</strong>( )<br>
+<span class="small"><em>status</em>: '<em>no error</em>' for GL_NO_ERROR, '<em>guilty context reset</em>' for GL_GUILTY_CONTEXT_RESET, etc.</span><br>
 <span class="small">Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetGraphicsResetStatus.xhtml">glGetGraphicsResetStatus</a>.</span></p>
 </li>
 <li>
@@ -1423,8 +1483,7 @@ See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 <div id="gl.clear_buffer_data" class="ulist">
 <ul>
 <li>
-<p><a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a> [, <a href="#data"><em>data</em></a>]) =
-<strong>clear_buffer_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#intformat"><em>intformat</em></a>)<br>
+<p><strong>clear_buffer_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a> [, <a href="#data"><em>data</em></a>])<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClearBufferData">glClearBufferData</a>.
 See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 </li>
@@ -1433,14 +1492,11 @@ See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 <div id="gl.clear_buffer_sub_data" class="ulist">
 <ul>
 <li>
-<p><em>offset</em>, <em>size</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a> [, <a href="#data"><em>data</em></a>]) =
-<strong>clear_buffer_sub_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#intformat"><em>intformat</em></a>)<br></p>
+<p><strong>clear_buffer_sub_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#intformat"><em>intformat</em></a>), <em>offset</em>, <em>size</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a> [, <a href="#data"><em>data</em></a>])<br>
+<span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClearBufferSubData">glClearBufferSubData</a>.
+See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p><span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClearBufferSubData">glClearBufferSubData</a>.
-See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 </div>
 <div id="gl.bind_buffer_range" class="ulist">
 <ul>
@@ -4066,6 +4122,19 @@ The <em>index</em> argument may be mandatory or optional, depending on <em>pname
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGet">glGet</a>.</span></p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+An '<em>invalid enumerant</em>' error raised by a <a href="#gl.get">get</a>( ) call means that the <em>pname</em> is not
+supported by the OpenGL version being used (a mis-spelled <em>pname</em> causes a '<em>bad argument &#8230;&#8203;</em>' error).
+</td>
+</tr>
+</table>
 </div>
 <div id="gl.enable" class="ulist">
 <ul>

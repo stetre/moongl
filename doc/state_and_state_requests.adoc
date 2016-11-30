@@ -9,6 +9,9 @@
 The _index_ argument may be mandatory or optional, depending on _pname_. +
 Rfr: https://www.opengl.org/wiki/GLAPI/glGet[glGet].#
 
+NOTE: An '_invalid enumerant_' error raised by a <<gl.get, get>>( ) call means that the _pname_ is not
+supported by the OpenGL version being used (a mis-spelled _pname_ causes a '_bad argument ..._' error).
+
 [[gl.enable]]
 * *enable*(_cap_ [,_index_]) +
 *disable*(_cap_ [,_index_]) +
