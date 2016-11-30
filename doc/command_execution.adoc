@@ -1,7 +1,7 @@
 
 == GLEW Initialization
 
-* *gl.init* ( ) +
+* *init*( ) +
 [small]#Binding to *glewInit*(). This function must be called as soon as a GL
 context is obtained, in order to correctly initialize OpenGL's function pointers,
 before calling any other MoonGL function (see the example below). Failing to do 
@@ -35,21 +35,18 @@ an error if the command did not succeed.
 === Graphics Reset Recovery
 
 [[gl.get_graphics_reset_status]]
-* *gl.get_graphics_reset_status* ( ) +
--> _status_ +
+* _status_ = *get_graphics_reset_status*( ) +
 [small]#Rfr: https://www.opengl.org/sdk/docs/man/html/glGetGraphicsResetStatus.xhtml[glGetGraphicsResetStatus].#
 
-* <<gl.get, gl.get>>
+* <<gl.get, get>>
 
 === Flush and Finish
 
 [[gl.flush]]
-* *gl.flush* ( ) +
+* *flush*( ) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glFlush[glFlush].#
 
 [[gl.finish]]
-* *gl.finish* ( ) +
+* *finish*( ) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glFinish[glFinish].#
-
-<<<
 

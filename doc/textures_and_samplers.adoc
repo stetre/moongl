@@ -2,7 +2,7 @@
 == Textures and Samplers
 
 [[gl.active_texture]]
-* *gl.active_texture* (_i_) +
+* *active_texture*(_i_) +
 [small]#_i_: 0 for GL_TEXTURE0, 1 for GL_TEXTURE1, etc. +
 Rfr: https://www.opengl.org/wiki/GLAPI/glActiveTexture[glActiveTexture].#
 
@@ -14,32 +14,29 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glActiveTexture[glActiveTexture].#
 [small]#*texture target*: '_2d_' for GL_TEXTURE_2D, '_cube map_' for GL_TEXTURE_CUBE_MAP, etc.#
 
 [[gl.gen_textures]]
-* *gl.gen_textures* ([_n_ = 1]) +
--> _texture1_, _texture2_, _..._
+* _texture1_, _texture2_, _..._ = *gen_textures*([_n_ = 1])
 
 [[gl.bind_texture]]
-* *gl.bind_texture* (<<texturetarget,_target_>> [, _texture_]) +
+* *bind_texture*(<<texturetarget,_target_>> [, _texture_]) +
 [small]#If _texture_ = _nil_, unbinds the current texture bound to _target_.#
 
 [[gl.bind_textures]]
-* *gl.bind_textures* (_first_, _texture1_ [, _texture2_, _..._ ])
+* *bind_textures*(_first_, _texture1_ [, _texture2_, _..._ ])
 
 [[gl.bind_texture_unit]]
-* *gl.bind_texture_unit* (_unit_, _texture_)
+* *bind_texture_unit*(_unit_, _texture_)
 
 [[gl.create_textures]]
-* *gl.create_textures* (<<texturetarget,_target_>>, _texture1_ [, _texture2_, _..._])
+* *create_textures*(<<texturetarget,_target_>>, _texture1_ [, _texture2_, _..._])
 
 [[gl.delete_textures]]
-* *gl.delete_textures* (_texture1_ [, _texture2_, _..._])
+* *delete_textures*(_texture1_ [, _texture2_, _..._])
 
 [[gl.is_texture]]
-* *gl.is_texture* ( ) +
--> _boolean_
+* _boolean_ = *is_texture*( )
 
 [[gl.new_texture]]
-* *gl.new_texture* (<<texturetarget,_target_>>) +
--> _texture_ +
+* _texture_ = *new_texture*(<<texturetarget,_target_>>) +
 [small]#Gen & bind one texture.#
 
 === Sampler Objects
@@ -47,48 +44,44 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glActiveTexture[glActiveTexture].#
 [small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Texturing[Texturing].#
 
 [[gl.gen_samplers]]
-* *gl.gen_samplers* ([_n_ = 1]) +
--> _sampler1_, _sampler2_, _..._
+* _sampler1_, _sampler2_, _..._ = *gen_samplers*([_n_ = 1])
 
 [[gl.create_samplers]]
-* *gl.create_samplers* (_sampler1_ [, _sampler2_, _..._])
+* *create_samplers*(_sampler1_ [, _sampler2_, _..._])
 
 [[gl.delete_samplers]]
-* *gl.delete_samplers* (_sampler1_ [, _sampler2_, _..._])
+* *delete_samplers*(_sampler1_ [, _sampler2_, _..._])
 
 [[gl.bind_sampler]]
-* *gl.bind_sampler* (_unit_, [_sampler_]) +
+* *bind_sampler*(_unit_, [_sampler_]) +
 [small]#If _sampler_ = _nil_, unbinds the currently bound sampler.#
 
 [[gl.bind_samplers]]
-* *gl.bind_samplers* (_first_, _sampler1_ [, _sampler2_, _..._]) +
+* *bind_samplers*(_first_, _sampler1_ [, _sampler2_, _..._]) +
 
 [[gl.is_sampler]]
-* *gl.is_sampler* (_sampler_) +
--> _boolean_
+* _boolean_ = *is_sampler*(_sampler_)
 
 [[gl.new_sampler]]
-* *gl.new_sampler* (_unit_) +
--> _sampler_ +
+* _sampler_ = *new_sampler*(_unit_) +
 [small]#Gen & bind one sampler.#
 
 [[gl.sampler_parameter]]
-* *gl.sampler_parameter* (_sampler_, _pname_, _val1_ [, _val2_, _..._]) +
+* *sampler_parameter*(_sampler_, _pname_, _val1_ [, _val2_, _..._]) +
 [small]#_pname_: '_wrap x_' for GL_TEXTURE_WRAP_X, '_min filter_' for GL_TEXTURE_MIN_FILTERS, etc. +
 Rfr: https://www.opengl.org/wiki/GLAPI/glSamplerParameter[glSamplerParameter].#
 
 === Sampler Queries
 
 [[gl.get_sampler_parameter]]
-* *gl.get_sampler_parameter* (_sampler_, _pname_) +
--> _value(s)_ +
+* _value(s)_ = *get_sampler_parameter*(_sampler_, _pname_) +
 [small]#_pname_: '_wrap x_' for GL_TEXTURE_WRAP_X, '_min filter_' for GL_TEXTURE_MIN_FILTERS, etc. +
 Rfr: https://www.opengl.org/wiki/GLAPI/glGetSamplerParameter[glGetSamplerParameter].#
 
 === Pixel Storage Modes
 
 [[gl.pixel_store]]
-* *gl.pixel_store* (_pname_, _val_) +
+* *pixel_store*(_pname_, _val_) +
 [small]#_pname_: '_unpack swap bytes_' for GL_UNPACK_SWAP_BYTES, '_unpack lsb first_' for GL_UNPACK_LSB_FIRST, etc. +
 Rfr: 
 https://www.opengl.org/wiki/GLAPI/glPixelStore[glPixelStore].#
@@ -96,9 +89,9 @@ https://www.opengl.org/wiki/GLAPI/glPixelStore[glPixelStore].#
 === Texture Image Spec.
 
 [[gl.texture_image]]
-* *gl.texture_image* (<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _width_)  1D +
-*gl.texture_image* (<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _width_, _height_)  2D +
-*gl.texture_image* (<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _width_, _height_, _depth_) 3D +
+* *texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _width_)  1D +
+*texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _width_, _height_)  2D +
+*texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _width_, _height_, _depth_) 3D +
 [small]#Rfr: 
 https://www.opengl.org/wiki/GLAPI/glTexImage1D[glTexImage1D],
 https://www.opengl.org/wiki/GLAPI/glTexImage2D[glTexImage2D],
@@ -108,26 +101,26 @@ https://www.opengl.org/wiki/GLAPI/glTexImage3D[glTexImage3D].#
 === Alternate Texture Image Spec.
 
 [[gl.copy_texture_image]]
-* *gl.copy_texture_image* (<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, _x_, _y_, _width_) 1D +
-*gl.copy_texture_image* (<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, _x_, _y_, _width_, _height_) 2D +
+* *copy_texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, _x_, _y_, _width_) 1D +
+*copy_texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, _x_, _y_, _width_, _height_) 2D +
 [small]#Rfr: 
 https://www.opengl.org/wiki/GLAPI/glCopyTexImage1D[glCopyTexImage1D],
 https://www.opengl.org/wiki/GLAPI/glCopyTexImage2D[glCopyTexImage2D].#
 
 
 [[gl.texture_sub_image]]
-* *gl.texture_sub_image* (<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _xofs_, _width_) 1D +
-*gl.texture_sub_image* (<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _xofs_, _yofs_, _width_, _height_) 2D +
-*gl.texture_sub_image* (<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) 3D +
+* *texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _xofs_, _width_) 1D +
+*texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _xofs_, _yofs_, _width_, _height_) 2D +
+*texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) 3D +
 [small]#Rfr: 
 https://www.opengl.org/wiki/GLAPI/glTexSubImage1D[glTexSubImage1D],
 https://www.opengl.org/wiki/GLAPI/glTexSubImage2D[glTexSubImage2D],
 https://www.opengl.org/wiki/GLAPI/glTexSubImage3D[glTexSubImage3D].#
 
 [[gl.copy_texture_sub_image]]
-* *gl.copy_texture_sub_image* (<<texturetarget,_target_>>|_texture_, _level_, _xofs_, _x_, _y_, _width_) 1D +
-*gl.copy_texture_sub_image* (<<texturetarget,_target_>>|_texture_, _level_, _xofs_, _yofs_, _x_, _y_, _width_, _height_) 2D +
-*gl.copy_texture_sub_image* (<<texturetarget,_target_>>|_texture_, _level_, _xofs_, _yofs_, _zofs_, _x_, _y_, _width_, _height_) 3D +
+* *copy_texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, _xofs_, _x_, _y_, _width_) 1D +
+*copy_texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, _xofs_, _yofs_, _x_, _y_, _width_, _height_) 2D +
+*copy_texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, _xofs_, _yofs_, _zofs_, _x_, _y_, _width_, _height_) 3D +
 [small]#Rfr: 
 https://www.opengl.org/wiki/GLAPI/glCopyTexSubImage1D[glCopyTexSubImage1D],
 https://www.opengl.org/wiki/GLAPI/glCopyTexSubImage2D[glCopyTexSubImage2D],
@@ -136,18 +129,18 @@ https://www.opengl.org/wiki/GLAPI/glCopyTexSubImage3D[glCopyTexSubImage3D].#
 === Compressed Texture Images
 
 [[gl.compressed_texture_image]]
-* *gl.compressed_texture_image* (<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<data,_data_>>, _width_) 1D +
-*gl.compressed_texture_image* (<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<data,_data_>>, _width_, _height_) 2D +
-*gl.compressed_texture_image* (<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<data,_data_>>, _width_, _height_, _depth_) 3D +
+* *compressed_texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<data,_data_>>, _width_) 1D +
+*compressed_texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<data,_data_>>, _width_, _height_) 2D +
+*compressed_texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<data,_data_>>, _width_, _height_, _depth_) 3D +
 [small]#Rfr: 
 https://www.opengl.org/wiki/GLAPI/glCompressedTexImage1D[glCompressedTexImage1D],
 https://www.opengl.org/wiki/GLAPI/glCompressedTexImage2D[glCompressedTexImage2D],
 https://www.opengl.org/wiki/GLAPI/glCompressedTexImage3D[glCompressedTexImage3D].#
 
 [[gl.compressed_texture_sub_image]]
-* *gl.compressed_texture_sub_image* (<<texturetarget,_target_>>|_texture_, _level_, <<intformat,_intformat_>>, <<data,_data_>>, _xofs_, _width_) 1D +
-*gl.compressed_texture_sub_image* (<<texturetarget,_target_>>|_texture_, _level_, <<intformat,_intformat_>>, <<data,_data_>>, _xofs_, _yofs_, _width_, _height_) 2D +
-*gl.compressed_texture_sub_image* (<<texturetarget,_target_>>|_texture_, _level_, <<intformat,_intformat_>>, <<data,_data_>>, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) 3D +
+* *compressed_texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<intformat,_intformat_>>, <<data,_data_>>, _xofs_, _width_) 1D +
+*compressed_texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<intformat,_intformat_>>, <<data,_data_>>, _xofs_, _yofs_, _width_, _height_) 2D +
+*compressed_texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<intformat,_intformat_>>, <<data,_data_>>, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) 3D +
 [small]#Rfr: 
 https://www.opengl.org/wiki/GLAPI/glCompressedTexSubImage1D[glCompressedTexSubImage1D],
 https://www.opengl.org/wiki/GLAPI/glCompressedTexSubImage2D[glCompressedTexSubImage2D],
@@ -156,8 +149,8 @@ https://www.opengl.org/wiki/GLAPI/glCompressedTexSubImage3D[glCompressedTexSubIm
 === Multisample Textures
 
 [[gl.texture_image_multisample]]
-* *gl.texture_image_multisample* (<<texturetarget,_target_>>, _samples_, <<intformat,_intformat_>>, _fixedsamplelocs_, _width_, _height_, _depth_) 2D +
-*gl.texture_image_multisample* (<<texturetarget,_target_>>, _samples_, <<intformat,_intformat_>>, _fixedsamplelocs_, _width_, _height_, _depth_, _height_) 3D +
+* *texture_image_multisample*(<<texturetarget,_target_>>, _samples_, <<intformat,_intformat_>>, _fixedsamplelocs_, _width_, _height_, _depth_) 2D +
+*texture_image_multisample*(<<texturetarget,_target_>>, _samples_, <<intformat,_intformat_>>, _fixedsamplelocs_, _width_, _height_, _depth_, _height_) 3D +
 [small]#Rfr: 
 https://www.opengl.org/wiki/GLAPI/glTexImage2DMultisample[glTexImage2DMultisample],
 https://www.opengl.org/wiki/GLAPI/glTexImage3DMultisample[glTexImage3DMultisample].#
@@ -165,110 +158,107 @@ https://www.opengl.org/wiki/GLAPI/glTexImage3DMultisample[glTexImage3DMultisampl
 === Buffer Textures
 
 [[gl.texture_buffer_range]]
-* *gl.texture_buffer_range* (<<texturetarget,_target_>>|_texture_, <<intformat,_intformat_>>, _buffer_, _offset_, _size_) +
+* *texture_buffer_range*(<<texturetarget,_target_>>|_texture_, <<intformat,_intformat_>>, _buffer_, _offset_, _size_) +
 [small]#Rfr: 
 https://www.opengl.org/wiki/GLAPI/glTexBufferRange[glTexBufferRange].#
 
 [[gl.texture_buffer]]
-* *gl.texture_buffer* (<<texturetarget,_target_>>|_texture_, <<intformat,_intformat_>>, _buffer_) +
+* *texture_buffer*(<<texturetarget,_target_>>|_texture_, <<intformat,_intformat_>>, _buffer_) +
 [small]#Rfr: 
 https://www.opengl.org/wiki/GLAPI/glTexBuffer[glTexBuffer].#
 
 === Texture Parameters
 
 [[gl.texture_parameter]]
-* *gl.texture_parameter* (<<texturetarget,_target_>>|_texture_, _pname_, _val1_, _..._) +
+* *texture_parameter*(<<texturetarget,_target_>>|_texture_, _pname_, _val1_, _..._) +
 [small]#_pname_: '_depth stencil texture mode_', '_base level_' for GL_TEXTURE_BASE_LEVEL, '_compare func_' for GL_TEXTURE_COMPARE_FUNC, etc. +
 Rfr: https://www.opengl.org/wiki/GLAPI/glTexParameter[glTexParameter].#
 
 === Texture Queries
 
 [[gl.get_texture_parameter]]
-* *gl.get_texture_parameter* (<<texturetarget,_target_>>|_texture_, _pname_) +
--> _value(s)_ +
+* _value(s)_ = *get_texture_parameter*(<<texturetarget,_target_>>|_texture_, _pname_) +
 [small]#_pname_: '_depth stencil texture mode_', '_base level_' for GL_TEXTURE_BASE_LEVEL, '_compare func_' for GL_TEXTURE_COMPARE_FUNC, etc. +
 Rfr: 
 https://www.opengl.org/wiki/GLAPI/glGetTexParameter[glGetTexParameter].#
 
 [[gl.get_texture_level_parameter]]
-* *gl.get_texture_level_parameter* (<<texturetarget,_target_>>|_texture_, _level_, _pname_) +
--> _value_ +
+* _value_ = *get_texture_level_parameter*(<<texturetarget,_target_>>|_texture_, _level_, _pname_) +
 [small]#_pname_: '_width_' for GL_TEXTURE_WIDTH, '_fixed sample locations_' for GL_TEXTURE_FIXED_SAMPLE_LOCATIONS, etc. +
 Rfr: 
 https://www.opengl.org/wiki/GLAPI/glGetTexLevelParameter[glGetTexLevelParameter].#
 
 [[gl.get_texture_image]]
-* *gl.get_texture_image* (<<texturetarget,_target_>>|_texture_, _level_, <<type,_type_>> [, _buffer_]) +
--> <<data,_data_>> (or _nil_, if _buffer_ is passed) +
+* *get_texture_image*(<<texturetarget,_target_>>|_texture_, _level_, <<type,_type_>> [, _buffer_]) +
+<<data,_data_>> (or _nil_, if _buffer_ is passed) +
 [small]#Rfr: 
 https://www.opengl.org/wiki/GLAPI/glGetTexImage[glGetTexImage].#
 
 ////
 [[gl.getn_texture_image]]
-* *gl.getn_texture_image* (<<texturetarget,_target_>>, _level_, <<format, _format_>>, <<type,_type_>>) +
--> <<data,_data_>> +
+* *getn_texture_image*(<<texturetarget,_target_>>, _level_, <<format, _format_>>, <<type,_type_>>) +
+<<data,_data_>> +
 [small]#Rfr: 
 https://www.opengl.org/sdk/docs/man/html/glGetTexImage.xhtml[glGetTexImage].#
 ////
 
 [[gl.get_texture_sub_image]]
-* *gl.get_texture_sub_image* (_texture_, _level_, <<format, _format_>>, <<type,_type_>>, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) +
--> <<data,_data_>> +
+* <<data,_data_>> = 
+*get_texture_sub_image*(_texture_, _level_, <<format, _format_>>, <<type,_type_>>, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) +
 [small]#Rfr: https://www.opengl.org/sdk/docs/man/html/glGetTextureSubImage.xhtml[glGetTextureSubImage].#
 
 [[gl.get_compressed_texture_image]]
-* *gl.get_compressed_texture_image* (<<texturetarget,_target_>>|_texture_, _level_) +
--> <<data,_data_>> +
+* <<data,_data_>> =
+*get_compressed_texture_image*(<<texturetarget,_target_>>|_texture_, _level_) +
 [small]#Rfr: 
 https://www.opengl.org/wiki/GLAPI/glGetCompressedTexImage[glGetCompressedTexImage].#
 
 ////
 [[gl.getn_compressed_texture_image]]
-* *gl.getn_compressed_texture_image* (<<texturetarget,_target_>>, _level_) +
--> <<data,_data_>> +
+* *getn_compressed_texture_image*(<<texturetarget,_target_>>, _level_) +
+<<data,_data_>> +
 [small]#Rfr: 
 https://www.opengl.org/sdk/docs/man/html/glGetnCompressedTexImage.xhtml[glGetnCompressedTexImage].#
 ////
 
 [[gl.get_compressed_texture_sub_image]]
-* *gl.get_compressed_texture_sub_image* (_texture_, _level_, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) +
--> <<data,_data_>> +
+*  <<data,_data_>> = 
+*get_compressed_texture_sub_image*(_texture_, _level_, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) +
 [small]#Rfr: 
 https://www.opengl.org/sdk/docs/man/html/glGetCompressedTextureSubImage.xhtml[glGetCompressedTextureSubImage].#
 
 === Cube Map Texture Select
 
-* <<gl.enable, gl.enable/disable/is_enabled>>
+* <<gl.enable, enable/disable/is_enabled>>
 
 === Manual Mipmap Generation
 
 [[gl.generate_mipmap]]
-* *gl.generate_mipmap* (<<texturetarget,_target_>>|_texture_, _level_) +
+* *generate_mipmap*(<<texturetarget,_target_>>|_texture_, _level_) +
 [small]#Rfr: 
 https://www.opengl.org/sdk/docs/man/html/glGenerateMipmap.xhtml[glGenerateMipmap].#
 
 === Texture Views
 
 [[gl.texture_view]]
-* *gl.texture_view* (_texture_, <<texturetarget,_target_>>, _origtexture_, <<intformat,_intformat_>>, _minlevel_,
-_numlevels_, _minlayer_, _numlayers_) +
+* *texture_view*(_texture_, <<texturetarget,_target_>>, _origtexture_, <<intformat,_intformat_>>, _minlevel_, _numlevels_, _minlayer_, _numlayers_) +
 [small]#Rfr: 
 https://www.opengl.org/wiki/GLAPI/glTextureView[glTextureView].#
 
 === Immutable-Format Tex. Images
 
 [[gl.texture_storage]]
-* *gl.texture_storage* (<<texturetarget,_target_>>|_texture_, _levels_, <<intformat,_intformat_>>, _width_) 1D +
-*gl.texture_storage* (<<texturetarget,_target_>>|_texture_, _levels_, <<intformat,_intformat_>>, _width_, _height_) 2D +
-*gl.texture_storage* (<<texturetarget,_target_>>|_texture_, _levels_, <<intformat,_intformat_>>, _width_, _height_, _depth_) 3D +
+* *texture_storage*(<<texturetarget,_target_>>|_texture_, _levels_, <<intformat,_intformat_>>, _width_) 1D +
+*texture_storage*(<<texturetarget,_target_>>|_texture_, _levels_, <<intformat,_intformat_>>, _width_, _height_) 2D +
+*texture_storage*(<<texturetarget,_target_>>|_texture_, _levels_, <<intformat,_intformat_>>, _width_, _height_, _depth_) 3D +
 [small]#Rfr: 
 https://www.opengl.org/wiki/GLAPI/glTexStorage1D[glTexStorage1D],
 https://www.opengl.org/wiki/GLAPI/glTexStorage2D[glTexStorage2D],
 https://www.opengl.org/wiki/GLAPI/glTexStorage3D[glTexStorage3D].#
 
 [[gl.texture_storage_multisample]]
-* *gl.texture_storage_multisample* (<<texturetarget,_target_>>|_texture_, _samples_, <<intformat,_intformat_>>, _fixedsamplelocs_, _width_, _height_) 2D +
-*gl.texture_storage_multisample* (<<texturetarget,_target_>>|_texture_, _samples_, <<intformat,_intformat_>>, _fixedsamplelocs_, _width_, _height_, _depth_) 3D +
+* *texture_storage_multisample*(<<texturetarget,_target_>>|_texture_, _samples_, <<intformat,_intformat_>>, _fixedsamplelocs_, _width_, _height_) 2D +
+*texture_storage_multisample*(<<texturetarget,_target_>>|_texture_, _samples_, <<intformat,_intformat_>>, _fixedsamplelocs_, _width_, _height_, _depth_) 3D +
 [small]#Rfr: 
 https://www.opengl.org/wiki/GLAPI/glTexStorage2DMultisample[glTexStorage2DMultisample] and
 https://www.opengl.org/wiki/GLAPI/glTexStorage3DMultisample[glTexStorage3DMultisample].#
@@ -276,39 +266,37 @@ https://www.opengl.org/wiki/GLAPI/glTexStorage3DMultisample[glTexStorage3DMultis
 === Invalidate Texture Image Data
 
 [[gl.invalidate_texture_image]]
-* *gl.invalidate_texture_image* (_texture_, _level_) +
+* *invalidate_texture_image*(_texture_, _level_) +
 [small]#Rfr: 
 https://www.opengl.org/wiki/GLAPI/glInvalidateTexImage[glInvalidateTexImage].#
 
 [[gl.invalidate_texture_sub_image]]
-* *gl.invalidate_texture_sub_image* (_texture_, _level_, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) +
+* *invalidate_texture_sub_image*(_texture_, _level_, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) +
 [small]#Rfr:
 https://www.opengl.org/wiki/GLAPI/glInvalidateTexSubImage[glInvalidateTexSubImage].#
 
 === Clear Texture Image Data
 
 [[gl.clear_texture_image]]
-* *gl.clear_texture_image* (_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>) +
+* *clear_texture_image*(_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>) +
 [small]#Rfr:
 https://www.opengl.org/wiki/GLAPI/glClearTexImage[glClearTexImage].#
 
 [[gl.clear_texture_sub_image]]
-* *gl.clear_texture_sub_image* (_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) +
+* *clear_texture_sub_image*(_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) +
 [small]#Rfr: 
 https://www.opengl.org/wiki/GLAPI/glClearTexSubImage[glClearTexSubImage].#
 
 === Texture Image Loads/Stores
 
 [[gl.bind_image_texture]]
-* *gl.bind_image_texture* (_unit_, _texture_, _level_, _layered_, _layer_, _access_, <<intformat,_intformat_>>) +
+* *bind_image_texture*(_unit_, _texture_, _level_, _layered_, _layer_, _access_, <<intformat,_intformat_>>) +
 [small]#_access_: '_read only_', '_write only_', '_read write_'. +
 Rfr:
 https://www.opengl.org/wiki/GLAPI/glBindImageTexture[glBindImageTexture].#
 
 [[gl.bind_image_textures]]
-* *gl.bind_image_textures* (_first_, _texture1_ [, _texture2_, _..._]) +
+* *bind_image_textures*(_first_, _texture1_ [, _texture2_, _..._]) +
 [small]#Rfr:
 https://www.opengl.org/wiki/GLAPI/glBindImageTextures[glBindImageTextures].#
-
-<<<
 

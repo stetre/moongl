@@ -6,29 +6,26 @@
 [small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Vertex_Arrays[Vertex Arrays].#
 
 [[gl.gen_vertex_arrays]]
-* *gl.gen_vertex_arrays* ([_n_ = 1]) +
--> _array1_, _array2_, _..._ +
+* _array1_, _array2_, _..._ = *gen_vertex_arrays*([_n_ = 1])
 
 [[gl.create_vertex_arrays]]
-* *gl.create_vertex_arrays* (_array1_ [, _array2_, _..._])
+* *create_vertex_arrays*(_array1_ [, _array2_, _..._])
 
 [[gl.delete_vertex_arrays]]
-* *gl.delete_vertex_arrays* (_array1_ [, _array2_, _..._])
+* *delete_vertex_arrays*(_array1_ [, _array2_, _..._])
 
 [[gl.bind_vertex_array]]
-* *gl.bind_vertex_array* ([_array_]) +
+* *bind_vertex_array*([_array_]) +
 [small]#If _array_ = _nil_, unbinds the currently bound vertex array.#
 
 [[gl.is_vertex_array]]
-* *gl.is_vertex_array* (_array_) +
--> _boolean_
+* _boolean_ = *is_vertex_array*(_array_)
 
 [[gl.vertex_array_element_buffer]]
-* *gl.vertex_array_element_buffer* (_array_, _buffer_)
+* *vertex_array_element_buffer*(_array_, _buffer_)
 
 [[gl.new_vertex_array]]
-* *gl.new_vertex_array* ( ) +
--> _array_ +
+* _array_ = *new_vertex_array*( ) +
 [small]#Gen & bind one array.#
 
 === Generic Vertex Attribute Arrays
@@ -36,29 +33,29 @@
 [small]#Rfr: https://www.opengl.org/wiki/Category:Vertex_Array_Object_API_State_Functions[Vertex Array Object API State Functions].#
 
 [[gl.vertex_attrib_format]]
-* *gl.vertex_attrib_format* (_index_, _size_, _type_, _normalized_, _offset_) +
-*gl.vertex_attrib_format* (_array_, _index_, _size_, _type_, _normalized_, _offset_) +
+* *vertex_attrib_format*(_index_, _size_, _type_, _normalized_, _offset_) +
+*vertex_attrib_format*(_array_, _index_, _size_, _type_, _normalized_, _offset_) +
 [small]#_type_: '_byte_', '_ubyte_', '_short_', '_ushort_', '_int_', '_uint_', '_float_', 
 '_double_', '_half float_', '_fixed_', '_int 2 10 10 10 rev_', '_uint 2 10 10 10 rev_', 
 '_uint 10f 11f 11f rev_'. +
 Rfr: https://www.opengl.org/wiki/GLAPI/glVertexAttribFormat[glVertexAttribFormat].#
 
 [[gl.bind_vertex_buffer]]
-* *gl.bind_vertex_buffer* (_index_, _buffer_, _offset_, _stride_) +
-*gl.bind_vertex_buffer* (_array_, _index_, _buffer_, _offset_, _stride_) +
+* *bind_vertex_buffer*(_index_, _buffer_, _offset_, _stride_) +
+*bind_vertex_buffer*(_array_, _index_, _buffer_, _offset_, _stride_) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glBindVertexBuffer[glBindVertexBuffer].#
 
 [[gl.bind_vertex_buffers]]
-* *gl.bind_vertex_buffers* (_index_, _buffer1_, _offset1_, _stride1_ [, _buffer2_, _offset2_, _stride2_, _..._]) +
-*gl.bind_vertex_buffers* (_array_, _index_, _buffer1_, _offset1_, _stride1_ [, _buffer2_, _offset2_, _stride2_, _..._])
+* *bind_vertex_buffers*(_index_, _buffer1_, _offset1_, _stride1_ [, _buffer2_, _offset2_, _stride2_, _..._]) +
+*bind_vertex_buffers*(_array_, _index_, _buffer1_, _offset1_, _stride1_ [, _buffer2_, _offset2_, _stride2_, _..._])
 
 [[gl.vertex_attrib_binding]]
-* *gl.vertex_attrib_binding* (_attribindex_, _bindingindex_) +
-*gl.vertex_attrib_binding* (_array_, _attribindex_, _bindingindex_) +
+* *vertex_attrib_binding*(_attribindex_, _bindingindex_) +
+*vertex_attrib_binding*(_array_, _attribindex_, _bindingindex_) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glVertexAttribBinding[glVertexAttribBinding].#
 
 [[gl.vertex_attrib_pointer]]
-* *gl.vertex_attrib_pointer* (_index_, _size_, _type_, _normalized_, _stride_, _pointer_) +
+* *vertex_attrib_pointer*(_index_, _size_, _type_, _normalized_, _stride_, _pointer_) +
 [small]#_type_: '_byte_', '_ubyte_', '_short_', '_ushort_', '_int_', '_uint_', '_float_', 
 '_double_', '_half float_', '_fixed_', '_int 2 10 10 10 rev_', '_uint 2 10 10 10 rev_', 
 '_uint 10f 11f 11f rev_'. +
@@ -66,32 +63,32 @@ Rfr:
 https://www.opengl.org/wiki/GLAPI/glVertexAttribPointer[glVertexAttribPointer].#
 
 [[gl.enable_vertex_attrib_array]]
-* *gl.enable_vertex_attrib_array* (_index_) +
-*gl.enable_vertex_attrib_array* (_array_, _index_) +
+* *enable_vertex_attrib_array*(_index_) +
+*enable_vertex_attrib_array*(_array_, _index_) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glEnableVertexAttribArray[glEnableVertexAttribArray].#
 
 [[gl.disable_vertex_attrib_array]]
-* *gl.disable_vertex_attrib_array* (_index_) +
-*gl.disable_vertex_attrib_array* (_array_, _index_) +
+* *disable_vertex_attrib_array*(_index_) +
+*disable_vertex_attrib_array*(_array_, _index_) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glDisableVertexAttribArray[glDisableVertexAttribArray].#
 
 === Vertex Attribute Divisors 
 
 [[gl.vertex_binding_divisor]]
-* *gl.vertex_binding_divisor* (_index_, _divisor_) +
-*gl.vertex_binding_divisor* (_array_, _index_, _divisor_) +
+* *vertex_binding_divisor*(_index_, _divisor_) +
+*vertex_binding_divisor*(_array_, _index_, _divisor_) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glVertexBindingDivisor[glVertexBindingDivisor].#
 
 [[gl.vertex_attrib_divisor]]
-* *gl.vertex_attrib_divisor* (_index_, _divisor_) +
+* *vertex_attrib_divisor*(_index_, _divisor_) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glVertexAttribDivisor[glVertexAttribDivisor].#
 
 === Primitive Restart
 
-* <<gl.enable, gl.enable/disable/is_enabled>>
+* <<gl.enable, enable/disable/is_enabled>>
 
 [[gl.primitive_restart_index]]
-* *gl.primitive_restart_index* (_index_) +
+* *primitive_restart_index*(_index_) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glPrimitiveRestartIndex[glPrimitiveRestartIndex].#
 
 === Drawing Commands
@@ -99,22 +96,22 @@ https://www.opengl.org/wiki/GLAPI/glVertexAttribPointer[glVertexAttribPointer].#
 [small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Vertex_Rendering[Vertex Rendering].#
 
 [[gl.draw_arrays]]
-* *gl.draw_arrays* (_mode_, _first_, _count_ [, _instancecount_ [, _baseinstance_]]) +
-*gl.draw_arrays_indirect* (_mode_, _indirect_) +
-*gl.multi_draw_arrays* (_mode_, _first1_, _count1_ [, _first2_, _count2_ _..._]) +
-*gl.multi_draw_arrays_indirect* (_mode_, _indirect_, _drawcount_, _stride_) +
+* *draw_arrays*(_mode_, _first_, _count_ [, _instancecount_ [, _baseinstance_]]) +
+*draw_arrays_indirect*(_mode_, _indirect_) +
+*multi_draw_arrays*(_mode_, _first1_, _count1_ [, _first2_, _count2_ _..._]) +
+*multi_draw_arrays_indirect*(_mode_, _indirect_, _drawcount_, _stride_) +
 [small]#_mode_: '_points_' for GL_POINTS, '_patches_' for GL_PATCHES, etc. +
 Rfr: https://www.opengl.org/wiki/GLAPI/glDrawArrays[glDrawArrays].#
 
 [[gl.draw_elements]]
-* *gl.draw_elements* (_mode_, _count_, _type_, _indices_ [, _instancecount_ [, _baseinstance_]]) +
-*gl.draw_elements_indirect* (_mode_, _type_, _indirect_) +
-*gl.draw_elements_base_vertex* (_mode_, _count_, _type_, _indices_, _basevertex_  [, _instancecount_ [, _baseinstance_]]) +
-*gl.multi_draw_elements* (_mode_, _type_, _count1_, _indices1_ [, _count2_, _indices2_, _..._]) +
-*gl.multi_draw_elements_indirect* (_mode_, _type_, _indirect_, _drawcount_, _stride_) +
-*gl.multi_draw_elements_base_vertex* (_mode_, _type_, _count1_, _indices1_, _basevertex1_ [, _count2_, _indices2_, _basevertex2_, _..._]) +
-*gl.draw_range_elements* (_mode_, _start_, _end_, _count_, _type_, _indices_) +
-*gl.draw_range_elements_base_vertex* (_mode_, _start_, _end_, _count_, _type_, _indices_, _basevertex_) +
+* *draw_elements*(_mode_, _count_, _type_, _indices_ [, _instancecount_ [, _baseinstance_]]) +
+*draw_elements_indirect*(_mode_, _type_, _indirect_) +
+*draw_elements_base_vertex*(_mode_, _count_, _type_, _indices_, _basevertex_  [, _instancecount_ [, _baseinstance_]]) +
+*multi_draw_elements*(_mode_, _type_, _count1_, _indices1_ [, _count2_, _indices2_, _..._]) +
+*multi_draw_elements_indirect*(_mode_, _type_, _indirect_, _drawcount_, _stride_) +
+*multi_draw_elements_base_vertex*(_mode_, _type_, _count1_, _indices1_, _basevertex1_ [, _count2_, _indices2_, _basevertex2_, _..._]) +
+*draw_range_elements*(_mode_, _start_, _end_, _count_, _type_, _indices_) +
+*draw_range_elements_base_vertex*(_mode_, _start_, _end_, _count_, _type_, _indices_, _basevertex_) +
 [small]#_mode_: '_points_' for GL_POINTS, '_patches_' for GL_PATCHES, etc. +
 _type_: '_ubyte_', '_ushort_', '_uint_'. +
 Rfr: https://www.opengl.org/wiki/GLAPI/glDrawElements[glDrawElements].#
@@ -122,33 +119,27 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glDrawElements[glDrawElements].#
 === Vertex Array Queries
 
 [[gl.get_vertex_array]]
-* *gl.get_vertex_array* (_array_, _pname_ [, _index_]) +
--> _value_ +
+* _value_ = *get_vertex_array*(_array_, _pname_ [, _index_]) +
 [small]#_pname_: '_size_' for GL_VERTEX_ATTRIB_ARRAY_SIZE, etc (and '_binding offset_' for GL_VERTEX_BINDING_OFFSET, '_element array buffer binding_' for GL_ELEMENT_ARRAY_BUFFER_BINDING, '_current attrib_' for GL_CURRENT_VERTEX_ATTRIB). +
 Rfr: https://www.opengl.org/sdk/docs/man/html/glGetVertexArrayiv.xhtml[glGetVertexArrayiv], 
 https://www.opengl.org/sdk/docs/man/html/glGetVertexArrayIndexed.xhtml[glGetVertexArrayIndexed].#
 
 [[gl.get_vertex_attrib]]
-* *gl.get_vertex_attrib* (_index_, _pname_) +
--> _value(s)_ +
-*gl.get_current_vertex_attrib* (_index_, _type_) +
--> _va1_, _val2_, _val3_, _val4_ +
-[small]#_pname_: see <<gl.get_vertex_array, gl.get_vertex_array>>. +
+* _value(s)_ = *get_vertex_attrib*(_index_, _pname_) +
+_va1_, _val2_, _val3_, _val4_ = *get_current_vertex_attrib*(_index_, _type_) +
+[small]#_pname_: see <<gl.get_vertex_array, get_vertex_array>>. +
 _type_: '_byte_', _ubyte_', '_short_', '_ushort_', '_int_', '_uint_', '_float_', '_double_'. +
 Rfr: https://www.opengl.org/wiki/GLAPI/glGetVertexAttrib[glGetVertexAttrib].#
 
 [[gl.get_vertex_attrib_pointer]]
-* *gl.get_vertex_attrib_pointer* (_index_) +
--> _pointer_ +
+* _pointer_ = *get_vertex_attrib_pointer*(_index_) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glGetVertexAttribPointerv[glGetVertexAttribPointerv].#
 
 === Conditional Rendering
 
 [[gl.begin_conditional_render]]
-* *gl.begin_conditional_render* (_id_, _mode_ ) +
-*gl.end_conditional_render* ( ) +
+* *begin_conditional_render*(_id_, _mode_ ) +
+*end_conditional_render*( ) +
 [small]#_mode_: '_query wait_' for GL_QUERY_WAIT, '_query no wait_' for GL_QUERY_NO_WAIT, etc. +
 Rfr: https://www.opengl.org/wiki/GLAPI/glBeginConditionalRender[glBeginConditionalRender].#
-
-<<<
 

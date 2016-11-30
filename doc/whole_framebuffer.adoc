@@ -4,10 +4,10 @@
 === Selecting Buffers for Writing
 
 [[gl.draw_buffer]]
-* *gl.draw_buffer* (_buf_) +
-*gl.draw_buffer* (_framebuffer_, _buf_) +
-*gl.draw_buffers* (_buf1_ [, _buf2_, _..._]) +
-*gl.draw_buffers* (_framebuffer_, _buf1_ [, _buf2_, _..._]) +
+* *draw_buffer*(_buf_) +
+*draw_buffer*(_framebuffer_, _buf_) +
+*draw_buffers*(_buf1_ [, _buf2_, _..._]) +
+*draw_buffers*(_framebuffer_, _buf1_ [, _buf2_, _..._]) +
 [small]#_buf_: '_none_' for GL_NONE, '_front left_' for GL_FRONT_LEFT, '_color attachment i_' for GL_COLOR_ATTACHMENTi, etc. +
 Rfr: https://www.opengl.org/wiki/GLAPI/glDrawBuffer[glDrawBuffer],
 https://www.opengl.org/wiki/GLAPI/glDrawBuffers[glDrawBuffers].#
@@ -15,63 +15,61 @@ https://www.opengl.org/wiki/GLAPI/glDrawBuffers[glDrawBuffers].#
 === Fine Control of Buffer Updates
 
 [[gl.color_mask]]
-* *gl.color_mask* (_r_, _g_, _b_, _a_) +
-*gl.color_mask* (_drawbuffer_, _r_, _g_, _b_, _a_) +
+* *color_mask*(_r_, _g_, _b_, _a_) +
+*color_mask*(_drawbuffer_, _r_, _g_, _b_, _a_) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glColorMask[glColorMask].#
 
 [[gl.depth_mask]]
-* *gl.depth_mask* (_boolean_) +
+* *depth_mask*(_boolean_) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glDepthMask[glDepthMask].#
 
 [[gl.stencil_mask]]
-* *gl.stencil_mask* (_mask_ [, _face_]) +
+* *stencil_mask*(_mask_ [, _face_]) +
 [small]#_face_: '_front_', '_back_', '_front and back_'. +
 Rfr: https://www.opengl.org/wiki/GLAPI/glStencilMask[glStencilMask].#
 
 === Clearing the Buffers
 
 [[gl.clear]]
-* *gl.clear* ([_buffer_, _..._ ]) +
+* *clear*([_buffer_, _..._ ]) +
 [small]#_buffer_: '_color_', '_depth_', '_stencil_'. +
 Rfr: https://www.opengl.org/wiki/GLAPI/glClear[glClear].#
 
 [[gl.clear_color]]
-* *gl.clear_color* (_r_, _g_, _b_, _a_) +
+* *clear_color*(_r_, _g_, _b_, _a_) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glClearColor[glClearColor].#
 
 [[gl.clear_depth]]
-* *gl.clear_depth* (_d_) +
+* *clear_depth*(_d_) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glClearDepth[glClearDepth].#
 
 [[gl.clear_stencil]]
-* *gl.clear_stencil* (_s_) +
+* *clear_stencil*(_s_) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glClearStencil[glClearStencil].#
 
 [[gl.clear_buffer]]
-* *gl.clear_buffer* ('_color_', _drawbuffer_, _r_, _g_, _b_, _a_) +
-*gl.clear_buffer* ('_depth_', _value_) +
-*gl.clear_buffer* ('_stencil_', _value_) +
-*gl.clear_buffer* (_framebuffer_, '_color_', _drawbuffer_, _r_, _g_, _b_, _a_) +
-*gl.clear_buffer* (_framebuffer_, '_depth_', _value_) +
-*gl.clear_buffer* (_framebuffer_, '_stencil_', _value_) +
+* *clear_buffer*('_color_', _drawbuffer_, _r_, _g_, _b_, _a_) +
+*clear_buffer*('_depth_', _value_) +
+*clear_buffer*('_stencil_', _value_) +
+*clear_buffer*(_framebuffer_, '_color_', _drawbuffer_, _r_, _g_, _b_, _a_) +
+*clear_buffer*(_framebuffer_, '_depth_', _value_) +
+*clear_buffer*(_framebuffer_, '_stencil_', _value_) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glClearBuffer[glClearBuffer].#
 
 
 [[gl.clear_bufferfi]]
-* *gl.clear_bufferfi* (_depth_, _stencil_) +
-*gl.clear_bufferfi* (_framebuffer_, _depth_, _stencil_) +
+* *clear_bufferfi*(_depth_, _stencil_) +
+*clear_bufferfi*(_framebuffer_, _depth_, _stencil_) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glClearBufferfi[glClearBufferfi].#
 
 === Invalidating Framebuffers
 
 [[gl.invalidate_framebuffer]]
-* *gl.invalidate_framebuffer* (_target_|_framebuffer_, _attachment1_ [, _attachment2_, _..._ ]) +
-*gl.invalidate_sub_framebuffer* (_target_|_framebuffer_, _x_, _y_, _width_, _height_, _attachment1_ [, _attachment2_, _..._ ]) +
+* *invalidate_framebuffer*(_target_|_framebuffer_, _attachment1_ [, _attachment2_, _..._ ]) +
+*invalidate_sub_framebuffer*(_target_|_framebuffer_, _x_, _y_, _width_, _height_, _attachment1_ [, _attachment2_, _..._ ]) +
 [small]#_target_: '_draw_', '_read_'. +
 _attachment_: '_color attachment i_' for GL_COLOR_ATTACHMENTi, '_depth_' for GL_DEPTH, etc. +
 Rfr:
 https://www.opengl.org/wiki/GLAPI/glInvalidateFramebuffer[glInvalidateFramebuffer],
 https://www.opengl.org/wiki/GLAPI/glInvalidateSubFramebuffer[glInvalidateSubFramebuffer].#
-
-<<<
 

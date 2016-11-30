@@ -4,38 +4,32 @@
 === Sync Objects and Fences
 
 [[gl.delete_sync]]
-* *gl.delete_sync* (_sync_) +
+* *delete_sync*(_sync_) +
 [small]#Rfr: https://www.opengl.org/sdk/docs/man/html/glDeleteSync.xhtml[glDeleteSync].#
 
 [[gl.fence_sync]]
-* *gl.fence_sync* (_condition_) +
--> _sync_ +
+* _sync_ = *fence_sync*(_condition_) +
 [small]#_condition_: '_gpu commands complete_'. +
 Rfr: https://www.opengl.org/sdk/docs/man/html/glFenceSync.xhtml[glFenceSync].#
 
 === Waiting for Sync Objects
 
 [[gl.client_wait_sync]]
-* *gl.client_wait_sync* (_sync_, _timeout_ [, _flag_, _..._ ]) +
--> _sync_ +
+* _sync_ = *client_wait_sync*(_sync_, _timeout_ [, _flag_, _..._ ]) +
 [small]#Rfr: https://www.opengl.org/sdk/docs/man/html/glClientWaitSync.xhtml[glClientWaitSync].#
 
 [[gl.wait_sync]]
-* *gl.wait_sync* (_sync_) +
+* *wait_sync*(_sync_) +
 [small]#Rfr: https://www.opengl.org/sdk/docs/man/html/glWaitSync.xhtml[glWaitSync].#
 
 === Sync Object Queries
 
 [[gl.get_sync]]
-* *gl.get_sync* (_sync_, _pname_) +
--> _value(s)_ +
+* _value(s)_ = *get_sync*(_sync_, _pname_) +
 [small]#_pname_: '_type_', '_condition_', '_status_', '_flags_'. +
 Rfr: https://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml[glGetSync].#
 
 [[gl.is_sync]]
-* *gl.is_sync* (_sync_) +
--> _boolean_ +
+* _boolean_ = *is_sync*(_sync_) +
 [small]#Rfr: https://www.opengl.org/sdk/docs/man/html/glIsSync.xhtml[glIsSync].#
-
-<<<
 

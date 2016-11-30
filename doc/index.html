@@ -1100,7 +1100,7 @@ from upper-case to lower-case letters).</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>gl.init</strong> ( )<br>
+<p><strong>init</strong>( )<br>
 <span class="small">Binding to <strong>glewInit</strong>(). This function must be called as soon as a GL
 context is obtained, in order to correctly initialize OpenGL&#8217;s function pointers,
 before calling any other MoonGL function (see the example below). Failing to do
@@ -1142,12 +1142,11 @@ an error if the command did not succeed.</p>
 <div id="gl.get_graphics_reset_status" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_graphics_reset_status</strong> ( )<br>
-&#8594; <em>status</em><br>
+<p><em>status</em> = <strong>get_graphics_reset_status</strong>( )<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetGraphicsResetStatus.xhtml">glGetGraphicsResetStatus</a>.</span></p>
 </li>
 <li>
-<p><a href="#gl.get">gl.get</a></p>
+<p><a href="#gl.get">get</a></p>
 </li>
 </ul>
 </div>
@@ -1157,7 +1156,7 @@ an error if the command did not succeed.</p>
 <div id="gl.flush" class="ulist">
 <ul>
 <li>
-<p><strong>gl.flush</strong> ( )<br>
+<p><strong>flush</strong>( )<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glFlush">glFlush</a>.</span></p>
 </li>
 </ul>
@@ -1165,12 +1164,11 @@ an error if the command did not succeed.</p>
 <div id="gl.finish" class="ulist">
 <ul>
 <li>
-<p><strong>gl.finish</strong> ( )<br>
+<p><strong>finish</strong>( )<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glFinish">glFinish</a>.</span></p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -1182,7 +1180,7 @@ an error if the command did not succeed.</p>
 <div id="gl.delete_sync" class="ulist">
 <ul>
 <li>
-<p><strong>gl.delete_sync</strong> (<em>sync</em>)<br>
+<p><strong>delete_sync</strong>(<em>sync</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glDeleteSync.xhtml">glDeleteSync</a>.</span></p>
 </li>
 </ul>
@@ -1190,8 +1188,7 @@ an error if the command did not succeed.</p>
 <div id="gl.fence_sync" class="ulist">
 <ul>
 <li>
-<p><strong>gl.fence_sync</strong> (<em>condition</em>)<br>
-&#8594; <em>sync</em><br>
+<p><em>sync</em> = <strong>fence_sync</strong>(<em>condition</em>)<br>
 <span class="small"><em>condition</em>: '<em>gpu commands complete</em>'.<br>
 Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glFenceSync.xhtml">glFenceSync</a>.</span></p>
 </li>
@@ -1203,8 +1200,7 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glFenceSync.xhtml">glFenc
 <div id="gl.client_wait_sync" class="ulist">
 <ul>
 <li>
-<p><strong>gl.client_wait_sync</strong> (<em>sync</em>, <em>timeout</em> [, <em>flag</em>, <em>&#8230;&#8203;</em> ])<br>
-&#8594; <em>sync</em><br>
+<p><em>sync</em> = <strong>client_wait_sync</strong>(<em>sync</em>, <em>timeout</em> [, <em>flag</em>, <em>&#8230;&#8203;</em> ])<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glClientWaitSync.xhtml">glClientWaitSync</a>.</span></p>
 </li>
 </ul>
@@ -1212,7 +1208,7 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glFenceSync.xhtml">glFenc
 <div id="gl.wait_sync" class="ulist">
 <ul>
 <li>
-<p><strong>gl.wait_sync</strong> (<em>sync</em>)<br>
+<p><strong>wait_sync</strong>(<em>sync</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glWaitSync.xhtml">glWaitSync</a>.</span></p>
 </li>
 </ul>
@@ -1223,8 +1219,7 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glFenceSync.xhtml">glFenc
 <div id="gl.get_sync" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_sync</strong> (<em>sync</em>, <em>pname</em>)<br>
-&#8594; <em>value(s)</em><br>
+<p><em>value(s)</em> = <strong>get_sync</strong>(<em>sync</em>, <em>pname</em>)<br>
 <span class="small"><em>pname</em>: '<em>type</em>', '<em>condition</em>', '<em>status</em>', '<em>flags</em>'.<br>
 Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml">glGetSync</a>.</span></p>
 </li>
@@ -1233,13 +1228,11 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml">glGetSyn
 <div id="gl.is_sync" class="ulist">
 <ul>
 <li>
-<p><strong>gl.is_sync</strong> (<em>sync</em>)<br>
-&#8594; <em>boolean</em><br>
+<p><em>boolean</em> = <strong>is_sync</strong>(<em>sync</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glIsSync.xhtml">glIsSync</a>.</span></p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -1252,15 +1245,14 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml">glGetSyn
 <div id="gl.gen_queries" class="ulist">
 <ul>
 <li>
-<p><strong>gl.gen_queries</strong> ([<em>n</em> = 1])<br>
-&#8594; <em>id1</em>, <em>id2</em>, <em>&#8230;&#8203;</em></p>
+<p><em>id1</em>, <em>id2</em>, <em>&#8230;&#8203;</em> = <strong>gen_queries</strong>([<em>n</em> = 1])</p>
 </li>
 </ul>
 </div>
 <div id="gl.create_queries" class="ulist">
 <ul>
 <li>
-<p><strong>gl.create_queries</strong> (<em>target</em>, <em>id1</em> [, <em>id2</em>, <em>&#8230;&#8203;</em>])<br>
+<p><strong>create_queries</strong>(<em>target</em>, <em>id1</em> [, <em>id2</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small"><em>target</em>: '<em>any samples passed</em>' for GL_ANY_SAMPLE_PASSED, etc.</span></p>
 </li>
 </ul>
@@ -1268,37 +1260,35 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml">glGetSyn
 <div id="gl.delete_queries" class="ulist">
 <ul>
 <li>
-<p><strong>gl.delete_queries</strong> (<em>id1</em> [, <em>id2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>delete_queries</strong>(<em>id1</em> [, <em>id2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.begin_query" class="ulist">
 <ul>
 <li>
-<p><strong>gl.begin_query</strong> (<em>target</em>, <em>id</em> [, <em>index</em>])</p>
+<p><strong>begin_query</strong>(<em>target</em>, <em>id</em> [, <em>index</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.end_query" class="ulist">
 <ul>
 <li>
-<p><strong>gl.end_query</strong> (<em>target</em> [, <em>index</em>])</p>
+<p><strong>end_query</strong>(<em>target</em> [, <em>index</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.is_query" class="ulist">
 <ul>
 <li>
-<p><strong>gl.is_query</strong> (<em>id</em>)<br>
-&#8594; <em>boolean</em></p>
+<p><em>boolean</em> = <strong>is_query</strong>(<em>id</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.get_query" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_query</strong> (<em>target</em>, <em>pname</em> [, <em>index</em>])<br>
-&#8594; <em>value</em><br>
+<p><em>value</em>  = <strong>get_query</strong>(<em>target</em>, <em>pname</em> [, <em>index</em>])<br>
 <span class="small"><em>pname</em>: '<em>current query</em>', '<em>query counter bits</em>'.</span></p>
 </li>
 </ul>
@@ -1314,19 +1304,17 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml">glGetSyn
 <div id="gl.query_counter" class="ulist">
 <ul>
 <li>
-<p><strong>gl.query_counter</strong> (<em>id</em>)</p>
+<p><strong>query_counter</strong>(<em>id</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.get_timestamp" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_timestamp</strong> ( )<br>
-&#8594; <em>time</em></p>
+<p><em>time</em> = <strong>get_timestamp</strong>( )</p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 <div class="sect1">
@@ -1343,29 +1331,28 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml">glGetSyn
 <div id="gl.gen_buffers" class="ulist">
 <ul>
 <li>
-<p><strong>gl.gen_buffers</strong> ([<em>n</em> = 1])<br>
-&#8594; <em>buffer1</em>, <em>buffer2</em>, <em>&#8230;&#8203;</em></p>
+<p><em>buffer1</em>, <em>buffer2</em>, <em>&#8230;&#8203;</em> = <strong>gen_buffers</strong>([<em>n</em> = 1])</p>
 </li>
 </ul>
 </div>
 <div id="gl.create_buffers" class="ulist">
 <ul>
 <li>
-<p><strong>gl.create_buffers</strong> (<em>buffer1</em> [, <em>buffer2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>create_buffers</strong>(<em>buffer1</em> [, <em>buffer2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.delete_buffers" class="ulist">
 <ul>
 <li>
-<p><strong>gl.delete_buffers</strong> (<em>buffer1</em> [, <em>buffer2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>delete_buffers</strong>(<em>buffer1</em> [, <em>buffer2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.bind_buffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.bind_buffer</strong> (<a href="#buffertarget"><em>target</em></a> [, <em>buffer</em>])<br>
+<p><strong>bind_buffer</strong>(<a href="#buffertarget"><em>target</em></a> [, <em>buffer</em>])<br>
 <span class="small">If <em>buffer</em> = <em>nil</em>, unbinds the current buffer bound to <em>target</em>.</span></p>
 </li>
 </ul>
@@ -1373,8 +1360,7 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml">glGetSyn
 <div id="gl.new_buffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.new_buffer</strong> (<a href="#buffertarget"><em>target</em></a>)<br>
-&#8594; <em>buffer</em><br>
+<p><em>buffer</em> = <strong>new_buffer</strong>(<a href="#buffertarget"><em>target</em></a>)<br>
 <span class="small">Gen &amp; bind one buffer.</span></p>
 </li>
 </ul>
@@ -1385,8 +1371,7 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml">glGetSyn
 <div id="gl.buffer_storage" class="ulist">
 <ul>
 <li>
-<p><strong>gl.buffer_storage</strong> (<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#data"><em>data</em></a> [, <em>flag</em>, <em>flag</em>, <em>&#8230;&#8203;</em>])<br>
-&#8594; <em>size</em><br>
+<p><em>size</em> = <strong>buffer_storage</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#data"><em>data</em></a> [, <em>flag</em>, <em>flag</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small"><em>flag</em>: '<em>dynamic range</em>' for GL_DYNAMIC_RANGE_BIT, '<em>map read</em>' for GL_MAP_READ_BIT, etc.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBufferStorage">glBufferStorage</a>.</span></p>
 </li>
@@ -1395,8 +1380,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBufferStorage">glBufferStorage
 <div id="gl.buffer_data" class="ulist">
 <ul>
 <li>
-<p><strong>gl.buffer_data</strong> (<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#data"><em>data</em></a>|<em>size</em>, <em>usage</em>)<br>
-&#8594; <em>size</em><br>
+<p><em>size</em> = <strong>buffer_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#data"><em>data</em></a>|<em>size</em>, <em>usage</em>)<br>
 <span class="small"><em>size</em>: size of memory to allocate for the buffer (in bytes).<br>
 <em>usage</em>: '<em>static draw</em>' for GL_STATIC_DRAW, '<em>static read</em>' for GL_STATIC READ, etc.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBufferData">glBufferData</a>.
@@ -1407,8 +1391,7 @@ See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 <div id="gl.buffer_sub_data" class="ulist">
 <ul>
 <li>
-<p><strong>gl.buffer_sub_data</strong> (<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <a href="#data"><em>data</em></a>)<br>
-&#8594; <em>size</em><br>
+<p><em>size</em> = <strong>buffer_sub_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <a href="#data"><em>data</em></a>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBufferSubData">glBufferSubData</a>.
 See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 </li>
@@ -1417,8 +1400,8 @@ See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 <div id="gl.clear_buffer_data" class="ulist">
 <ul>
 <li>
-<p><strong>gl.clear_buffer_data</strong> (<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#intformat"><em>intformat</em></a>,
-<a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a> [, <a href="#data"><em>data</em></a>])<br>
+<p><a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a> [, <a href="#data"><em>data</em></a>]) =
+<strong>clear_buffer_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#intformat"><em>intformat</em></a>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClearBufferData">glClearBufferData</a>.
 See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 </li>
@@ -1427,17 +1410,19 @@ See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 <div id="gl.clear_buffer_sub_data" class="ulist">
 <ul>
 <li>
-<p><strong>gl.clear_buffer_sub_data</strong> (<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#intformat"><em>intformat</em></a>,
-<em>offset</em>, <em>size</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a> [, <a href="#data"><em>data</em></a>])<br>
-<span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClearBufferSubData">glClearBufferSubData</a>.
-See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
+<p><em>offset</em>, <em>size</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a> [, <a href="#data"><em>data</em></a>]) =
+<strong>clear_buffer_sub_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#intformat"><em>intformat</em></a>)<br></p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p><span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClearBufferSubData">glClearBufferSubData</a>.
+See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 </div>
 <div id="gl.bind_buffer_range" class="ulist">
 <ul>
 <li>
-<p><strong>gl.bind_buffer_range</strong> (<a href="#buffertarget"><em>target</em></a>, <em>index</em>, <em>buffer</em>, <em>offset</em>, <em>size</em>)<br>
+<p><strong>bind_buffer_range</strong>(<a href="#buffertarget"><em>target</em></a>, <em>index</em>, <em>buffer</em>, <em>offset</em>, <em>size</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBindBufferRange">glBindBufferRange</a>.</span></p>
 </li>
 </ul>
@@ -1445,7 +1430,7 @@ See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 <div id="gl.bind_buffer_base" class="ulist">
 <ul>
 <li>
-<p><strong>gl.bind_buffer_base</strong> (<a href="#buffertarget"><em>target</em></a>, <em>index</em>, <em>buffer</em>)<br>
+<p><strong>bind_buffer_base</strong>(<a href="#buffertarget"><em>target</em></a>, <em>index</em>, <em>buffer</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBindBufferBase">glBindBufferBase</a>.</span></p>
 </li>
 </ul>
@@ -1456,9 +1441,9 @@ See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 <div id="gl.map_buffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.map_buffer</strong> (<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>access</em>)<br>
-<strong>gl.map_buffer_range</strong> (<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <em>length</em> [, <em>accessbit1</em>, <em>&#8230;&#8203;</em>])<br>
-<strong>gl.unmap_buffer</strong> (<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>)<br>
+<p><strong>map_buffer</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>access</em>)<br>
+<strong>map_buffer_range</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <em>length</em> [, <em>accessbit1</em>, <em>&#8230;&#8203;</em>])<br>
+<strong>unmap_buffer</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>)<br>
 <span class="small"><em>access</em>: 'read only_', '<em>write only</em>', '<em>read write</em>',<br>
 <em>accessbit</em>: '<em>read</em>' for GL_MAP_READ_BIT, '<em>invalidate buffer</em>' for GL_INVALIDATE_BUFFER_BIT, etc.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glMapBuffer">glMapBuffer</a>,
@@ -1469,7 +1454,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glMapBuffer">glMapBuffer</a>,
 <div id="gl.flush_mapped_buffer_range" class="ulist">
 <ul>
 <li>
-<p><strong>gl.flush_mapped_buffer_range</strong> (<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <em>length</em>)<br>
+<p><strong>flush_mapped_buffer_range</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <em>length</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glFlushMappedBufferRange">glFlushMappedBufferRange</a>.</span></p>
 </li>
 </ul>
@@ -1477,11 +1462,10 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glMapBuffer">glMapBuffer</a>,
 <div id="gl.mapped_buffer_write" class="ulist">
 <ul>
 <li>
-<p><strong>gl.mapped_buffer_write</strong> (<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <a href="#data"><em>data</em></a>)<br></p>
+<p><strong>mapped_buffer_write</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <a href="#data"><em>data</em></a>)<br></p>
 </li>
 <li>
-<p><strong>gl.mapped_buffer_read</strong> (<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <em>length</em>)<br>
-&#8594; <a href="#data"><em>data</em></a><br>
+<p><a href="#data"><em>data</em></a> = <strong>mapped_buffer_read</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <em>length</em>)<br>
 <span class="small">Write/read data to/from a mapped buffer (non-OpenGL functions).</span></p>
 </li>
 </ul>
@@ -1492,7 +1476,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glMapBuffer">glMapBuffer</a>,
 <div id="gl.invalidate_buffer_data" class="ulist">
 <ul>
 <li>
-<p><strong>gl.invalidate_buffer_data</strong> (<em>buffer</em>)<br>
+<p><strong>invalidate_buffer_data</strong>(<em>buffer</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glInvalidateBufferData">glInvalidateBufferData</a>.</span></p>
 </li>
 </ul>
@@ -1500,7 +1484,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glMapBuffer">glMapBuffer</a>,
 <div id="gl.invalidate_buffer_sub_data" class="ulist">
 <ul>
 <li>
-<p><strong>gl.invalidate_buffer_sub_data</strong> (<em>buffer</em>, <em>offset</em>, <em>length</em>)<br>
+<p><strong>invalidate_buffer_sub_data</strong>(<em>buffer</em>, <em>offset</em>, <em>length</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glInvalidateBufferSubData">glInvalidateBufferSubData</a>.</span></p>
 </li>
 </ul>
@@ -1511,16 +1495,14 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glMapBuffer">glMapBuffer</a>,
 <div id="gl.is_buffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.is_buffer</strong> (<em>buffer</em>)<br>
-&#8594; <em>boolean</em></p>
+<p><em>boolean</em> = <strong>is_buffer</strong>(<em>buffer</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.get_buffer_sub_data" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_buffer_sub_data</strong> (<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <em>size</em>)<br>
-&#8594; <a href="#data"><em>data</em></a><br>
+<p><a href="#data"><em>data</em></a> = <strong>get_buffer_sub_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <em>size</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetBufferSubData">glGetBufferSubData</a>.</span></p>
 </li>
 </ul>
@@ -1528,8 +1510,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glMapBuffer">glMapBuffer</a>,
 <div id="gl.get_buffer_parameter" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_buffer_parameter</strong> (<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>pname</em>)<br>
-&#8594; <em>value(s)</em><br>
+<p><em>value(s)</em> = <strong>get_buffer_parameter</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>pname</em>)<br>
 <span class="small"><em>pname</em>: '<em>size</em>' for GL_BUFFER_SIZE, '<em>storage flags</em>' for GL_BUFFER_STORAGE_FLAGS, etc.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetBufferParameter">glGetBufferParameter</a>.</span></p>
 </li>
@@ -1541,13 +1522,12 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetBufferParameter">glGetBuffe
 <div id="gl.copy_buffer_sub_data" class="ulist">
 <ul>
 <li>
-<p><strong>gl.copy_buffer_sub_data</strong> (<em>readtarget</em>|<em>readbuffer</em>, <em>writetarget</em>|<em>writebuffer</em>, <em>readoffset</em>, <em>writeoffset</em>, <em>size</em>)<br>
+<p><strong>copy_buffer_sub_data</strong>(<em>readtarget</em>|<em>readbuffer</em>, <em>writetarget</em>|<em>writebuffer</em>, <em>readoffset</em>, <em>writeoffset</em>, <em>size</em>)<br>
 <span class="small">Source and destination must be specified both as targets or both as buffer names.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glCopyBufferSubData">glCopyBufferSubData</a>.</span></p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -1565,45 +1545,43 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glCopyBufferSubData">glCopyBuffe
 <div id="gl.create_shader" class="ulist">
 <ul>
 <li>
-<p><strong>gl.create_shader</strong> (<a href="#shadertype"><em>shadertype</em></a>)<br>
-&#8594; <em>shader</em></p>
+<p><em>shader</em> = <strong>create_shader</strong>(<a href="#shadertype"><em>shadertype</em></a>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.shader_source" class="ulist">
 <ul>
 <li>
-<p><strong>gl.shader_source</strong> (<em>shader</em>, <em>sourcestring</em>)</p>
+<p><strong>shader_source</strong>(<em>shader</em>, <em>sourcestring</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.compile_shader" class="ulist">
 <ul>
 <li>
-<p><strong>gl.compile_shader</strong> (<em>shader</em>)</p>
+<p><strong>compile_shader</strong>(<em>shader</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.release_shader_compiler" class="ulist">
 <ul>
 <li>
-<p><strong>gl.release_shader_compiler</strong> ( )</p>
+<p><strong>release_shader_compiler</strong>( )</p>
 </li>
 </ul>
 </div>
 <div id="gl.delete_shader" class="ulist">
 <ul>
 <li>
-<p><strong>gl.delete_shader</strong> (<em>shader</em>)<br>
-<strong>gl.delete_shaders</strong> (<em>shader1</em>, <em>&#8230;&#8203;</em>)</p>
+<p><strong>delete_shader</strong>(<em>shader</em>)<br>
+<strong>delete_shaders</strong>(<em>shader1</em>, <em>&#8230;&#8203;</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.is_shader" class="ulist">
 <ul>
 <li>
-<p><strong>gl.is_shader</strong> (<em>shader</em>)<br>
-&#8594; <em>boolean</em></p>
+<p><em>boolean</em> = <strong>is_shader</strong>(<em>shader</em>)</p>
 </li>
 </ul>
 </div>
@@ -1616,43 +1594,42 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glCopyBufferSubData">glCopyBuffe
 <div id="gl.create_program" class="ulist">
 <ul>
 <li>
-<p><strong>gl.create_program</strong> ( )<br>
-&#8594; <em>program</em></p>
+<p><em>program</em> = <strong>create_program</strong>( )</p>
 </li>
 </ul>
 </div>
 <div id="gl.attach_shader" class="ulist">
 <ul>
 <li>
-<p><strong>gl.attach_shader</strong> (<em>program</em>, <em>shader</em>)<br></p>
+<p><strong>attach_shader</strong>(<em>program</em>, <em>shader</em>)<br></p>
 </li>
 </ul>
 </div>
 <div id="gl.detach_shader" class="ulist">
 <ul>
 <li>
-<p><strong>gl.detach_shader</strong> (<em>program</em>, <em>shader</em>)<br></p>
+<p><strong>detach_shader</strong>(<em>program</em>, <em>shader</em>)<br></p>
 </li>
 </ul>
 </div>
 <div id="gl.link_program" class="ulist">
 <ul>
 <li>
-<p><strong>gl.link_program</strong> (<em>program</em>)<br></p>
+<p><strong>link_program</strong>(<em>program</em>)<br></p>
 </li>
 </ul>
 </div>
 <div id="gl.use_program" class="ulist">
 <ul>
 <li>
-<p><strong>gl.use_program</strong> (<em>program</em>)<br></p>
+<p><strong>use_program</strong>(<em>program</em>)<br></p>
 </li>
 </ul>
 </div>
 <div id="gl.program_parameter" class="ulist">
 <ul>
 <li>
-<p><strong>gl.program_parameter</strong> (<em>program</em>, <em>pname</em>, <em>boolean</em>)<br>
+<p><strong>program_parameter</strong>(<em>program</em>, <em>pname</em>, <em>boolean</em>)<br>
 <span class="small"><em>pname</em>: '<em>separable</em>', '_ binary retriavable hint_'.</span></p>
 </li>
 </ul>
@@ -1660,24 +1637,22 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glCopyBufferSubData">glCopyBuffe
 <div id="gl.create_shader_program" class="ulist">
 <ul>
 <li>
-<p><strong>gl.create_shader_program</strong> (<a href="#shadertype"><em>shadertype</em></a>, <em>sourcestring</em>)<br>
-&#8594; <em>program</em></p>
+<p><em>program</em> = <strong>create_shader_program</strong>(<a href="#shadertype"><em>shadertype</em></a>, <em>sourcestring</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.delete_program" class="ulist">
 <ul>
 <li>
-<p><strong>gl.delete_program</strong> (<em>program</em>)<br>
-<strong>gl.delete_programs</strong> (<em>program1</em>, <em>&#8230;&#8203;</em>)</p>
+<p><strong>delete_program</strong>(<em>program</em>)<br>
+<strong>delete_programs</strong>(<em>program1</em>, <em>&#8230;&#8203;</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.is_program" class="ulist">
 <ul>
 <li>
-<p><strong>gl.is_program</strong> (<em>program</em>)<br>
-&#8594; <em>boolean</em></p>
+<p><em>boolean</em> = <strong>is_program</strong>(<em>program</em>)</p>
 </li>
 </ul>
 </div>
@@ -1691,9 +1666,10 @@ the creation of shading programs.</p>
 <div id="gl.make_program" class="ulist">
 <ul>
 <li>
-<p><strong>gl.make_program</strong> (<a href="#shadertype"><em>shadertype1</em></a>, <em>filename1</em> [, <a href="#shadertype"><em>shadertype2</em></a>, <em>filename2</em>, <em>&#8230;&#8203;</em>])<br>
-<strong>gl.make_program_s</strong> (<a href="#shadertype"><em>shadertype1</em></a>, <em>sourcestring1</em> [, <a href="#shadertype"><em>shadertype2</em></a>, <em>sourcestring2</em>, <em>&#8230;&#8203;</em>])<br>
-&#8594; <em>program</em>, <em>shader1</em>, <em>shader2</em>, <em>&#8230;&#8203;</em><br>
+<p><em>program</em>, <em>shader1</em>, <em>shader2</em>, <em>&#8230;&#8203;</em> =
+<strong>make_program</strong>(<a href="#shadertype"><em>shadertype1</em></a>, <em>filename1</em> [, <a href="#shadertype"><em>shadertype2</em></a>, <em>filename2</em>, <em>&#8230;&#8203;</em>])<br>
+<em>program</em>, <em>shader1</em>, <em>shader2</em>, <em>&#8230;&#8203;</em> =
+<strong>make_program_s</strong>(<a href="#shadertype"><em>shadertype1</em></a>, <em>sourcestring1</em> [, <a href="#shadertype"><em>shadertype2</em></a>, <em>sourcestring2</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small">Both these functions create, compile and link a program with the passed shaders,
 and return the names assigned to them by OpenGL.
 They also check for errors at each compilation step.
@@ -1701,7 +1677,7 @@ The only difference between the two is that the former loads the shaders' code f
 while the latter (with the trailing '_s') loads the code from strings.</span></p>
 </li>
 <li>
-<p><strong>gl.clean_program</strong> (<em>program</em>, <em>shader1</em>, <em>shader2</em>, <em>&#8230;&#8203;</em>)<br>
+<p><strong>clean_program</strong>(<em>program</em>, <em>shader1</em>, <em>shader2</em>, <em>&#8230;&#8203;</em>)<br>
 <span class="small">Given the names of a program and of the shaders attached to it, detaches the
 shaders, and deletes them and the program.</span></p>
 </li>
@@ -1716,8 +1692,7 @@ shaders, and deletes them and the program.</span></p>
 <div id="gl.get_program_interface" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_program_interface</strong> (<em>program</em>, <em>interface</em>, <em>pname</em>)<br>
-&#8594; <em>value</em><br>
+<p><em>value</em> = <strong>get_program_interface</strong>(<em>program</em>, <em>interface</em>, <em>pname</em>)<br>
 <span class="small"><em>interface</em>: '<em>uniform</em>' for GL_UNIFORM, '<em>uniform block</em>' for GL_UNIFORM_BLOCK, etc.</span></p>
 </li>
 </ul>
@@ -1725,40 +1700,35 @@ shaders, and deletes them and the program.</span></p>
 <div id="gl.get_program_resource_index" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_program_resource_index</strong> (<em>program</em>, <em>interface</em>, <em>name</em>)<br>
-&#8594; <em>index</em></p>
+<p><em>index</em> = <strong>get_program_resource_index</strong>(<em>program</em>, <em>interface</em>, <em>name</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.get_program_resource_name" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_program_resource_name</strong> (<em>program</em>, <em>interface</em>, <em>index</em>)<br>
-&#8594; <em>name</em></p>
+<p><em>name</em> = <strong>get_program_resource_name</strong>(<em>program</em>, <em>interface</em>, <em>index</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.get_program_resource" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_program_resource</strong> (<em>program</em>, <em>interface</em>, <em>index</em>, <em>property</em>)<br>
-&#8594; <em>value(s)</em></p>
+<p><em>value(s)</em> = <strong>get_program_resource</strong>(<em>program</em>, <em>interface</em>, <em>index</em>, <em>property</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.get_program_resource_location" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_program_resource_location</strong> (<em>program</em>, <em>interface</em>, <em>name</em>)<br>
-&#8594; <em>location</em></p>
+<p><em>location</em> = <strong>get_program_resource_location</strong>(<em>program</em>, <em>interface</em>, <em>name</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.get_program_resource_location_index" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_program_resource_location_index</strong> (<em>program</em>, <em>interface</em>, <em>name</em>)<br>
-&#8594; <em>index</em></p>
+<p><em>index</em> = <strong>get_program_resource_location_index</strong>(<em>program</em>, <em>interface</em>, <em>name</em>)</p>
 </li>
 </ul>
 </div>
@@ -1771,37 +1741,35 @@ shaders, and deletes them and the program.</span></p>
 <div id="gl.gen_program_pipelines" class="ulist">
 <ul>
 <li>
-<p><strong>gl.gen_program_pipelines</strong> ([<em>n</em> = 1])<br>
-&#8594; <em>pipeline1</em>, <em>pipeline2</em>, <em>&#8230;&#8203;</em></p>
+<p><em>pipeline1</em>, <em>pipeline2</em>, <em>&#8230;&#8203;</em> = <strong>gen_program_pipelines</strong>([<em>n</em> = 1])</p>
 </li>
 </ul>
 </div>
 <div id="gl.create_program_pipelines" class="ulist">
 <ul>
 <li>
-<p><strong>gl.create_program_pipelines</strong> (<em>pipeline1</em> [<em>pipeline2, _&#8230;&#8203;</em>])<br></p>
+<p><strong>create_program_pipelines</strong>(<em>pipeline1</em> [<em>pipeline2, _&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.delete_program_pipelines" class="ulist">
 <ul>
 <li>
-<p><strong>gl.delete_program_pipelines</strong> (<em>pipeline1</em> [<em>pipeline2, _&#8230;&#8203;</em>])<br></p>
+<p><strong>delete_program_pipelines</strong>(<em>pipeline1</em> [<em>pipeline2, _&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.is_program_pipelines" class="ulist">
 <ul>
 <li>
-<p><strong>gl.is_program_pipelines</strong> (<em>pipeline</em>)<br>
-&#8594; <em>boolean</em></p>
+<p><em>boolean</em> = <strong>is_program_pipelines</strong>(<em>pipeline</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.bind_program_pipelines" class="ulist">
 <ul>
 <li>
-<p><strong>gl.bind_program_pipelines</strong> (<em>pipeline</em>)<br>
+<p><strong>bind_program_pipelines</strong>(<em>pipeline</em>)<br>
 <span class="small">If <em>pipeline</em> = <em>nil</em>, unbinds the current bound pipeline.</span></p>
 </li>
 </ul>
@@ -1809,7 +1777,7 @@ shaders, and deletes them and the program.</span></p>
 <div id="gl.use_program_stages" class="ulist">
 <ul>
 <li>
-<p><strong>gl.use_program_stages</strong> (<em>pipeline</em>, <em>program</em>, <em>stage</em>, <em>&#8230;&#8203;</em>)<br>
+<p><strong>use_program_stages</strong>(<em>pipeline</em>, <em>program</em>, <em>stage</em>, <em>&#8230;&#8203;</em>)<br>
 <span class="small"><em>stage</em>: '<em>vertex</em>'  for GL_VERTEX_SHADER_BIT, '<em>tess control</em>' for GL_TESS_CONTROL_SHADER_BIT, etc.</span></p>
 </li>
 </ul>
@@ -1817,7 +1785,7 @@ shaders, and deletes them and the program.</span></p>
 <div id="gl.active_shader_program" class="ulist">
 <ul>
 <li>
-<p><strong>gl.active_shader_program</strong> (<em>pipeline</em>, <em>program</em>)</p>
+<p><strong>active_shader_program</strong>(<em>pipeline</em>, <em>program</em>)</p>
 </li>
 </ul>
 </div>
@@ -1830,16 +1798,17 @@ shaders, and deletes them and the program.</span></p>
 <div id="gl.get_program_binary" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_program_binary</strong> (<em>program</em>)<br>
-&#8594; <em>format</em>, <em>binary</em><br>
-<span class="small"><em>format</em> is returned as an integer and <em>binary</em> as a binary string.</span></p>
+<p><em>format</em>, <em>binary</em> = <strong>get_program_binary</strong>(<em>program</em>)</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p><span class="small"><em>format</em> is returned as an integer and <em>binary</em> as a binary string.</span></p>
 </div>
 <div id="gl.program_binary" class="ulist">
 <ul>
 <li>
-<p><strong>gl.program_binary</strong> (<em>program</em>, <em>format</em>, <em>binary</em>)</p>
+<p><strong>program_binary</strong>(<em>program</em>, <em>format</em>, <em>binary</em>)</p>
 </li>
 </ul>
 </div>
@@ -1852,24 +1821,22 @@ shaders, and deletes them and the program.</span></p>
 <div id="gl.get_uniform_location" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_uniform_location</strong> (<em>program</em>, <em>name</em>)<br>
-&#8594; <em>location</em></p>
+<p><em>location</em> = <strong>get_uniform_location</strong>(<em>program</em>, <em>name</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.get_active_uniform_name" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_active_uniform_name</strong> (<em>program</em>, <em>index</em>)<br>
-&#8594; <em>name</em> or <em>nil</em></p>
+<p><em>name</em> = <strong>get_active_uniform_name</strong>(<em>program</em>, <em>index</em>)<br>
+<span class="small">May return <em>nil</em>.</span></p>
 </li>
 </ul>
 </div>
 <div id="gl.get_active_uniform_indices" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_active_uniform_indices</strong> (<em>program</em>, <em>name1</em> [, <em>name2</em>, <em>&#8230;&#8203;</em>])<br>
-&#8594; <em>index1</em>, <em>index2</em>, <em>&#8230;&#8203;</em><br>
+<p><em>index1</em>, <em>index2</em>, <em>&#8230;&#8203;</em> = <strong>get_active_uniform_indices</strong>(<em>program</em>, <em>name1</em> [, <em>name2</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small"><em>indexK</em> = <em>false</em> if <em>nameK</em> is not a valid uniform name.</span></p>
 </li>
 </ul>
@@ -1877,16 +1844,15 @@ shaders, and deletes them and the program.</span></p>
 <div id="gl.get_active_uniform" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_active_uniform</strong> (<em>program</em>, <em>index</em>)<br>
-&#8594; <em>name</em>, <em>type</em>, <em>size</em> (or <em>nil</em>)</p>
+<p><em>name</em>, <em>type</em>, <em>size</em> = <strong>get_active_uniform</strong>(<em>program</em>, <em>index</em>)<br>
+<span class="small">May return <em>nil</em>.</span></p>
 </li>
 </ul>
 </div>
 <div id="gl.get_active_uniforms" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_active_uniforms</strong> (<em>program</em>, <em>pname</em>, <em>index1</em> [, <em>index2</em>, <em>&#8230;&#8203;</em>])<br>
-&#8594; <em>value1</em>, <em>value2</em>, <em>&#8230;&#8203;</em><br>
+<p><em>value1</em>, <em>value2</em>, <em>&#8230;&#8203;</em> = <strong>get_active_uniforms</strong>(<em>program</em>, <em>pname</em>, <em>index1</em> [, <em>index2</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small"><em>pname</em>: '<em>type</em>' or GL_UNIFORM_TYPE, '<em>name length</em>' for GL_UNIFORM_NAME_LENGTH, etc.</span></p>
 </li>
 </ul>
@@ -1894,24 +1860,21 @@ shaders, and deletes them and the program.</span></p>
 <div id="gl.get_uniform_block_index" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_uniform_block_index</strong> (<em>program</em>, <em>name</em>)<br>
-&#8594; <em>index</em></p>
+<p><em>index</em> = <strong>get_uniform_block_index</strong>(<em>program</em>, <em>name</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.get_active_uniform_block_name" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_active_uniform_block_name</strong> (<em>program</em>, <em>index</em>)<br>
-&#8594; <em>name</em></p>
+<p><em>name</em> = <strong>get_active_uniform_block_name</strong>(<em>program</em>, <em>index</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.get_active_uniform_block" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_active_uniform_block</strong> (<em>program</em>, <em>index</em>, <em>pname</em>)<br>
-&#8594; <em>value</em><br>
+<p><em>value</em> = <strong>get_active_uniform_block</strong>(<em>program</em>, <em>index</em>, <em>pname</em>)<br>
 <span class="small"><em>pname</em>: '<em>binding</em>' for GL_UNIFORM_BLOCK_BINDING, '<em>data size</em>' for
 GL_UNIFORM_BLOCK_DATA_SIZE, etc.</span></p>
 </li>
@@ -1920,8 +1883,7 @@ GL_UNIFORM_BLOCK_DATA_SIZE, etc.</span></p>
 <div id="gl.get_active_atomic_counter_buffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_active_atomic_counter_buffer</strong> (<em>program</em>, <em>index</em>, <em>pname</em>)<br>
-&#8594; <em>value</em><br>
+<p><em>value</em> = <strong>get_active_atomic_counter_buffer</strong>(<em>program</em>, <em>index</em>, <em>pname</em>)<br>
 <span class="small"><em>pname</em>: '<em>binding</em>' for GL_ATOMIC_COUNTER_BUFFER_BINDING, '<em>data size</em>' for
 GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.</span></p>
 </li>
@@ -1936,16 +1898,16 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.</span></p>
 <div id="gl.uniform" class="ulist">
 <ul>
 <li>
-<p><strong>gl.uniform</strong> (<em>location</em>, <em>type</em>, <em>val1</em> [, <em>val2</em> [, <em>val3</em> [, <em>val4</em>]]])<br></p>
+<p><strong>uniform</strong>(<em>location</em>, <em>type</em>, <em>val1</em> [, <em>val2</em> [, <em>val3</em> [, <em>val4</em>]]])<br></p>
 </li>
 <li>
-<p><strong>gl.uniformv</strong> (<em>location</em>, <em>count</em>, <em>type</em>, <em>val1</em> [, <em>val2</em>, <em>&#8230;&#8203;</em> ])<br></p>
+<p><strong>uniformv</strong>(<em>location</em>, <em>count</em>, <em>type</em>, <em>val1</em> [, <em>val2</em>, <em>&#8230;&#8203;</em> ])<br></p>
 </li>
 <li>
-<p><strong>gl.program_uniform</strong> (<em>program</em>, <em>location</em>, <em>type</em>, <em>val1</em> [, <em>val2</em> [, <em>val3</em> [, <em>val4</em>]]])<br></p>
+<p><strong>program_uniform</strong>(<em>program</em>, <em>location</em>, <em>type</em>, <em>val1</em> [, <em>val2</em> [, <em>val3</em> [, <em>val4</em>]]])<br></p>
 </li>
 <li>
-<p><strong>gl.program_uniformv</strong> (<em>program</em>, <em>location</em>, <em>count</em>, <em>type</em>, <em>val1</em> [, <em>val2</em>, <em>&#8230;&#8203;</em> ])<br>
+<p><strong>program_uniformv</strong>(<em>program</em>, <em>location</em>, <em>count</em>, <em>type</em>, <em>val1</em> [, <em>val2</em>, <em>&#8230;&#8203;</em> ])<br>
 <span class="small"><em>type</em>: '<em>bool</em>', '<em>int</em>', '<em>uint</em>', '<em>float</em>' or '<em>double</em>'.<br>
 <em>count</em>: number of vectors (or variables) in the array.</span></p>
 </li>
@@ -1954,16 +1916,16 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.</span></p>
 <div id="gl.uniform_matrix" class="ulist">
 <ul>
 <li>
-<p><strong>gl.uniform_matrix</strong> (<em>location</em>, <em>type</em>, <em>size</em>, <em>transpose</em>, <em>val1</em>, <em>val2</em>, <em>&#8230;&#8203;</em>, <em>valN</em>)<br></p>
+<p><strong>uniform_matrix</strong>(<em>location</em>, <em>type</em>, <em>size</em>, <em>transpose</em>, <em>val1</em>, <em>val2</em>, <em>&#8230;&#8203;</em>, <em>valN</em>)<br></p>
 </li>
 <li>
-<p><strong>gl.uniform_matrixv</strong> (<em>location</em>, <em>count</em>, <em>type</em>, <em>size</em>, <em>transpose</em>, <em>val1</em>, <em>val2</em>, <em>&#8230;&#8203;</em>, <em>valN</em>)<br></p>
+<p><strong>uniform_matrixv</strong>(<em>location</em>, <em>count</em>, <em>type</em>, <em>size</em>, <em>transpose</em>, <em>val1</em>, <em>val2</em>, <em>&#8230;&#8203;</em>, <em>valN</em>)<br></p>
 </li>
 <li>
-<p><strong>gl.program_uniform_matrix</strong> (<em>program</em>, <em>location</em>, <em>type</em>, <em>size</em>, <em>transpose</em>, <em>val1</em>, <em>val2</em>, <em>&#8230;&#8203;</em>, <em>valN</em>)<br></p>
+<p><strong>program_uniform_matrix</strong>(<em>program</em>, <em>location</em>, <em>type</em>, <em>size</em>, <em>transpose</em>, <em>val1</em>, <em>val2</em>, <em>&#8230;&#8203;</em>, <em>valN</em>)<br></p>
 </li>
 <li>
-<p><strong>gl.program_uniform_matrixv</strong> (<em>program</em>, <em>location</em>, <em>count</em>, <em>type</em>, <em>size</em>, <em>transpose</em>, <em>val1</em>, <em>val2</em>, <em>&#8230;&#8203;</em>, <em>valN</em>)<br>
+<p><strong>program_uniform_matrixv</strong>(<em>program</em>, <em>location</em>, <em>count</em>, <em>type</em>, <em>size</em>, <em>transpose</em>, <em>val1</em>, <em>val2</em>, <em>&#8230;&#8203;</em>, <em>valN</em>)<br>
 <span class="small"><em>type</em>: '<em>bool</em>', '<em>int</em>', '<em>uint</em>', '<em>float</em>' or '<em>double</em>'.<br>
 <em>size</em>: '<em>2x2</em>', '<em>3x3</em>', '<em>4x4</em>', '<em>2x3</em>', '<em>3x2</em>', '<em>2x4</em>', '<em>4x2'</em>', '<em>3x4</em>', '<em>4x3</em>'.<br>
 <em>transpose</em>: boolean (= <em>true</em> if the value are passed in row-major order).<br>
@@ -1980,7 +1942,7 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.</span></p>
 <div id="gl.uniform_block_binding" class="ulist">
 <ul>
 <li>
-<p><strong>gl.uniform_block_binding</strong> (<em>program</em>, <em>index</em>, <em>binding</em>)</p>
+<p><strong>uniform_block_binding</strong>(<em>program</em>, <em>index</em>, <em>binding</em>)</p>
 </li>
 </ul>
 </div>
@@ -1993,7 +1955,7 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.</span></p>
 <div id="gl.shader_storage_block_binding" class="ulist">
 <ul>
 <li>
-<p><strong>gl.shader_storage_block_binding</strong> (<em>program</em>, <em>index</em>, <em>binding</em>)</p>
+<p><strong>shader_storage_block_binding</strong>(<em>program</em>, <em>index</em>, <em>binding</em>)</p>
 </li>
 </ul>
 </div>
@@ -2006,40 +1968,36 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.</span></p>
 <div id="gl.get_subroutine_uniform_location" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_subroutine_uniform_location</strong> (<em>program</em>, <a href="#shadertype"><em>shadertype</em></a>, <em>name</em>)<br>
-&#8594; <em>location</em></p>
+<p><em>location</em> = <strong>get_subroutine_uniform_location</strong>(<em>program</em>, <a href="#shadertype"><em>shadertype</em></a>, <em>name</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.get_active_subroutine_index" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_active_subroutine_index</strong> (<em>program</em>, <a href="#shadertype"><em>shadertype</em></a>, <em>name</em>)<br>
-&#8594; <em>index</em></p>
+<p><em>index</em> = <strong>get_active_subroutine_index</strong>(<em>program</em>, <a href="#shadertype"><em>shadertype</em></a>, <em>name</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.get_active_subroutine_name" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_active_subroutine_name</strong> (<em>program</em>, <a href="#shadertype"><em>shadertype</em></a>, <em>index</em>)<br>
-&#8594; <em>name</em></p>
+<p><em>name</em> = <strong>get_active_subroutine_name</strong>(<em>program</em>, <a href="#shadertype"><em>shadertype</em></a>, <em>index</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.get_active_subroutine_uniform_name" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_active_subroutine_uniform_name</strong> (<em>program</em>, <a href="#shadertype"><em>shadertype</em></a>, <em>index</em>)<br>
-&#8594; <em>name</em></p>
+<p><em>name</em> = <strong>get_active_subroutine_uniform_name</strong>(<em>program</em>, <a href="#shadertype"><em>shadertype</em></a>, <em>index</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.get_active_subroutine_uniform" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_active_subroutine_uniform</strong> (<em>program</em>, <a href="#shadertype"><em>shadertype</em></a>, <em>index</em>, <em>pname</em>)<br>
-&#8594; <em>value(s)</em><br>
+<p><em>value(s)</em> =
+<strong>get_active_subroutine_uniform</strong>(<em>program</em>, <a href="#shadertype"><em>shadertype</em></a>, <em>index</em>, <em>pname</em>)<br>
 <span class="small"><em>pname</em>: '<em>compatible subroutines</em>' for GL_COMPATIBLE_SUBROUTINES, etc.</span></p>
 </li>
 </ul>
@@ -2047,7 +2005,7 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.</span></p>
 <div id="gl.uniform_subroutines" class="ulist">
 <ul>
 <li>
-<p><strong>gl.uniform_subroutines</strong> (<a href="#shadertype"><em>shadertype</em></a>, <em>index1</em> [, <em>index2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>uniform_subroutines</strong>(<a href="#shadertype"><em>shadertype</em></a>, <em>index1</em> [, <em>index2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
@@ -2057,10 +2015,10 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.</span></p>
 <div id="gl.memory_barrier" class="ulist">
 <ul>
 <li>
-<p><strong>gl.memory_barrier</strong> (<em>bit1</em>, <em>bit2</em>, <em>&#8230;&#8203;</em>)<br></p>
+<p><strong>memory_barrier</strong>(<em>bit1</em>, <em>bit2</em>, <em>&#8230;&#8203;</em>)<br></p>
 </li>
 <li>
-<p><strong>gl.memory_barrier_by_region</strong> (<em>bit1</em>, <em>bit2</em>, <em>&#8230;&#8203;</em>)<br>
+<p><strong>memory_barrier_by_region</strong>(<em>bit1</em>, <em>bit2</em>, <em>&#8230;&#8203;</em>)<br>
 <span class="small"><em>bit</em>: '<em>all</em>' for GL_ALL_BARRIER_BITS, '<em>vertex attrib array</em>' for GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT, etc.</span></p>
 </li>
 </ul>
@@ -2075,8 +2033,7 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.</span></p>
 <div id="gl.get_shader" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_shader</strong> (<em>shader</em>, <em>pname</em>)<br>
-&#8594; <em>value</em><br>
+<p><em>value</em> = <strong>get_shader</strong>(<em>shader</em>, <em>pname</em>)<br>
 <span class="small"><em>pname</em>: '<em>type</em>', '<em>delete status</em>', '<em>compile status</em>', '<em>info log length</em>', '<em>source length</em>'.</span></p>
 </li>
 </ul>
@@ -2084,8 +2041,7 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.</span></p>
 <div id="gl.get_program" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_program</strong> (<em>program</em>, <em>pname</em>)<br>
-&#8594; <em>value(s)</em><br>
+<p><em>value(s)</em> = <strong>get_program</strong>(<em>program</em>, <em>pname</em>)<br>
 <span class="small"><em>pname</em>: '<em>active atomic counter buffers</em>' for GL_ACTIVE_ATOMIC_COUNTER_BUFFERS, etc.</span></p>
 </li>
 </ul>
@@ -2093,8 +2049,7 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.</span></p>
 <div id="gl.get_program_pipeline" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_program_pipeline</strong> (<em>pipeline</em>, <em>pname</em>)<br>
-&#8594; <em>value(s)</em><br>
+<p><em>value(s)</em> = <strong>get_program_pipeline</strong>(<em>pipeline</em>, <em>pname</em>)<br>
 <span class="small"><em>pname</em>: '<em>active program</em>' for GL_ACTIVE_PROGRAM, '<em>validate status</em>' for GL_VALIDATE_STATUS, etc.</span></p>
 </li>
 </ul>
@@ -2102,8 +2057,7 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.</span></p>
 <div id="gl.get_attached_shaders" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_attached_shaders</strong> (<em>program</em>)<br>
-&#8594; <em>shader1</em>, <em>&#8230;&#8203;</em><br>
+<p><em>shader1</em>, <em>&#8230;&#8203;</em> = <strong>get_attached_shaders</strong>(<em>program</em>)<br>
 <span class="small">Returns <em>nil</em> if no shaders are attached to <em>program</em>.</span></p>
 </li>
 </ul>
@@ -2111,30 +2065,24 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.</span></p>
 <div id="gl.get_info_log" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_shader_info_log</strong> (<em>shader</em>)<br></p>
-</li>
-<li>
-<p><strong>gl.get_program_info_log</strong> (<em>program</em>)<br></p>
-</li>
-<li>
-<p><strong>gl.get_program_pipeline_info_log</strong> (<em>pipeline</em>)<br>
-&#8594; <em>string</em></p>
+<p><em>string</em> = <strong>get_shader_info_log</strong>(<em>shader</em>)<br>
+<em>string</em> = <strong>get_program_info_log</strong>(<em>program</em>)<br>
+<em>string</em> = <strong>get_program_pipeline_info_log</strong>(<em>pipeline</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.get_shader_source" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_shader_source</strong> (<em>shader</em>)<br>
-&#8594; <em>string</em></p>
+<p><em>string</em> = <strong>get_shader_source</strong>(<em>shader</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.get_shader_precision_format" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_shader_precision_format</strong> (<a href="#shadertype"><em>shadertype</em></a>, <em>precisiontype</em>)<br>
-&#8594; <em>range0</em>, <em>range1</em>, <em>precision</em><br>
+<p><em>range0</em>, <em>range1</em>, <em>precision</em> =
+<strong>get_shader_precision_format</strong>(<a href="#shadertype"><em>shadertype</em></a>, <em>precisiontype</em>)<br>
 <span class="small"><em>precisiontype</em>: '<em>low int</em>' for GL_LOW_INT, '<em>medium int</em>' for GL_MEDIUM_INT, etc.</span></p>
 </li>
 </ul>
@@ -2142,8 +2090,7 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.</span></p>
 <div id="gl.get_uniform" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_uniform</strong> (<em>program</em>, <em>location</em>, <em>type</em>, <em>size</em>)<br>
-&#8594; <em>val1</em>, <em>&#8230;&#8203;</em><br>
+<p><em>val1</em>, <em>&#8230;&#8203;</em> = <strong>get_uniform</strong>(<em>program</em>, <em>location</em>, <em>type</em>, <em>size</em>)<br>
 <span class="small"><em>type</em>: '<em>bool</em>', '<em>int</em>', '<em>uint</em>', '<em>float</em>' or '<em>double</em>'.<br>
 <em>size</em>: number of elements in the uniform variable, vector or matrix (<em>1 &#8230;&#8203; 16</em>).</span></p>
 </li>
@@ -2152,21 +2099,18 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.</span></p>
 <div id="gl.get_uniform_subroutine" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_uniform_subroutine</strong> (<a href="#shadertype"><em>shadertype</em></a>, <em>location</em>)<br>
-&#8594; <em>value</em></p>
+<p><em>value</em> = <strong>get_uniform_subroutine</strong>(<a href="#shadertype"><em>shadertype</em></a>, <em>location</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.get_program_stage" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_program_stage</strong> (<em>program</em>, <a href="#shadertype"><em>shadertype</em></a>, <em>pname</em>)<br>
-&#8594; <em>value(s)</em><br>
+<p><em>value(s)</em> = <strong>get_program_stage</strong>(<em>program</em>, <a href="#shadertype"><em>shadertype</em></a>, <em>pname</em>)<br>
 <span class="small"><em>pname</em>: '<em>active subroutines</em>' for GL_ACTIVE_SUBROUTINES, etc.</span></p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -2176,7 +2120,7 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.</span></p>
 <div id="gl.active_texture" class="ulist">
 <ul>
 <li>
-<p><strong>gl.active_texture</strong> (<em>i</em>)<br>
+<p><strong>active_texture</strong>(<em>i</em>)<br>
 <span class="small"><em>i</em>: 0 for GL_TEXTURE0, 1 for GL_TEXTURE1, etc.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glActiveTexture">glActiveTexture</a>.</span></p>
 </li>
@@ -2193,15 +2137,14 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glActiveTexture">glActiveTexture
 <div id="gl.gen_textures" class="ulist">
 <ul>
 <li>
-<p><strong>gl.gen_textures</strong> ([<em>n</em> = 1])<br>
-&#8594; <em>texture1</em>, <em>texture2</em>, <em>&#8230;&#8203;</em></p>
+<p><em>texture1</em>, <em>texture2</em>, <em>&#8230;&#8203;</em> = <strong>gen_textures</strong>([<em>n</em> = 1])</p>
 </li>
 </ul>
 </div>
 <div id="gl.bind_texture" class="ulist">
 <ul>
 <li>
-<p><strong>gl.bind_texture</strong> (<a href="#texturetarget"><em>target</em></a> [, <em>texture</em>])<br>
+<p><strong>bind_texture</strong>(<a href="#texturetarget"><em>target</em></a> [, <em>texture</em>])<br>
 <span class="small">If <em>texture</em> = <em>nil</em>, unbinds the current texture bound to <em>target</em>.</span></p>
 </li>
 </ul>
@@ -2209,44 +2152,42 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glActiveTexture">glActiveTexture
 <div id="gl.bind_textures" class="ulist">
 <ul>
 <li>
-<p><strong>gl.bind_textures</strong> (<em>first</em>, <em>texture1</em> [, <em>texture2</em>, <em>&#8230;&#8203;</em> ])</p>
+<p><strong>bind_textures</strong>(<em>first</em>, <em>texture1</em> [, <em>texture2</em>, <em>&#8230;&#8203;</em> ])</p>
 </li>
 </ul>
 </div>
 <div id="gl.bind_texture_unit" class="ulist">
 <ul>
 <li>
-<p><strong>gl.bind_texture_unit</strong> (<em>unit</em>, <em>texture</em>)</p>
+<p><strong>bind_texture_unit</strong>(<em>unit</em>, <em>texture</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.create_textures" class="ulist">
 <ul>
 <li>
-<p><strong>gl.create_textures</strong> (<a href="#texturetarget"><em>target</em></a>, <em>texture1</em> [, <em>texture2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>create_textures</strong>(<a href="#texturetarget"><em>target</em></a>, <em>texture1</em> [, <em>texture2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.delete_textures" class="ulist">
 <ul>
 <li>
-<p><strong>gl.delete_textures</strong> (<em>texture1</em> [, <em>texture2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>delete_textures</strong>(<em>texture1</em> [, <em>texture2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.is_texture" class="ulist">
 <ul>
 <li>
-<p><strong>gl.is_texture</strong> ( )<br>
-&#8594; <em>boolean</em></p>
+<p><em>boolean</em> = <strong>is_texture</strong>( )</p>
 </li>
 </ul>
 </div>
 <div id="gl.new_texture" class="ulist">
 <ul>
 <li>
-<p><strong>gl.new_texture</strong> (<a href="#texturetarget"><em>target</em></a>)<br>
-&#8594; <em>texture</em><br>
+<p><em>texture</em> = <strong>new_texture</strong>(<a href="#texturetarget"><em>target</em></a>)<br>
 <span class="small">Gen &amp; bind one texture.</span></p>
 </li>
 </ul>
@@ -2260,29 +2201,28 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glActiveTexture">glActiveTexture
 <div id="gl.gen_samplers" class="ulist">
 <ul>
 <li>
-<p><strong>gl.gen_samplers</strong> ([<em>n</em> = 1])<br>
-&#8594; <em>sampler1</em>, <em>sampler2</em>, <em>&#8230;&#8203;</em></p>
+<p><em>sampler1</em>, <em>sampler2</em>, <em>&#8230;&#8203;</em> = <strong>gen_samplers</strong>([<em>n</em> = 1])</p>
 </li>
 </ul>
 </div>
 <div id="gl.create_samplers" class="ulist">
 <ul>
 <li>
-<p><strong>gl.create_samplers</strong> (<em>sampler1</em> [, <em>sampler2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>create_samplers</strong>(<em>sampler1</em> [, <em>sampler2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.delete_samplers" class="ulist">
 <ul>
 <li>
-<p><strong>gl.delete_samplers</strong> (<em>sampler1</em> [, <em>sampler2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>delete_samplers</strong>(<em>sampler1</em> [, <em>sampler2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.bind_sampler" class="ulist">
 <ul>
 <li>
-<p><strong>gl.bind_sampler</strong> (<em>unit</em>, [<em>sampler</em>])<br>
+<p><strong>bind_sampler</strong>(<em>unit</em>, [<em>sampler</em>])<br>
 <span class="small">If <em>sampler</em> = <em>nil</em>, unbinds the currently bound sampler.</span></p>
 </li>
 </ul>
@@ -2290,23 +2230,21 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glActiveTexture">glActiveTexture
 <div id="gl.bind_samplers" class="ulist">
 <ul>
 <li>
-<p><strong>gl.bind_samplers</strong> (<em>first</em>, <em>sampler1</em> [, <em>sampler2</em>, <em>&#8230;&#8203;</em>])<br></p>
+<p><strong>bind_samplers</strong>(<em>first</em>, <em>sampler1</em> [, <em>sampler2</em>, <em>&#8230;&#8203;</em>])<br></p>
 </li>
 </ul>
 </div>
 <div id="gl.is_sampler" class="ulist">
 <ul>
 <li>
-<p><strong>gl.is_sampler</strong> (<em>sampler</em>)<br>
-&#8594; <em>boolean</em></p>
+<p><em>boolean</em> = <strong>is_sampler</strong>(<em>sampler</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.new_sampler" class="ulist">
 <ul>
 <li>
-<p><strong>gl.new_sampler</strong> (<em>unit</em>)<br>
-&#8594; <em>sampler</em><br>
+<p><em>sampler</em> = <strong>new_sampler</strong>(<em>unit</em>)<br>
 <span class="small">Gen &amp; bind one sampler.</span></p>
 </li>
 </ul>
@@ -2314,7 +2252,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glActiveTexture">glActiveTexture
 <div id="gl.sampler_parameter" class="ulist">
 <ul>
 <li>
-<p><strong>gl.sampler_parameter</strong> (<em>sampler</em>, <em>pname</em>, <em>val1</em> [, <em>val2</em>, <em>&#8230;&#8203;</em>])<br>
+<p><strong>sampler_parameter</strong>(<em>sampler</em>, <em>pname</em>, <em>val1</em> [, <em>val2</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small"><em>pname</em>: '<em>wrap x</em>' for GL_TEXTURE_WRAP_X, '<em>min filter</em>' for GL_TEXTURE_MIN_FILTERS, etc.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glSamplerParameter">glSamplerParameter</a>.</span></p>
 </li>
@@ -2326,8 +2264,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glSamplerParameter">glSamplerPar
 <div id="gl.get_sampler_parameter" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_sampler_parameter</strong> (<em>sampler</em>, <em>pname</em>)<br>
-&#8594; <em>value(s)</em><br>
+<p><em>value(s)</em> = <strong>get_sampler_parameter</strong>(<em>sampler</em>, <em>pname</em>)<br>
 <span class="small"><em>pname</em>: '<em>wrap x</em>' for GL_TEXTURE_WRAP_X, '<em>min filter</em>' for GL_TEXTURE_MIN_FILTERS, etc.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetSamplerParameter">glGetSamplerParameter</a>.</span></p>
 </li>
@@ -2339,7 +2276,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetSamplerParameter">glGetSamp
 <div id="gl.pixel_store" class="ulist">
 <ul>
 <li>
-<p><strong>gl.pixel_store</strong> (<em>pname</em>, <em>val</em>)<br>
+<p><strong>pixel_store</strong>(<em>pname</em>, <em>val</em>)<br>
 <span class="small"><em>pname</em>: '<em>unpack swap bytes</em>' for GL_UNPACK_SWAP_BYTES, '<em>unpack lsb first</em>' for GL_UNPACK_LSB_FIRST, etc.<br>
 Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glPixelStore">glPixelStore</a>.</span></p>
@@ -2352,9 +2289,9 @@ Rfr:
 <div id="gl.texture_image" class="ulist">
 <ul>
 <li>
-<p><strong>gl.texture_image</strong> (<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>width</em>)  1D<br>
-<strong>gl.texture_image</strong> (<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>width</em>, <em>height</em>)  2D<br>
-<strong>gl.texture_image</strong> (<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
+<p><strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>width</em>)  1D<br>
+<strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>width</em>, <em>height</em>)  2D<br>
+<strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glTexImage1D">glTexImage1D</a>,
 <a href="https://www.opengl.org/wiki/GLAPI/glTexImage2D">glTexImage2D</a>,
@@ -2368,8 +2305,8 @@ Rfr:
 <div id="gl.copy_texture_image" class="ulist">
 <ul>
 <li>
-<p><strong>gl.copy_texture_image</strong> (<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <em>x</em>, <em>y</em>, <em>width</em>) 1D<br>
-<strong>gl.copy_texture_image</strong> (<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <em>x</em>, <em>y</em>, <em>width</em>, <em>height</em>) 2D<br>
+<p><strong>copy_texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <em>x</em>, <em>y</em>, <em>width</em>) 1D<br>
+<strong>copy_texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <em>x</em>, <em>y</em>, <em>width</em>, <em>height</em>) 2D<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glCopyTexImage1D">glCopyTexImage1D</a>,
 <a href="https://www.opengl.org/wiki/GLAPI/glCopyTexImage2D">glCopyTexImage2D</a>.</span></p>
@@ -2379,9 +2316,9 @@ Rfr:
 <div id="gl.texture_sub_image" class="ulist">
 <ul>
 <li>
-<p><strong>gl.texture_sub_image</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>xofs</em>, <em>width</em>) 1D<br>
-<strong>gl.texture_sub_image</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>xofs</em>, <em>yofs</em>, <em>width</em>, <em>height</em>) 2D<br>
-<strong>gl.texture_sub_image</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
+<p><strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>xofs</em>, <em>width</em>) 1D<br>
+<strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>xofs</em>, <em>yofs</em>, <em>width</em>, <em>height</em>) 2D<br>
+<strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glTexSubImage1D">glTexSubImage1D</a>,
 <a href="https://www.opengl.org/wiki/GLAPI/glTexSubImage2D">glTexSubImage2D</a>,
@@ -2392,9 +2329,9 @@ Rfr:
 <div id="gl.copy_texture_sub_image" class="ulist">
 <ul>
 <li>
-<p><strong>gl.copy_texture_sub_image</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <em>xofs</em>, <em>x</em>, <em>y</em>, <em>width</em>) 1D<br>
-<strong>gl.copy_texture_sub_image</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <em>xofs</em>, <em>yofs</em>, <em>x</em>, <em>y</em>, <em>width</em>, <em>height</em>) 2D<br>
-<strong>gl.copy_texture_sub_image</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>x</em>, <em>y</em>, <em>width</em>, <em>height</em>) 3D<br>
+<p><strong>copy_texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <em>xofs</em>, <em>x</em>, <em>y</em>, <em>width</em>) 1D<br>
+<strong>copy_texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <em>xofs</em>, <em>yofs</em>, <em>x</em>, <em>y</em>, <em>width</em>, <em>height</em>) 2D<br>
+<strong>copy_texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>x</em>, <em>y</em>, <em>width</em>, <em>height</em>) 3D<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glCopyTexSubImage1D">glCopyTexSubImage1D</a>,
 <a href="https://www.opengl.org/wiki/GLAPI/glCopyTexSubImage2D">glCopyTexSubImage2D</a>,
@@ -2408,9 +2345,9 @@ Rfr:
 <div id="gl.compressed_texture_image" class="ulist">
 <ul>
 <li>
-<p><strong>gl.compressed_texture_image</strong> (<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>, <em>width</em>) 1D<br>
-<strong>gl.compressed_texture_image</strong> (<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>, <em>width</em>, <em>height</em>) 2D<br>
-<strong>gl.compressed_texture_image</strong> (<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
+<p><strong>compressed_texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>, <em>width</em>) 1D<br>
+<strong>compressed_texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>, <em>width</em>, <em>height</em>) 2D<br>
+<strong>compressed_texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glCompressedTexImage1D">glCompressedTexImage1D</a>,
 <a href="https://www.opengl.org/wiki/GLAPI/glCompressedTexImage2D">glCompressedTexImage2D</a>,
@@ -2421,9 +2358,9 @@ Rfr:
 <div id="gl.compressed_texture_sub_image" class="ulist">
 <ul>
 <li>
-<p><strong>gl.compressed_texture_sub_image</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>, <em>xofs</em>, <em>width</em>) 1D<br>
-<strong>gl.compressed_texture_sub_image</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>, <em>xofs</em>, <em>yofs</em>, <em>width</em>, <em>height</em>) 2D<br>
-<strong>gl.compressed_texture_sub_image</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
+<p><strong>compressed_texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>, <em>xofs</em>, <em>width</em>) 1D<br>
+<strong>compressed_texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>, <em>xofs</em>, <em>yofs</em>, <em>width</em>, <em>height</em>) 2D<br>
+<strong>compressed_texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glCompressedTexSubImage1D">glCompressedTexSubImage1D</a>,
 <a href="https://www.opengl.org/wiki/GLAPI/glCompressedTexSubImage2D">glCompressedTexSubImage2D</a>,
@@ -2437,8 +2374,8 @@ Rfr:
 <div id="gl.texture_image_multisample" class="ulist">
 <ul>
 <li>
-<p><strong>gl.texture_image_multisample</strong> (<a href="#texturetarget"><em>target</em></a>, <em>samples</em>, <a href="#intformat"><em>intformat</em></a>, <em>fixedsamplelocs</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 2D<br>
-<strong>gl.texture_image_multisample</strong> (<a href="#texturetarget"><em>target</em></a>, <em>samples</em>, <a href="#intformat"><em>intformat</em></a>, <em>fixedsamplelocs</em>, <em>width</em>, <em>height</em>, <em>depth</em>, <em>height</em>) 3D<br>
+<p><strong>texture_image_multisample</strong>(<a href="#texturetarget"><em>target</em></a>, <em>samples</em>, <a href="#intformat"><em>intformat</em></a>, <em>fixedsamplelocs</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 2D<br>
+<strong>texture_image_multisample</strong>(<a href="#texturetarget"><em>target</em></a>, <em>samples</em>, <a href="#intformat"><em>intformat</em></a>, <em>fixedsamplelocs</em>, <em>width</em>, <em>height</em>, <em>depth</em>, <em>height</em>) 3D<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glTexImage2DMultisample">glTexImage2DMultisample</a>,
 <a href="https://www.opengl.org/wiki/GLAPI/glTexImage3DMultisample">glTexImage3DMultisample</a>.</span></p>
@@ -2451,7 +2388,7 @@ Rfr:
 <div id="gl.texture_buffer_range" class="ulist">
 <ul>
 <li>
-<p><strong>gl.texture_buffer_range</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <a href="#intformat"><em>intformat</em></a>, <em>buffer</em>, <em>offset</em>, <em>size</em>)<br>
+<p><strong>texture_buffer_range</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <a href="#intformat"><em>intformat</em></a>, <em>buffer</em>, <em>offset</em>, <em>size</em>)<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glTexBufferRange">glTexBufferRange</a>.</span></p>
 </li>
@@ -2460,7 +2397,7 @@ Rfr:
 <div id="gl.texture_buffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.texture_buffer</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <a href="#intformat"><em>intformat</em></a>, <em>buffer</em>)<br>
+<p><strong>texture_buffer</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <a href="#intformat"><em>intformat</em></a>, <em>buffer</em>)<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glTexBuffer">glTexBuffer</a>.</span></p>
 </li>
@@ -2472,7 +2409,7 @@ Rfr:
 <div id="gl.texture_parameter" class="ulist">
 <ul>
 <li>
-<p><strong>gl.texture_parameter</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>pname</em>, <em>val1</em>, <em>&#8230;&#8203;</em>)<br>
+<p><strong>texture_parameter</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>pname</em>, <em>val1</em>, <em>&#8230;&#8203;</em>)<br>
 <span class="small"><em>pname</em>: '<em>depth stencil texture mode</em>', '<em>base level</em>' for GL_TEXTURE_BASE_LEVEL, '<em>compare func</em>' for GL_TEXTURE_COMPARE_FUNC, etc.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glTexParameter">glTexParameter</a>.</span></p>
 </li>
@@ -2484,8 +2421,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glTexParameter">glTexParameter</
 <div id="gl.get_texture_parameter" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_texture_parameter</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>pname</em>)<br>
-&#8594; <em>value(s)</em><br>
+<p><em>value(s)</em> = <strong>get_texture_parameter</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>pname</em>)<br>
 <span class="small"><em>pname</em>: '<em>depth stencil texture mode</em>', '<em>base level</em>' for GL_TEXTURE_BASE_LEVEL, '<em>compare func</em>' for GL_TEXTURE_COMPARE_FUNC, etc.<br>
 Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glGetTexParameter">glGetTexParameter</a>.</span></p>
@@ -2495,8 +2431,7 @@ Rfr:
 <div id="gl.get_texture_level_parameter" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_texture_level_parameter</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <em>pname</em>)<br>
-&#8594; <em>value</em><br>
+<p><em>value</em> = <strong>get_texture_level_parameter</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <em>pname</em>)<br>
 <span class="small"><em>pname</em>: '<em>width</em>' for GL_TEXTURE_WIDTH, '<em>fixed sample locations</em>' for GL_TEXTURE_FIXED_SAMPLE_LOCATIONS, etc.<br>
 Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glGetTexLevelParameter">glGetTexLevelParameter</a>.</span></p>
@@ -2506,8 +2441,8 @@ Rfr:
 <div id="gl.get_texture_image" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_texture_image</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#type"><em>type</em></a> [, <em>buffer</em>])<br>
-&#8594; <a href="#data"><em>data</em></a> (or <em>nil</em>, if <em>buffer</em> is passed)<br>
+<p><strong>get_texture_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#type"><em>type</em></a> [, <em>buffer</em>])<br>
+<a href="#data"><em>data</em></a> (or <em>nil</em>, if <em>buffer</em> is passed)<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glGetTexImage">glGetTexImage</a>.</span></p>
 </li>
@@ -2516,8 +2451,8 @@ Rfr:
 <div id="gl.get_texture_sub_image" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_texture_sub_image</strong> (<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>)<br>
-&#8594; <a href="#data"><em>data</em></a><br>
+<p><a href="#data"><em>data</em></a> =
+<strong>get_texture_sub_image</strong>(<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetTextureSubImage.xhtml">glGetTextureSubImage</a>.</span></p>
 </li>
 </ul>
@@ -2525,8 +2460,8 @@ Rfr:
 <div id="gl.get_compressed_texture_image" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_compressed_texture_image</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>)<br>
-&#8594; <a href="#data"><em>data</em></a><br>
+<p><a href="#data"><em>data</em></a> =
+<strong>get_compressed_texture_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>)<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glGetCompressedTexImage">glGetCompressedTexImage</a>.</span></p>
 </li>
@@ -2535,8 +2470,8 @@ Rfr:
 <div id="gl.get_compressed_texture_sub_image" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_compressed_texture_sub_image</strong> (<em>texture</em>, <em>level</em>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>)<br>
-&#8594; <a href="#data"><em>data</em></a><br>
+<p><a href="#data"><em>data</em></a> =
+<strong>get_compressed_texture_sub_image</strong>(<em>texture</em>, <em>level</em>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>)<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/sdk/docs/man/html/glGetCompressedTextureSubImage.xhtml">glGetCompressedTextureSubImage</a>.</span></p>
 </li>
@@ -2548,7 +2483,7 @@ Rfr:
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#gl.enable">gl.enable/disable/is_enabled</a></p>
+<p><a href="#gl.enable">enable/disable/is_enabled</a></p>
 </li>
 </ul>
 </div>
@@ -2558,7 +2493,7 @@ Rfr:
 <div id="gl.generate_mipmap" class="ulist">
 <ul>
 <li>
-<p><strong>gl.generate_mipmap</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>)<br>
+<p><strong>generate_mipmap</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>)<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/sdk/docs/man/html/glGenerateMipmap.xhtml">glGenerateMipmap</a>.</span></p>
 </li>
@@ -2570,8 +2505,7 @@ Rfr:
 <div id="gl.texture_view" class="ulist">
 <ul>
 <li>
-<p><strong>gl.texture_view</strong> (<em>texture</em>, <a href="#texturetarget"><em>target</em></a>, <em>origtexture</em>, <a href="#intformat"><em>intformat</em></a>, <em>minlevel</em>,
-<em>numlevels</em>, <em>minlayer</em>, <em>numlayers</em>)<br>
+<p><strong>texture_view</strong>(<em>texture</em>, <a href="#texturetarget"><em>target</em></a>, <em>origtexture</em>, <a href="#intformat"><em>intformat</em></a>, <em>minlevel</em>, <em>numlevels</em>, <em>minlayer</em>, <em>numlayers</em>)<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glTextureView">glTextureView</a>.</span></p>
 </li>
@@ -2583,9 +2517,9 @@ Rfr:
 <div id="gl.texture_storage" class="ulist">
 <ul>
 <li>
-<p><strong>gl.texture_storage</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>levels</em>, <a href="#intformat"><em>intformat</em></a>, <em>width</em>) 1D<br>
-<strong>gl.texture_storage</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>levels</em>, <a href="#intformat"><em>intformat</em></a>, <em>width</em>, <em>height</em>) 2D<br>
-<strong>gl.texture_storage</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>levels</em>, <a href="#intformat"><em>intformat</em></a>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
+<p><strong>texture_storage</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>levels</em>, <a href="#intformat"><em>intformat</em></a>, <em>width</em>) 1D<br>
+<strong>texture_storage</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>levels</em>, <a href="#intformat"><em>intformat</em></a>, <em>width</em>, <em>height</em>) 2D<br>
+<strong>texture_storage</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>levels</em>, <a href="#intformat"><em>intformat</em></a>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glTexStorage1D">glTexStorage1D</a>,
 <a href="https://www.opengl.org/wiki/GLAPI/glTexStorage2D">glTexStorage2D</a>,
@@ -2596,8 +2530,8 @@ Rfr:
 <div id="gl.texture_storage_multisample" class="ulist">
 <ul>
 <li>
-<p><strong>gl.texture_storage_multisample</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>samples</em>, <a href="#intformat"><em>intformat</em></a>, <em>fixedsamplelocs</em>, <em>width</em>, <em>height</em>) 2D<br>
-<strong>gl.texture_storage_multisample</strong> (<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>samples</em>, <a href="#intformat"><em>intformat</em></a>, <em>fixedsamplelocs</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
+<p><strong>texture_storage_multisample</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>samples</em>, <a href="#intformat"><em>intformat</em></a>, <em>fixedsamplelocs</em>, <em>width</em>, <em>height</em>) 2D<br>
+<strong>texture_storage_multisample</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>samples</em>, <a href="#intformat"><em>intformat</em></a>, <em>fixedsamplelocs</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glTexStorage2DMultisample">glTexStorage2DMultisample</a> and
 <a href="https://www.opengl.org/wiki/GLAPI/glTexStorage3DMultisample">glTexStorage3DMultisample</a>.</span></p>
@@ -2610,7 +2544,7 @@ Rfr:
 <div id="gl.invalidate_texture_image" class="ulist">
 <ul>
 <li>
-<p><strong>gl.invalidate_texture_image</strong> (<em>texture</em>, <em>level</em>)<br>
+<p><strong>invalidate_texture_image</strong>(<em>texture</em>, <em>level</em>)<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glInvalidateTexImage">glInvalidateTexImage</a>.</span></p>
 </li>
@@ -2619,7 +2553,7 @@ Rfr:
 <div id="gl.invalidate_texture_sub_image" class="ulist">
 <ul>
 <li>
-<p><strong>gl.invalidate_texture_sub_image</strong> (<em>texture</em>, <em>level</em>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>)<br>
+<p><strong>invalidate_texture_sub_image</strong>(<em>texture</em>, <em>level</em>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>)<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glInvalidateTexSubImage">glInvalidateTexSubImage</a>.</span></p>
 </li>
@@ -2631,7 +2565,7 @@ Rfr:
 <div id="gl.clear_texture_image" class="ulist">
 <ul>
 <li>
-<p><strong>gl.clear_texture_image</strong> (<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>)<br>
+<p><strong>clear_texture_image</strong>(<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>)<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glClearTexImage">glClearTexImage</a>.</span></p>
 </li>
@@ -2640,7 +2574,7 @@ Rfr:
 <div id="gl.clear_texture_sub_image" class="ulist">
 <ul>
 <li>
-<p><strong>gl.clear_texture_sub_image</strong> (<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>)<br>
+<p><strong>clear_texture_sub_image</strong>(<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>)<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glClearTexSubImage">glClearTexSubImage</a>.</span></p>
 </li>
@@ -2652,7 +2586,7 @@ Rfr:
 <div id="gl.bind_image_texture" class="ulist">
 <ul>
 <li>
-<p><strong>gl.bind_image_texture</strong> (<em>unit</em>, <em>texture</em>, <em>level</em>, <em>layered</em>, <em>layer</em>, <em>access</em>, <a href="#intformat"><em>intformat</em></a>)<br>
+<p><strong>bind_image_texture</strong>(<em>unit</em>, <em>texture</em>, <em>level</em>, <em>layered</em>, <em>layer</em>, <em>access</em>, <a href="#intformat"><em>intformat</em></a>)<br>
 <span class="small"><em>access</em>: '<em>read only</em>', '<em>write only</em>', '<em>read write</em>'.<br>
 Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glBindImageTexture">glBindImageTexture</a>.</span></p>
@@ -2662,13 +2596,12 @@ Rfr:
 <div id="gl.bind_image_textures" class="ulist">
 <ul>
 <li>
-<p><strong>gl.bind_image_textures</strong> (<em>first</em>, <em>texture1</em> [, <em>texture2</em>, <em>&#8230;&#8203;</em>])<br>
+<p><strong>bind_image_textures</strong>(<em>first</em>, <em>texture1</em> [, <em>texture2</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glBindImageTextures">glBindImageTextures</a>.</span></p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -2683,29 +2616,28 @@ Rfr:
 <div id="gl.gen_framebuffers" class="ulist">
 <ul>
 <li>
-<p><strong>gl.gen_framebuffers</strong> ([<em>n</em> = 1])<br>
-&#8594; <em>framebuffer1</em>, <em>framebuffer2</em>, <em>&#8230;&#8203;</em></p>
+<p><em>framebuffer1</em>, <em>framebuffer2</em>, <em>&#8230;&#8203;</em> = <strong>gen_framebuffers</strong>([<em>n</em> = 1])</p>
 </li>
 </ul>
 </div>
 <div id="gl.create_framebuffers" class="ulist">
 <ul>
 <li>
-<p><strong>gl.create_framebuffers</strong> (<em>framebuffer1</em> [, <em>framebuffer2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>create_framebuffers</strong>(<em>framebuffer1</em> [, <em>framebuffer2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.delete_framebuffers" class="ulist">
 <ul>
 <li>
-<p><strong>gl.delete_framebuffers</strong> (<em>framebuffer1</em> [, <em>framebuffer2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>delete_framebuffers</strong>(<em>framebuffer1</em> [, <em>framebuffer2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.bind_framebuffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.bind_framebuffer</strong> (<em>target</em> [, <em>framebuffer</em>])<br>
+<p><strong>bind_framebuffer</strong>(<em>target</em> [, <em>framebuffer</em>])<br>
 <span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>'.<br>
 If <em>framebuffer</em> = <em>nil</em>, unbinds the current framebuffer bound to <em>target</em>.</span></p>
 </li>
@@ -2714,16 +2646,14 @@ If <em>framebuffer</em> = <em>nil</em>, unbinds the current framebuffer bound to
 <div id="gl.is_framebuffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.is_framebuffer</strong> (<em>framebuffer</em>)<br>
-&#8594; <em>boolean</em></p>
+<p><em>boolean</em> = <strong>is_framebuffer</strong>(<em>framebuffer</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.new_framebuffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.new_framebuffer</strong> (<em>target</em>)<br>
-&#8594; <em>framebuffer</em><br>
+<p><em>framebuffer</em> = <strong>new_framebuffer</strong>(<em>target</em>)<br>
 <span class="small">Gen &amp; bind one framebuffer.</span></p>
 </li>
 </ul>
@@ -2734,7 +2664,7 @@ If <em>framebuffer</em> = <em>nil</em>, unbinds the current framebuffer bound to
 <div id="gl.framebuffer_parameter" class="ulist">
 <ul>
 <li>
-<p><strong>gl.framebuffer_parameter</strong> (<em>target</em>|<em>framebuffer</em>, <em>pname</em>, <em>value</em>)<br>
+<p><strong>framebuffer_parameter</strong>(<em>target</em>|<em>framebuffer</em>, <em>pname</em>, <em>value</em>)<br>
 <span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>'.<br>
 <em>pname</em>: '<em>default width</em>' for GL_FRAMEBUFFER_DEFAULT_WIDTH, etc.</span></p>
 </li>
@@ -2746,8 +2676,7 @@ If <em>framebuffer</em> = <em>nil</em>, unbinds the current framebuffer bound to
 <div id="gl.get_framebuffer_parameter" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_framebuffer_parameter</strong> (<em>target</em>|<em>framebuffer</em>, <em>pname</em>)<br>
-&#8594; <em>value(s)</em><br>
+<p><em>value(s)</em> = <strong>get_framebuffer_parameter</strong>(<em>target</em>|<em>framebuffer</em>, <em>pname</em>)<br>
 <span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>'.<br>
 <em>pname</em>: '<em>default width</em>' for GL_FRAMEBUFFER_DEFAULT_WIDTH, etc.</span></p>
 </li>
@@ -2756,8 +2685,7 @@ If <em>framebuffer</em> = <em>nil</em>, unbinds the current framebuffer bound to
 <div id="gl.get_framebuffer_attachment_parameter" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_framebuffer_attachment_parameter</strong> (<em>target</em>|<em>framebuffer</em>, <em>attachment</em>, <em>pname</em>)<br>
-&#8594; <em>value(s)</em><br>
+<p><em>value(s)</em> = <strong>get_framebuffer_attachment_parameter</strong>(<em>target</em>|<em>framebuffer</em>, <em>attachment</em>, <em>pname</em>)<br>
 <span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>'.<br>
 <em>attachment</em>: '<em>depth</em>' for GL_DEPTH, '<em>front left</em>' for GL_FRONT_LEFT, etc.<br>
 <em>pname</em>: '<em>object type</em>' for GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE, etc.</span></p>
@@ -2773,7 +2701,7 @@ If <em>framebuffer</em> = <em>nil</em>, unbinds the current framebuffer bound to
 <div id="gl.bind_renderbuffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.bind_renderbuffer</strong> (<em>target</em> [, <em>renderbuffer</em>])<br>
+<p><strong>bind_renderbuffer</strong>(<em>target</em> [, <em>renderbuffer</em>])<br>
 <span class="small"><em>target</em>: '<em>renderbuffer</em>'.<br>
 If <em>renderbuffer</em> = <em>nil</em>, unbinds the current renderbuffer bound to <em>target</em>.</span></p>
 </li>
@@ -2782,38 +2710,35 @@ If <em>renderbuffer</em> = <em>nil</em>, unbinds the current renderbuffer bound 
 <div id="gl.gen_renderbuffers" class="ulist">
 <ul>
 <li>
-<p><strong>gl.gen_renderbuffers</strong> ([<em>n</em> = 1])<br>
-&#8594; <em>renderbuffer1</em>, <em>renderbuffer2</em>, <em>&#8230;&#8203;</em></p>
+<p><em>renderbuffer1</em>, <em>renderbuffer2</em>, <em>&#8230;&#8203;</em> = <strong>gen_renderbuffers</strong>([<em>n</em> = 1])</p>
 </li>
 </ul>
 </div>
 <div id="gl.create_renderbuffers" class="ulist">
 <ul>
 <li>
-<p><strong>gl.create_renderbuffers</strong> (<em>renderbuffer1</em> [, <em>renderbuffer2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>create_renderbuffers</strong>(<em>renderbuffer1</em> [, <em>renderbuffer2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.delete_renderbuffers" class="ulist">
 <ul>
 <li>
-<p><strong>gl.delete_renderbuffers</strong> (<em>renderbuffer1</em> [, <em>renderbuffer2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>delete_renderbuffers</strong>(<em>renderbuffer1</em> [, <em>renderbuffer2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.is_renderbuffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.is_renderbuffer</strong> (<em>renderbuffer</em>)<br>
-&#8594; <em>boolean</em></p>
+<p><em>boolean</em> = <strong>is_renderbuffer</strong>(<em>renderbuffer</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.new_renderbuffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.new_renderbuffer</strong> (<em>target</em>)<br>
-&#8594; <em>renderbuffer</em><br>
+<p><em>renderbuffer</em> = <strong>new_renderbuffer</strong>(<em>target</em>)<br>
 <span class="small">Gen &amp; bind one renderbuffer.</span></p>
 </li>
 </ul>
@@ -2821,7 +2746,7 @@ If <em>renderbuffer</em> = <em>nil</em>, unbinds the current renderbuffer bound 
 <div id="gl.renderbuffer_storage_multisample" class="ulist">
 <ul>
 <li>
-<p><strong>gl.renderbuffer_storage_multisample</strong> (<em>target</em>|<em>renderbuffer</em>, <em>samples</em>, <em>internalformat</em>, <em>width</em>, <em>height</em>)<br>
+<p><strong>renderbuffer_storage_multisample</strong>(<em>target</em>|<em>renderbuffer</em>, <em>samples</em>, <em>internalformat</em>, <em>width</em>, <em>height</em>)<br>
 <span class="small"><em>target</em>: '<em>renderbuffer</em>'.</span></p>
 </li>
 </ul>
@@ -2829,7 +2754,7 @@ If <em>renderbuffer</em> = <em>nil</em>, unbinds the current renderbuffer bound 
 <div id="gl.renderbuffer_storage" class="ulist">
 <ul>
 <li>
-<p><strong>gl.renderbuffer_storage</strong> (<em>target</em>|<em>renderbuffer</em>, <em>internalformat</em>, <em>width</em>, <em>height</em>)<br>
+<p><strong>renderbuffer_storage</strong>(<em>target</em>|<em>renderbuffer</em>, <em>internalformat</em>, <em>width</em>, <em>height</em>)<br>
 <span class="small"><em>target</em>: '<em>renderbuffer</em>'.</span></p>
 </li>
 </ul>
@@ -2840,8 +2765,7 @@ If <em>renderbuffer</em> = <em>nil</em>, unbinds the current renderbuffer bound 
 <div id="gl.get_renderbuffer_parameter" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_renderbuffer_parameter</strong> (<em>target</em>|<em>renderbuffer</em>, <em>pname</em>)<br>
-&#8594; <em>value(s)</em><br>
+<p><em>value(s)</em> = <strong>get_renderbuffer_parameter</strong>(<em>target</em>|<em>renderbuffer</em>, <em>pname</em>)<br>
 <span class="small"><em>target</em>: '<em>renderbuffer</em>'.<br>
 <em>pname</em>: '<em>width</em>' for GL_RENDERBUFFER_WIDTH, '<em>internal format</em>' for GL_RENDERBUFFER_INTERNAL_FORMAT, etc.</span></p>
 </li>
@@ -2853,7 +2777,7 @@ If <em>renderbuffer</em> = <em>nil</em>, unbinds the current renderbuffer bound 
 <div id="gl.framebuffer_renderbuffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.framebuffer_renderbuffer</strong> (<em>target</em>|<em>framebuffer</em>, <em>attachment</em>, <em>rbtarget</em>, <em>renderbuffer</em>)<br>
+<p><strong>framebuffer_renderbuffer</strong>(<em>target</em>|<em>framebuffer</em>, <em>attachment</em>, <em>rbtarget</em>, <em>renderbuffer</em>)<br>
 <span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>'.<br>
 <em>attachment</em>: '<em>depth</em>' for GL_DEPTH_ATTACHMENT, '<em>color attachment i</em>' for GL_COLOR_ATTACHMENTi, etc.<br>
 <em>rbtarget</em>: '<em>renderbuffer</em>'.</span></p>
@@ -2866,14 +2790,14 @@ If <em>renderbuffer</em> = <em>nil</em>, unbinds the current renderbuffer bound 
 <div id="gl.framebuffer_texture" class="ulist">
 <ul>
 <li>
-<p><strong>gl.framebuffer_texture</strong> (<em>target</em>|<em>framebuffer</em>, <em>attachment</em>, <em>texture</em>, <em>level</em>)</p>
+<p><strong>framebuffer_texture</strong>(<em>target</em>|<em>framebuffer</em>, <em>attachment</em>, <em>texture</em>, <em>level</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.framebuffer_texture_1d" class="ulist">
 <ul>
 <li>
-<p><strong>gl.framebuffer_texture_1d</strong> (<em>target</em>, <em>attachment</em>, <em>textarget</em>, <em>texture</em>, <em>level</em>)<br>
+<p><strong>framebuffer_texture_1d</strong>(<em>target</em>, <em>attachment</em>, <em>textarget</em>, <em>texture</em>, <em>level</em>)<br>
 <span class="small"><em>textarget</em>: '<em>1d</em>'.</span></p>
 </li>
 </ul>
@@ -2881,7 +2805,7 @@ If <em>renderbuffer</em> = <em>nil</em>, unbinds the current renderbuffer bound 
 <div id="gl.framebuffer_texture_2d" class="ulist">
 <ul>
 <li>
-<p><strong>gl.framebuffer_texture_2d</strong> (<em>target</em>, <em>attachment</em>, <em>textarget</em>, <em>texture</em>, <em>level</em>)<br>
+<p><strong>framebuffer_texture_2d</strong>(<em>target</em>, <em>attachment</em>, <em>textarget</em>, <em>texture</em>, <em>level</em>)<br>
 <span class="small"><em>textarget</em>: '<em>2d</em>' for GL_TEXTURE_2D, '<em>cube map positive x</em>' for GL_TEXTURE_CUBE_MAP_POSITIVE_X, etc..</span></p>
 </li>
 </ul>
@@ -2889,7 +2813,7 @@ If <em>renderbuffer</em> = <em>nil</em>, unbinds the current renderbuffer bound 
 <div id="gl.framebuffer_texture_3d" class="ulist">
 <ul>
 <li>
-<p><strong>gl.framebuffer_texture_3d</strong> (<em>target</em>, <em>attachment</em>, <em>textarget</em>, <em>texture</em>, <em>level</em>, <em>layer</em>)<br>
+<p><strong>framebuffer_texture_3d</strong>(<em>target</em>, <em>attachment</em>, <em>textarget</em>, <em>texture</em>, <em>level</em>, <em>layer</em>)<br>
 <span class="small"><em>textarget</em>: '<em>3d</em>'.</span></p>
 </li>
 </ul>
@@ -2897,7 +2821,7 @@ If <em>renderbuffer</em> = <em>nil</em>, unbinds the current renderbuffer bound 
 <div id="gl.framebuffer_texture_layer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.framebuffer_texture_layer</strong> (<em>target</em>|<em>framebuffer</em>, <em>attachment</em>, <em>texture</em>, <em>level</em>, <em>layer</em>)</p>
+<p><strong>framebuffer_texture_layer</strong>(<em>target</em>|<em>framebuffer</em>, <em>attachment</em>, <em>texture</em>, <em>level</em>, <em>layer</em>)</p>
 </li>
 </ul>
 </div>
@@ -2907,7 +2831,7 @@ If <em>renderbuffer</em> = <em>nil</em>, unbinds the current renderbuffer bound 
 <div id="gl.texture_barrier" class="ulist">
 <ul>
 <li>
-<p><strong>gl.texture_barrier</strong> ( )</p>
+<p><strong>texture_barrier</strong>( )</p>
 </li>
 </ul>
 </div>
@@ -2917,14 +2841,12 @@ If <em>renderbuffer</em> = <em>nil</em>, unbinds the current renderbuffer bound 
 <div id="gl.check_framebuffer_status" class="ulist">
 <ul>
 <li>
-<p><strong>gl.check_framebuffer_status</strong> (<em>target</em> [, <em>framebuffer</em>])<br>
-&#8594; <em>status</em><br>
+<p><em>status</em> = <strong>check_framebuffer_status</strong>(<em>target</em> [, <em>framebuffer</em>])<br>
 <span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>'.<br>
 <em>status</em>: '<em>complete</em>' for GL_FRAMEBUFFER_COMPLETE, '<em>incomplete attachment</em>' for GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT, etc.</span></p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -2936,7 +2858,7 @@ If <em>renderbuffer</em> = <em>nil</em>, unbinds the current renderbuffer bound 
 <div id="gl.patch_parameter" class="ulist">
 <ul>
 <li>
-<p><strong>gl.patch_parameter</strong> (<em>pname</em>, <em>val</em> [, <em>val</em>, <em>&#8230;&#8203;</em>])<br>
+<p><strong>patch_parameter</strong>(<em>pname</em>, <em>val</em> [, <em>val</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small"><em>pname</em>: '<em>vertices</em>', '<em>default outer level</em>',  '<em>default inner level</em>'.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPatchParameter">glPatchParameter</a>.</span></p>
 </li>
@@ -2951,7 +2873,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPatchParameter">glPatchParamet
 <div id="gl.vertex_attrib" class="ulist">
 <ul>
 <li>
-<p><strong>gl.vertex_attrib</strong> (<em>index</em>, <em>type</em>, <em>val1</em> [, <em>val2</em>, <em>val3</em>, <em>val4</em>])<br>
+<p><strong>vertex_attrib</strong>(<em>index</em>, <em>type</em>, <em>val1</em> [, <em>val2</em>, <em>val3</em>, <em>val4</em>])<br>
 <span class="small"><em>type</em>: '<em>byte</em>', '<em>ubyte</em>', '<em>short</em>', '<em>ushort</em>', '<em>int</em>', '<em>uint</em>', '<em>float</em>', '<em>double</em>'.</span></p>
 </li>
 </ul>
@@ -2959,7 +2881,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPatchParameter">glPatchParamet
 <div id="gl.vertex_attrib_n" class="ulist">
 <ul>
 <li>
-<p><strong>gl.vertex_attrib_n</strong> (<em>index</em>, <em>type</em>, <em>val1</em>, <em>val2</em>, <em>val3</em>, <em>val4</em>)<br>
+<p><strong>vertex_attrib_n</strong>(<em>index</em>, <em>type</em>, <em>val1</em>, <em>val2</em>, <em>val3</em>, <em>val4</em>)<br>
 <span class="small"><em>type</em>: '<em>byte</em>', '<em>ubyte</em>', '<em>short</em>', '<em>ushort</em>', '<em>int</em>', '<em>uint</em>'.</span></p>
 </li>
 </ul>
@@ -2967,12 +2889,11 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPatchParameter">glPatchParamet
 <div id="gl.vertex_attrib_p" class="ulist">
 <ul>
 <li>
-<p><strong>gl.vertex_attrib_p</strong> (<em>index</em>, <em>type</em>, <em>normalized</em>, <em>val1</em>, <em>val2</em>, <em>val3</em>, <em>val4</em>)<br>
+<p><strong>vertex_attrib_p</strong>(<em>index</em>, <em>type</em>, <em>normalized</em>, <em>val1</em>, <em>val2</em>, <em>val3</em>, <em>val4</em>)<br>
 <span class="small"><em>type</em>: '<em>int 2 10 10 10 rev</em>', '<em>uint 2 10 10 10 rev</em>', '<em>uint 10f 11f 11f rev</em>'.</span></p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -2987,29 +2908,28 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPatchParameter">glPatchParamet
 <div id="gl.gen_vertex_arrays" class="ulist">
 <ul>
 <li>
-<p><strong>gl.gen_vertex_arrays</strong> ([<em>n</em> = 1])<br>
-&#8594; <em>array1</em>, <em>array2</em>, <em>&#8230;&#8203;</em><br></p>
+<p><em>array1</em>, <em>array2</em>, <em>&#8230;&#8203;</em> = <strong>gen_vertex_arrays</strong>([<em>n</em> = 1])</p>
 </li>
 </ul>
 </div>
 <div id="gl.create_vertex_arrays" class="ulist">
 <ul>
 <li>
-<p><strong>gl.create_vertex_arrays</strong> (<em>array1</em> [, <em>array2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>create_vertex_arrays</strong>(<em>array1</em> [, <em>array2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.delete_vertex_arrays" class="ulist">
 <ul>
 <li>
-<p><strong>gl.delete_vertex_arrays</strong> (<em>array1</em> [, <em>array2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>delete_vertex_arrays</strong>(<em>array1</em> [, <em>array2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.bind_vertex_array" class="ulist">
 <ul>
 <li>
-<p><strong>gl.bind_vertex_array</strong> ([<em>array</em>])<br>
+<p><strong>bind_vertex_array</strong>([<em>array</em>])<br>
 <span class="small">If <em>array</em> = <em>nil</em>, unbinds the currently bound vertex array.</span></p>
 </li>
 </ul>
@@ -3017,23 +2937,21 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPatchParameter">glPatchParamet
 <div id="gl.is_vertex_array" class="ulist">
 <ul>
 <li>
-<p><strong>gl.is_vertex_array</strong> (<em>array</em>)<br>
-&#8594; <em>boolean</em></p>
+<p><em>boolean</em> = <strong>is_vertex_array</strong>(<em>array</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.vertex_array_element_buffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.vertex_array_element_buffer</strong> (<em>array</em>, <em>buffer</em>)</p>
+<p><strong>vertex_array_element_buffer</strong>(<em>array</em>, <em>buffer</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.new_vertex_array" class="ulist">
 <ul>
 <li>
-<p><strong>gl.new_vertex_array</strong> ( )<br>
-&#8594; <em>array</em><br>
+<p><em>array</em> = <strong>new_vertex_array</strong>( )<br>
 <span class="small">Gen &amp; bind one array.</span></p>
 </li>
 </ul>
@@ -3047,8 +2965,8 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPatchParameter">glPatchParamet
 <div id="gl.vertex_attrib_format" class="ulist">
 <ul>
 <li>
-<p><strong>gl.vertex_attrib_format</strong> (<em>index</em>, <em>size</em>, <em>type</em>, <em>normalized</em>, <em>offset</em>)<br>
-<strong>gl.vertex_attrib_format</strong> (<em>array</em>, <em>index</em>, <em>size</em>, <em>type</em>, <em>normalized</em>, <em>offset</em>)<br>
+<p><strong>vertex_attrib_format</strong>(<em>index</em>, <em>size</em>, <em>type</em>, <em>normalized</em>, <em>offset</em>)<br>
+<strong>vertex_attrib_format</strong>(<em>array</em>, <em>index</em>, <em>size</em>, <em>type</em>, <em>normalized</em>, <em>offset</em>)<br>
 <span class="small"><em>type</em>: '<em>byte</em>', '<em>ubyte</em>', '<em>short</em>', '<em>ushort</em>', '<em>int</em>', '<em>uint</em>', '<em>float</em>',
 '<em>double</em>', '<em>half float</em>', '<em>fixed</em>', '<em>int 2 10 10 10 rev</em>', '<em>uint 2 10 10 10 rev</em>',
 '<em>uint 10f 11f 11f rev</em>'.<br>
@@ -3059,8 +2977,8 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glVertexAttribFormat">glVertexAt
 <div id="gl.bind_vertex_buffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.bind_vertex_buffer</strong> (<em>index</em>, <em>buffer</em>, <em>offset</em>, <em>stride</em>)<br>
-<strong>gl.bind_vertex_buffer</strong> (<em>array</em>, <em>index</em>, <em>buffer</em>, <em>offset</em>, <em>stride</em>)<br>
+<p><strong>bind_vertex_buffer</strong>(<em>index</em>, <em>buffer</em>, <em>offset</em>, <em>stride</em>)<br>
+<strong>bind_vertex_buffer</strong>(<em>array</em>, <em>index</em>, <em>buffer</em>, <em>offset</em>, <em>stride</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBindVertexBuffer">glBindVertexBuffer</a>.</span></p>
 </li>
 </ul>
@@ -3068,16 +2986,16 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glVertexAttribFormat">glVertexAt
 <div id="gl.bind_vertex_buffers" class="ulist">
 <ul>
 <li>
-<p><strong>gl.bind_vertex_buffers</strong> (<em>index</em>, <em>buffer1</em>, <em>offset1</em>, <em>stride1</em> [, <em>buffer2</em>, <em>offset2</em>, <em>stride2</em>, <em>&#8230;&#8203;</em>])<br>
-<strong>gl.bind_vertex_buffers</strong> (<em>array</em>, <em>index</em>, <em>buffer1</em>, <em>offset1</em>, <em>stride1</em> [, <em>buffer2</em>, <em>offset2</em>, <em>stride2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>bind_vertex_buffers</strong>(<em>index</em>, <em>buffer1</em>, <em>offset1</em>, <em>stride1</em> [, <em>buffer2</em>, <em>offset2</em>, <em>stride2</em>, <em>&#8230;&#8203;</em>])<br>
+<strong>bind_vertex_buffers</strong>(<em>array</em>, <em>index</em>, <em>buffer1</em>, <em>offset1</em>, <em>stride1</em> [, <em>buffer2</em>, <em>offset2</em>, <em>stride2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.vertex_attrib_binding" class="ulist">
 <ul>
 <li>
-<p><strong>gl.vertex_attrib_binding</strong> (<em>attribindex</em>, <em>bindingindex</em>)<br>
-<strong>gl.vertex_attrib_binding</strong> (<em>array</em>, <em>attribindex</em>, <em>bindingindex</em>)<br>
+<p><strong>vertex_attrib_binding</strong>(<em>attribindex</em>, <em>bindingindex</em>)<br>
+<strong>vertex_attrib_binding</strong>(<em>array</em>, <em>attribindex</em>, <em>bindingindex</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glVertexAttribBinding">glVertexAttribBinding</a>.</span></p>
 </li>
 </ul>
@@ -3085,7 +3003,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glVertexAttribFormat">glVertexAt
 <div id="gl.vertex_attrib_pointer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.vertex_attrib_pointer</strong> (<em>index</em>, <em>size</em>, <em>type</em>, <em>normalized</em>, <em>stride</em>, <em>pointer</em>)<br>
+<p><strong>vertex_attrib_pointer</strong>(<em>index</em>, <em>size</em>, <em>type</em>, <em>normalized</em>, <em>stride</em>, <em>pointer</em>)<br>
 <span class="small"><em>type</em>: '<em>byte</em>', '<em>ubyte</em>', '<em>short</em>', '<em>ushort</em>', '<em>int</em>', '<em>uint</em>', '<em>float</em>',
 '<em>double</em>', '<em>half float</em>', '<em>fixed</em>', '<em>int 2 10 10 10 rev</em>', '<em>uint 2 10 10 10 rev</em>',
 '<em>uint 10f 11f 11f rev</em>'.<br>
@@ -3097,8 +3015,8 @@ Rfr:
 <div id="gl.enable_vertex_attrib_array" class="ulist">
 <ul>
 <li>
-<p><strong>gl.enable_vertex_attrib_array</strong> (<em>index</em>)<br>
-<strong>gl.enable_vertex_attrib_array</strong> (<em>array</em>, <em>index</em>)<br>
+<p><strong>enable_vertex_attrib_array</strong>(<em>index</em>)<br>
+<strong>enable_vertex_attrib_array</strong>(<em>array</em>, <em>index</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glEnableVertexAttribArray">glEnableVertexAttribArray</a>.</span></p>
 </li>
 </ul>
@@ -3106,8 +3024,8 @@ Rfr:
 <div id="gl.disable_vertex_attrib_array" class="ulist">
 <ul>
 <li>
-<p><strong>gl.disable_vertex_attrib_array</strong> (<em>index</em>)<br>
-<strong>gl.disable_vertex_attrib_array</strong> (<em>array</em>, <em>index</em>)<br>
+<p><strong>disable_vertex_attrib_array</strong>(<em>index</em>)<br>
+<strong>disable_vertex_attrib_array</strong>(<em>array</em>, <em>index</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDisableVertexAttribArray">glDisableVertexAttribArray</a>.</span></p>
 </li>
 </ul>
@@ -3118,8 +3036,8 @@ Rfr:
 <div id="gl.vertex_binding_divisor" class="ulist">
 <ul>
 <li>
-<p><strong>gl.vertex_binding_divisor</strong> (<em>index</em>, <em>divisor</em>)<br>
-<strong>gl.vertex_binding_divisor</strong> (<em>array</em>, <em>index</em>, <em>divisor</em>)<br>
+<p><strong>vertex_binding_divisor</strong>(<em>index</em>, <em>divisor</em>)<br>
+<strong>vertex_binding_divisor</strong>(<em>array</em>, <em>index</em>, <em>divisor</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glVertexBindingDivisor">glVertexBindingDivisor</a>.</span></p>
 </li>
 </ul>
@@ -3127,7 +3045,7 @@ Rfr:
 <div id="gl.vertex_attrib_divisor" class="ulist">
 <ul>
 <li>
-<p><strong>gl.vertex_attrib_divisor</strong> (<em>index</em>, <em>divisor</em>)<br>
+<p><strong>vertex_attrib_divisor</strong>(<em>index</em>, <em>divisor</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glVertexAttribDivisor">glVertexAttribDivisor</a>.</span></p>
 </li>
 </ul>
@@ -3138,14 +3056,14 @@ Rfr:
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#gl.enable">gl.enable/disable/is_enabled</a></p>
+<p><a href="#gl.enable">enable/disable/is_enabled</a></p>
 </li>
 </ul>
 </div>
 <div id="gl.primitive_restart_index" class="ulist">
 <ul>
 <li>
-<p><strong>gl.primitive_restart_index</strong> (<em>index</em>)<br>
+<p><strong>primitive_restart_index</strong>(<em>index</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPrimitiveRestartIndex">glPrimitiveRestartIndex</a>.</span></p>
 </li>
 </ul>
@@ -3159,10 +3077,10 @@ Rfr:
 <div id="gl.draw_arrays" class="ulist">
 <ul>
 <li>
-<p><strong>gl.draw_arrays</strong> (<em>mode</em>, <em>first</em>, <em>count</em> [, <em>instancecount</em> [, <em>baseinstance</em>]])<br>
-<strong>gl.draw_arrays_indirect</strong> (<em>mode</em>, <em>indirect</em>)<br>
-<strong>gl.multi_draw_arrays</strong> (<em>mode</em>, <em>first1</em>, <em>count1</em> [, <em>first2</em>, <em>count2</em> <em>&#8230;&#8203;</em>])<br>
-<strong>gl.multi_draw_arrays_indirect</strong> (<em>mode</em>, <em>indirect</em>, <em>drawcount</em>, <em>stride</em>)<br>
+<p><strong>draw_arrays</strong>(<em>mode</em>, <em>first</em>, <em>count</em> [, <em>instancecount</em> [, <em>baseinstance</em>]])<br>
+<strong>draw_arrays_indirect</strong>(<em>mode</em>, <em>indirect</em>)<br>
+<strong>multi_draw_arrays</strong>(<em>mode</em>, <em>first1</em>, <em>count1</em> [, <em>first2</em>, <em>count2</em> <em>&#8230;&#8203;</em>])<br>
+<strong>multi_draw_arrays_indirect</strong>(<em>mode</em>, <em>indirect</em>, <em>drawcount</em>, <em>stride</em>)<br>
 <span class="small"><em>mode</em>: '<em>points</em>' for GL_POINTS, '<em>patches</em>' for GL_PATCHES, etc.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDrawArrays">glDrawArrays</a>.</span></p>
 </li>
@@ -3171,14 +3089,14 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDrawArrays">glDrawArrays</a>.<
 <div id="gl.draw_elements" class="ulist">
 <ul>
 <li>
-<p><strong>gl.draw_elements</strong> (<em>mode</em>, <em>count</em>, <em>type</em>, <em>indices</em> [, <em>instancecount</em> [, <em>baseinstance</em>]])<br>
-<strong>gl.draw_elements_indirect</strong> (<em>mode</em>, <em>type</em>, <em>indirect</em>)<br>
-<strong>gl.draw_elements_base_vertex</strong> (<em>mode</em>, <em>count</em>, <em>type</em>, <em>indices</em>, <em>basevertex</em>  [, <em>instancecount</em> [, <em>baseinstance</em>]])<br>
-<strong>gl.multi_draw_elements</strong> (<em>mode</em>, <em>type</em>, <em>count1</em>, <em>indices1</em> [, <em>count2</em>, <em>indices2</em>, <em>&#8230;&#8203;</em>])<br>
-<strong>gl.multi_draw_elements_indirect</strong> (<em>mode</em>, <em>type</em>, <em>indirect</em>, <em>drawcount</em>, <em>stride</em>)<br>
-<strong>gl.multi_draw_elements_base_vertex</strong> (<em>mode</em>, <em>type</em>, <em>count1</em>, <em>indices1</em>, <em>basevertex1</em> [, <em>count2</em>, <em>indices2</em>, <em>basevertex2</em>, <em>&#8230;&#8203;</em>])<br>
-<strong>gl.draw_range_elements</strong> (<em>mode</em>, <em>start</em>, <em>end</em>, <em>count</em>, <em>type</em>, <em>indices</em>)<br>
-<strong>gl.draw_range_elements_base_vertex</strong> (<em>mode</em>, <em>start</em>, <em>end</em>, <em>count</em>, <em>type</em>, <em>indices</em>, <em>basevertex</em>)<br>
+<p><strong>draw_elements</strong>(<em>mode</em>, <em>count</em>, <em>type</em>, <em>indices</em> [, <em>instancecount</em> [, <em>baseinstance</em>]])<br>
+<strong>draw_elements_indirect</strong>(<em>mode</em>, <em>type</em>, <em>indirect</em>)<br>
+<strong>draw_elements_base_vertex</strong>(<em>mode</em>, <em>count</em>, <em>type</em>, <em>indices</em>, <em>basevertex</em>  [, <em>instancecount</em> [, <em>baseinstance</em>]])<br>
+<strong>multi_draw_elements</strong>(<em>mode</em>, <em>type</em>, <em>count1</em>, <em>indices1</em> [, <em>count2</em>, <em>indices2</em>, <em>&#8230;&#8203;</em>])<br>
+<strong>multi_draw_elements_indirect</strong>(<em>mode</em>, <em>type</em>, <em>indirect</em>, <em>drawcount</em>, <em>stride</em>)<br>
+<strong>multi_draw_elements_base_vertex</strong>(<em>mode</em>, <em>type</em>, <em>count1</em>, <em>indices1</em>, <em>basevertex1</em> [, <em>count2</em>, <em>indices2</em>, <em>basevertex2</em>, <em>&#8230;&#8203;</em>])<br>
+<strong>draw_range_elements</strong>(<em>mode</em>, <em>start</em>, <em>end</em>, <em>count</em>, <em>type</em>, <em>indices</em>)<br>
+<strong>draw_range_elements_base_vertex</strong>(<em>mode</em>, <em>start</em>, <em>end</em>, <em>count</em>, <em>type</em>, <em>indices</em>, <em>basevertex</em>)<br>
 <span class="small"><em>mode</em>: '<em>points</em>' for GL_POINTS, '<em>patches</em>' for GL_PATCHES, etc.<br>
 <em>type</em>: '<em>ubyte</em>', '<em>ushort</em>', '<em>uint</em>'.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDrawElements">glDrawElements</a>.</span></p>
@@ -3191,8 +3109,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDrawElements">glDrawElements</
 <div id="gl.get_vertex_array" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_vertex_array</strong> (<em>array</em>, <em>pname</em> [, <em>index</em>])<br>
-&#8594; <em>value</em><br>
+<p><em>value</em> = <strong>get_vertex_array</strong>(<em>array</em>, <em>pname</em> [, <em>index</em>])<br>
 <span class="small"><em>pname</em>: '<em>size</em>' for GL_VERTEX_ATTRIB_ARRAY_SIZE, etc (and '<em>binding offset</em>' for GL_VERTEX_BINDING_OFFSET, '<em>element array buffer binding</em>' for GL_ELEMENT_ARRAY_BUFFER_BINDING, '<em>current attrib</em>' for GL_CURRENT_VERTEX_ATTRIB).<br>
 Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetVertexArrayiv.xhtml">glGetVertexArrayiv</a>,
 <a href="https://www.opengl.org/sdk/docs/man/html/glGetVertexArrayIndexed.xhtml">glGetVertexArrayIndexed</a>.</span></p>
@@ -3202,11 +3119,9 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetVertexArrayiv.xhtml"
 <div id="gl.get_vertex_attrib" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_vertex_attrib</strong> (<em>index</em>, <em>pname</em>)<br>
-&#8594; <em>value(s)</em><br>
-<strong>gl.get_current_vertex_attrib</strong> (<em>index</em>, <em>type</em>)<br>
-&#8594; <em>va1</em>, <em>val2</em>, <em>val3</em>, <em>val4</em><br>
-<span class="small"><em>pname</em>: see <a href="#gl.get_vertex_array">gl.get_vertex_array</a>.<br>
+<p><em>value(s)</em> = <strong>get_vertex_attrib</strong>(<em>index</em>, <em>pname</em>)<br>
+<em>va1</em>, <em>val2</em>, <em>val3</em>, <em>val4</em> = <strong>get_current_vertex_attrib</strong>(<em>index</em>, <em>type</em>)<br>
+<span class="small"><em>pname</em>: see <a href="#gl.get_vertex_array">get_vertex_array</a>.<br>
 <em>type</em>: '<em>byte</em>', <em>ubyte</em>', '<em>short</em>', '<em>ushort</em>', '<em>int</em>', '<em>uint</em>', '<em>float</em>', '<em>double</em>'.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetVertexAttrib">glGetVertexAttrib</a>.</span></p>
 </li>
@@ -3215,8 +3130,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetVertexAttrib">glGetVertexAt
 <div id="gl.get_vertex_attrib_pointer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_vertex_attrib_pointer</strong> (<em>index</em>)<br>
-&#8594; <em>pointer</em><br>
+<p><em>pointer</em> = <strong>get_vertex_attrib_pointer</strong>(<em>index</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetVertexAttribPointerv">glGetVertexAttribPointerv</a>.</span></p>
 </li>
 </ul>
@@ -3227,14 +3141,13 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetVertexAttrib">glGetVertexAt
 <div id="gl.begin_conditional_render" class="ulist">
 <ul>
 <li>
-<p><strong>gl.begin_conditional_render</strong> (<em>id</em>, <em>mode</em> )<br>
-<strong>gl.end_conditional_render</strong> ( )<br>
+<p><strong>begin_conditional_render</strong>(<em>id</em>, <em>mode</em> )<br>
+<strong>end_conditional_render</strong>( )<br>
 <span class="small"><em>mode</em>: '<em>query wait</em>' for GL_QUERY_WAIT, '<em>query no wait</em>' for GL_QUERY_NO_WAIT, etc.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBeginConditionalRender">glBeginConditionalRender</a>.</span></p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -3244,7 +3157,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBeginConditionalRender">glBegi
 <div id="gl.bind_attrib_location" class="ulist">
 <ul>
 <li>
-<p><strong>gl.bind_attrib_location</strong> (<em>program</em>, <em>index</em>, <em>name</em>)<br>
+<p><strong>bind_attrib_location</strong>(<em>program</em>, <em>index</em>, <em>name</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBindAttribLocation">glBindAttribLocation</a>.</span></p>
 </li>
 </ul>
@@ -3252,8 +3165,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBeginConditionalRender">glBegi
 <div id="gl.get_active_attrib" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_active_attrib</strong> (<em>program</em>, <em>index</em>)<br>
-&#8594; <em>name</em>, <a href="#glsltype"><em>glsltype</em></a>, <em>size</em><br>
+<p><em>name</em>, <a href="#glsltype"><em>glsltype</em></a>, <em>size</em> = <strong>get_active_attrib</strong>(<em>program</em>, <em>index</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetActiveAttrib">glGetActiveAttrib</a>.</span></p>
 </li>
 </ul>
@@ -3261,9 +3173,8 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBeginConditionalRender">glBegi
 <div id="gl.get_attrib_location" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_attrib_location</strong> (<em>program</em>, <em>name</em>)<br>
-&#8594; <em>location</em><br>
-<span class="small">Don&#8217;t use this function, use <a href="#gl.bind_attrib_location">gl.bind_attrib_location</a>( )
+<p><em>location</em> = <strong>get_attrib_location</strong>(<em>program</em>, <em>name</em>)<br>
+<span class="small">Don&#8217;t use this function, use <a href="#gl.bind_attrib_location">bind_attrib_location</a>( )
 instead.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetAttribLocation">glGetAttribLocation</a>.</span></p>
 </li>
@@ -3274,7 +3185,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetAttribLocation">glGetAttrib
 <div id="gl.transform_feedback_varyings" class="ulist">
 <ul>
 <li>
-<p><strong>gl.transform_feedback_varyings</strong> (<em>program</em>, <em>mode</em>, <em>varying1</em> [, <em>varying2</em>, <em>&#8230;&#8203;</em> ])<br>
+<p><strong>transform_feedback_varyings</strong>(<em>program</em>, <em>mode</em>, <em>varying1</em> [, <em>varying2</em>, <em>&#8230;&#8203;</em> ])<br>
 <span class="small"><em>mode</em>: '<em>interleaved attribs</em>', '<em>separate attribs</em>'.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glTransformFeedbackVaryings">glTransformFeedbackVaryings</a>.</span></p>
 </li>
@@ -3283,8 +3194,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glTransformFeedbackVaryings">glT
 <div id="gl.get_transform_feedback_varying" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_transform_feedback_varying</strong> (<em>program</em>, <em>index</em>)<br>
-&#8594; <em>name</em>, <a href="#glsltype"><em>glsltype</em></a>, <em>size</em><br>
+<p><em>name</em>, <a href="#glsltype"><em>glsltype</em></a>, <em>size</em> = <strong>get_transform_feedback_varying</strong>(<em>program</em>, <em>index</em>)<br>
 <span class="small"><em>mode</em>: '<em>interleaved attribs</em>', '<em>separate attribs</em>'.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetTransformFeedbackVarying">glGetTransformFeedbackVarying</a>.</span></p>
 </li>
@@ -3296,7 +3206,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetTransformFeedbackVarying">g
 <div id="gl.validate_program" class="ulist">
 <ul>
 <li>
-<p><strong>gl.validate_program</strong> (<em>program</em>)<br>
+<p><strong>validate_program</strong>(<em>program</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glValidateProgram">glValidateProgram</a>.</span></p>
 </li>
 </ul>
@@ -3304,15 +3214,14 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetTransformFeedbackVarying">g
 <div id="gl.validate_program_pipeline" class="ulist">
 <ul>
 <li>
-<p><strong>gl.validate_program_pipeline</strong> (<em>pipeline</em>)<br>
+<p><strong>validate_program_pipeline</strong>(<em>pipeline</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glValidateProgramPipeline">glValidateProgramPipeline</a>.</span></p>
 </li>
 <li>
-<p><a href="#gl.patch_parameter">gl.patch_parameter</a></p>
+<p><a href="#gl.patch_parameter">patch_parameter</a></p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -3327,30 +3236,28 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetTransformFeedbackVarying">g
 <div id="gl.gen_transform_feedbacks" class="ulist">
 <ul>
 <li>
-<p><strong>gl.gen_transform_feedbacks</strong> ([<em>n</em> = 1])<br>
-&#8594; <em>xfb1</em>, <em>xfb2</em>, <em>&#8230;&#8203;</em></p>
+<p><em>xfb1</em>, <em>xfb2</em>, <em>&#8230;&#8203;</em> = <strong>gen_transform_feedbacks</strong>([<em>n</em> = 1])</p>
 </li>
 </ul>
 </div>
 <div id="gl.delete_transform_feedbacks" class="ulist">
 <ul>
 <li>
-<p><strong>gl.delete_transform_feedbacks</strong> (<em>xfb1</em> [, <em>xfb2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>delete_transform_feedbacks</strong>(<em>xfb1</em> [, <em>xfb2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.is_transform_feedback" class="ulist">
 <ul>
 <li>
-<p><strong>gl.is_transform_feedback</strong> (<em>xfb</em>)<br>
-&#8594; <em>boolean</em></p>
+<p><em>boolean</em> = <strong>is_transform_feedback</strong>(<em>xfb</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.bind_transform_feedback" class="ulist">
 <ul>
 <li>
-<p><strong>gl.bind_transform_feedback</strong> (<em>target</em>, [<em>xfb</em>])<br>
+<p><strong>bind_transform_feedback</strong>(<em>target</em>, [<em>xfb</em>])<br>
 <span class="small"><em>target</em>: '<em>transform feedback</em>'.<br>
 If <em>xfb</em> = <em>nil</em>, unbinds the currently bound vertex transform feedback.</span></p>
 </li>
@@ -3359,15 +3266,14 @@ If <em>xfb</em> = <em>nil</em>, unbinds the currently bound vertex transform fee
 <div id="gl.create_transform_feedbacks" class="ulist">
 <ul>
 <li>
-<p><strong>gl.create_transform_feedbacks</strong> (<em>xfb1</em> [, <em>xfb2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>create_transform_feedbacks</strong>(<em>xfb1</em> [, <em>xfb2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.new_transform_feedback" class="ulist">
 <ul>
 <li>
-<p><strong>gl.new_transform_feedback</strong> (<em>target</em> )<br>
-&#8594; <em>xfb</em><br>
+<p><em>xfb</em>= <strong>new_transform_feedback</strong>(<em>target</em> )<br>
 <span class="small">Gen &amp; bind one transform feedback.</span></p>
 </li>
 </ul>
@@ -3375,7 +3281,7 @@ If <em>xfb</em> = <em>nil</em>, unbinds the currently bound vertex transform fee
 <div id="gl.begin_transform_feedback" class="ulist">
 <ul>
 <li>
-<p><strong>gl.begin_transform_feedback</strong> (<em>primitivemode</em>)<br>
+<p><strong>begin_transform_feedback</strong>(<em>primitivemode</em>)<br>
 <span class="small"><em>primitivemode</em>: '<em>triangles</em>', '<em>lines</em>', '<em>points</em>'.</span></p>
 </li>
 </ul>
@@ -3383,28 +3289,28 @@ If <em>xfb</em> = <em>nil</em>, unbinds the currently bound vertex transform fee
 <div id="gl.end_transform_feedback" class="ulist">
 <ul>
 <li>
-<p><strong>gl.end_transform_feedback</strong> ( )</p>
+<p><strong>end_transform_feedback</strong>( )</p>
 </li>
 </ul>
 </div>
 <div id="gl.pause_transform_feedback" class="ulist">
 <ul>
 <li>
-<p><strong>gl.pause_transform_feedback</strong> ( )</p>
+<p><strong>pause_transform_feedback</strong>( )</p>
 </li>
 </ul>
 </div>
 <div id="gl.transform_feedback_buffer_range" class="ulist">
 <ul>
 <li>
-<p><strong>gl.transform_feedback_buffer_range</strong> (<em>xfb</em>, <em>index</em>, <em>buffer</em>, <em>offset</em>, <em>size</em>)</p>
+<p><strong>transform_feedback_buffer_range</strong>(<em>xfb</em>, <em>index</em>, <em>buffer</em>, <em>offset</em>, <em>size</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.transform_feedback_buffer_base" class="ulist">
 <ul>
 <li>
-<p><strong>gl.transform_feedback_buffer_base</strong> (<em>xfb</em>, <em>index</em>, <em>buffer</em>)</p>
+<p><strong>transform_feedback_buffer_base</strong>(<em>xfb</em>, <em>index</em>, <em>buffer</em>)</p>
 </li>
 </ul>
 </div>
@@ -3417,11 +3323,11 @@ If <em>xfb</em> = <em>nil</em>, unbinds the currently bound vertex transform fee
 <div id="gl.draw_transform_feedback" class="ulist">
 <ul>
 <li>
-<p><strong>gl.draw_transform_feedback</strong> (<em>mode</em>, <em>xfb</em> [, <em>instancecount</em>])<br></p>
+<p><strong>draw_transform_feedback</strong>(<em>mode</em>, <em>xfb</em> [, <em>instancecount</em>])<br></p>
 </li>
 <li>
-<p><strong>gl.draw_transform_feedback_stream</strong> (<em>mode</em>, <em>xfb</em>, <em>stream</em> [, <em>instancecount</em>])<br>
-<span class="small"><em>mode</em>: see <a href="#gl.draw_arrays">gl.draw_arrays</a>.</span></p>
+<p><strong>draw_transform_feedback_stream</strong>(<em>mode</em>, <em>xfb</em>, <em>stream</em> [, <em>instancecount</em>])<br>
+<span class="small"><em>mode</em>: see <a href="#gl.draw_arrays">draw_arrays</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -3431,7 +3337,7 @@ If <em>xfb</em> = <em>nil</em>, unbinds the currently bound vertex transform fee
 <div id="gl.provoking_vertex" class="ulist">
 <ul>
 <li>
-<p><strong>gl.provoking_vertex</strong> (<em>provokemode</em>)<br>
+<p><strong>provoking_vertex</strong>(<em>provokemode</em>)<br>
 <span class="small"><em>provokemode</em>: '<em>first vertex convention</em>', '<em>last vertex convention</em>'.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glProvokingVertex">glProvokingVertex</a>.</span></p>
 </li>
@@ -3443,14 +3349,14 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glProvokingVertex">glProvokingVe
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#gl.enable">gl.enable/disable/is_enabled</a></p>
+<p><a href="#gl.enable">enable/disable/is_enabled</a></p>
 </li>
 </ul>
 </div>
 <div id="gl.clip_control" class="ulist">
 <ul>
 <li>
-<p><strong>gl.clip_control</strong> (<em>origin</em>, <em>depth</em>)<br>
+<p><strong>clip_control</strong>(<em>origin</em>, <em>depth</em>)<br>
 <span class="small"><em>origin</em>: '<em>lower left</em>', '<em>upper left</em>'.<br>
 <em>depth</em>: '<em>negative one to one</em>', '<em>zero to one</em>'.<br>
 Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glClipControl.xhtml">glClipControl</a>.</span></p>
@@ -3466,7 +3372,7 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glClipControl.xhtml">glCl
 <div id="gl.depth_range" class="ulist">
 <ul>
 <li>
-<p><strong>gl.depth_range</strong> (<em>near</em>, <em>far</em> [, <em>index</em>])<br>
+<p><strong>depth_range</strong>(<em>near</em>, <em>far</em> [, <em>index</em>])<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDepthRange">glDepthRange</a> -
 <a href="https://www.opengl.org/wiki/GLAPI/glDepthRangeIndexed">glDepthRangeIndexed</a>.</span></p>
 </li>
@@ -3475,7 +3381,7 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glClipControl.xhtml">glCl
 <div id="gl.depth_range_array" class="ulist">
 <ul>
 <li>
-<p><strong>gl.depth_range_array</strong> (<em>first</em>, <em>near1</em>, <em>far1</em> [, <em>near2</em>, <em>far2</em>, <em>&#8230;&#8203;</em>])<br>
+<p><strong>depth_range_array</strong>(<em>first</em>, <em>near1</em>, <em>far1</em> [, <em>near2</em>, <em>far2</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDepthRangeArray">glDepthRangeArray</a>.</span></p>
 </li>
 </ul>
@@ -3483,7 +3389,7 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glClipControl.xhtml">glCl
 <div id="gl.viewport" class="ulist">
 <ul>
 <li>
-<p><strong>gl.viewport</strong> (<em>x</em>, <em>y</em>, <em>w</em>, <em>h</em> [, <em>index</em>])<br>
+<p><strong>viewport</strong>(<em>x</em>, <em>y</em>, <em>w</em>, <em>h</em> [, <em>index</em>])<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glViewport">glViewport</a> -
 <a href="https://www.opengl.org/wiki/GLAPI/glViewportIndexed">glViewportIndexed</a>.</span></p>
 </li>
@@ -3492,12 +3398,11 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glClipControl.xhtml">glCl
 <div id="gl.viewport_array" class="ulist">
 <ul>
 <li>
-<p><strong>gl.viewport_array</strong> (<em>first</em>, <em>x1</em>, <em>y1</em>, <em>w1</em>, <em>h1</em> [, <em>x2</em>, <em>y2</em>, <em>w2</em>, <em>h2</em>])<br>
+<p><strong>viewport_array</strong>(<em>first</em>, <em>x1</em>, <em>y1</em>, <em>w1</em>, <em>h1</em> [, <em>x2</em>, <em>y2</em>, <em>w2</em>, <em>h2</em>])<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glViewportArray">glViewportArray</a>.</span></p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -3507,7 +3412,7 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glClipControl.xhtml">glCl
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#gl.enable">gl.enable/disable/is_enabled</a></p>
+<p><a href="#gl.enable">enable/disable/is_enabled</a></p>
 </li>
 </ul>
 </div>
@@ -3516,8 +3421,7 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glClipControl.xhtml">glCl
 <div id="gl.get_multisample" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_multisample</strong> (<em>pname</em>)<br>
-&#8594; <em>value(s)</em><br>
+<p><em>value(s)</em> = <strong>get_multisample</strong>(<em>pname</em>)<br>
 <span class="small"><em>pname</em>: '<em>sample position</em>'.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetMultisample">glGetMultisample</a>.</span></p>
 </li>
@@ -3526,7 +3430,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetMultisample">glGetMultisamp
 <div id="gl.min_sample_shading" class="ulist">
 <ul>
 <li>
-<p><strong>gl.min_sample_shading</strong> (<em>value</em>)<br>
+<p><strong>min_sample_shading</strong>(<em>value</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glMinSampleShading">glMinSampleShading</a>.</span></p>
 </li>
 </ul>
@@ -3537,7 +3441,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetMultisample">glGetMultisamp
 <div id="gl.point_size" class="ulist">
 <ul>
 <li>
-<p><strong>gl.point_size</strong> (<em>size</em>)<br>
+<p><strong>point_size</strong>(<em>size</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPointSize">glPointSize</a>.</span></p>
 </li>
 </ul>
@@ -3545,8 +3449,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetMultisample">glGetMultisamp
 <div id="gl.point_parameter" class="ulist">
 <ul>
 <li>
-<p><strong>gl.point_parameter</strong> (<em>pname</em>)<br>
-&#8594; <em>value(s)</em><br>
+<p><em>value(s)</em> = <strong>point_parameter</strong>(<em>pname</em>)<br>
 <span class="small"><em>pname</em>: '<em>fade threshold size</em>' for GL_POINT_FADE_THRESHOLD_SIZE, etc.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPointParameter">glPointParameter</a>.</span></p>
 </li>
@@ -3558,7 +3461,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPointParameter">glPointParamet
 <div id="gl.line_width" class="ulist">
 <ul>
 <li>
-<p><strong>gl.line_width</strong> (<em>width</em>)<br>
+<p><strong>line_width</strong>(<em>width</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glLineWidth">glLineWidth</a>.</span></p>
 </li>
 </ul>
@@ -3569,7 +3472,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPointParameter">glPointParamet
 <div id="gl.front_face" class="ulist">
 <ul>
 <li>
-<p><strong>gl.front_face</strong> (<em>dir</em>)<br>
+<p><strong>front_face</strong>(<em>dir</em>)<br>
 <span class="small"><em>dir</em>: '<em>ccw</em>', '<em>cw</em>'.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glFrontFace">glFrontFace</a>.</span></p>
 </li>
@@ -3578,7 +3481,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glFrontFace">glFrontFace</a>.</s
 <div id="gl.cull_face" class="ulist">
 <ul>
 <li>
-<p><strong>gl.cull_face</strong> (<em>mode</em>)<br>
+<p><strong>cull_face</strong>(<em>mode</em>)<br>
 <span class="small"><em>mode</em>: '<em>front</em>', '<em>back</em>', '<em>front and back</em>'.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glCullFace">glCullFace</a>.</span></p>
 </li>
@@ -3590,7 +3493,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glCullFace">glCullFace</a>.</spa
 <div id="gl.polygon_mode" class="ulist">
 <ul>
 <li>
-<p><strong>gl.polygon_mode</strong> (<em>face</em>, <em>mode</em>)<br>
+<p><strong>polygon_mode</strong>(<em>face</em>, <em>mode</em>)<br>
 <span class="small"><em>face</em>: '<em>front and back</em>'.<br>
 <em>mode</em>: '<em>point</em>', '<em>line</em>', '<em>fill</em>'.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPolygonMode">glPolygonMode</a>.</span></p>
@@ -3600,12 +3503,11 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPolygonMode">glPolygonMode</a>
 <div id="gl.polygon_offset" class="ulist">
 <ul>
 <li>
-<p><strong>gl.polygon_offset</strong> (<em>factor</em>, <em>units</em>)<br>
+<p><strong>polygon_offset</strong>(<em>factor</em>, <em>units</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPolygonOffset">glPolygonOffset</a>.</span></p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -3615,7 +3517,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPolygonMode">glPolygonMode</a>
 <div id="gl.bind_frag_data_location" class="ulist">
 <ul>
 <li>
-<p><strong>gl.bind_frag_data_location</strong> (<em>program</em>, <em>color</em>, <em>name</em> [, <em>index</em>])<br>
+<p><strong>bind_frag_data_location</strong>(<em>program</em>, <em>color</em>, <em>name</em> [, <em>index</em>])<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBindFragDataLocation">glBindFragDataLocation</a>,
 <a href="https://www.opengl.org/wiki/GLAPI/glBindFragDataLocationIndexed">glBindFragDataLocationIndexed</a>.</span></p>
 </li>
@@ -3624,8 +3526,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPolygonMode">glPolygonMode</a>
 <div id="gl.get_frag_data_location" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_frag_data_location</strong> (<em>program</em>, <em>name</em>)<br>
-&#8594; <em>location</em><br>
+<p><em>location</em> = <strong>get_frag_data_location</strong>(<em>program</em>, <em>name</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetFragDataLocation">glGetFragDataLocation</a>.</span></p>
 </li>
 </ul>
@@ -3633,13 +3534,11 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPolygonMode">glPolygonMode</a>
 <div id="gl.get_frag_data_index" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_frag_data_index</strong> (<em>program</em>, <em>name</em>)<br>
-&#8594; <em>index</em><br>
+<p><em>index</em> = <strong>get_frag_data_index</strong>(<em>program</em>, <em>name</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetFragDataIndex">glGetFragDataIndex</a>.</span></p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 <div class="sect1">
@@ -3648,7 +3547,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPolygonMode">glPolygonMode</a>
 <div id="gl.dispatch_compute" class="ulist">
 <ul>
 <li>
-<p><strong>gl.dispatch_compute</strong> (<em>numx</em>, <em>numy</em>, <em>numz</em>)<br>
+<p><strong>dispatch_compute</strong>(<em>numx</em>, <em>numy</em>, <em>numz</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDispatchCompute">glDispatchCompute</a>.</span></p>
 </li>
 </ul>
@@ -3656,12 +3555,11 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPolygonMode">glPolygonMode</a>
 <div id="gl.dispatch_compute_indirect" class="ulist">
 <ul>
 <li>
-<p><strong>gl.dispatch_compute_indirect</strong> (<em>indirect</em>)<br>
+<p><strong>dispatch_compute_indirect</strong>(<em>indirect</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDispatchComputeIndirect">glDispatchComputeIndirect</a>.</span></p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 <div class="sect1">
@@ -3672,14 +3570,14 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPolygonMode">glPolygonMode</a>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#gl.enable">gl.enable/disable/is_enabled</a></p>
+<p><a href="#gl.enable">enable/disable/is_enabled</a></p>
 </li>
 </ul>
 </div>
 <div id="gl.scissor_array" class="ulist">
 <ul>
 <li>
-<p><strong>gl.scissor_array</strong> (<em>first</em>, <em>x1</em>, <em>y1</em>, <em>w1</em>, <em>h1</em> [, <em>x2, _y2</em>, <em>w2</em>, <em>h2</em>, <em>&#8230;&#8203;</em>])<br>
+<p><strong>scissor_array</strong>(<em>first</em>, <em>x1</em>, <em>y1</em>, <em>w1</em>, <em>h1</em> [, <em>x2, _y2</em>, <em>w2</em>, <em>h2</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glScissorArray">glScissorArray</a>.</span></p>
 </li>
 </ul>
@@ -3687,7 +3585,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPolygonMode">glPolygonMode</a>
 <div id="gl.scissor" class="ulist">
 <ul>
 <li>
-<p><strong>gl.scissor</strong> (<em>left</em>, <em>bottom</em>, <em>width</em>, <em>height</em> [, <em>index</em>])<br>
+<p><strong>scissor</strong>(<em>left</em>, <em>bottom</em>, <em>width</em>, <em>height</em> [, <em>index</em>])<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glScissor">glScissor</a>.</span></p>
 </li>
 </ul>
@@ -3698,7 +3596,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPolygonMode">glPolygonMode</a>
 <div id="gl.sample_coverage" class="ulist">
 <ul>
 <li>
-<p><strong>gl.sample_coverage</strong> (<em>value</em>, <em>invert</em>)<br>
+<p><strong>sample_coverage</strong>(<em>value</em>, <em>invert</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glSampleCoverage">glSampleCoverage</a>.</span></p>
 </li>
 </ul>
@@ -3706,7 +3604,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPolygonMode">glPolygonMode</a>
 <div id="gl.sample_mask" class="ulist">
 <ul>
 <li>
-<p><strong>gl.sample_mask</strong> (<em>masknumber</em>, <em>mask</em>)<br>
+<p><strong>sample_mask</strong>(<em>masknumber</em>, <em>mask</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glSampleMask">glSampleMask</a>.</span></p>
 </li>
 </ul>
@@ -3717,7 +3615,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPolygonMode">glPolygonMode</a>
 <div id="gl.stencil_func" class="ulist">
 <ul>
 <li>
-<p><strong>gl.stencil_func</strong> (<em>func</em>, <em>ref</em>, <em>mask</em> [, <em>face</em>])<br>
+<p><strong>stencil_func</strong>(<em>func</em>, <em>ref</em>, <em>mask</em> [, <em>face</em>])<br>
 <span class="small"><em>func</em>: '<em>never</em>' for GL_NEVER, '<em>always</em>' for GL_ALWAYS, etc.<br>
 <em>face</em>: '<em>front</em>', '<em>back</em>', '<em>front and back</em>'.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glStencilFunc">glStencilFunc</a>.</span></p>
@@ -3727,7 +3625,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glStencilFunc">glStencilFunc</a>
 <div id="gl.stencil_op" class="ulist">
 <ul>
 <li>
-<p><strong>gl.stencil_op</strong> (<em>sfail</em>, <em>dpfail</em>, <em>dppass</em> [, <em>face</em>])<br>
+<p><strong>stencil_op</strong>(<em>sfail</em>, <em>dpfail</em>, <em>dppass</em> [, <em>face</em>])<br>
 <span class="small"><em>sfail</em>, <em>dpfail</em>, <em>dppass</em>: '<em>keep</em>' for GL_KEEP, '<em>incr wrap</em>' for GL_INCR_WRAP, etc.<br>
 <em>face</em>: '<em>front</em>', '<em>back</em>', '<em>front and back</em>'.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glStencilOp">glStencilOp</a>.</span></p>
@@ -3740,7 +3638,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glStencilOp">glStencilOp</a>.</s
 <div id="gl.depth_func" class="ulist">
 <ul>
 <li>
-<p><strong>gl.depth_func</strong> (<em>func</em>)<br>
+<p><strong>depth_func</strong>(<em>func</em>)<br>
 <span class="small"><em>func</em>: '<em>never</em>' for GL_NEVER, '<em>always</em>' for GL_ALWAYS, etc.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDepthFunc">glDepthFunc</a>.</span></p>
 </li>
@@ -3752,10 +3650,10 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDepthFunc">glDepthFunc</a>.</s
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#gl.begin_query">gl.begin_query</a></p>
+<p><a href="#gl.begin_query">begin_query</a></p>
 </li>
 <li>
-<p><a href="#gl.end_query">gl.end_query</a></p>
+<p><a href="#gl.end_query">end_query</a></p>
 </li>
 </ul>
 </div>
@@ -3765,17 +3663,17 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDepthFunc">glDepthFunc</a>.</s
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#gl.enable">gl.enable/disable/is_enabled</a></p>
+<p><a href="#gl.enable">enable/disable/is_enabled</a></p>
 </li>
 </ul>
 </div>
 <div id="gl.blend_equation" class="ulist">
 <ul>
 <li>
-<p><strong>gl.blend_equation</strong> (<em>mode</em>)<br>
-<strong>gl.blend_equation</strong> (<em>buf</em>, <em>mode</em>)<br>
-<strong>gl.blend_equation</strong> (<em>rgb</em>, <em>alpha</em>)<br>
-<strong>gl.blend_equation</strong> (<em>buf</em>, <em>rgb</em>, <em>alpha</em>)<br>
+<p><strong>blend_equation</strong>(<em>mode</em>)<br>
+<strong>blend_equation</strong>(<em>buf</em>, <em>mode</em>)<br>
+<strong>blend_equation</strong>(<em>rgb</em>, <em>alpha</em>)<br>
+<strong>blend_equation</strong>(<em>buf</em>, <em>rgb</em>, <em>alpha</em>)<br>
 <span class="small"><em>mode</em>, <em>rgb</em>, <em>aplha</em>: '<em>min</em>', '<em>max</em>', '<em>add</em>', '<em>subtract</em>', '<em>reverse subtract</em>'.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBlendEquation">glBlendEquation</a>.</span></p>
 </li>
@@ -3784,10 +3682,10 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBlendEquation">glBlendEquation
 <div id="gl.blend_func" class="ulist">
 <ul>
 <li>
-<p><strong>gl.blend_func</strong> (<em>src</em>, <em>dst</em>)<br>
-<strong>gl.blend_func</strong> (<em>buf</em>, <em>src</em>, <em>dst</em>)<br>
-<strong>gl.blend_func</strong> (<em>srcrgb</em>, <em>dstrgb</em>, <em>srcalpha</em>, <em>dstalpha</em>)<br>
-<strong>gl.blend_func</strong> (<em>buf</em>, <em>srcrgb</em>, <em>dstrgb</em>, <em>srcalpha</em>, <em>dstalpha</em>)<br>
+<p><strong>blend_func</strong>(<em>src</em>, <em>dst</em>)<br>
+<strong>blend_func</strong>(<em>buf</em>, <em>src</em>, <em>dst</em>)<br>
+<strong>blend_func</strong>(<em>srcrgb</em>, <em>dstrgb</em>, <em>srcalpha</em>, <em>dstalpha</em>)<br>
+<strong>blend_func</strong>(<em>buf</em>, <em>srcrgb</em>, <em>dstrgb</em>, <em>srcalpha</em>, <em>dstalpha</em>)<br>
 <span class="small"><em>src</em>, <em>dst</em>: '<em>zero</em>', '<em>one</em>', '<em>src color</em>', '<em>one minus src color</em>', etc.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBlendFunc">glBlendFunc</a>.</span></p>
 </li>
@@ -3796,7 +3694,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBlendFunc">glBlendFunc</a>.</s
 <div id="gl.blend_color" class="ulist">
 <ul>
 <li>
-<p><strong>gl.blend_color</strong> (<em>red</em>, <em>green</em>, <em>blue</em>, <em>alpha</em>)<br>
+<p><strong>blend_color</strong>(<em>red</em>, <em>green</em>, <em>blue</em>, <em>alpha</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBlendColor">glBlendColor</a>.</span></p>
 </li>
 </ul>
@@ -3807,7 +3705,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBlendFunc">glBlendFunc</a>.</s
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#gl.enable">gl.enable/disable/is_enabled</a></p>
+<p><a href="#gl.enable">enable/disable/is_enabled</a></p>
 </li>
 </ul>
 </div>
@@ -3817,13 +3715,12 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBlendFunc">glBlendFunc</a>.</s
 <div id="gl.logic_op" class="ulist">
 <ul>
 <li>
-<p><strong>gl.logic_op</strong> (<em>op</em>, <em>green</em>, <em>blue</em>, <em>alpha</em>)<br>
+<p><strong>logic_op</strong>(<em>op</em>, <em>green</em>, <em>blue</em>, <em>alpha</em>)<br>
 <span class="small"><em>op</em>: '<em>clear</em>', '<em>and</em>', '<em>and reverse</em>', etc.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glLogicOp">glLogicOp</a>.</span></p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -3833,14 +3730,13 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glLogicOp">glLogicOp</a>.</span>
 <div id="gl.hint" class="ulist">
 <ul>
 <li>
-<p><strong>gl.hint</strong> (<em>target</em>, <em>hint</em>)<br>
+<p><strong>hint</strong>(<em>target</em>, <em>hint</em>)<br>
 <span class="small"><em>target</em>: '<em>line smooth</em>' for GL_LINE_SMOOTH_HINT, etc.<br>
 <em>hint</em>: '<em>fastest</em>', '<em>nicest</em>', '<em>don&#8217;t care</em>'.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glHint">glHint</a>.</span></p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 <div class="sect1">
@@ -3851,10 +3747,10 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glHint">glHint</a>.</span></p>
 <div id="gl.draw_buffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.draw_buffer</strong> (<em>buf</em>)<br>
-<strong>gl.draw_buffer</strong> (<em>framebuffer</em>, <em>buf</em>)<br>
-<strong>gl.draw_buffers</strong> (<em>buf1</em> [, <em>buf2</em>, <em>&#8230;&#8203;</em>])<br>
-<strong>gl.draw_buffers</strong> (<em>framebuffer</em>, <em>buf1</em> [, <em>buf2</em>, <em>&#8230;&#8203;</em>])<br>
+<p><strong>draw_buffer</strong>(<em>buf</em>)<br>
+<strong>draw_buffer</strong>(<em>framebuffer</em>, <em>buf</em>)<br>
+<strong>draw_buffers</strong>(<em>buf1</em> [, <em>buf2</em>, <em>&#8230;&#8203;</em>])<br>
+<strong>draw_buffers</strong>(<em>framebuffer</em>, <em>buf1</em> [, <em>buf2</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small"><em>buf</em>: '<em>none</em>' for GL_NONE, '<em>front left</em>' for GL_FRONT_LEFT, '<em>color attachment i</em>' for GL_COLOR_ATTACHMENTi, etc.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDrawBuffer">glDrawBuffer</a>,
 <a href="https://www.opengl.org/wiki/GLAPI/glDrawBuffers">glDrawBuffers</a>.</span></p>
@@ -3867,8 +3763,8 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDrawBuffer">glDrawBuffer</a>,
 <div id="gl.color_mask" class="ulist">
 <ul>
 <li>
-<p><strong>gl.color_mask</strong> (<em>r</em>, <em>g</em>, <em>b</em>, <em>a</em>)<br>
-<strong>gl.color_mask</strong> (<em>drawbuffer</em>, <em>r</em>, <em>g</em>, <em>b</em>, <em>a</em>)<br>
+<p><strong>color_mask</strong>(<em>r</em>, <em>g</em>, <em>b</em>, <em>a</em>)<br>
+<strong>color_mask</strong>(<em>drawbuffer</em>, <em>r</em>, <em>g</em>, <em>b</em>, <em>a</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glColorMask">glColorMask</a>.</span></p>
 </li>
 </ul>
@@ -3876,7 +3772,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDrawBuffer">glDrawBuffer</a>,
 <div id="gl.depth_mask" class="ulist">
 <ul>
 <li>
-<p><strong>gl.depth_mask</strong> (<em>boolean</em>)<br>
+<p><strong>depth_mask</strong>(<em>boolean</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDepthMask">glDepthMask</a>.</span></p>
 </li>
 </ul>
@@ -3884,7 +3780,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDrawBuffer">glDrawBuffer</a>,
 <div id="gl.stencil_mask" class="ulist">
 <ul>
 <li>
-<p><strong>gl.stencil_mask</strong> (<em>mask</em> [, <em>face</em>])<br>
+<p><strong>stencil_mask</strong>(<em>mask</em> [, <em>face</em>])<br>
 <span class="small"><em>face</em>: '<em>front</em>', '<em>back</em>', '<em>front and back</em>'.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glStencilMask">glStencilMask</a>.</span></p>
 </li>
@@ -3896,7 +3792,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glStencilMask">glStencilMask</a>
 <div id="gl.clear" class="ulist">
 <ul>
 <li>
-<p><strong>gl.clear</strong> ([<em>buffer</em>, <em>&#8230;&#8203;</em> ])<br>
+<p><strong>clear</strong>([<em>buffer</em>, <em>&#8230;&#8203;</em> ])<br>
 <span class="small"><em>buffer</em>: '<em>color</em>', '<em>depth</em>', '<em>stencil</em>'.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClear">glClear</a>.</span></p>
 </li>
@@ -3905,7 +3801,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClear">glClear</a>.</span></p>
 <div id="gl.clear_color" class="ulist">
 <ul>
 <li>
-<p><strong>gl.clear_color</strong> (<em>r</em>, <em>g</em>, <em>b</em>, <em>a</em>)<br>
+<p><strong>clear_color</strong>(<em>r</em>, <em>g</em>, <em>b</em>, <em>a</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClearColor">glClearColor</a>.</span></p>
 </li>
 </ul>
@@ -3913,7 +3809,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClear">glClear</a>.</span></p>
 <div id="gl.clear_depth" class="ulist">
 <ul>
 <li>
-<p><strong>gl.clear_depth</strong> (<em>d</em>)<br>
+<p><strong>clear_depth</strong>(<em>d</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClearDepth">glClearDepth</a>.</span></p>
 </li>
 </ul>
@@ -3921,7 +3817,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClear">glClear</a>.</span></p>
 <div id="gl.clear_stencil" class="ulist">
 <ul>
 <li>
-<p><strong>gl.clear_stencil</strong> (<em>s</em>)<br>
+<p><strong>clear_stencil</strong>(<em>s</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClearStencil">glClearStencil</a>.</span></p>
 </li>
 </ul>
@@ -3929,12 +3825,12 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClear">glClear</a>.</span></p>
 <div id="gl.clear_buffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.clear_buffer</strong> ('<em>color</em>', <em>drawbuffer</em>, <em>r</em>, <em>g</em>, <em>b</em>, <em>a</em>)<br>
-<strong>gl.clear_buffer</strong> ('<em>depth</em>', <em>value</em>)<br>
-<strong>gl.clear_buffer</strong> ('<em>stencil</em>', <em>value</em>)<br>
-<strong>gl.clear_buffer</strong> (<em>framebuffer</em>, '<em>color</em>', <em>drawbuffer</em>, <em>r</em>, <em>g</em>, <em>b</em>, <em>a</em>)<br>
-<strong>gl.clear_buffer</strong> (<em>framebuffer</em>, '<em>depth</em>', <em>value</em>)<br>
-<strong>gl.clear_buffer</strong> (<em>framebuffer</em>, '<em>stencil</em>', <em>value</em>)<br>
+<p><strong>clear_buffer</strong>('<em>color</em>', <em>drawbuffer</em>, <em>r</em>, <em>g</em>, <em>b</em>, <em>a</em>)<br>
+<strong>clear_buffer</strong>('<em>depth</em>', <em>value</em>)<br>
+<strong>clear_buffer</strong>('<em>stencil</em>', <em>value</em>)<br>
+<strong>clear_buffer</strong>(<em>framebuffer</em>, '<em>color</em>', <em>drawbuffer</em>, <em>r</em>, <em>g</em>, <em>b</em>, <em>a</em>)<br>
+<strong>clear_buffer</strong>(<em>framebuffer</em>, '<em>depth</em>', <em>value</em>)<br>
+<strong>clear_buffer</strong>(<em>framebuffer</em>, '<em>stencil</em>', <em>value</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClearBuffer">glClearBuffer</a>.</span></p>
 </li>
 </ul>
@@ -3942,8 +3838,8 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClear">glClear</a>.</span></p>
 <div id="gl.clear_bufferfi" class="ulist">
 <ul>
 <li>
-<p><strong>gl.clear_bufferfi</strong> (<em>depth</em>, <em>stencil</em>)<br>
-<strong>gl.clear_bufferfi</strong> (<em>framebuffer</em>, <em>depth</em>, <em>stencil</em>)<br>
+<p><strong>clear_bufferfi</strong>(<em>depth</em>, <em>stencil</em>)<br>
+<strong>clear_bufferfi</strong>(<em>framebuffer</em>, <em>depth</em>, <em>stencil</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClearBufferfi">glClearBufferfi</a>.</span></p>
 </li>
 </ul>
@@ -3954,8 +3850,8 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClear">glClear</a>.</span></p>
 <div id="gl.invalidate_framebuffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.invalidate_framebuffer</strong> (<em>target</em>|<em>framebuffer</em>, <em>attachment1</em> [, <em>attachment2</em>, <em>&#8230;&#8203;</em> ])<br>
-<strong>gl.invalidate_sub_framebuffer</strong> (<em>target</em>|<em>framebuffer</em>, <em>x</em>, <em>y</em>, <em>width</em>, <em>height</em>, <em>attachment1</em> [, <em>attachment2</em>, <em>&#8230;&#8203;</em> ])<br>
+<p><strong>invalidate_framebuffer</strong>(<em>target</em>|<em>framebuffer</em>, <em>attachment1</em> [, <em>attachment2</em>, <em>&#8230;&#8203;</em> ])<br>
+<strong>invalidate_sub_framebuffer</strong>(<em>target</em>|<em>framebuffer</em>, <em>x</em>, <em>y</em>, <em>width</em>, <em>height</em>, <em>attachment1</em> [, <em>attachment2</em>, <em>&#8230;&#8203;</em> ])<br>
 <span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>'.<br>
 <em>attachment</em>: '<em>color attachment i</em>' for GL_COLOR_ATTACHMENTi, '<em>depth</em>' for GL_DEPTH, etc.<br>
 Rfr:
@@ -3964,7 +3860,6 @@ Rfr:
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -3976,8 +3871,8 @@ Rfr:
 <div id="gl.read_buffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.read_buffer</strong> (<em>src</em>)<br>
-<strong>gl.read_buffer</strong> (<em>framebuffer</em>, <em>src</em>)<br>
+<p><strong>read_buffer</strong>(<em>src</em>)<br>
+<strong>read_buffer</strong>(<em>framebuffer</em>, <em>src</em>)<br>
 <span class="small"><em>src</em>: '<em>none</em>' for GL_NONE, i'<em>front left</em>' for GL_FRONT_LEFT, etc.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glReadBuffer">glReadBuffer</a>.</span></p>
 </li>
@@ -3986,8 +3881,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glReadBuffer">glReadBuffer</a>.<
 <div id="gl.read_pixels" class="ulist">
 <ul>
 <li>
-<p><strong>gl.read_pixels</strong> (<em>x</em>, <em>y</em>, <em>width</em>, <em>height</em>, <em>format</em>, <em>type</em>)<br>
-&#8594; <em>data</em><br>
+<p><em>data</em> = <strong>read_pixels</strong>(<em>x</em>, <em>y</em>, <em>width</em>, <em>height</em>, <em>format</em>, <em>type</em>)<br>
 <span class="small"><em>format</em>: '<em>stencil index</em>' for GL_STENCIL_INDEX, '<em>red</em>' for GL_RED, etc.<br>
 <em>type</em>: '<em>half float</em>' for GL_HALF_FLOAT, '<em>float</em>' for GL_FLOAT, etc.<br>
 Returns <em>data</em> as a binary string.<br>
@@ -4001,7 +3895,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glReadPixels">glReadPixels</a>.<
 <div id="gl.clamp_color" class="ulist">
 <ul>
 <li>
-<p><strong>gl.clamp_color</strong> (<em>target</em>, <em>clamp</em>)<br>
+<p><strong>clamp_color</strong>(<em>target</em>, <em>clamp</em>)<br>
 <span class="small"><em>target</em>: '<em>clamp read color</em>'.<br>
 <em>clamp</em>: '<em>true</em>', '<em>false</em>', '<em>fixed only</em>'
 (Lua booleans <em>true</em> and <em>false</em> are accepted as well).<br>
@@ -4012,8 +3906,8 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClampColor">glClampColor</a>.<
 <div id="gl.blit_framebuffer" class="ulist">
 <ul>
 <li>
-<p><strong>gl.blit_framebuffer</strong> (<em>srcx0</em>, <em>srcy0</em>, <em>srcx1</em>, <em>srcy1</em>, <em>dstx0</em>, <em>dsty0</em>, <em>dstx1</em>, <em>dsty1</em>, <em>filter</em> [, <em>maskbit1</em>, &#8230;&#8203;])<br>
-<strong>gl.blit_framebuffer</strong> (<em>readframebuffer</em>, <em>drawframebuffer</em>, <em>..ditto..</em>)<br>
+<p><strong>blit_framebuffer</strong>(<em>srcx0</em>, <em>srcy0</em>, <em>srcx1</em>, <em>srcy1</em>, <em>dstx0</em>, <em>dsty0</em>, <em>dstx1</em>, <em>dsty1</em>, <em>filter</em> [, <em>maskbit1</em>, &#8230;&#8203;])<br>
+<strong>blit_framebuffer</strong>(<em>readframebuffer</em>, <em>drawframebuffer</em>, <em>..ditto..</em>)<br>
 <span class="small"><em>filter</em>: '<em>linear</em>', '<em>nearest</em>'.<br>
 <em>maskbit</em>(s): '<em>color</em>', '<em>depth</em>', '<em>stencil</em>'.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBlitFramebuffer">glBlitFramebuffer</a>.</span></p>
@@ -4026,12 +3920,11 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBlitFramebuffer">glBlitFramebu
 <div id="gl.copy_image_sub_data" class="ulist">
 <ul>
 <li>
-<p><strong>gl.copy_image_sub_data</strong> (<em>srcname</em>, <em>srctarget</em>, <em>srclevel</em>, <em>srcx</em>, <em>srcy</em>, <em>srcz</em>, <em>dstname</em>, <em>dsttarget</em>, <em>dstlevel</em>, <em>dstx</em>, <em>dsty</em>, <em>dstz</em>, <em>width</em>, <em>height</em>, <em>depth</em>)<br>
+<p><strong>copy_image_sub_data</strong>(<em>srcname</em>, <em>srctarget</em>, <em>srclevel</em>, <em>srcx</em>, <em>srcy</em>, <em>srcz</em>, <em>dstname</em>, <em>dsttarget</em>, <em>dstlevel</em>, <em>dstx</em>, <em>dsty</em>, <em>dstz</em>, <em>width</em>, <em>height</em>, <em>depth</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glCopyImageSubData">glCopyImageSubData</a>.</span></p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -4041,7 +3934,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBlitFramebuffer">glBlitFramebu
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#gl.enable">gl.enable/disable/is_enabled</a></p>
+<p><a href="#gl.enable">enable/disable/is_enabled</a></p>
 </li>
 </ul>
 </div>
@@ -4050,7 +3943,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBlitFramebuffer">glBlitFramebu
 <div id="gl.debug_message_callback" class="ulist">
 <ul>
 <li>
-<p><strong>gl.debug_message_callback</strong> (<em>func</em>)<br>
+<p><strong>debug_message_callback</strong>(<em>func</em>)<br>
 <span class="small">The <em>func</em> callback is executed as <strong><em>func(source, type, id, severity, message)</em></strong>.<br>
 <em>source</em>: '<em>api</em>' for GL_DEBUG_SOURCE_API, '<em>shader compiler</em>' for GL_DEBUG_SOURCE_SHADER_COMPILER, etc.<br>
 <em>type</em>: '<em>error</em>' for GL_DEBUG_TYPE_ERROR, '<em>deprecated behavior</em>' for GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR, etc.<br>
@@ -4065,7 +3958,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDebugMessageCallback">glDebugM
 <div id="gl.debug_message_control" class="ulist">
 <ul>
 <li>
-<p><strong>gl.debug_message_control</strong> (<em>source</em>, <em>type</em>, <em>severity</em>, <em>enabled</em> [, <em>id1</em>, <em>&#8230;&#8203;</em>])<br>
+<p><strong>debug_message_control</strong>(<em>source</em>, <em>type</em>, <em>severity</em>, <em>enabled</em> [, <em>id1</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDebugMessageControl">glDebugMessageControl</a>.</span></p>
 </li>
 </ul>
@@ -4076,7 +3969,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDebugMessageCallback">glDebugM
 <div id="gl.debug_message_insert" class="ulist">
 <ul>
 <li>
-<p><strong>gl.debug_message_insert</strong> (<em>source</em>, <em>type</em>, <em>severity</em>, <em>id</em>, <em>message</em>)<br>
+<p><strong>debug_message_insert</strong>(<em>source</em>, <em>type</em>, <em>severity</em>, <em>id</em>, <em>message</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDebugMessageInsert">glDebugMessageInsert</a>.</span></p>
 </li>
 </ul>
@@ -4087,7 +3980,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDebugMessageCallback">glDebugM
 <div id="gl.push_debug_group" class="ulist">
 <ul>
 <li>
-<p><strong>gl.push_debug_group</strong> (<em>source</em>, <em>id</em>, <em>message</em>)<br>
+<p><strong>push_debug_group</strong>(<em>source</em>, <em>id</em>, <em>message</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPushDebugGroup">glPushDebugGroup</a>.</span></p>
 </li>
 </ul>
@@ -4095,7 +3988,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDebugMessageCallback">glDebugM
 <div id="gl.pop_debug_group" class="ulist">
 <ul>
 <li>
-<p><strong>gl.pop_debug_group</strong> ( )<br>
+<p><strong>pop_debug_group</strong>( )<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPopDebugGroup">glPopDebugGroup</a>.</span></p>
 </li>
 </ul>
@@ -4106,7 +3999,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glDebugMessageCallback">glDebugM
 <div id="gl.object_label" class="ulist">
 <ul>
 <li>
-<p><strong>gl.object_label</strong> (<em>identifier</em>, <em>name</em>, <em>label</em>)<br>
+<p><strong>object_label</strong>(<em>identifier</em>, <em>name</em>, <em>label</em>)<br>
 <span class="small"><em>identifier</em>: '<em>buffer</em>' for GL_BUFFER, '<em>vertex array</em>' for GL_VERTEX_ARRAY, etc.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glObjectLabel">glObjectLabel</a>.</span></p>
 </li>
@@ -4118,7 +4011,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glObjectLabel">glObjectLabel</a>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#gl.enable">gl.enable/disable/is_enabled</a></p>
+<p><a href="#gl.enable">enable/disable/is_enabled</a></p>
 </li>
 </ul>
 </div>
@@ -4128,13 +4021,11 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glObjectLabel">glObjectLabel</a>
 <div id="gl.get_object_label" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_object_label</strong> (<em>identifier</em>, <em>name</em>)<br>
-&#8594; <em>label</em><br>
+<p><em>label</em> = <strong>get_object_label</strong>(<em>identifier</em>, <em>name</em>)<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetObjectLabel">glGetObjectLabel</a>.</span></p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -4146,8 +4037,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glObjectLabel">glObjectLabel</a>
 <div id="gl.get" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get</strong> (<em>pname</em> [, <em>index</em>])<br>
-&#8594; <em>value(s)</em><br>
+<p><em>value(s)</em> = <strong>get</strong>(<em>pname</em> [, <em>index</em>])<br>
 <span class="small"><em>pname</em>: '<em>context flags</em>' for GL_CONTEXT_FLAGS, '<em>major version</em>' for GL_MAJOR_VERSION, etc.<br>
 The <em>index</em> argument may be mandatory or optional, depending on <em>pname</em>.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGet">glGet</a>.</span></p>
@@ -4157,12 +4047,11 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGet">glGet</a>.</span></p>
 <div id="gl.enable" class="ulist">
 <ul>
 <li>
-<p><strong>gl.enable</strong> (<em>cap</em> [,<em>index</em>])<br>
-<strong>gl.disable</strong> (<em>cap</em> [,<em>index</em>])<br></p>
+<p><strong>enable</strong>(<em>cap</em> [,<em>index</em>])<br>
+<strong>disable</strong>(<em>cap</em> [,<em>index</em>])<br></p>
 </li>
 <li>
-<p><strong>gl.is_enabled</strong> (<em>cap</em> [,<em>index</em>])<br>
-&#8594; <em>boolean</em><br>
+<p><em>boolean</em> = <strong>is_enabled</strong>(<em>cap</em> [,<em>index</em>])<br>
 <span class="small"><em>cap</em>: '<em>blend</em>' for GL_BLEND, '<em>depth test</em>' for GL_DEPTH_TEST,
 '<em>clip distance 5</em>' for GL_CLIP_DISTANCE5, etc.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glEnable">glEnable</a>,
@@ -4176,8 +4065,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glIsEnable">glIsEnabled</a>.</sp
 <div id="gl.get_string" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_string</strong> (<em>pname</em> [, <em>index</em>])<br>
-&#8594; <em>value(s)</em><br>
+<p><em>value(s)</em> = <strong>get_string</strong>(<em>pname</em> [, <em>index</em>])<br>
 <span class="small"><em>pname</em>: '<em>renderer</em>', '<em>vendor</em>', '<em>version</em>', '<em>extensions</em>', '<em>shading language version</em>'.<br>
 The <em>index</em> argument may be mandatory or optional, depending on <em>pname</em>.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetString">glGetString</a>.</span></p>
@@ -4190,8 +4078,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetString">glGetString</a>.</s
 <div id="gl.get_internalformat" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_internalformat</strong> (<em>target</em>, <em>intformat</em>, <em>pname</em>)<br>
-&#8594; <em>value(s)</em><br>
+<p><em>value(s)</em> = <strong>get_internalformat</strong>(<em>target</em>, <em>intformat</em>, <em>pname</em>)<br>
 <span class="small"><em>target</em>: '<em>1d</em>' for GL_TEXTURE_1D, '<em>1d array</em>' for GL_TEXTURE_1D_ARRAY, etc.<br>
 <em>intformat</em>: '<em>stencil index</em>' for GL_STENCIL_INDEX, '<em>r8 snorm</em>' for GL_R8_SNORM, etc.<br>
 <em>pname</em>: '<em>num sample counts</em>' for GL_NUM_SAMPLE_COUNTS, '<em>samples</em>' for GL_SAMPLES, etc.<br>
@@ -4205,14 +4092,12 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glGetInternalformat">glGetIntern
 <div id="gl.get_" class="ulist">
 <ul>
 <li>
-<p><strong>gl.get_transform_feedback</strong> (<em>xfb</em>, <em>pname</em>)<br>
-&#8594; <em>value</em><br>
+<p><em>value</em> = <strong>get_transform_feedback</strong>(<em>xfb</em>, <em>pname</em>)<br>
 <span class="small"><em>pname</em>: '<em>paused</em>', '<em>active</em>', '<em>buffer binding</em>', '<em>buffer start</em>', '<em>buffer size</em>'.<br>
 Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetTransformFeedback.xhtml">glGetTransformFeedback</a>.</span></p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -4224,14 +4109,13 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetTransformFeedback.xh
 equivalent in OpenGL) that can be used to encode data from Lua variables to
 binary strings, and to decode data the other way round.
 They are useful to deal with the binary string format expected by GL functions like,
-for example, <a href="#gl.buffer_data">gl.buffer_data</a>( ) and
-<a href="#gl.buffer_sub_data">gl.buffer_sub_data</a>( ).</p>
+for example, <a href="#gl.buffer_data">buffer_data</a>( ) and
+<a href="#gl.buffer_sub_data">buffer_sub_data</a>( ).</p>
 </div>
 <div id="gl.flatten" class="ulist">
 <ul>
 <li>
-<p><strong>gl.flatten</strong> (<em>table</em>)<br>
-&#8594; <em>val1</em>, <em>&#8230;&#8203;</em>, <em>valN</em><br>
+<p><em>val1</em>, <em>&#8230;&#8203;</em>, <em>valN</em> = <strong>flatten</strong>(<em>table</em>)<br>
 <span class="small">Flattens out the given <em>table</em> and returns the terminal elements in the order they are found.
 Similar to Lua&#8217;s
 <a href="http://www.lua.org/manual/5.3/manual.html#pdf-table.unpack">table.unpack</a>( ),
@@ -4242,8 +4126,7 @@ it also unpacks any nested table. Only the array part of the table(s) is conside
 <div id="gl.sizeof" class="ulist">
 <ul>
 <li>
-<p><strong>gl.sizeof</strong> (<a href="#type"><em>type</em></a>)<br>
-&#8594; size<br>
+<p><em>size</em> = <strong>sizeof</strong>(<a href="#type"><em>type</em></a>)<br>
 <span class="small">Returns the size, in bytes, of the GL <em>type</em>.</span></p>
 </li>
 </ul>
@@ -4251,22 +4134,19 @@ it also unpacks any nested table. Only the array part of the table(s) is conside
 <div id="gl.pack" class="ulist">
 <ul>
 <li>
-<p><strong>gl.pack</strong> (<a href="#type"><em>type</em></a>, <em>val1</em>, <em>&#8230;&#8203;</em>, <em>valN</em>)<br>
-<strong>gl.pack</strong> (<a href="#type"><em>type</em></a>, <em>table</em>)<br>
-&#8594; <em>bstring</em><br>
+<p><em>bstring</em> = <strong>pack</strong>(<a href="#type"><em>type</em></a>, <em>val1</em>, <em>&#8230;&#8203;</em>, <em>valN</em>)<br>
+<em>bstring</em> = <strong>pack</strong>(<a href="#type"><em>type</em></a>, <em>table</em>)<br>
 <span class="small">Packs the numbers <em>val1</em>, <em>&#8230;&#8203;</em>, <em>valN</em> in a binary string, encoding them
 according to <em>type</em>. The values may be passed also in a (possibly nested) table <em>t</em>.</span></p>
 </li>
 <li>
-<p><strong>gl.unpack</strong> (<a href="#type"><em>type</em></a>, <em>bstring</em>)<br>
-&#8594; <em>val1</em>, <em>&#8230;&#8203;</em>, <em>valN</em><br>
+<p><em>val1</em>, <em>&#8230;&#8203;</em>, <em>valN</em> = <strong>unpack</strong>(<a href="#type"><em>type</em></a>, <em>bstring</em>)<br>
 <span class="small">Unpacks the binary string <em>bstring</em>, interpreting it as a sequence of values
 enncoded according to <em>type</em>, and returns the extracted values. The length of the
 binary string must be a multiple of <em>gl.sizeof(type)</em>.</span></p>
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 <div class="sect1">
@@ -4301,7 +4181,7 @@ Values: '<em>none</em>', '<em>stencil index</em>', '<em>depth component</em>', '
 <div id="footer">
 <div id="footer-text">
 Version 0.4<br>
-Last updated 2016-06-01 15:16:34 CEST
+Last updated 2016-11-28 11:36:01 CET
 </div>
 </div>
 </body>

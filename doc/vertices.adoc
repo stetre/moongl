@@ -4,7 +4,7 @@
 === Separate Patches 
 
 [[gl.patch_parameter]]
-* *gl.patch_parameter* (_pname_, _val_ [, _val_, _..._]) +
+* *patch_parameter*(_pname_, _val_ [, _val_, _..._]) +
 [small]#_pname_: '_vertices_', '_default outer level_',  '_default inner level_'. +
 Rfr: https://www.opengl.org/wiki/GLAPI/glPatchParameter[glPatchParameter].#
 
@@ -13,17 +13,15 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glPatchParameter[glPatchParameter].#
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glVertexAttrib[glVertexAttrib].#
 
 [[gl.vertex_attrib]]
-* *gl.vertex_attrib* (_index_, _type_, _val1_ [, _val2_, _val3_, _val4_]) +
+* *vertex_attrib*(_index_, _type_, _val1_ [, _val2_, _val3_, _val4_]) +
 [small]#_type_: '_byte_', '_ubyte_', '_short_', '_ushort_', '_int_', '_uint_', '_float_', '_double_'.#
 
 [[gl.vertex_attrib_n]]
-* *gl.vertex_attrib_n* (_index_, _type_, _val1_, _val2_, _val3_, _val4_) +
+* *vertex_attrib_n*(_index_, _type_, _val1_, _val2_, _val3_, _val4_) +
 [small]#_type_: '_byte_', '_ubyte_', '_short_', '_ushort_', '_int_', '_uint_'.#
 
 
 [[gl.vertex_attrib_p]]
-* *gl.vertex_attrib_p* (_index_, _type_, _normalized_, _val1_, _val2_, _val3_, _val4_) +
+* *vertex_attrib_p*(_index_, _type_, _normalized_, _val1_, _val2_, _val3_, _val4_) +
 [small]#_type_: '_int 2 10 10 10 rev_', '_uint 2 10 10 10 rev_', '_uint 10f 11f 11f rev_'.#
-
-<<<
 

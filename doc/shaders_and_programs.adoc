@@ -9,61 +9,57 @@
 [small]#*shadertype*: '_vertex_' for GL_VERTEX_SHADER, '_fragment_' for GL_FRAGMENT_SHADER, etc.#
 
 [[gl.create_shader]]
-* *gl.create_shader* (<<shadertype, _shadertype_>>) +
--> _shader_
+* _shader_ = *create_shader*(<<shadertype, _shadertype_>>)
 
 [[gl.shader_source]]
-* *gl.shader_source* (_shader_, _sourcestring_)
+* *shader_source*(_shader_, _sourcestring_)
 
 [[gl.compile_shader]]
-* *gl.compile_shader* (_shader_)
+* *compile_shader*(_shader_)
 
 [[gl.release_shader_compiler]]
-* *gl.release_shader_compiler* ( )
+* *release_shader_compiler*( )
 
 [[gl.delete_shader]]
-* *gl.delete_shader* (_shader_) +
-*gl.delete_shaders* (_shader1_, _..._)
+* *delete_shader*(_shader_) +
+*delete_shaders*(_shader1_, _..._)
 
 [[gl.is_shader]]
-* *gl.is_shader* (_shader_) +
--> _boolean_
+* _boolean_ = *is_shader*(_shader_)
+
 
 === Program Objects
 
 [small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Shader_Program_Creation[Shader Program Creation].#
 
 [[gl.create_program]]
-* *gl.create_program* ( ) +
--> _program_
+* _program_ = *create_program*( )
 
 [[gl.attach_shader]]
-* *gl.attach_shader* (_program_, _shader_) +
+* *attach_shader*(_program_, _shader_) +
 
 [[gl.detach_shader]]
-* *gl.detach_shader* (_program_, _shader_) +
+* *detach_shader*(_program_, _shader_) +
 
 [[gl.link_program]]
-* *gl.link_program* (_program_) +
+* *link_program*(_program_) +
 
 [[gl.use_program]]
-* *gl.use_program* (_program_) +
+* *use_program*(_program_) +
 
 [[gl.program_parameter]]
-* *gl.program_parameter* (_program_, _pname_, _boolean_) +
+* *program_parameter*(_program_, _pname_, _boolean_) +
 [small]#_pname_: '_separable_', '_ binary retriavable hint_'.#
 
 [[gl.create_shader_program]]
-* *gl.create_shader_program* (<<shadertype, _shadertype_>>, _sourcestring_) +
--> _program_
+* _program_ = *create_shader_program*(<<shadertype, _shadertype_>>, _sourcestring_)
 
 [[gl.delete_program]]
-* *gl.delete_program* (_program_) +
-*gl.delete_programs* (_program1_, _..._)
+* *delete_program*(_program_) +
+*delete_programs*(_program1_, _..._)
 
 [[gl.is_program]]
-* *gl.is_program* (_program_) +
--> _boolean_
+* _boolean_ = *is_program*(_program_)
 
 === Make Program
 
@@ -71,16 +67,17 @@ The following functions have no OpenGL counterparts. They are MoonGL additions t
 the creation of shading programs.
 
 [[gl.make_program]]
-* *gl.make_program* (<<shadertype, _shadertype1_>>, _filename1_ [, <<shadertype, _shadertype2_>>, _filename2_, _..._]) +
-*gl.make_program_s* (<<shadertype, _shadertype1_>>, _sourcestring1_ [, <<shadertype, _shadertype2_>>, _sourcestring2_, _..._]) +
--> _program_, _shader1_, _shader2_, _..._ +
+* _program_, _shader1_, _shader2_, _..._ = 
+*make_program*(<<shadertype, _shadertype1_>>, _filename1_ [, <<shadertype, _shadertype2_>>, _filename2_, _..._]) +
+_program_, _shader1_, _shader2_, _..._ = 
+*make_program_s*(<<shadertype, _shadertype1_>>, _sourcestring1_ [, <<shadertype, _shadertype2_>>, _sourcestring2_, _..._]) +
 [small]#Both these functions create, compile and link a program with the passed shaders,
 and return the names assigned to them by OpenGL.
 They also check for errors at each compilation step. 
 The only difference between the two is that the former loads the shaders' code from files,
 while the latter (with the trailing '_s') loads the code from strings.#
 
-* *gl.clean_program* (_program_, _shader1_, _shader2_, _..._) +
+* *clean_program*(_program_, _shader1_, _shader2_, _..._) +
 [small]#Given the names of a program and of the shaders attached to it, detaches the
 shaders, and deletes them and the program.#
 
@@ -90,114 +87,99 @@ shaders, and deletes them and the program.#
 [small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Shader_Program_Query[Shader Program Query].#
 
 [[gl.get_program_interface]]
-* *gl.get_program_interface* (_program_, _interface_, _pname_) +
--> _value_ +
+* _value_ = *get_program_interface*(_program_, _interface_, _pname_) +
 [small]#_interface_: '_uniform_' for GL_UNIFORM, '_uniform block_' for GL_UNIFORM_BLOCK, etc.#
 
 [[gl.get_program_resource_index]]
-* *gl.get_program_resource_index* (_program_, _interface_, _name_) +
--> _index_
+* _index_ = *get_program_resource_index*(_program_, _interface_, _name_)
 
 [[gl.get_program_resource_name]]
-* *gl.get_program_resource_name* (_program_, _interface_, _index_) +
--> _name_
+* _name_ = *get_program_resource_name*(_program_, _interface_, _index_)
 
 [[gl.get_program_resource]]
-* *gl.get_program_resource* (_program_, _interface_, _index_, _property_) +
--> _value(s)_
+* _value(s)_ = *get_program_resource*(_program_, _interface_, _index_, _property_)
 
 [[gl.get_program_resource_location]]
-* *gl.get_program_resource_location* (_program_, _interface_, _name_) +
--> _location_
+* _location_ = *get_program_resource_location*(_program_, _interface_, _name_)
 
 [[gl.get_program_resource_location_index]]
-* *gl.get_program_resource_location_index* (_program_, _interface_, _name_) +
--> _index_
+* _index_ = *get_program_resource_location_index*(_program_, _interface_, _name_)
 
 === Program Pipeline Objects
 
 [small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Shader_Program_Creation[Shader Program Creation].#
 
 [[gl.gen_program_pipelines]]
-* *gl.gen_program_pipelines* ([_n_ = 1]) +
--> _pipeline1_, _pipeline2_, _..._
+* _pipeline1_, _pipeline2_, _..._ = *gen_program_pipelines*([_n_ = 1])
 
 [[gl.create_program_pipelines]]
-* *gl.create_program_pipelines* (_pipeline1_ [_pipeline2, _..._]) +
+* *create_program_pipelines*(_pipeline1_ [_pipeline2, _..._])
 
 [[gl.delete_program_pipelines]]
-* *gl.delete_program_pipelines* (_pipeline1_ [_pipeline2, _..._]) +
+* *delete_program_pipelines*(_pipeline1_ [_pipeline2, _..._])
 
 [[gl.is_program_pipelines]]
-* *gl.is_program_pipelines* (_pipeline_) +
--> _boolean_
+* _boolean_ = *is_program_pipelines*(_pipeline_)
 
 [[gl.bind_program_pipelines]]
-* *gl.bind_program_pipelines* (_pipeline_) +
+* *bind_program_pipelines*(_pipeline_) +
 [small]#If _pipeline_ = _nil_, unbinds the current bound pipeline.#
 
 [[gl.use_program_stages]]
-* *gl.use_program_stages* (_pipeline_, _program_, _stage_, _..._) +
+* *use_program_stages*(_pipeline_, _program_, _stage_, _..._) +
 [small]#_stage_: '_vertex_'  for GL_VERTEX_SHADER_BIT, '_tess control_' for GL_TESS_CONTROL_SHADER_BIT, etc.#
 
 [[gl.active_shader_program]]
-* *gl.active_shader_program* (_pipeline_, _program_)
+* *active_shader_program*(_pipeline_, _program_)
 
 === Program Binaries
 
 [small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Shader_Program_Creation[Shader Program Creation].#
 
 [[gl.get_program_binary]]
-* *gl.get_program_binary* (_program_) +
--> _format_, _binary_ +
+* _format_, _binary_ = *get_program_binary*(_program_)
+
 [small]#_format_ is returned as an integer and _binary_ as a binary string.#
 
 [[gl.program_binary]]
-* *gl.program_binary* (_program_, _format_, _binary_)
+* *program_binary*(_program_, _format_, _binary_)
 
 === Uniform Variables
 
 [small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Shader_Program_Query[Shader Program Query].#
 
 [[gl.get_uniform_location]]
-* *gl.get_uniform_location* (_program_, _name_) +
--> _location_
+* _location_ = *get_uniform_location*(_program_, _name_)
 
 [[gl.get_active_uniform_name]]
-* *gl.get_active_uniform_name* (_program_, _index_) +
--> _name_ or _nil_
+* _name_ = *get_active_uniform_name*(_program_, _index_) +
+[small]#May return _nil_.#
 
 [[gl.get_active_uniform_indices]]
-* *gl.get_active_uniform_indices* (_program_, _name1_ [, _name2_, _..._]) +
--> _index1_, _index2_, _..._ +
+* _index1_, _index2_, _..._ = *get_active_uniform_indices*(_program_, _name1_ [, _name2_, _..._]) +
 [small]#_indexK_ = _false_ if _nameK_ is not a valid uniform name.#
 
 [[gl.get_active_uniform]]
-* *gl.get_active_uniform* (_program_, _index_) +
--> _name_, _type_, _size_ (or _nil_)
+* _name_, _type_, _size_ = *get_active_uniform*(_program_, _index_) +
+[small]#May return _nil_.#
 
 [[gl.get_active_uniforms]]
-* *gl.get_active_uniforms* (_program_, _pname_, _index1_ [, _index2_, _..._]) +
--> _value1_, _value2_, _..._ +
+* _value1_, _value2_, _..._ = *get_active_uniforms*(_program_, _pname_, _index1_ [, _index2_, _..._]) +
 [small]#_pname_: '_type_' or GL_UNIFORM_TYPE, '_name length_' for GL_UNIFORM_NAME_LENGTH, etc.#
 
 [[gl.get_uniform_block_index]]
-* *gl.get_uniform_block_index* (_program_, _name_) +
--> _index_
+* _index_ = *get_uniform_block_index*(_program_, _name_)
 
 [[gl.get_active_uniform_block_name]]
-* *gl.get_active_uniform_block_name* (_program_, _index_) +
--> _name_
+* _name_ = *get_active_uniform_block_name*(_program_, _index_)
 
 [[gl.get_active_uniform_block]]
-* *gl.get_active_uniform_block* (_program_, _index_, _pname_) +
--> _value_ +
+* _value_ = *get_active_uniform_block*(_program_, _index_, _pname_) +
 [small]#_pname_: '_binding_' for GL_UNIFORM_BLOCK_BINDING, '_data size_' for 
 GL_UNIFORM_BLOCK_DATA_SIZE, etc.#
 
 [[gl.get_active_atomic_counter_buffer]]
-* *gl.get_active_atomic_counter_buffer* (_program_, _index_, _pname_) +
--> _value_ +
+* _value_ = *get_active_atomic_counter_buffer*(_program_, _index_, _pname_) +
 [small]#_pname_: '_binding_' for GL_ATOMIC_COUNTER_BUFFER_BINDING, '_data size_' for 
 GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.#
 
@@ -206,19 +188,19 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.#
 [small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Shader_Program_Usage_and_State[Shader Program Usage and State].#
 
 [[gl.uniform]]
-* *gl.uniform* (_location_, _type_, _val1_ [, _val2_ [, _val3_ [, _val4_]]]) +
-* *gl.uniformv* (_location_, _count_, _type_, _val1_ [, _val2_, _..._ ]) +
-* *gl.program_uniform* (_program_, _location_, _type_, _val1_ [, _val2_ [, _val3_ [, _val4_]]]) +
-* *gl.program_uniformv* (_program_, _location_, _count_, _type_, _val1_ [, _val2_, _..._ ]) +
+* *uniform*(_location_, _type_, _val1_ [, _val2_ [, _val3_ [, _val4_]]]) +
+* *uniformv*(_location_, _count_, _type_, _val1_ [, _val2_, _..._ ]) +
+* *program_uniform*(_program_, _location_, _type_, _val1_ [, _val2_ [, _val3_ [, _val4_]]]) +
+* *program_uniformv*(_program_, _location_, _count_, _type_, _val1_ [, _val2_, _..._ ]) +
 [small]#_type_: '_bool_', '_int_', '_uint_', '_float_' or '_double_'. +
 _count_: number of vectors (or variables) in the array.#
 
 
 [[gl.uniform_matrix]]
-* *gl.uniform_matrix* (_location_, _type_, _size_, _transpose_, _val1_, _val2_, _..._, _valN_) +
-* *gl.uniform_matrixv* (_location_, _count_, _type_, _size_, _transpose_, _val1_, _val2_, _..._, _valN_) +
-* *gl.program_uniform_matrix* (_program_, _location_, _type_, _size_, _transpose_, _val1_, _val2_, _..._, _valN_) +
-* *gl.program_uniform_matrixv* (_program_, _location_, _count_, _type_, _size_, _transpose_, _val1_, _val2_, _..._, _valN_) +
+* *uniform_matrix*(_location_, _type_, _size_, _transpose_, _val1_, _val2_, _..._, _valN_) +
+* *uniform_matrixv*(_location_, _count_, _type_, _size_, _transpose_, _val1_, _val2_, _..._, _valN_) +
+* *program_uniform_matrix*(_program_, _location_, _type_, _size_, _transpose_, _val1_, _val2_, _..._, _valN_) +
+* *program_uniform_matrixv*(_program_, _location_, _count_, _type_, _size_, _transpose_, _val1_, _val2_, _..._, _valN_) +
 [small]#_type_: '_bool_', '_int_', '_uint_', '_float_' or '_double_'. +
 _size_: '_2x2_', '_3x3_', '_4x4_', '_2x3_', '_3x2_', '_2x4_', '_4x2'_', '_3x4_', '_4x3_'. +
 _transpose_: boolean (= _true_ if the value are passed in row-major order). +
@@ -229,48 +211,44 @@ _count_: number of matrices in the array (_N_ = _count_ x no. of elements in a m
 [small]#Rfr: https://www.opengl.org/wiki/Category:Program_Object_API_State_Functions[Program Object API State Functions].#
 
 [[gl.uniform_block_binding]]
-* *gl.uniform_block_binding* (_program_, _index_, _binding_)
+* *uniform_block_binding*(_program_, _index_, _binding_)
 
 === Shader Buffer Variables
 
 [small]#Rfr: https://www.opengl.org/wiki/Category:Program_Object_API_State_Functions[Program Object API State Functions].#
 
 [[gl.shader_storage_block_binding]]
-* *gl.shader_storage_block_binding* (_program_, _index_, _binding_)
+* *shader_storage_block_binding*(_program_, _index_, _binding_)
 
 === Subroutine Uniform Variables
 
 [small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Shader_Program_Query[Shader Program Query].#
 
 [[gl.get_subroutine_uniform_location]]
-* *gl.get_subroutine_uniform_location* (_program_, <<shadertype, _shadertype_>>, _name_) +
--> _location_
+* _location_ = *get_subroutine_uniform_location*(_program_, <<shadertype, _shadertype_>>, _name_)
 
 [[gl.get_active_subroutine_index]]
-* *gl.get_active_subroutine_index* (_program_, <<shadertype, _shadertype_>>, _name_) +
--> _index_
+* _index_ = *get_active_subroutine_index*(_program_, <<shadertype, _shadertype_>>, _name_)
 
 [[gl.get_active_subroutine_name]]
-* *gl.get_active_subroutine_name* (_program_, <<shadertype, _shadertype_>>, _index_) +
--> _name_
+* _name_ = *get_active_subroutine_name*(_program_, <<shadertype, _shadertype_>>, _index_)
 
 [[gl.get_active_subroutine_uniform_name]]
-* *gl.get_active_subroutine_uniform_name* (_program_, <<shadertype, _shadertype_>>, _index_) +
--> _name_
+* _name_ = *get_active_subroutine_uniform_name*(_program_, <<shadertype, _shadertype_>>, _index_)
 
 [[gl.get_active_subroutine_uniform]]
-* *gl.get_active_subroutine_uniform* (_program_, <<shadertype, _shadertype_>>, _index_, _pname_) +
--> _value(s)_ +
+* _value(s)_ = 
+*get_active_subroutine_uniform*(_program_, <<shadertype, _shadertype_>>, _index_, _pname_) +
 [small]#_pname_: '_compatible subroutines_' for GL_COMPATIBLE_SUBROUTINES, etc.#
 
 [[gl.uniform_subroutines]]
-* *gl.uniform_subroutines* (<<shadertype, _shadertype_>>, _index1_ [, _index2_, _..._])
+* *uniform_subroutines*(<<shadertype, _shadertype_>>, _index1_ [, _index2_, _..._])
 
 === Shared Memory Access
 
 [[gl.memory_barrier]]
-* *gl.memory_barrier* (_bit1_, _bit2_, _..._) +
-* *gl.memory_barrier_by_region* (_bit1_, _bit2_, _..._) +
+* *memory_barrier*(_bit1_, _bit2_, _..._) +
+* *memory_barrier_by_region*(_bit1_, _bit2_, _..._) +
 [small]#_bit_: '_all_' for GL_ALL_BARRIER_BITS, '_vertex attrib array_' for GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT, etc.#
 
 === Shader and Program Queries
@@ -279,55 +257,44 @@ _count_: number of matrices in the array (_N_ = _count_ x no. of elements in a m
 https://www.opengl.org/wiki/Category:Program_Object_API_State_Functions[Program Object API State Functions].#
 
 [[gl.get_shader]]
-* *gl.get_shader* (_shader_, _pname_) +
--> _value_ +
+* _value_ = *get_shader*(_shader_, _pname_) +
 [small]#_pname_: '_type_', '_delete status_', '_compile status_', '_info log length_', '_source length_'.#
 
 [[gl.get_program]]
-* *gl.get_program* (_program_, _pname_) +
--> _value(s)_ +
+* _value(s)_ = *get_program*(_program_, _pname_) +
 [small]#_pname_: '_active atomic counter buffers_' for GL_ACTIVE_ATOMIC_COUNTER_BUFFERS, etc.#
 
 [[gl.get_program_pipeline]]
-* *gl.get_program_pipeline* (_pipeline_, _pname_) +
--> _value(s)_ +
+* _value(s)_ = *get_program_pipeline*(_pipeline_, _pname_) +
 [small]#_pname_: '_active program_' for GL_ACTIVE_PROGRAM, '_validate status_' for GL_VALIDATE_STATUS, etc.#
 
 
 [[gl.get_attached_shaders]]
-* *gl.get_attached_shaders* (_program_) +
--> _shader1_, _..._ +
+* _shader1_, _..._ = *get_attached_shaders*(_program_) +
 [small]#Returns _nil_ if no shaders are attached to _program_.#
 
 [[gl.get_info_log]]
-* *gl.get_shader_info_log* (_shader_) +
-* *gl.get_program_info_log* (_program_) +
-* *gl.get_program_pipeline_info_log* (_pipeline_) +
--> _string_
+* _string_ = *get_shader_info_log*(_shader_) +
+_string_ = *get_program_info_log*(_program_) +
+_string_ = *get_program_pipeline_info_log*(_pipeline_)
 
 [[gl.get_shader_source]]
-* *gl.get_shader_source* (_shader_) +
--> _string_
+* _string_ = *get_shader_source*(_shader_)
 
 [[gl.get_shader_precision_format]]
-* *gl.get_shader_precision_format* (<<shadertype, _shadertype_>>, _precisiontype_) +
--> _range0_, _range1_, _precision_ +
+* _range0_, _range1_, _precision_ = 
+*get_shader_precision_format*(<<shadertype, _shadertype_>>, _precisiontype_) +
 [small]#_precisiontype_: '_low int_' for GL_LOW_INT, '_medium int_' for GL_MEDIUM_INT, etc.#
 
 [[gl.get_uniform]]
-* *gl.get_uniform* (_program_, _location_, _type_, _size_) +
--> _val1_, _..._ +
+* _val1_, _..._ = *get_uniform*(_program_, _location_, _type_, _size_) +
 [small]#_type_: '_bool_', '_int_', '_uint_', '_float_' or '_double_'. +
 _size_: number of elements in the uniform variable, vector or matrix (_1 ... 16_).#
 
 [[gl.get_uniform_subroutine]]
-* *gl.get_uniform_subroutine* (<<shadertype, _shadertype_>>, _location_) +
--> _value_
+* _value_ = *get_uniform_subroutine*(<<shadertype, _shadertype_>>, _location_)
 
 [[gl.get_program_stage]]
-* *gl.get_program_stage* (_program_, <<shadertype, _shadertype_>>, _pname_) +
--> _value(s)_ +
+* _value(s)_ = *get_program_stage*(_program_, <<shadertype, _shadertype_>>, _pname_) +
 [small]#_pname_: '_active subroutines_' for GL_ACTIVE_SUBROUTINES, etc.#
-
-<<<
 

@@ -6,67 +6,64 @@
 [small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Transform_Feedback[Transform Feedback].#
 
 [[gl.gen_transform_feedbacks]]
-* *gl.gen_transform_feedbacks* ([_n_ = 1]) +
--> _xfb1_, _xfb2_, _..._
+* _xfb1_, _xfb2_, _..._ = *gen_transform_feedbacks*([_n_ = 1])
 
 [[gl.delete_transform_feedbacks]]
-* *gl.delete_transform_feedbacks* (_xfb1_ [, _xfb2_, _..._])
+* *delete_transform_feedbacks*(_xfb1_ [, _xfb2_, _..._])
 
 [[gl.is_transform_feedback]]
-* *gl.is_transform_feedback* (_xfb_) +
--> _boolean_
+* _boolean_ = *is_transform_feedback*(_xfb_)
 
 [[gl.bind_transform_feedback]]
-* *gl.bind_transform_feedback* (_target_, [_xfb_]) +
+* *bind_transform_feedback*(_target_, [_xfb_]) +
 [small]#_target_: '_transform feedback_'. +
 If _xfb_ = _nil_, unbinds the currently bound vertex transform feedback.#
 
 [[gl.create_transform_feedbacks]]
-* *gl.create_transform_feedbacks* (_xfb1_ [, _xfb2_, _..._])
+* *create_transform_feedbacks*(_xfb1_ [, _xfb2_, _..._])
 
 [[gl.new_transform_feedback]]
-* *gl.new_transform_feedback* (_target_ ) +
--> _xfb_ +
+* _xfb_= *new_transform_feedback*(_target_ ) +
 [small]#Gen & bind one transform feedback.#
 
 [[gl.begin_transform_feedback]]
-* *gl.begin_transform_feedback* (_primitivemode_) +
+* *begin_transform_feedback*(_primitivemode_) +
 [small]#_primitivemode_: '_triangles_', '_lines_', '_points_'.#
 
 [[gl.end_transform_feedback]]
-* *gl.end_transform_feedback* ( )
+* *end_transform_feedback*( )
 
 [[gl.pause_transform_feedback]]
-* *gl.pause_transform_feedback* ( )
+* *pause_transform_feedback*( )
 
 [[gl.transform_feedback_buffer_range]]
-* *gl.transform_feedback_buffer_range* (_xfb_, _index_, _buffer_, _offset_, _size_)
+* *transform_feedback_buffer_range*(_xfb_, _index_, _buffer_, _offset_, _size_)
 
 [[gl.transform_feedback_buffer_base]]
-* *gl.transform_feedback_buffer_base* (_xfb_, _index_, _buffer_)
+* *transform_feedback_buffer_base*(_xfb_, _index_, _buffer_)
 
 === Transform Feedback Drawing
 
 [small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Vertex_Rendering[Vertex Rendering].#
 
 [[gl.draw_transform_feedback]]
-* *gl.draw_transform_feedback* (_mode_, _xfb_ [, _instancecount_]) +
-* *gl.draw_transform_feedback_stream* (_mode_, _xfb_, _stream_ [, _instancecount_]) +
-[small]#_mode_: see <<gl.draw_arrays, gl.draw_arrays>>.#
+* *draw_transform_feedback*(_mode_, _xfb_ [, _instancecount_]) +
+* *draw_transform_feedback_stream*(_mode_, _xfb_, _stream_ [, _instancecount_]) +
+[small]#_mode_: see <<gl.draw_arrays, draw_arrays>>.#
 
 === Flatshading
 
 [[gl.provoking_vertex]]
-* *gl.provoking_vertex* (_provokemode_) +
+* *provoking_vertex*(_provokemode_) +
 [small]#_provokemode_: '_first vertex convention_', '_last vertex convention_'. +
 Rfr: https://www.opengl.org/wiki/GLAPI/glProvokingVertex[glProvokingVertex].#
 
 === Primitive Clipping
 
-* <<gl.enable, gl.enable/disable/is_enabled>>
+* <<gl.enable, enable/disable/is_enabled>>
 
 [[gl.clip_control]]
-* *gl.clip_control* (_origin_, _depth_) +
+* *clip_control*(_origin_, _depth_) +
 [small]#_origin_: '_lower left_', '_upper left_'. +
 _depth_: '_negative one to one_', '_zero to one_'. +
 Rfr: https://www.opengl.org/sdk/docs/man/html/glClipControl.xhtml[glClipControl].#
@@ -76,22 +73,20 @@ Rfr: https://www.opengl.org/sdk/docs/man/html/glClipControl.xhtml[glClipControl]
 [small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Viewport_and_Clipping[Viewport and Clipping].#
 
 [[gl.depth_range]]
-* *gl.depth_range* (_near_, _far_ [, _index_]) +
+* *depth_range*(_near_, _far_ [, _index_]) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glDepthRange[glDepthRange] -
 https://www.opengl.org/wiki/GLAPI/glDepthRangeIndexed[glDepthRangeIndexed].#
 
 [[gl.depth_range_array]]
-* *gl.depth_range_array* (_first_, _near1_, _far1_ [, _near2_, _far2_, _..._]) +
+* *depth_range_array*(_first_, _near1_, _far1_ [, _near2_, _far2_, _..._]) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glDepthRangeArray[glDepthRangeArray].#
 
 [[gl.viewport]]
-* *gl.viewport* (_x_, _y_, _w_, _h_ [, _index_]) +
+* *viewport*(_x_, _y_, _w_, _h_ [, _index_]) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glViewport[glViewport] -
 https://www.opengl.org/wiki/GLAPI/glViewportIndexed[glViewportIndexed].#
 
 [[gl.viewport_array]]
-* *gl.viewport_array* (_first_, _x1_, _y1_, _w1_, _h1_ [, _x2_, _y2_, _w2_, _h2_]) +
+* *viewport_array*(_first_, _x1_, _y1_, _w1_, _h1_ [, _x2_, _y2_, _w2_, _h2_]) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glViewportArray[glViewportArray].#
-
-<<<
 
