@@ -38,6 +38,6 @@ gl.unbind_texture = function(target) gl.bind_texture(target) end
 gl.unbind_sampler = function(unit) gl.bind_sampler(unit) end
 gl.unbind_framebuffer = function(target) gl.bind_framebuffer(target) end
 gl.unbind_renderbuffer = function(target) gl.bind_renderbuffer(target) end
-gl.unbind_vertex_array = function() gl.unbind_vertex_array() end
+gl.unbind_vertex_array = function() gl.bind_vertex_array() end
 gl.unbind_transform_feedback = function(target) gl.bind_transform_feedback(target) end
 
