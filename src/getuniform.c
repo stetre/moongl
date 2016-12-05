@@ -120,7 +120,7 @@ ENUM_T(AcbPnameEnum, AcbPnameStrings, AcbPnameCodes)
  | get_uniform()                                                                |
  *------------------------------------------------------------------------------*/
 
-#ifndef GL_VERSION_4_5
+#if 1 /* #ifndef GL_VERSION_4_5 */
 #define GET_UNIFORM_FUNC(T, nt, t, checkt)  \
 static int GetUniform_##nt(lua_State *L, GLuint program, GLint location, GLsizei size)  \
     {                                                                                   \

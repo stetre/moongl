@@ -199,7 +199,7 @@ static int ReadPixels(lua_State *L)
     GLenum type = checktype(L, 6);
     GLsizei bufsz = width*height*sizeoftype(L, type);
     void *data = Malloc(L, bufsz);
-#ifdef GL_VERSION_4_5
+#if 0 /* #ifdef GL_VERSION_4_5 */
     glReadnPixels(x, y, width, height, format, type, bufsz, data);
 #else
     glReadPixels(x, y, width, height, format, type, data);
