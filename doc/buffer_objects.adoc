@@ -25,6 +25,7 @@
 [[gl.new_buffer]]
 * _buffer_ = *new_buffer*(<<buffertarget,_target_>>) _NONGL_ +
 [small]#Gen & bind one buffer.#
+[small]#See <<snippet_rectangle, example>>.#
 
 === Create/Modify Buffer Object Data
 
@@ -38,7 +39,7 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glBufferStorage[glBufferStorage].#
 [small]#_size_: size of memory to allocate for the buffer (in bytes). +
 _usage_: '_static draw_' for GL_STATIC_DRAW, '_static read_' for GL_STATIC READ, etc. +
 Rfr: https://www.opengl.org/wiki/GLAPI/glBufferData[glBufferData].
-See also <<datahandling, 'Data handling utilities'>>.#
+See <<snippet_rectangle, example>> and <<datahandling, 'Data handling utilities'>>.#
 
 [[gl.buffer_sub_data]]
 * _size_ = *buffer_sub_data*(<<buffertarget,_target_>>|_buffer_, _offset_, <<data,_data_>>) +
@@ -62,6 +63,7 @@ See also <<datahandling, 'Data handling utilities'>>.#
 [[gl.bind_buffer_base]]
 * *bind_buffer_base*(<<buffertarget,_target_>>, _index_, _buffer_) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glBindBufferBase[glBindBufferBase].#
+
 
 === Map/Unmap Buffer Data
 

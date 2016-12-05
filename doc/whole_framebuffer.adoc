@@ -34,14 +34,17 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glStencilMask[glStencilMask].#
 * *clear*([_buffer_, _..._ ]) +
 [small]#_buffer_: '_color_', '_depth_', '_stencil_'. +
 Rfr: https://www.opengl.org/wiki/GLAPI/glClear[glClear].#
+[small]#See <<snippet_clear, example>>.#
 
 [[gl.clear_color]]
 * *clear_color*(_r_, _g_, _b_, _a_) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glClearColor[glClearColor].#
+[small]#See <<snippet_clear, example>>.#
 
 [[gl.clear_depth]]
 * *clear_depth*(_d_) +
 [small]#Rfr: https://www.opengl.org/wiki/GLAPI/glClearDepth[glClearDepth].#
+[small]#See <<snippet_clear, example>>.#
 
 [[gl.clear_stencil]]
 * *clear_stencil*(_s_) +

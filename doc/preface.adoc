@@ -86,7 +86,10 @@ but nothing forbids the use of a different name.
 
 === Examples
 
-A few examples can be found in the *examples/* directory of the release package.
+This manual contains a <<_code_snippets, code snippets section>> where short incomplete
+examples show how to use MoonGL functions.
+
+Complete examples can be found in the *examples/* directory of the release package.
 
 === License
 

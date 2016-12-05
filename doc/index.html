@@ -768,193 +768,33 @@ p.tableblock.header { color: #6d6e71; }
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_preface">Preface</a>
-<ul class="sectlevel2">
-<li><a href="#_getting_and_installing">Getting and installing</a></li>
-<li><a href="#_module_organization">Module organization</a></li>
-<li><a href="#_examples">Examples</a></li>
-<li><a href="#_license">License</a></li>
-<li><a href="#see-also">See also</a></li>
-</ul>
-</li>
+<li><a href="#_preface">Preface</a></li>
 <li><a href="#_introduction">Introduction</a></li>
-<li><a href="#_initialization">Initialization</a>
-<ul class="sectlevel2">
-<li><a href="#_glew_init">GLEW Init</a></li>
-<li><a href="#_other_glew_bindings">Other GLEW bindings</a></li>
-<li><a href="#_version_information">Version information</a></li>
-</ul>
-</li>
-<li><a href="#_command_execution">Command Execution</a>
-<ul class="sectlevel2">
-<li><a href="#_opengl_errors">OpenGL Errors</a></li>
-<li><a href="#_graphics_reset_recovery">Graphics Reset Recovery</a></li>
-<li><a href="#_flush_and_finish">Flush and Finish</a></li>
-</ul>
-</li>
-<li><a href="#_synchronization">Synchronization</a>
-<ul class="sectlevel2">
-<li><a href="#_sync_objects_and_fences">Sync Objects and Fences</a></li>
-<li><a href="#_waiting_for_sync_objects">Waiting for Sync Objects</a></li>
-<li><a href="#_sync_object_queries">Sync Object Queries</a></li>
-</ul>
-</li>
+<li><a href="#_initialization">Initialization</a></li>
+<li><a href="#_command_execution">Command Execution</a></li>
+<li><a href="#_synchronization">Synchronization</a></li>
 <li><a href="#_asynchronous_queries">Asynchronous Queries</a></li>
 <li><a href="#_timer_queries">Timer Queries</a></li>
-<li><a href="#_buffer_objects">Buffer Objects</a>
-<ul class="sectlevel2">
-<li><a href="#_create_and_bind_buffer_objects">Create and Bind Buffer Objects</a></li>
-<li><a href="#_create_modify_buffer_object_data">Create/Modify Buffer Object Data</a></li>
-<li><a href="#_map_unmap_buffer_data">Map/Unmap Buffer Data</a></li>
-<li><a href="#_invalidate_buffer_data">Invalidate Buffer Data</a></li>
-<li><a href="#_buffer_object_queries">Buffer Object Queries</a></li>
-<li><a href="#_copy_between_buffers">Copy Between Buffers</a></li>
-</ul>
-</li>
-<li><a href="#_shaders_and_programs">Shaders and Programs</a>
-<ul class="sectlevel2">
-<li><a href="#_shader_objects">Shader Objects</a></li>
-<li><a href="#_program_objects">Program Objects</a></li>
-<li><a href="#_make_program">Make Program</a></li>
-<li><a href="#_program_interfaces">Program Interfaces</a></li>
-<li><a href="#_program_pipeline_objects">Program Pipeline Objects</a></li>
-<li><a href="#_program_binaries">Program Binaries</a></li>
-<li><a href="#_uniform_variables">Uniform Variables</a></li>
-<li><a href="#_load_uniform_vars_in_default_uniform_block">Load Uniform Vars. In Default Uniform Block</a></li>
-<li><a href="#_uniform_buffer_objects_bindings">Uniform Buffer Objects Bindings</a></li>
-<li><a href="#_shader_buffer_variables">Shader Buffer Variables</a></li>
-<li><a href="#_subroutine_uniform_variables">Subroutine Uniform Variables</a></li>
-<li><a href="#_shared_memory_access">Shared Memory Access</a></li>
-<li><a href="#_shader_and_program_queries">Shader and Program Queries</a></li>
-</ul>
-</li>
-<li><a href="#_textures_and_samplers">Textures and Samplers</a>
-<ul class="sectlevel2">
-<li><a href="#_texture_objects">Texture Objects</a></li>
-<li><a href="#_sampler_objects">Sampler Objects</a></li>
-<li><a href="#_sampler_queries">Sampler Queries</a></li>
-<li><a href="#_pixel_storage_modes">Pixel Storage Modes</a></li>
-<li><a href="#_texture_image_spec">Texture Image Spec.</a></li>
-<li><a href="#_alternate_texture_image_spec">Alternate Texture Image Spec.</a></li>
-<li><a href="#_compressed_texture_images">Compressed Texture Images</a></li>
-<li><a href="#_multisample_textures">Multisample Textures</a></li>
-<li><a href="#_buffer_textures">Buffer Textures</a></li>
-<li><a href="#_texture_parameters">Texture Parameters</a></li>
-<li><a href="#_texture_queries">Texture Queries</a></li>
-<li><a href="#_cube_map_texture_select">Cube Map Texture Select</a></li>
-<li><a href="#_manual_mipmap_generation">Manual Mipmap Generation</a></li>
-<li><a href="#_texture_views">Texture Views</a></li>
-<li><a href="#_immutable_format_tex_images">Immutable-Format Tex. Images</a></li>
-<li><a href="#_invalidate_texture_image_data">Invalidate Texture Image Data</a></li>
-<li><a href="#_clear_texture_image_data">Clear Texture Image Data</a></li>
-<li><a href="#_texture_image_loads_stores">Texture Image Loads/Stores</a></li>
-</ul>
-</li>
-<li><a href="#_framebuffer_objects">Framebuffer Objects</a>
-<ul class="sectlevel2">
-<li><a href="#_binding_and_managing">Binding and Managing</a></li>
-<li><a href="#_framebuffer_object_parameters">Framebuffer Object Parameters</a></li>
-<li><a href="#_framebuffer_object_queries">Framebuffer Object Queries</a></li>
-<li><a href="#_renderbuffer_objects">Renderbuffer Objects</a></li>
-<li><a href="#_renderbuffer_object_queries">Renderbuffer Object Queries</a></li>
-<li><a href="#_attaching_renderbuffer_images">Attaching Renderbuffer Images</a></li>
-<li><a href="#_attaching_texture_images">Attaching Texture Images</a></li>
-<li><a href="#_feedback_loops">Feedback Loops</a></li>
-<li><a href="#_framebuffer_completeness">Framebuffer Completeness</a></li>
-</ul>
-</li>
-<li><a href="#_vertices">Vertices</a>
-<ul class="sectlevel2">
-<li><a href="#_separate_patches">Separate Patches</a></li>
-<li><a href="#_current_vertex_attribute_values">Current Vertex Attribute Values</a></li>
-</ul>
-</li>
-<li><a href="#_vertex_arrays">Vertex Arrays</a>
-<ul class="sectlevel2">
-<li><a href="#_vertex_array_objects">Vertex Array Objects</a></li>
-<li><a href="#_generic_vertex_attribute_arrays">Generic Vertex Attribute Arrays</a></li>
-<li><a href="#_vertex_attribute_divisors">Vertex Attribute Divisors</a></li>
-<li><a href="#_primitive_restart">Primitive Restart</a></li>
-<li><a href="#_drawing_commands">Drawing Commands</a></li>
-<li><a href="#_vertex_array_queries">Vertex Array Queries</a></li>
-<li><a href="#_conditional_rendering">Conditional Rendering</a></li>
-</ul>
-</li>
-<li><a href="#_vertex_attributes">Vertex Attributes</a>
-<ul class="sectlevel2">
-<li><a href="#_transform_feedback_variables">Transform Feedback Variables</a></li>
-<li><a href="#_shader_execution">Shader Execution</a></li>
-</ul>
-</li>
-<li><a href="#_vertex_post_processing">Vertex Post-Processing</a>
-<ul class="sectlevel2">
-<li><a href="#_transform_feedback">Transform Feedback</a></li>
-<li><a href="#_transform_feedback_drawing">Transform Feedback Drawing</a></li>
-<li><a href="#_flatshading">Flatshading</a></li>
-<li><a href="#_primitive_clipping">Primitive Clipping</a></li>
-<li><a href="#_controlling_viewport">Controlling Viewport</a></li>
-</ul>
-</li>
-<li><a href="#_rasterization">Rasterization</a>
-<ul class="sectlevel2">
-<li><a href="#_multisampling">Multisampling</a></li>
-<li><a href="#_points">Points</a></li>
-<li><a href="#_line_segments">Line Segments</a></li>
-<li><a href="#_polygons">Polygons</a></li>
-<li><a href="#_polygon_rast_depth_offset">Polygon Rast. &amp; Depth Offset</a></li>
-</ul>
-</li>
+<li><a href="#_buffer_objects">Buffer Objects</a></li>
+<li><a href="#_shaders_and_programs">Shaders and Programs</a></li>
+<li><a href="#_textures_and_samplers">Textures and Samplers</a></li>
+<li><a href="#_framebuffer_objects">Framebuffer Objects</a></li>
+<li><a href="#_vertices">Vertices</a></li>
+<li><a href="#_vertex_arrays">Vertex Arrays</a></li>
+<li><a href="#_vertex_attributes">Vertex Attributes</a></li>
+<li><a href="#_vertex_post_processing">Vertex Post-Processing</a></li>
+<li><a href="#_rasterization">Rasterization</a></li>
 <li><a href="#_fragment_shaders">Fragment Shaders</a></li>
 <li><a href="#_compute_shaders">Compute Shaders</a></li>
-<li><a href="#_per_fragment_operations">Per-Fragment Operations</a>
-<ul class="sectlevel2">
-<li><a href="#_scissor_test">Scissor Test</a></li>
-<li><a href="#_multisample_fragment_ops">Multisample Fragment Ops.</a></li>
-<li><a href="#_stencil_test">Stencil Test</a></li>
-<li><a href="#_depth_buffer_test">Depth Buffer Test</a></li>
-<li><a href="#_occlusion_queries">Occlusion Queries</a></li>
-<li><a href="#_blending">Blending</a></li>
-<li><a href="#_dithering">Dithering</a></li>
-<li><a href="#_logical_operations">Logical Operations</a></li>
-</ul>
-</li>
+<li><a href="#_per_fragment_operations">Per-Fragment Operations</a></li>
 <li><a href="#_hints">Hints</a></li>
-<li><a href="#_whole_framebuffer">Whole Framebuffer</a>
-<ul class="sectlevel2">
-<li><a href="#_selecting_buffers_for_writing">Selecting Buffers for Writing</a></li>
-<li><a href="#_fine_control_of_buffer_updates">Fine Control of Buffer Updates</a></li>
-<li><a href="#_clearing_the_buffers">Clearing the Buffers</a></li>
-<li><a href="#_invalidating_framebuffers">Invalidating Framebuffers</a></li>
-</ul>
-</li>
-<li><a href="#_reading_and_copying_pixels">Reading and Copying Pixels</a>
-<ul class="sectlevel2">
-<li><a href="#_reading_pixels">Reading Pixels</a></li>
-<li><a href="#_final_conversion">Final Conversion</a></li>
-<li><a href="#_copying_pixels">Copying Pixels</a></li>
-</ul>
-</li>
-<li><a href="#_debug_output">Debug Output</a>
-<ul class="sectlevel2">
-<li><a href="#_debug_message_callbacks">Debug Message Callbacks</a></li>
-<li><a href="#_controlling_debug_messages">Controlling Debug Messages</a></li>
-<li><a href="#_externally_generated_messages">Externally Generated Messages</a></li>
-<li><a href="#_debug_groups">Debug Groups</a></li>
-<li><a href="#_debug_labels">Debug Labels</a></li>
-<li><a href="#_synchronous_debug_output">Synchronous Debug Output</a></li>
-<li><a href="#_debugoutput_queries">DebugOutput Queries</a></li>
-</ul>
-</li>
-<li><a href="#_state_and_state_requests">State and State Requests</a>
-<ul class="sectlevel2">
-<li><a href="#_simple_queries">Simple Queries</a></li>
-<li><a href="#_string_queries">String Queries</a></li>
-<li><a href="#_internal_format_queries">Internal Format Queries</a></li>
-<li><a href="#_transform_feedback_queries">Transform Feedback Queries</a></li>
-</ul>
-</li>
+<li><a href="#_whole_framebuffer">Whole Framebuffer</a></li>
+<li><a href="#_reading_and_copying_pixels">Reading and Copying Pixels</a></li>
+<li><a href="#_debug_output">Debug Output</a></li>
+<li><a href="#_state_and_state_requests">State and State Requests</a></li>
 <li><a href="#datahandling">Data handling utilities</a></li>
 <li><a href="#_common_values">Common values</a></li>
+<li><a href="#_code_snippets">Code Snippets</a></li>
 </ul>
 </div>
 </div>
@@ -1014,7 +854,11 @@ table is named <strong>gl</strong>, i.e. that it is loaded with:</p>
 <div class="sect2">
 <h3 id="_examples">Examples</h3>
 <div class="paragraph">
-<p>A few examples can be found in the <strong>examples/</strong> directory of the release package.</p>
+<p>This manual contains a <a href="#_code_snippets">code snippets section</a> where short incomplete
+examples show how to use MoonGL functions.</p>
+</div>
+<div class="paragraph">
+<p>Complete examples can be found in the <strong>examples/</strong> directory of the release package.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1132,7 +976,8 @@ from upper-case to lower-case letters).</p>
 <ul>
 <li>
 <p><strong>init</strong>( )<br>
-<span class="small">Binding to <a href="http://glew.sourceforge.net/basic.html">glewInit</a>().</span></p>
+<span class="small">Binding to <a href="http://glew.sourceforge.net/basic.html">glewInit</a>().</span>
+<span class="small">See <a href="#snippet_init">example</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -1145,26 +990,10 @@ from upper-case to lower-case letters).</p>
 <td class="content">
 The <a href="#gl.init">gl.init</a>( ) function must be called as soon as a GL context is obtained,
 in order to correctly initialize OpenGL&#8217;s function pointers, <strong>before calling any other MoonGL function</strong>
-(see the example below). Failing to do so would likely cause a segmentation fault.
+(see <a href="#snippet_init">example</a>). Failing to do so would likely cause a segmentation fault.
 </td>
 </tr>
 </table>
-</div>
-<div class="listingblock">
-<div class="title">Example: OpenGL initialization with MoonGLFW</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="lua"><span class="tok-n">gl</span> <span class="tok-o">=</span> <span class="tok-nb">require</span><span class="tok-p">(</span><span class="tok-s2">&quot;</span><span class="tok-s">moongl&quot;</span><span class="tok-p">)</span>
-<span class="tok-n">glfw</span> <span class="tok-o">=</span> <span class="tok-nb">require</span><span class="tok-p">(</span><span class="tok-s2">&quot;</span><span class="tok-s">moonglfw&quot;</span><span class="tok-p">)</span>
-
-<span class="tok-c1">-- Create a window and make its GL context current:</span>
-<span class="tok-n">window</span> <span class="tok-o">=</span> <span class="tok-n">glfw</span><span class="tok-p">.</span><span class="tok-n">create_window</span><span class="tok-p">(</span><span class="tok-mi">600</span><span class="tok-p">,</span> <span class="tok-mi">400</span><span class="tok-p">,</span> <span class="tok-s2">&quot;</span><span class="tok-s">Hello, MoonGL!&quot;</span><span class="tok-p">)</span>
-<span class="tok-n">glfw</span><span class="tok-p">.</span><span class="tok-n">make_context_current</span><span class="tok-p">(</span><span class="tok-n">window</span><span class="tok-p">)</span>
-
-<span class="tok-c1">-- This is actually glewInit():</span>
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">init</span><span class="tok-p">()</span>
-
-<span class="tok-c1">-- ... now it is safe to call MoonGL functions ...</span></code></pre>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -1173,17 +1002,10 @@ in order to correctly initialize OpenGL&#8217;s function pointers, <strong>befor
 <ul>
 <li>
 <p><em>boolean</em> = <strong>is_supported</strong>(<em>string</em>)<br>
-<span class="small">Binding to <a href="http://glew.sourceforge.net/basic.html">glewIsSupported</a>() (accepts the same strings).</span></p>
+<span class="small">Binding to <a href="http://glew.sourceforge.net/basic.html">glewIsSupported</a>() (accepts the same strings).</span>
+<span class="small">See <a href="#snippet_is_supported">example</a>.</span></p>
 </li>
 </ul>
-</div>
-<div class="listingblock">
-<div class="title">Example</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="lua"><span class="tok-k">if</span> <span class="tok-ow">not</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">is_supported</span><span class="tok-p">(</span><span class="tok-s2">&quot;</span><span class="tok-s">GL_VERSION_4_5&quot;</span><span class="tok-p">)</span> <span class="tok-k">then</span>
-  <span class="tok-nb">error</span><span class="tok-p">(</span><span class="tok-s2">&quot;</span><span class="tok-s">Sorry, OpenGL 4.5 is not supported by your system&quot;</span><span class="tok-p">)</span>
-<span class="tok-k">end</span></code></pre>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -1444,7 +1266,8 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml">glGetSyn
 <ul>
 <li>
 <p><em>buffer</em> = <strong>new_buffer</strong>(<a href="#buffertarget"><em>target</em></a>) <em>NONGL</em><br>
-<span class="small">Gen &amp; bind one buffer.</span></p>
+<span class="small">Gen &amp; bind one buffer.</span>
+<span class="small">See <a href="#snippet_rectangle">example</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -1467,7 +1290,7 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBufferStorage">glBufferStorage
 <span class="small"><em>size</em>: size of memory to allocate for the buffer (in bytes).<br>
 <em>usage</em>: '<em>static draw</em>' for GL_STATIC_DRAW, '<em>static read</em>' for GL_STATIC READ, etc.<br>
 Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glBufferData">glBufferData</a>.
-See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
+See <a href="#snippet_rectangle">example</a> and <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -1988,7 +1811,8 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.</span></p>
 <li>
 <p><strong>program_uniformv</strong>(<em>program</em>, <em>location</em>, <em>count</em>, <em>type</em>, <em>val1</em> [, <em>val2</em>, <em>&#8230;&#8203;</em> ])<br>
 <span class="small"><em>type</em>: '<em>bool</em>', '<em>int</em>', '<em>uint</em>', '<em>float</em>' or '<em>double</em>'.<br>
-<em>count</em>: number of vectors (or variables) in the array.</span></p>
+<em>count</em>: number of vectors (or variables) in the array.<br>
+See <a href="#snippet_uniform">example</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -2008,7 +1832,8 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.</span></p>
 <span class="small"><em>type</em>: '<em>bool</em>', '<em>int</em>', '<em>uint</em>', '<em>float</em>' or '<em>double</em>'.<br>
 <em>size</em>: '<em>2x2</em>', '<em>3x3</em>', '<em>4x4</em>', '<em>2x3</em>', '<em>3x2</em>', '<em>2x4</em>', '<em>4x2'</em>', '<em>3x4</em>', '<em>4x3</em>'.<br>
 <em>transpose</em>: boolean (= <em>true</em> if the value are passed in row-major order).<br>
-<em>count</em>: number of matrices in the array (<em>N</em> = <em>count</em> x no. of elements in a matrix).</span></p>
+<em>count</em>: number of matrices in the array (<em>N</em> = <em>count</em> x no. of elements in a matrix).<br>
+See <a href="#snippet_uniform_matrix">example</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -3031,7 +2856,8 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glPatchParameter">glPatchParamet
 <ul>
 <li>
 <p><em>array</em> = <strong>new_vertex_array</strong>( ) <em>NONGL</em><br>
-<span class="small">Gen &amp; bind one array.</span></p>
+<span class="small">Gen &amp; bind one array.</span>
+<span class="small">See <a href="#snippet_rectangle">example</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -3087,7 +2913,8 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glVertexAttribFormat">glVertexAt
 '<em>double</em>', '<em>half float</em>', '<em>fixed</em>', '<em>int 2 10 10 10 rev</em>', '<em>uint 2 10 10 10 rev</em>',
 '<em>uint 10f 11f 11f rev</em>'.<br>
 Rfr:
-<a href="https://www.opengl.org/wiki/GLAPI/glVertexAttribPointer">glVertexAttribPointer</a>.</span></p>
+<a href="https://www.opengl.org/wiki/GLAPI/glVertexAttribPointer">glVertexAttribPointer</a>.</span>
+<span class="small">See <a href="#snippet_rectangle">example</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -3873,7 +3700,8 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glStencilMask">glStencilMask</a>
 <li>
 <p><strong>clear</strong>([<em>buffer</em>, <em>&#8230;&#8203;</em> ])<br>
 <span class="small"><em>buffer</em>: '<em>color</em>', '<em>depth</em>', '<em>stencil</em>'.<br>
-Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClear">glClear</a>.</span></p>
+Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClear">glClear</a>.</span>
+<span class="small">See <a href="#snippet_clear">example</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -3881,7 +3709,8 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClear">glClear</a>.</span></p>
 <ul>
 <li>
 <p><strong>clear_color</strong>(<em>r</em>, <em>g</em>, <em>b</em>, <em>a</em>)<br>
-<span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClearColor">glClearColor</a>.</span></p>
+<span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClearColor">glClearColor</a>.</span>
+<span class="small">See <a href="#snippet_clear">example</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -3889,7 +3718,8 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClear">glClear</a>.</span></p>
 <ul>
 <li>
 <p><strong>clear_depth</strong>(<em>d</em>)<br>
-<span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClearDepth">glClearDepth</a>.</span></p>
+<span class="small">Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClearDepth">glClearDepth</a>.</span>
+<span class="small">See <a href="#snippet_clear">example</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -4263,6 +4093,112 @@ Values: '<em>none</em>', '<em>stencil index</em>', '<em>depth component</em>', '
 <div style="page-break-after: always;"></div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_code_snippets">Code Snippets</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section contains code snippets (i.e. incomplete examples) that show the usage
+of MoonGL functionalities in practice.</p>
+</div>
+<div id="snippet_init" class="listingblock">
+<div class="title">OpenGL initialization with MoonGLFW.</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="lua"><span class="tok-n">gl</span> <span class="tok-o">=</span> <span class="tok-nb">require</span><span class="tok-p">(</span><span class="tok-s2">&quot;</span><span class="tok-s">moongl&quot;</span><span class="tok-p">)</span>
+<span class="tok-n">glfw</span> <span class="tok-o">=</span> <span class="tok-nb">require</span><span class="tok-p">(</span><span class="tok-s2">&quot;</span><span class="tok-s">moonglfw&quot;</span><span class="tok-p">)</span>
+
+<span class="tok-c1">-- Create a window and make its GL context current:</span>
+<span class="tok-n">window</span> <span class="tok-o">=</span> <span class="tok-n">glfw</span><span class="tok-p">.</span><span class="tok-n">create_window</span><span class="tok-p">(</span><span class="tok-mi">600</span><span class="tok-p">,</span> <span class="tok-mi">400</span><span class="tok-p">,</span> <span class="tok-s2">&quot;</span><span class="tok-s">Hello, MoonGL!&quot;</span><span class="tok-p">)</span>
+<span class="tok-n">glfw</span><span class="tok-p">.</span><span class="tok-n">make_context_current</span><span class="tok-p">(</span><span class="tok-n">window</span><span class="tok-p">)</span>
+
+<span class="tok-c1">-- This is actually glewInit():</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">init</span><span class="tok-p">()</span>
+
+<span class="tok-c1">-- ... now it is safe to call MoonGL functions ...</span></code></pre>
+</div>
+</div>
+<div id="snippet_is_supported" class="listingblock">
+<div class="title">Usage of is_supported( ).</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="lua"><span class="tok-k">if</span> <span class="tok-ow">not</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">is_supported</span><span class="tok-p">(</span><span class="tok-s2">&quot;</span><span class="tok-s">GL_VERSION_4_5&quot;</span><span class="tok-p">)</span> <span class="tok-k">then</span>
+  <span class="tok-nb">error</span><span class="tok-p">(</span><span class="tok-s2">&quot;</span><span class="tok-s">Sorry, OpenGL 4.5 is not supported by your system&quot;</span><span class="tok-p">)</span>
+<span class="tok-k">end</span></code></pre>
+</div>
+</div>
+<div id="snippet_clear" class="listingblock">
+<div class="title">Clearing the framebuffer.</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="lua"><span class="tok-c1">-- specify the clear value for the color buffer:</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">clear_color</span><span class="tok-p">(</span><span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-mf">1.0</span><span class="tok-p">)</span>
+
+<span class="tok-c1">-- specify the clear value for the depth buffer:</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">clear_depth</span><span class="tok-p">(</span><span class="tok-mf">0.6</span><span class="tok-p">)</span>
+
+<span class="tok-c1">-- clear the color buffer and the depth buffer:</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">clear</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">color&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">depth&#39;</span><span class="tok-p">)</span></code></pre>
+</div>
+</div>
+<div id="snippet_rectangle" class="listingblock">
+<div class="title">Defining a rectangle.</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="lua"><span class="tok-n">vertices</span> <span class="tok-o">=</span> <span class="tok-p">{</span>
+<span class="tok-c1">-- position:        color:          texture coords:    0 ____ 1</span>
+  <span class="tok-o">-</span><span class="tok-mf">0.5</span><span class="tok-p">,</span>  <span class="tok-mf">0.5</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span>  <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span>  <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-c1">-- 0      |   /|</span>
+   <span class="tok-mf">0.5</span><span class="tok-p">,</span>  <span class="tok-mf">0.5</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span>  <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span>  <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-c1">-- 1      | /  |</span>
+   <span class="tok-mf">0.5</span><span class="tok-p">,</span> <span class="tok-o">-</span><span class="tok-mf">0.5</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span>  <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-mf">1.0</span><span class="tok-p">,</span>  <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-c1">-- 2      |/___|</span>
+  <span class="tok-o">-</span><span class="tok-mf">0.5</span><span class="tok-p">,</span> <span class="tok-o">-</span><span class="tok-mf">0.5</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span>  <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">1.0</span><span class="tok-p">,</span>  <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-c1">-- 3     3      2</span>
+<span class="tok-p">}</span>
+
+<span class="tok-n">indices</span> <span class="tok-o">=</span> <span class="tok-p">{</span>
+    <span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-c1">-- first triangle</span>
+    <span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-mi">2</span><span class="tok-p">,</span> <span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-c1">-- second triangle</span>
+<span class="tok-p">}</span>
+
+<span class="tok-n">floatsz</span> <span class="tok-o">=</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">sizeof</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">float&#39;</span><span class="tok-p">)</span>
+
+<span class="tok-n">vao</span> <span class="tok-o">=</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">new_vertex_array</span><span class="tok-p">()</span>  <span class="tok-c1">-- vertex array object</span>
+<span class="tok-n">vbo</span> <span class="tok-o">=</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">new_buffer</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">array&#39;</span><span class="tok-p">)</span> <span class="tok-c1">-- vertex buffer object</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">buffer_data</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">array&#39;</span><span class="tok-p">,</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">pack</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">float&#39;</span><span class="tok-p">,</span> <span class="tok-n">vertices</span><span class="tok-p">),</span> <span class="tok-s1">&#39;</span><span class="tok-s">static draw&#39;</span><span class="tok-p">)</span>
+<span class="tok-c1">-- position attribute</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">vertex_attrib_pointer</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">float&#39;</span><span class="tok-p">,</span> <span class="tok-kc">false</span><span class="tok-p">,</span> <span class="tok-mi">8</span><span class="tok-o">*</span><span class="tok-n">floatsz</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">enable_vertex_attrib_array</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">)</span>
+<span class="tok-c1">-- color attribute</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">vertex_attrib_pointer</span><span class="tok-p">(</span><span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">float&#39;</span><span class="tok-p">,</span> <span class="tok-kc">false</span><span class="tok-p">,</span> <span class="tok-mi">8</span><span class="tok-o">*</span><span class="tok-n">floatsz</span><span class="tok-p">,</span> <span class="tok-mi">3</span><span class="tok-o">*</span><span class="tok-n">floatsz</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">enable_vertex_attrib_array</span><span class="tok-p">(</span><span class="tok-mi">1</span><span class="tok-p">)</span>
+<span class="tok-c1">-- texture coords attribute</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">vertex_attrib_pointer</span><span class="tok-p">(</span><span class="tok-mi">2</span><span class="tok-p">,</span> <span class="tok-mi">2</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">float&#39;</span><span class="tok-p">,</span> <span class="tok-kc">false</span><span class="tok-p">,</span> <span class="tok-mi">8</span><span class="tok-o">*</span><span class="tok-n">floatsz</span><span class="tok-p">,</span> <span class="tok-mi">6</span><span class="tok-o">*</span><span class="tok-n">floatsz</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">enable_vertex_attrib_array</span><span class="tok-p">(</span><span class="tok-mi">2</span><span class="tok-p">)</span>
+
+<span class="tok-n">ebo</span> <span class="tok-o">=</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">new_buffer</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">element array&#39;</span><span class="tok-p">)</span> <span class="tok-c1">-- element buffer object</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">buffer_data</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">element array&#39;</span><span class="tok-p">,</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">pack</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">uint&#39;</span><span class="tok-p">,</span> <span class="tok-n">indices</span><span class="tok-p">),</span> <span class="tok-s1">&#39;</span><span class="tok-s">static draw&#39;</span><span class="tok-p">)</span>
+
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">unbind_vertex_array</span><span class="tok-p">()</span></code></pre>
+</div>
+</div>
+<div id="snippet_uniform" class="listingblock">
+<div class="title">Assigning values to uniform variables.</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="lua"><span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">uint&#39;</span><span class="tok-p">,</span> <span class="tok-mi">123</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">float&#39;</span><span class="tok-p">,</span> <span class="tok-mf">1.234</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-mi">2</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">bool&#39;</span><span class="tok-p">,</span> <span class="tok-kc">true</span><span class="tok-p">)</span>
+
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">int&#39;</span><span class="tok-p">,</span> <span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-mi">2</span><span class="tok-p">)</span> <span class="tok-c1">-- 2D vector</span>
+
+<span class="tok-n">v</span> <span class="tok-o">=</span> <span class="tok-p">{</span> <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">2.0</span><span class="tok-p">,</span> <span class="tok-mf">3.0</span> <span class="tok-p">}</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-mi">4</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">float&#39;</span><span class="tok-p">,</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">flatten</span><span class="tok-p">(</span><span class="tok-n">v</span><span class="tok-p">))</span> <span class="tok-c1">-- table.unpack(v) would do also</span></code></pre>
+</div>
+</div>
+<div id="snippet_uniform_matrix" class="listingblock">
+<div class="title">Assigning values to uniform matrices.</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="lua"><span class="tok-n">M</span> <span class="tok-o">=</span> <span class="tok-p">{</span> <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">2.0</span><span class="tok-p">,</span> <span class="tok-mf">3.0</span>  <span class="tok-c1">-- row-major order</span>
+      <span class="tok-mf">4.0</span><span class="tok-p">,</span> <span class="tok-mf">5.0</span><span class="tok-p">,</span> <span class="tok-mf">6.0</span>
+      <span class="tok-mf">7.0</span><span class="tok-p">,</span> <span class="tok-mf">8.0</span><span class="tok-p">,</span> <span class="tok-mf">9.0</span> <span class="tok-p">}</span>
+
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform_matrix</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">float&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">3x3&#39;</span><span class="tok-p">,</span> <span class="tok-kc">true</span><span class="tok-p">,</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">flatten</span><span class="tok-p">(</span><span class="tok-n">M</span><span class="tok-p">))</span></code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footnotes">
 <hr>
@@ -4273,7 +4209,7 @@ Values: '<em>none</em>', '<em>stencil index</em>', '<em>depth component</em>', '
 <div id="footer">
 <div id="footer-text">
 Version 0.4<br>
-Last updated 2016-11-28 11:36:01 CET
+Last updated 2016-12-03 09:33:58 CET
 </div>
 </div>
 </body>

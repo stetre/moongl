@@ -6,40 +6,17 @@
 [[gl.init]]
 * *init*( ) +
 [small]#Binding to http://glew.sourceforge.net/basic.html[glewInit]().#
+[small]#See <<snippet_init, example>>.#
 
 IMPORTANT: The <<gl.init, gl.init>>( ) function must be called as soon as a GL context is obtained,
 in order to correctly initialize OpenGL's function pointers, *before calling any other MoonGL function*
-(see the example below). Failing to do so would likely cause a segmentation fault.
-
-.Example: OpenGL initialization with MoonGLFW
-[source,lua]
-----
-gl = require("moongl")
-glfw = require("moonglfw")
-
--- Create a window and make its GL context current:
-window = glfw.create_window(600, 400, "Hello, MoonGL!")
-glfw.make_context_current(window)
-
--- This is actually glewInit():
-gl.init()
-
--- ... now it is safe to call MoonGL functions ...
-
-----
+(see <<snippet_init, example>>). Failing to do so would likely cause a segmentation fault.
 
 === Other GLEW bindings
 
 * _boolean_ = *is_supported*(_string_) +
-[small]#Binding to http://glew.sourceforge.net/basic.html[glewIsSupported]() (accepts the same strings).#
-
-.Example
-[source,lua]
-----
-if not gl.is_supported("GL_VERSION_4_5") then
-  error("Sorry, OpenGL 4.5 is not supported by your system")
-end
-----
+[small]#Binding to http://glew.sourceforge.net/basic.html[glewIsSupported]() (accepts the same strings).# 
+[small]#See <<snippet_is_supported, example>>.#
 
 === Version information
 

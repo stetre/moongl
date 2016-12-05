@@ -193,7 +193,9 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.#
 * *program_uniform*(_program_, _location_, _type_, _val1_ [, _val2_ [, _val3_ [, _val4_]]]) +
 * *program_uniformv*(_program_, _location_, _count_, _type_, _val1_ [, _val2_, _..._ ]) +
 [small]#_type_: '_bool_', '_int_', '_uint_', '_float_' or '_double_'. +
-_count_: number of vectors (or variables) in the array.#
+_count_: number of vectors (or variables) in the array. +
+See <<snippet_uniform, example>>.#
+
 
 
 [[gl.uniform_matrix]]
@@ -204,7 +206,9 @@ _count_: number of vectors (or variables) in the array.#
 [small]#_type_: '_bool_', '_int_', '_uint_', '_float_' or '_double_'. +
 _size_: '_2x2_', '_3x3_', '_4x4_', '_2x3_', '_3x2_', '_2x4_', '_4x2'_', '_3x4_', '_4x3_'. +
 _transpose_: boolean (= _true_ if the value are passed in row-major order). +
-_count_: number of matrices in the array (_N_ = _count_ x no. of elements in a matrix).#
+_count_: number of matrices in the array (_N_ = _count_ x no. of elements in a matrix). +
+See <<snippet_uniform_matrix, example>>.#
+
 
 === Uniform Buffer Objects Bindings
 

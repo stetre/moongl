@@ -27,6 +27,7 @@
 [[gl.new_vertex_array]]
 * _array_ = *new_vertex_array*( ) _NONGL_ +
 [small]#Gen & bind one array.#
+[small]#See <<snippet_rectangle, example>>.#
 
 === Generic Vertex Attribute Arrays
 
@@ -61,6 +62,7 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glVertexAttribFormat[glVertexAttribFormat
 '_uint 10f 11f 11f rev_'. +
 Rfr: 
 https://www.opengl.org/wiki/GLAPI/glVertexAttribPointer[glVertexAttribPointer].#
+[small]#See <<snippet_rectangle, example>>.#
 
 [[gl.enable_vertex_attrib_array]]
 * *enable_vertex_attrib_array*(_index_) +

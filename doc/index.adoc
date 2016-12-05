@@ -2,7 +2,7 @@
 Stefano Trettel
 v0.4, 2016-06-01
 :toc: left
-:toclevels: 4
+:toclevels: 1
 :stylesdir: ./
 :stylesheet: colony.css
 :source-highlighter: pygments
@@ -60,3 +60,4 @@ include::data_handling.adoc[]
 
 include::enumerations.adoc[]
 
+include::snippets.adoc[]
