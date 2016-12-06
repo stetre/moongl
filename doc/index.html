@@ -2026,7 +2026,8 @@ See <a href="#snippet_uniform_matrix">example</a>.</span></p>
 <li>
 <p><strong>active_texture</strong>(<em>i</em>)<br>
 <span class="small"><em>i</em>: 0 for GL_TEXTURE0, 1 for GL_TEXTURE1, etc.<br>
-Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glActiveTexture">glActiveTexture</a>.</span></p>
+Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glActiveTexture">glActiveTexture</a>.</span>
+<span class="small">See <a href="#snippet_new_texture">example</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -2092,7 +2093,8 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glActiveTexture">glActiveTexture
 <ul>
 <li>
 <p><em>texture</em> = <strong>new_texture</strong>(<a href="#texturetarget"><em>target</em></a>) <em>NONGL</em><br>
-<span class="small">Gen &amp; bind one texture.</span></p>
+<span class="small">Gen &amp; bind one texture.</span>
+<span class="small">See <a href="#snippet_new_texture">example</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -2199,7 +2201,8 @@ Rfr:
 <span class="small">Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glTexImage1D">glTexImage1D</a>,
 <a href="https://www.opengl.org/wiki/GLAPI/glTexImage2D">glTexImage2D</a>,
-<a href="https://www.opengl.org/wiki/GLAPI/glTexImage3D">glTexImage3D</a>.</span></p>
+<a href="https://www.opengl.org/wiki/GLAPI/glTexImage3D">glTexImage3D</a>.</span>
+<span class="small">See <a href="#snippet_new_texture">example</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -2315,7 +2318,8 @@ Rfr:
 <li>
 <p><strong>texture_parameter</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>pname</em>, <em>val1</em>, <em>&#8230;&#8203;</em>)<br>
 <span class="small"><em>pname</em>: '<em>depth stencil texture mode</em>', '<em>base level</em>' for GL_TEXTURE_BASE_LEVEL, '<em>compare func</em>' for GL_TEXTURE_COMPARE_FUNC, etc.<br>
-Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glTexParameter">glTexParameter</a>.</span></p>
+Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glTexParameter">glTexParameter</a>.</span>
+<span class="small">See <a href="#snippet_new_texture">example</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -2399,7 +2403,8 @@ Rfr:
 <li>
 <p><strong>generate_mipmap</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>)<br>
 <span class="small">Rfr:
-<a href="https://www.opengl.org/sdk/docs/man/html/glGenerateMipmap.xhtml">glGenerateMipmap</a>.</span></p>
+<a href="https://www.opengl.org/sdk/docs/man/html/glGenerateMipmap.xhtml">glGenerateMipmap</a>.</span>
+<span class="small">See <a href="#snippet_new_texture">example</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -4195,6 +4200,36 @@ of MoonGL functionalities in practice.</p>
       <span class="tok-mf">7.0</span><span class="tok-p">,</span> <span class="tok-mf">8.0</span><span class="tok-p">,</span> <span class="tok-mf">9.0</span> <span class="tok-p">}</span>
 
 <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform_matrix</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">float&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">3x3&#39;</span><span class="tok-p">,</span> <span class="tok-kc">true</span><span class="tok-p">,</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">flatten</span><span class="tok-p">(</span><span class="tok-n">M</span><span class="tok-p">))</span></code></pre>
+</div>
+</div>
+<div id="snippet_new_texture" class="listingblock">
+<div class="title">Creating and using a texture (with MoonSOIL).</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="lua"><span class="tok-c1">-- 1) Creating the texture:</span>
+<span class="tok-n">tex_id</span> <span class="tok-o">=</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">new_texture</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">2d&#39;</span><span class="tok-p">)</span>
+<span class="tok-c1">-- configure it:</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_parameter</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">2d&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">wrap s&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">repeat&#39;</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_parameter</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">2d&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">wrap t&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">repeat&#39;</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_parameter</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">2d&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">min filter&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">linear&#39;</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_parameter</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">2d&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">mag filter&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">linear&#39;</span><span class="tok-p">)</span>
+<span class="tok-c1">-- load the texture image using MoonSOIL:</span>
+<span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">w</span><span class="tok-p">,</span> <span class="tok-n">h</span> <span class="tok-o">=</span> <span class="tok-n">soil</span><span class="tok-p">.</span><span class="tok-n">load_image</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">myimage.jpg&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">rgb&#39;</span><span class="tok-p">)</span>
+<span class="tok-nb">assert</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">soil</span><span class="tok-p">.</span><span class="tok-n">last_result</span><span class="tok-p">())</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_image</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">2d&#39;</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">rgb&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">rgb&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">ubyte&#39;</span><span class="tok-p">,</span> <span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">w</span><span class="tok-p">,</span> <span class="tok-n">h</span><span class="tok-p">)</span>
+<span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">w</span><span class="tok-p">,</span> <span class="tok-n">h</span> <span class="tok-o">=</span> <span class="tok-kc">nil</span><span class="tok-p">,</span> <span class="tok-kc">nil</span><span class="tok-p">,</span> <span class="tok-kc">nil</span> <span class="tok-c1">-- let the GC collect them</span>
+<span class="tok-c1">-- generate the mipmap:</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">generate_mipmap</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">2d&#39;</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">unbind_texture</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">2d&#39;</span><span class="tok-p">)</span>
+
+<span class="tok-c1">-- ...</span>
+
+<span class="tok-c1">-- 2) Using the texture in the game loop:</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">use_program</span><span class="tok-p">(</span><span class="tok-n">prog_id</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">active_texture</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">)</span> <span class="tok-c1">-- activate texture unit 0</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">bind_texture</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">2d&#39;</span><span class="tok-p">,</span> <span class="tok-n">tex_id</span><span class="tok-p">)</span>
+<span class="tok-c1">-- Assuming our program has a sampler2D uniform named mytexture:</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform_location</span><span class="tok-p">(</span><span class="tok-n">prog_id</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">mytexture&#39;</span><span class="tok-p">),</span> <span class="tok-s1">&#39;</span><span class="tok-s">int&#39;</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">)</span>
+<span class="tok-c1">-- ... bind geometry and draw ...</span></code></pre>
 </div>
 </div>
 </div>

@@ -5,6 +5,7 @@
 * *active_texture*(_i_) +
 [small]#_i_: 0 for GL_TEXTURE0, 1 for GL_TEXTURE1, etc. +
 Rfr: https://www.opengl.org/wiki/GLAPI/glActiveTexture[glActiveTexture].#
+[small]#See <<snippet_new_texture, example>>.#
 
 === Texture Objects
 
@@ -38,6 +39,7 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glActiveTexture[glActiveTexture].#
 [[gl.new_texture]]
 * _texture_ = *new_texture*(<<texturetarget,_target_>>) _NONGL_ +
 [small]#Gen & bind one texture.#
+[small]#See <<snippet_new_texture, example>>.#
 
 === Sampler Objects
 
@@ -96,6 +98,7 @@ https://www.opengl.org/wiki/GLAPI/glPixelStore[glPixelStore].#
 https://www.opengl.org/wiki/GLAPI/glTexImage1D[glTexImage1D],
 https://www.opengl.org/wiki/GLAPI/glTexImage2D[glTexImage2D],
 https://www.opengl.org/wiki/GLAPI/glTexImage3D[glTexImage3D].#
+[small]#See <<snippet_new_texture, example>>.#
 
 
 === Alternate Texture Image Spec.
@@ -173,6 +176,7 @@ https://www.opengl.org/wiki/GLAPI/glTexBuffer[glTexBuffer].#
 * *texture_parameter*(<<texturetarget,_target_>>|_texture_, _pname_, _val1_, _..._) +
 [small]#_pname_: '_depth stencil texture mode_', '_base level_' for GL_TEXTURE_BASE_LEVEL, '_compare func_' for GL_TEXTURE_COMPARE_FUNC, etc. +
 Rfr: https://www.opengl.org/wiki/GLAPI/glTexParameter[glTexParameter].#
+[small]#See <<snippet_new_texture, example>>.#
 
 === Texture Queries
 
@@ -237,6 +241,7 @@ https://www.opengl.org/sdk/docs/man/html/glGetCompressedTextureSubImage.xhtml[gl
 * *generate_mipmap*(<<texturetarget,_target_>>|_texture_, _level_) +
 [small]#Rfr: 
 https://www.opengl.org/sdk/docs/man/html/glGenerateMipmap.xhtml[glGenerateMipmap].#
+[small]#See <<snippet_new_texture, example>>.#
 
 === Texture Views
 

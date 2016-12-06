@@ -111,6 +111,39 @@ gl.uniform_matrix(0, 'float', '3x3', true, gl.flatten(M))
 ----
 
 
+[[snippet_new_texture]]
+.Creating and using a texture (with MoonSOIL).
+[source,lua]
+----
+-- 1) Creating the texture:
+tex_id = gl.new_texture('2d')
+-- configure it:
+gl.texture_parameter('2d', 'wrap s', 'repeat')
+gl.texture_parameter('2d', 'wrap t', 'repeat')
+gl.texture_parameter('2d', 'min filter', 'linear')
+gl.texture_parameter('2d', 'mag filter', 'linear')
+-- load the texture image using MoonSOIL:
+image, w, h = soil.load_image('myimage.jpg', 'rgb')
+assert(image, soil.last_result())
+gl.texture_image('2d', 0, 'rgb', 'rgb', 'ubyte', image, w, h)
+image, w, h = nil, nil, nil -- let the GC collect them
+-- generate the mipmap:
+gl.generate_mipmap('2d')
+gl.unbind_texture('2d')
+
+-- ...
+
+-- 2) Using the texture in the game loop:
+gl.use_program(prog_id)
+gl.active_texture(0) -- activate texture unit 0
+gl.bind_texture('2d', tex_id)
+-- Assuming our program has a sampler2D uniform named mytexture:
+gl.uniform(gl.uniform_location(prog_id, 'mytexture'), 'int', 0)
+-- ... bind geometry and draw ...
+
+----
+
+
 
 ////
 
