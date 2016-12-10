@@ -92,6 +92,9 @@ glfw.set_key_callback(window, function(window, key, scancode, action)
    end
 end)
 
+-- Register a callback for window resize events:
+glfw.set_window_size_callback(window, function(_, w, h) gl.viewport(0, 0, w, h) end)
+
 
 -- Event loop:
 while not glfw.window_should_close(window) do
