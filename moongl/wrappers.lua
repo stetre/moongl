@@ -29,6 +29,20 @@
 
 local gl = moongl -- require("moongl")
 
+--[[
+-- To make error messages point to the correct culprit we could use the following
+-- solution. However, since this adds a performance penalty and since the needed
+-- information (i.e. the line number of the invoking script) is already in the stack
+-- traceback, we won't use it.
+
+local function ppcall(f, ...)
+   local ok, errmsg = pcall(f, ...)
+   if not ok then error(errmsg, 3) end
+end
+
+gl.uniformf = function(loc, ...) ppcall(gl.uniform, loc, 'float', ...) end
+--]]
+
 -- Wrappers for uniform variables:
 
 gl.uniformb = function(loc, ...) gl.uniform(loc, 'bool', ...) end
@@ -227,7 +241,6 @@ gl.program_uniform_matrix2x4ui = function(prog, loc, tr, ...) gl.program_uniform
 gl.program_uniform_matrix4x2ui = function(prog, loc, tr, ...) gl.program_uniform_matrix(prog, loc, 'uint', '4x2', tr, ...) end
 gl.program_uniform_matrix3x4ui = function(prog, loc, tr, ...) gl.program_uniform_matrix(prog, loc, 'uint', '3x4', tr, ...) end
 gl.program_uniform_matrix4x3ui = function(prog, loc, tr, ...) gl.program_uniform_matrix(prog, loc, 'uint', '4x3', tr, ...) end
-
 
 gl.program_uniform_matrix2f = function(prog, loc, tr, ...) gl.program_uniform_matrix(prog, loc, 'float', '2x2', tr, ...) end
 gl.program_uniform_matrix3f = function(prog, loc, tr, ...) gl.program_uniform_matrix(prog, loc, 'float', '3x3', tr, ...) end
