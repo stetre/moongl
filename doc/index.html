@@ -2523,6 +2523,9 @@ Rfr:
 <div class="paragraph">
 <p><span class="small">Rfr: <a href="https://www.opengl.org/wiki/Category:Core_API_Ref_Framebuffer_Objects">Framebuffer Objects</a>.</span></p>
 </div>
+<div id="framebuffertarget" class="paragraph">
+<p><span class="small"><strong>framebuffer target</strong>: '<em>draw</em>', '<em>read</em>', or '<em>draw read</em>' (for GL_FRAMEBUFFER).</span></p>
+</div>
 <div id="gl.gen_framebuffers" class="ulist">
 <ul>
 <li>
@@ -2547,9 +2550,8 @@ Rfr:
 <div id="gl.bind_framebuffer" class="ulist">
 <ul>
 <li>
-<p><strong>bind_framebuffer</strong>(<em>target</em> [, <em>framebuffer</em>])<br>
-<strong>unbind_framebuffer</strong>(<em>target</em>) <em>NONGL</em><br>
-<span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>, '<em>draw read</em>'.</span></p>
+<p><strong>bind_framebuffer</strong>(<a href="#framebuffertarget"><em>target</em></a> [, <em>framebuffer</em>])<br>
+<strong>unbind_framebuffer</strong>(<a href="#framebuffertarget"><em>target</em></a>) <em>NONGL</em></p>
 </li>
 </ul>
 </div>
@@ -2563,7 +2565,7 @@ Rfr:
 <div id="gl.new_framebuffer" class="ulist">
 <ul>
 <li>
-<p><em>framebuffer</em> = <strong>new_framebuffer</strong>(<em>target</em>) <em>NONGL</em><br>
+<p><em>framebuffer</em> = <strong>new_framebuffer</strong>(<a href="#framebuffertarget"><em>target</em></a>) <em>NONGL</em><br>
 <span class="small">Gen &amp; bind one framebuffer.</span></p>
 </li>
 </ul>
@@ -2574,9 +2576,8 @@ Rfr:
 <div id="gl.framebuffer_parameter" class="ulist">
 <ul>
 <li>
-<p><strong>framebuffer_parameter</strong>(<em>target</em>|<em>framebuffer</em>, <em>pname</em>, <em>value</em>)<br>
-<span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>, '<em>draw read</em>'.<br>
-<em>pname</em>: '<em>default width</em>' for GL_FRAMEBUFFER_DEFAULT_WIDTH, etc.</span></p>
+<p><strong>framebuffer_parameter</strong>(<a href="#framebuffertarget"><em>target</em></a>|<em>framebuffer</em>, <em>pname</em>, <em>value</em>)<br>
+<span class="small"><em>pname</em>: '<em>default width</em>' for GL_FRAMEBUFFER_DEFAULT_WIDTH, etc.</span></p>
 </li>
 </ul>
 </div>
@@ -2586,18 +2587,16 @@ Rfr:
 <div id="gl.get_framebuffer_parameter" class="ulist">
 <ul>
 <li>
-<p><em>value(s)</em> = <strong>get_framebuffer_parameter</strong>(<em>target</em>|<em>framebuffer</em>, <em>pname</em>)<br>
-<span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>, '<em>draw read</em>'.<br>
-<em>pname</em>: '<em>default width</em>' for GL_FRAMEBUFFER_DEFAULT_WIDTH, etc.</span></p>
+<p><em>value(s)</em> = <strong>get_framebuffer_parameter</strong>(<a href="#framebuffertarget"><em>target</em></a>|<em>framebuffer</em>, <em>pname</em>)<br>
+<span class="small"><em>pname</em>: '<em>default width</em>' for GL_FRAMEBUFFER_DEFAULT_WIDTH, etc.</span></p>
 </li>
 </ul>
 </div>
 <div id="gl.get_framebuffer_attachment_parameter" class="ulist">
 <ul>
 <li>
-<p><em>value(s)</em> = <strong>get_framebuffer_attachment_parameter</strong>(<em>target</em>|<em>framebuffer</em>, <em>attachment</em>, <em>pname</em>)<br>
-<span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>, '<em>draw read</em>'.<br>
-<em>attachment</em>: '<em>depth</em>' for GL_DEPTH, '<em>front left</em>' for GL_FRONT_LEFT, etc.<br>
+<p><em>value(s)</em> = <strong>get_framebuffer_attachment_parameter</strong>(<a href="#framebuffertarget"><em>target</em></a>|<em>framebuffer</em>, <em>attachment</em>, <em>pname</em>)<br>
+<span class="small"><em>attachment</em>: '<em>depth</em>' for GL_DEPTH, '<em>front left</em>' for GL_FRONT_LEFT, etc.<br>
 <em>pname</em>: '<em>object type</em>' for GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE, etc.</span></p>
 </li>
 </ul>
@@ -2608,12 +2607,14 @@ Rfr:
 <div class="paragraph">
 <p><span class="small">Rfr: <a href="https://www.opengl.org/wiki/Category:Core_API_Ref_Framebuffer_Objects">Framebuffer Objects</a>.</span></p>
 </div>
+<div id="renderbuffertarget" class="paragraph">
+<p><span class="small"><strong>renderbuffer target</strong>: '<em>renderbuffer</em>'.</span></p>
+</div>
 <div id="gl.bind_renderbuffer" class="ulist">
 <ul>
 <li>
 <p><strong>bind_renderbuffer</strong>(<em>target</em> [, <em>renderbuffer</em>])<br>
-<strong>unbind_renderbuffer</strong>(<em>target</em>) <em>NONGL</em><br>
-<span class="small"><em>target</em>: '<em>renderbuffer</em>'.</span></p>
+<strong>unbind_renderbuffer</strong>(<em>target</em>) <em>NONGL</em></p>
 </li>
 </ul>
 </div>
@@ -2648,7 +2649,7 @@ Rfr:
 <div id="gl.new_renderbuffer" class="ulist">
 <ul>
 <li>
-<p><em>renderbuffer</em> = <strong>new_renderbuffer</strong>(<em>target</em>) <em>NONGL</em><br>
+<p><em>renderbuffer</em> = <strong>new_renderbuffer</strong>(<a href="#renderbuffertarget"><em>target</em></a>) <em>NONGL</em><br>
 <span class="small">Gen &amp; bind one renderbuffer.</span></p>
 </li>
 </ul>
@@ -2656,16 +2657,14 @@ Rfr:
 <div id="gl.renderbuffer_storage_multisample" class="ulist">
 <ul>
 <li>
-<p><strong>renderbuffer_storage_multisample</strong>(<em>target</em>|<em>renderbuffer</em>, <em>samples</em>, <em>internalformat</em>, <em>width</em>, <em>height</em>)<br>
-<span class="small"><em>target</em>: '<em>renderbuffer</em>'.</span></p>
+<p><strong>renderbuffer_storage_multisample</strong>(<a href="#renderbuffertarget"><em>target</em></a>|<em>renderbuffer</em>, <em>samples</em>, <em>internalformat</em>, <em>width</em>, <em>height</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.renderbuffer_storage" class="ulist">
 <ul>
 <li>
-<p><strong>renderbuffer_storage</strong>(<em>target</em>|<em>renderbuffer</em>, <em>internalformat</em>, <em>width</em>, <em>height</em>)<br>
-<span class="small"><em>target</em>: '<em>renderbuffer</em>'.</span></p>
+<p><strong>renderbuffer_storage</strong>(<a href="#renderbuffertarget"><em>target</em></a>|<em>renderbuffer</em>, <em>internalformat</em>, <em>width</em>, <em>height</em>)</p>
 </li>
 </ul>
 </div>
@@ -2675,9 +2674,8 @@ Rfr:
 <div id="gl.get_renderbuffer_parameter" class="ulist">
 <ul>
 <li>
-<p><em>value(s)</em> = <strong>get_renderbuffer_parameter</strong>(<em>target</em>|<em>renderbuffer</em>, <em>pname</em>)<br>
-<span class="small"><em>target</em>: '<em>renderbuffer</em>'.<br>
-<em>pname</em>: '<em>width</em>' for GL_RENDERBUFFER_WIDTH, '<em>internal format</em>' for GL_RENDERBUFFER_INTERNAL_FORMAT, etc.</span></p>
+<p><em>value(s)</em> = <strong>get_renderbuffer_parameter</strong>(<a href="#renderbuffertarget"><em>target</em></a>|<em>renderbuffer</em>, <em>pname</em>)<br>
+<span class="small"><em>pname</em>: '<em>width</em>' for GL_RENDERBUFFER_WIDTH, '<em>internal format</em>' for GL_RENDERBUFFER_INTERNAL_FORMAT, etc.</span></p>
 </li>
 </ul>
 </div>
@@ -2687,10 +2685,8 @@ Rfr:
 <div id="gl.framebuffer_renderbuffer" class="ulist">
 <ul>
 <li>
-<p><strong>framebuffer_renderbuffer</strong>(<em>target</em>|<em>framebuffer</em>, <em>attachment</em>, <em>rbtarget</em>, <em>renderbuffer</em>)<br>
-<span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>'.<br>
-<em>attachment</em>: '<em>depth</em>' for GL_DEPTH_ATTACHMENT, '<em>color attachment i</em>' for GL_COLOR_ATTACHMENTi, etc.<br>
-<em>rbtarget</em>: '<em>renderbuffer</em>'.</span></p>
+<p><strong>framebuffer_renderbuffer</strong>(<a href="#framebuffertarget"><em>target</em></a>|<em>framebuffer</em>, <em>attachment</em>, <a href="#renderbuffertarget"><em>renderbuffertarget</em></a>, <em>renderbuffer</em>)<br>
+<span class="small"><em>attachment</em>: '<em>depth</em>' for GL_DEPTH_ATTACHMENT, '<em>color attachment i</em>' for GL_COLOR_ATTACHMENTi, etc.</span></p>
 </li>
 </ul>
 </div>
@@ -2700,14 +2696,14 @@ Rfr:
 <div id="gl.framebuffer_texture" class="ulist">
 <ul>
 <li>
-<p><strong>framebuffer_texture</strong>(<em>target</em>|<em>framebuffer</em>, <em>attachment</em>, <em>texture</em>, <em>level</em>)</p>
+<p><strong>framebuffer_texture</strong>(<a href="#framebuffertarget"><em>target</em></a>|<em>framebuffer</em>, <em>attachment</em>, <em>texture</em>, <em>level</em>)</p>
 </li>
 </ul>
 </div>
 <div id="gl.framebuffer_texture_1d" class="ulist">
 <ul>
 <li>
-<p><strong>framebuffer_texture_1d</strong>(<em>target</em>, <em>attachment</em>, <em>textarget</em>, <em>texture</em>, <em>level</em>)<br>
+<p><strong>framebuffer_texture_1d</strong>(<a href="#framebuffertarget"><em>target</em></a>, <em>attachment</em>, <em>textarget</em>, <em>texture</em>, <em>level</em>)<br>
 <span class="small"><em>textarget</em>: '<em>1d</em>'.</span></p>
 </li>
 </ul>
@@ -2715,7 +2711,7 @@ Rfr:
 <div id="gl.framebuffer_texture_2d" class="ulist">
 <ul>
 <li>
-<p><strong>framebuffer_texture_2d</strong>(<em>target</em>, <em>attachment</em>, <em>textarget</em>, <em>texture</em>, <em>level</em>)<br>
+<p><strong>framebuffer_texture_2d</strong>(<a href="#framebuffertarget"><em>target</em></a>, <em>attachment</em>, <em>textarget</em>, <em>texture</em>, <em>level</em>)<br>
 <span class="small"><em>textarget</em>: '<em>2d</em>' for GL_TEXTURE_2D, '<em>cube map positive x</em>' for GL_TEXTURE_CUBE_MAP_POSITIVE_X, etc..</span></p>
 </li>
 </ul>
@@ -2723,7 +2719,7 @@ Rfr:
 <div id="gl.framebuffer_texture_3d" class="ulist">
 <ul>
 <li>
-<p><strong>framebuffer_texture_3d</strong>(<em>target</em>, <em>attachment</em>, <em>textarget</em>, <em>texture</em>, <em>level</em>, <em>layer</em>)<br>
+<p><strong>framebuffer_texture_3d</strong>(<a href="#framebuffertarget"><em>target</em></a>, <em>attachment</em>, <em>textarget</em>, <em>texture</em>, <em>level</em>, <em>layer</em>)<br>
 <span class="small"><em>textarget</em>: '<em>3d</em>'.</span></p>
 </li>
 </ul>
@@ -2731,7 +2727,7 @@ Rfr:
 <div id="gl.framebuffer_texture_layer" class="ulist">
 <ul>
 <li>
-<p><strong>framebuffer_texture_layer</strong>(<em>target</em>|<em>framebuffer</em>, <em>attachment</em>, <em>texture</em>, <em>level</em>, <em>layer</em>)</p>
+<p><strong>framebuffer_texture_layer</strong>(<a href="#framebuffertarget"><em>target</em></a>|<em>framebuffer</em>, <em>attachment</em>, <em>texture</em>, <em>level</em>, <em>layer</em>)</p>
 </li>
 </ul>
 </div>
@@ -2751,9 +2747,8 @@ Rfr:
 <div id="gl.check_framebuffer_status" class="ulist">
 <ul>
 <li>
-<p><em>status</em> = <strong>check_framebuffer_status</strong>(<em>target</em> [, <em>framebuffer</em>])<br>
-<span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>'.<br>
-<em>status</em>: '<em>complete</em>' for GL_FRAMEBUFFER_COMPLETE, '<em>incomplete attachment</em>' for GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT, etc.</span></p>
+<p><em>status</em> = <strong>check_framebuffer_status</strong>(<a href="#framebuffertarget"><em>target</em></a> [, <em>framebuffer</em>])<br>
+<span class="small"><em>status</em>: '<em>complete</em>' for GL_FRAMEBUFFER_COMPLETE, '<em>incomplete attachment</em>' for GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT, etc.</span></p>
 </li>
 </ul>
 </div>
@@ -3765,13 +3760,12 @@ Rfr: <a href="https://www.opengl.org/wiki/GLAPI/glClear">glClear</a>.</span>
 <div id="gl.invalidate_framebuffer" class="ulist">
 <ul>
 <li>
-<p><strong>invalidate_framebuffer</strong>(<em>target</em>|<em>framebuffer</em>, <em>attachment1</em> [, <em>attachment2</em>, <em>&#8230;&#8203;</em> ])<br>
-<strong>invalidate_sub_framebuffer</strong>(<em>target</em>|<em>framebuffer</em>, <em>x</em>, <em>y</em>, <em>width</em>, <em>height</em>, <em>attachment1</em> [, <em>attachment2</em>, <em>&#8230;&#8203;</em> ])<br>
-<span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>'.<br>
-<em>attachment</em>: '<em>color attachment i</em>' for GL_COLOR_ATTACHMENTi, '<em>depth</em>' for GL_DEPTH, etc.<br>
+<p><strong>invalidate_framebuffer</strong>(<a href="#framebuffertarget"><em>target</em></a>|<em>framebuffer</em>, <em>attachment1</em> [, <em>attachment2</em>, <em>&#8230;&#8203;</em> ])<br>
+<strong>invalidate_sub_framebuffer</strong>(<a href="#framebuffertarget"><em>target</em></a>|<em>framebuffer</em>, <em>x</em>, <em>y</em>, <em>width</em>, <em>height</em>, <em>attachment1</em> [, <em>attachment2</em>, <em>&#8230;&#8203;</em> ])<br>
+<em class="small">attachment</em>: '<em>color attachment i</em>' for GL_COLOR_ATTACHMENTi, '<em>depth</em>' for GL_DEPTH, etc.<br>
 Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glInvalidateFramebuffer">glInvalidateFramebuffer</a>,
-<a href="https://www.opengl.org/wiki/GLAPI/glInvalidateSubFramebuffer">glInvalidateSubFramebuffer</a>.</span></p>
+<a href="https://www.opengl.org/wiki/GLAPI/glInvalidateSubFramebuffer">glInvalidateSubFramebuffer</a>.#</p>
 </li>
 </ul>
 </div>

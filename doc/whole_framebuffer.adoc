@@ -68,10 +68,9 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glClear[glClear].#
 === Invalidating Framebuffers
 
 [[gl.invalidate_framebuffer]]
-* *invalidate_framebuffer*(_target_|_framebuffer_, _attachment1_ [, _attachment2_, _..._ ]) +
-*invalidate_sub_framebuffer*(_target_|_framebuffer_, _x_, _y_, _width_, _height_, _attachment1_ [, _attachment2_, _..._ ]) +
-[small]#_target_: '_draw_', '_read_'. +
-_attachment_: '_color attachment i_' for GL_COLOR_ATTACHMENTi, '_depth_' for GL_DEPTH, etc. +
+* *invalidate_framebuffer*(<<framebuffertarget, _target_>>|_framebuffer_, _attachment1_ [, _attachment2_, _..._ ]) +
+*invalidate_sub_framebuffer*(<<framebuffertarget, _target_>>|_framebuffer_, _x_, _y_, _width_, _height_, _attachment1_ [, _attachment2_, _..._ ]) +
+[small]_attachment_: '_color attachment i_' for GL_COLOR_ATTACHMENTi, '_depth_' for GL_DEPTH, etc. +
 Rfr:
 https://www.opengl.org/wiki/GLAPI/glInvalidateFramebuffer[glInvalidateFramebuffer],
 https://www.opengl.org/wiki/GLAPI/glInvalidateSubFramebuffer[glInvalidateSubFramebuffer].#
