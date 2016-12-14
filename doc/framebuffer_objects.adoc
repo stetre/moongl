@@ -17,7 +17,7 @@
 [[gl.bind_framebuffer]]
 * *bind_framebuffer*(_target_ [, _framebuffer_]) +
 *unbind_framebuffer*(_target_) _NONGL_ +
-[small]#_target_: '_draw_', '_read_'.#
+[small]#_target_: '_draw_', '_read_, '_draw read_'.#
 
 [[gl.is_framebuffer]]
 * _boolean_ = *is_framebuffer*(_framebuffer_)
@@ -30,19 +30,19 @@
 
 [[gl.framebuffer_parameter]]
 * *framebuffer_parameter*(_target_|_framebuffer_, _pname_, _value_) +
-[small]#_target_: '_draw_', '_read_'. +
+[small]#_target_: '_draw_', '_read_, '_draw read_'. +
 _pname_: '_default width_' for GL_FRAMEBUFFER_DEFAULT_WIDTH, etc.#
 
 === Framebuffer Object Queries
 
 [[gl.get_framebuffer_parameter]]
 * _value(s)_ = *get_framebuffer_parameter*(_target_|_framebuffer_, _pname_) +
-[small]#_target_: '_draw_', '_read_'. +
+[small]#_target_: '_draw_', '_read_, '_draw read_'. +
 _pname_: '_default width_' for GL_FRAMEBUFFER_DEFAULT_WIDTH, etc.#
 
 [[gl.get_framebuffer_attachment_parameter]]
 * _value(s)_ = *get_framebuffer_attachment_parameter*(_target_|_framebuffer_, _attachment_, _pname_) +
-[small]#_target_: '_draw_', '_read_'. +
+[small]#_target_: '_draw_', '_read_, '_draw read_'. +
 _attachment_: '_depth_' for GL_DEPTH, '_front left_' for GL_FRONT_LEFT, etc. +
 _pname_: '_object type_' for GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE, etc.#
 

@@ -2549,7 +2549,7 @@ Rfr:
 <li>
 <p><strong>bind_framebuffer</strong>(<em>target</em> [, <em>framebuffer</em>])<br>
 <strong>unbind_framebuffer</strong>(<em>target</em>) <em>NONGL</em><br>
-<span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>'.</span></p>
+<span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>, '<em>draw read</em>'.</span></p>
 </li>
 </ul>
 </div>
@@ -2575,7 +2575,7 @@ Rfr:
 <ul>
 <li>
 <p><strong>framebuffer_parameter</strong>(<em>target</em>|<em>framebuffer</em>, <em>pname</em>, <em>value</em>)<br>
-<span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>'.<br>
+<span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>, '<em>draw read</em>'.<br>
 <em>pname</em>: '<em>default width</em>' for GL_FRAMEBUFFER_DEFAULT_WIDTH, etc.</span></p>
 </li>
 </ul>
@@ -2587,7 +2587,7 @@ Rfr:
 <ul>
 <li>
 <p><em>value(s)</em> = <strong>get_framebuffer_parameter</strong>(<em>target</em>|<em>framebuffer</em>, <em>pname</em>)<br>
-<span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>'.<br>
+<span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>, '<em>draw read</em>'.<br>
 <em>pname</em>: '<em>default width</em>' for GL_FRAMEBUFFER_DEFAULT_WIDTH, etc.</span></p>
 </li>
 </ul>
@@ -2596,7 +2596,7 @@ Rfr:
 <ul>
 <li>
 <p><em>value(s)</em> = <strong>get_framebuffer_attachment_parameter</strong>(<em>target</em>|<em>framebuffer</em>, <em>attachment</em>, <em>pname</em>)<br>
-<span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>'.<br>
+<span class="small"><em>target</em>: '<em>draw</em>', '<em>read</em>, '<em>draw read</em>'.<br>
 <em>attachment</em>: '<em>depth</em>' for GL_DEPTH, '<em>front left</em>' for GL_FRONT_LEFT, etc.<br>
 <em>pname</em>: '<em>object type</em>' for GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE, etc.</span></p>
 </li>

@@ -36,13 +36,13 @@
 ENUM_STRINGS(TargetStrings) = {
     "draw",
     "read",
-/*  "framebuffer", */
+    "draw read",
     NULL
 };
 ENUM_CODES(TargetCodes) = {
     GL_DRAW_FRAMEBUFFER,
     GL_READ_FRAMEBUFFER,
-/*  GL_FRAMEBUFFER, */
+    GL_FRAMEBUFFER,
 };
 ENUM_T(TargetEnum,TargetStrings, TargetCodes)
 #define CheckTarget(L, arg) enumCheck((L), (arg), &TargetEnum)
