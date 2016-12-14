@@ -113,10 +113,10 @@ shaders, and deletes them and the program.#
 * _pipeline1_, _pipeline2_, _..._ = *gen_program_pipelines*([_n_ = 1])
 
 [[gl.create_program_pipelines]]
-* *create_program_pipelines*(_pipeline1_ [_pipeline2, _..._])
+* *create_program_pipelines*(_pipeline1_ [, _pipeline2_, _..._])
 
 [[gl.delete_program_pipelines]]
-* *delete_program_pipelines*(_pipeline1_ [_pipeline2, _..._])
+* *delete_program_pipelines*(_pipeline1_ [, _pipeline2_, _..._])
 
 [[gl.is_program_pipeline]]
 * _boolean_ = *is_program_pipeline*(_pipeline_)
