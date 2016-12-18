@@ -359,4 +359,23 @@ gl.vertex_attrib_nus = function(i, ...) gl.vertex_attrib_n(i, 'ushort', ...) end
 gl.vertex_attrib_ni = function(i, ...) gl.vertex_attrib_n(i, 'int', ...) end
 gl.vertex_attrib_nui = function(i, ...) gl.vertex_attrib_n(i, 'uint', ...) end
 
+-- Wrappers for pack() and unpack():
+
+gl.packb = function(...) return gl.pack('byte', ...) end
+gl.packub = function(...) return gl.pack('ubyte', ...) end
+gl.packs = function(...) return gl.pack('short', ...) end
+gl.packus = function(...) return gl.pack('ushort', ...) end
+gl.packi = function(...) return gl.pack('int', ...) end
+gl.packui = function(...) return gl.pack('uint', ...) end
+gl.packf = function(...) return gl.pack('float', ...) end
+gl.packd = function(...) return gl.pack('double', ...) end
+
+gl.unpackb = function(...) return gl.unpack('byte', ...) end
+gl.unpackub = function(...) return gl.unpack('ubyte', ...) end
+gl.unpacks = function(...) return gl.unpack('short', ...) end
+gl.unpackus = function(...) return gl.unpack('ushort', ...) end
+gl.unpacki = function(...) return gl.unpack('int', ...) end
+gl.unpackui = function(...) return gl.unpack('uint', ...) end
+gl.unpackf = function(...) return gl.unpack('float', ...) end
+gl.unpackd = function(...) return gl.unpack('double', ...) end
 
