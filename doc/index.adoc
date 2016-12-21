@@ -10,7 +10,7 @@ v0.4, 2016-06-01
 :source-language: lua
 :exampledir: ../examples
 
-image::powered-by-lua.png[Lua logo, link=http://www.lua.org]
+image::powered-by-lua.gif[Lua logo, link=http://www.lua.org]
 
 include::preface.adoc[]
 

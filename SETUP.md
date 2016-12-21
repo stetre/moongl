@@ -50,7 +50,7 @@ Install libraries:
 $ pacman -S ${MINGW_PACKAGE_PREFIX}-fltk        # needed by MoonFLTK
 $ pacman -S ${MINGW_PACKAGE_PREFIX}-glfw        # needed by MoonGLFW
 $ pacman -S ${MINGW_PACKAGE_PREFIX}-freeglut    # needed by MoonGLUT
-$ pacman -S ${MINGW_PACKAGE_PREFIX}-glew        # needed by MoonGLEW
+$ pacman -S ${MINGW_PACKAGE_PREFIX}-glew        # needed by MoonGL
 $ pacman -S ${MINGW_PACKAGE_PREFIX}-assimp      # needed by MoonAssimp
 ```
 
