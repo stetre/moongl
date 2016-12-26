@@ -2199,7 +2199,8 @@ Rfr:
 <p><strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>width</em>)  1D<br>
 <strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>width</em>, <em>height</em>)  2D<br>
 <strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
-<span class="small">Rfr:
+<span class="small">The <em>data</em> parameter may be <em>nil</em> (no pixel transfer).<br>
+Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glTexImage1D">glTexImage1D</a>,
 <a href="https://www.opengl.org/wiki/GLAPI/glTexImage2D">glTexImage2D</a>,
 <a href="https://www.opengl.org/wiki/GLAPI/glTexImage3D">glTexImage3D</a>.</span>
@@ -2227,7 +2228,8 @@ Rfr:
 <p><strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>xofs</em>, <em>width</em>) 1D<br>
 <strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>xofs</em>, <em>yofs</em>, <em>width</em>, <em>height</em>) 2D<br>
 <strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
-<span class="small">Rfr:
+<span class="small">The <em>data</em> parameter may be <em>nil</em> (no pixel transfer).<br>
+Rfr:
 <a href="https://www.opengl.org/wiki/GLAPI/glTexSubImage1D">glTexSubImage1D</a>,
 <a href="https://www.opengl.org/wiki/GLAPI/glTexSubImage2D">glTexSubImage2D</a>,
 <a href="https://www.opengl.org/wiki/GLAPI/glTexSubImage3D">glTexSubImage3D</a>.</span></p>

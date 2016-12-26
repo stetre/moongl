@@ -94,7 +94,8 @@ https://www.opengl.org/wiki/GLAPI/glPixelStore[glPixelStore].#
 * *texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _width_)  1D +
 *texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _width_, _height_)  2D +
 *texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _width_, _height_, _depth_) 3D +
-[small]#Rfr: 
+[small]#The _data_ parameter may be _nil_ (no pixel transfer). +
+Rfr: 
 https://www.opengl.org/wiki/GLAPI/glTexImage1D[glTexImage1D],
 https://www.opengl.org/wiki/GLAPI/glTexImage2D[glTexImage2D],
 https://www.opengl.org/wiki/GLAPI/glTexImage3D[glTexImage3D].#
@@ -115,7 +116,8 @@ https://www.opengl.org/wiki/GLAPI/glCopyTexImage2D[glCopyTexImage2D].#
 * *texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _xofs_, _width_) 1D +
 *texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _xofs_, _yofs_, _width_, _height_) 2D +
 *texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) 3D +
-[small]#Rfr: 
+[small]#The _data_ parameter may be _nil_ (no pixel transfer). +
+Rfr: 
 https://www.opengl.org/wiki/GLAPI/glTexSubImage1D[glTexSubImage1D],
 https://www.opengl.org/wiki/GLAPI/glTexSubImage2D[glTexSubImage2D],
 https://www.opengl.org/wiki/GLAPI/glTexSubImage3D[glTexSubImage3D].#
