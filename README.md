@@ -76,4 +76,4 @@ $ lua hello.lua
 
 #### See also
 
-[MoonLibs - Graphics and Audio Lua Libraries](https://github.com/stetre/moonlibs).
+* [MoonLibs - Graphics and Audio Lua Libraries](https://github.com/stetre/moonlibs).
