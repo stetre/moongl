@@ -22,6 +22,7 @@ $ sudo apt-get install libglfw3-dev     # needed by MoonGLFW
 $ sudo apt-get install freeglut3-dev    # needed by MoonGLUT
 $ sudo apt-get install libglew-dev      # needed by MoonGL
 $ sudo apt-get install libassimp-dev    # needed by MoonAssimp
+$ sudo apt-get install libfreetype6-dev # needed by MoonFreeType
 ```
 
 ### Windows, with MSYS2/MinGW-w64
@@ -52,5 +53,6 @@ $ pacman -S ${MINGW_PACKAGE_PREFIX}-glfw        # needed by MoonGLFW
 $ pacman -S ${MINGW_PACKAGE_PREFIX}-freeglut    # needed by MoonGLUT
 $ pacman -S ${MINGW_PACKAGE_PREFIX}-glew        # needed by MoonGL
 $ pacman -S ${MINGW_PACKAGE_PREFIX}-assimp      # needed by MoonAssimp
+$ pacman -S ${MINGW_PACKAGE_PREFIX}-freetype    # needed by MoonFreeType
 ```
 
