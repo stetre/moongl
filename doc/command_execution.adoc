@@ -49,9 +49,9 @@ an error if the command did not succeed.
 
 [[gl.flush]]
 * *flush*( ) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glFlush[glFlush].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glFlush[glFlush].#
 
 [[gl.finish]]
 * *finish*( ) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glFinish[glFinish].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glFinish[glFinish].#
 

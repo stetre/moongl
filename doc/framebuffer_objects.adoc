@@ -3,7 +3,7 @@
 
 === Binding and Managing
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Framebuffer_Objects[Framebuffer Objects].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Framebuffer_Objects[Framebuffer Objects].#
 
 [[framebuffertarget]]
 [small]#*framebuffer target*: '_draw_', '_read_', or '_draw read_' (for GL_FRAMEBUFFER).#
@@ -48,7 +48,7 @@ _pname_: '_object type_' for GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE, etc.#
 
 === Renderbuffer Objects
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Framebuffer_Objects[Framebuffer Objects].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Framebuffer_Objects[Framebuffer Objects].#
 
 [[renderbuffertarget]]
 [small]#*renderbuffer target*: '_renderbuffer_'.#

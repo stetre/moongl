@@ -3,17 +3,17 @@
 
 [[gl.bind_attrib_location]]
 * *bind_attrib_location*(_program_, _index_, _name_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glBindAttribLocation[glBindAttribLocation].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBindAttribLocation[glBindAttribLocation].#
 
 [[gl.get_active_attrib]]
 * _name_, <<glsltype, _glsltype_>>, _size_ = *get_active_attrib*(_program_, _index_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glGetActiveAttrib[glGetActiveAttrib].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveAttrib[glGetActiveAttrib].#
 
 [[gl.get_attrib_location]]
 * _location_ = *get_attrib_location*(_program_, _name_) +
 [small]#Don't use this function, use <<gl.bind_attrib_location,bind_attrib_location>>( ) 
 instead. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glGetAttribLocation[glGetAttribLocation].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetAttribLocation[glGetAttribLocation].#
 // see:  https://youtu.be/IXxc9yNBpuo?t=3073
 
 === Transform Feedback Variables
@@ -21,23 +21,23 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glGetAttribLocation[glGetAttribLocation].
 [[gl.transform_feedback_varyings]]
 * *transform_feedback_varyings*(_program_, _mode_, _varying1_ [, _varying2_, _..._ ]) +
 [small]#_mode_: '_interleaved attribs_', '_separate attribs_'. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glTransformFeedbackVaryings[glTransformFeedbackVaryings].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glTransformFeedbackVaryings[glTransformFeedbackVaryings].#
 
 [[gl.get_transform_feedback_varying]]
 * _name_, <<glsltype, _glsltype_>>, _size_ = *get_transform_feedback_varying*(_program_, _index_) +
 [small]#_mode_: '_interleaved attribs_', '_separate attribs_'. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glGetTransformFeedbackVarying[glGetTransformFeedbackVarying].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetTransformFeedbackVarying[glGetTransformFeedbackVarying].#
 
 
 === Shader Execution
 
 [[gl.validate_program]]
 * *validate_program*(_program_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glValidateProgram[glValidateProgram].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glValidateProgram[glValidateProgram].#
 
 [[gl.validate_program_pipeline]]
 * *validate_program_pipeline*(_pipeline_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glValidateProgramPipeline[glValidateProgramPipeline].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glValidateProgramPipeline[glValidateProgramPipeline].#
 
 * <<gl.patch_parameter, patch_parameter>>
 

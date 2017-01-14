@@ -7,7 +7,7 @@
 * _value(s)_ = *get*(_pname_ [, _index_]) +
 [small]#_pname_: '_context flags_' for GL_CONTEXT_FLAGS, '_major version_' for GL_MAJOR_VERSION, etc. +
 The _index_ argument may be mandatory or optional, depending on _pname_. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glGet[glGet].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGet[glGet].#
 
 NOTE: An '_invalid enumerant_' error raised by a <<gl.get, get>>( ) call means that the _pname_ is not
 supported by the OpenGL version being used (a mis-spelled _pname_ causes a '_bad argument ..._' error).
@@ -18,8 +18,8 @@ supported by the OpenGL version being used (a mis-spelled _pname_ causes a '_bad
 * _boolean_ = *is_enabled*(_cap_ [,_index_]) +
 [small]#_cap_: '_blend_' for GL_BLEND, '_depth test_' for GL_DEPTH_TEST, 
 '_clip distance 5_' for GL_CLIP_DISTANCE5, etc. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glEnable[glEnable], 
-Rfr: https://www.opengl.org/wiki/GLAPI/glIsEnable[glIsEnabled].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glEnable[glEnable], 
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glIsEnable[glIsEnabled].#
 
 === String Queries
 
@@ -27,7 +27,7 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glIsEnable[glIsEnabled].#
 * _value(s)_ = *get_string*(_pname_ [, _index_]) +
 [small]#_pname_: '_renderer_', '_vendor_', '_version_', '_extensions_', '_shading language version_'. +
 The _index_ argument may be mandatory or optional, depending on _pname_. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glGetString[glGetString].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetString[glGetString].#
 
 === Internal Format Queries
 
@@ -36,7 +36,7 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glGetString[glGetString].#
 [small]#_target_: '_1d_' for GL_TEXTURE_1D, '_1d array_' for GL_TEXTURE_1D_ARRAY, etc. +
 _intformat_: '_stencil index_' for GL_STENCIL_INDEX, '_r8 snorm_' for GL_R8_SNORM, etc. +
 _pname_: '_num sample counts_' for GL_NUM_SAMPLE_COUNTS, '_samples_' for GL_SAMPLES, etc. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glGetInternalformat[glGetInternalformat].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetInternalformat[glGetInternalformat].#
 
 
 === Transform Feedback Queries

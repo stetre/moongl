@@ -3,7 +3,7 @@
 
 === Transform Feedback
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Transform_Feedback[Transform Feedback].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Transform_Feedback[Transform Feedback].#
 
 [[gl.gen_transform_feedbacks]]
 * _xfb1_, _xfb2_, _..._ = *gen_transform_feedbacks*([_n_ = 1])
@@ -44,7 +44,7 @@
 
 === Transform Feedback Drawing
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Vertex_Rendering[Vertex Rendering].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Vertex_Rendering[Vertex Rendering].#
 
 [[gl.draw_transform_feedback]]
 * *draw_transform_feedback*(_mode_, _xfb_ [, _instancecount_]) +
@@ -56,7 +56,7 @@
 [[gl.provoking_vertex]]
 * *provoking_vertex*(_provokemode_) +
 [small]#_provokemode_: '_first vertex convention_', '_last vertex convention_'. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glProvokingVertex[glProvokingVertex].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glProvokingVertex[glProvokingVertex].#
 
 === Primitive Clipping
 
@@ -70,23 +70,23 @@ Rfr: https://www.opengl.org/sdk/docs/man/html/glClipControl.xhtml[glClipControl]
 
 === Controlling Viewport
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Viewport_and_Clipping[Viewport and Clipping].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Viewport_and_Clipping[Viewport and Clipping].#
 
 [[gl.depth_range]]
 * *depth_range*(_near_, _far_ [, _index_]) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glDepthRange[glDepthRange] -
-https://www.opengl.org/wiki/GLAPI/glDepthRangeIndexed[glDepthRangeIndexed].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDepthRange[glDepthRange] -
+https://www.khronos.org/opengl/wiki/GLAPI/glDepthRangeIndexed[glDepthRangeIndexed].#
 
 [[gl.depth_range_array]]
 * *depth_range_array*(_first_, _near1_, _far1_ [, _near2_, _far2_, _..._]) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glDepthRangeArray[glDepthRangeArray].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDepthRangeArray[glDepthRangeArray].#
 
 [[gl.viewport]]
 * *viewport*(_x_, _y_, _w_, _h_ [, _index_]) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glViewport[glViewport] -
-https://www.opengl.org/wiki/GLAPI/glViewportIndexed[glViewportIndexed].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glViewport[glViewport] -
+https://www.khronos.org/opengl/wiki/GLAPI/glViewportIndexed[glViewportIndexed].#
 
 [[gl.viewport_array]]
 * *viewport_array*(_first_, _x1_, _y1_, _w1_, _h1_ [, _x2_, _y2_, _w2_, _h2_]) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glViewportArray[glViewportArray].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glViewportArray[glViewportArray].#
 

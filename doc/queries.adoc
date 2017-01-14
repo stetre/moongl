@@ -1,7 +1,7 @@
 
 == Asynchronous Queries
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Queries_and_Timers[Queries and Timers].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Queries_and_Timers[Queries and Timers].#
 
 [[gl.gen_queries]]
 * _id1_, _id2_, _..._ = *gen_queries*([_n_ = 1])
@@ -29,7 +29,7 @@
 
 == Timer Queries
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Queries_and_Timers[Queries and Timers].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Queries_and_Timers[Queries and Timers].#
 
 [[gl.query_counter]]
 * *query_counter*(_id_)

@@ -3,14 +3,14 @@
 
 [[gl.bind_frag_data_location]]
 * *bind_frag_data_location*(_program_, _color_, _name_ [, _index_]) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glBindFragDataLocation[glBindFragDataLocation], 
-https://www.opengl.org/wiki/GLAPI/glBindFragDataLocationIndexed[glBindFragDataLocationIndexed].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBindFragDataLocation[glBindFragDataLocation], 
+https://www.khronos.org/opengl/wiki/GLAPI/glBindFragDataLocationIndexed[glBindFragDataLocationIndexed].#
 
 [[gl.get_frag_data_location]]
 * _location_ = *get_frag_data_location*(_program_, _name_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glGetFragDataLocation[glGetFragDataLocation].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetFragDataLocation[glGetFragDataLocation].#
 
 [[gl.get_frag_data_index]]
 * _index_ = *get_frag_data_index*(_program_, _name_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glGetFragDataIndex[glGetFragDataIndex].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetFragDataIndex[glGetFragDataIndex].#
 

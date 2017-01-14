@@ -3,7 +3,7 @@
 
 === Shader Objects
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Shader_Program_Creation[Shader Program Creation].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Shader_Program_Creation[Shader Program Creation].#
 
 [[shadertype]]
 [small]#*shadertype*: '_vertex_' for GL_VERTEX_SHADER, '_fragment_' for GL_FRAGMENT_SHADER, etc.#
@@ -30,7 +30,7 @@
 
 === Program Objects
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Shader_Program_Creation[Shader Program Creation].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Shader_Program_Creation[Shader Program Creation].#
 
 [[gl.create_program]]
 * _program_ = *create_program*( )
@@ -84,7 +84,7 @@ shaders, and deletes them and the program.#
 
 === Program Interfaces
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Shader_Program_Query[Shader Program Query].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Shader_Program_Query[Shader Program Query].#
 
 [[gl.get_program_interface]]
 * _value_ = *get_program_interface*(_program_, _interface_, _pname_) +
@@ -107,7 +107,7 @@ shaders, and deletes them and the program.#
 
 === Program Pipeline Objects
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Shader_Program_Creation[Shader Program Creation].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Shader_Program_Creation[Shader Program Creation].#
 
 [[gl.gen_program_pipelines]]
 * _pipeline1_, _pipeline2_, _..._ = *gen_program_pipelines*([_n_ = 1])
@@ -134,7 +134,7 @@ shaders, and deletes them and the program.#
 
 === Program Binaries
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Shader_Program_Creation[Shader Program Creation].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Shader_Program_Creation[Shader Program Creation].#
 
 [[gl.get_program_binary]]
 * _format_, _binary_ = *get_program_binary*(_program_)
@@ -146,7 +146,7 @@ shaders, and deletes them and the program.#
 
 === Uniform Variables
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Shader_Program_Query[Shader Program Query].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Shader_Program_Query[Shader Program Query].#
 
 [[gl.get_uniform_location]]
 * _location_ = *get_uniform_location*(_program_, _name_) +
@@ -187,7 +187,7 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.#
 
 === Load Uniform Vars. In Default Uniform Block
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Shader_Program_Usage_and_State[Shader Program Usage and State].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Shader_Program_Usage_and_State[Shader Program Usage and State].#
 
 [[gl.uniform]]
 * *uniform*(_location_, _type_, _val1_ [, _val2_ [, _val3_ [, _val4_]]]) +
@@ -214,21 +214,21 @@ See <<snippet_uniform_matrix, example>>.#
 
 === Uniform Buffer Objects Bindings
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Program_Object_API_State_Functions[Program Object API State Functions].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Program_Object_API_State_Functions[Program Object API State Functions].#
 
 [[gl.uniform_block_binding]]
 * *uniform_block_binding*(_program_, _index_, _binding_)
 
 === Shader Buffer Variables
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Program_Object_API_State_Functions[Program Object API State Functions].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Program_Object_API_State_Functions[Program Object API State Functions].#
 
 [[gl.shader_storage_block_binding]]
 * *shader_storage_block_binding*(_program_, _index_, _binding_)
 
 === Subroutine Uniform Variables
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Shader_Program_Query[Shader Program Query].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Shader_Program_Query[Shader Program Query].#
 
 [[gl.get_subroutine_uniform_location]]
 * _location_ = *get_subroutine_uniform_location*(_program_, <<shadertype, _shadertype_>>, _name_)
@@ -259,8 +259,8 @@ See <<snippet_uniform_matrix, example>>.#
 
 === Shader and Program Queries
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Shader_Object_API_State_Functions[Shader Object API State Functions] - 
-https://www.opengl.org/wiki/Category:Program_Object_API_State_Functions[Program Object API State Functions].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Shader_Object_API_State_Functions[Shader Object API State Functions] - 
+https://www.khronos.org/opengl/wiki/Category:Program_Object_API_State_Functions[Program Object API State Functions].#
 
 [[gl.get_shader]]
 * _value_ = *get_shader*(_shader_, _pname_) +

@@ -8,40 +8,40 @@
 [[gl.get_multisample]]
 * _value(s)_ = *get_multisample*(_pname_) +
 [small]#_pname_: '_sample position_'. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glGetMultisample[glGetMultisample].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetMultisample[glGetMultisample].#
 
 [[gl.min_sample_shading]]
 * *min_sample_shading*(_value_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glMinSampleShading[glMinSampleShading].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glMinSampleShading[glMinSampleShading].#
 
 === Points
 
 [[gl.point_size]]
 * *point_size*(_size_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glPointSize[glPointSize].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glPointSize[glPointSize].#
 
 [[gl.point_parameter]]
 * _value(s)_ = *point_parameter*(_pname_) +
 [small]#_pname_: '_fade threshold size_' for GL_POINT_FADE_THRESHOLD_SIZE, etc. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glPointParameter[glPointParameter].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glPointParameter[glPointParameter].#
 
 === Line Segments
 
 [[gl.line_width]]
 * *line_width*(_width_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glLineWidth[glLineWidth].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glLineWidth[glLineWidth].#
 
 === Polygons
 
 [[gl.front_face]]
 * *front_face*(_dir_) +
 [small]#_dir_: '_ccw_', '_cw_'. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glFrontFace[glFrontFace].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glFrontFace[glFrontFace].#
 
 [[gl.cull_face]]
 * *cull_face*(_mode_) +
 [small]#_mode_: '_front_', '_back_', '_front and back_'. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glCullFace[glCullFace].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glCullFace[glCullFace].#
 
 === Polygon Rast. & Depth Offset
 
@@ -49,9 +49,9 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glCullFace[glCullFace].#
 * *polygon_mode*(_face_, _mode_) +
 [small]#_face_: '_front and back_'. +
 _mode_: '_point_', '_line_', '_fill_'. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glPolygonMode[glPolygonMode].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glPolygonMode[glPolygonMode].#
 
 [[gl.polygon_offset]]
 * *polygon_offset*(_factor_, _units_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glPolygonOffset[glPolygonOffset].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glPolygonOffset[glPolygonOffset].#
 

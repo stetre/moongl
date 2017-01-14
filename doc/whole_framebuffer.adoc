@@ -9,46 +9,46 @@
 *draw_buffers*(_buf1_ [, _buf2_, _..._]) +
 *draw_buffers*(_framebuffer_, _buf1_ [, _buf2_, _..._]) +
 [small]#_buf_: '_none_' for GL_NONE, '_front left_' for GL_FRONT_LEFT, '_color attachment i_' for GL_COLOR_ATTACHMENTi, etc. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glDrawBuffer[glDrawBuffer],
-https://www.opengl.org/wiki/GLAPI/glDrawBuffers[glDrawBuffers].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDrawBuffer[glDrawBuffer],
+https://www.khronos.org/opengl/wiki/GLAPI/glDrawBuffers[glDrawBuffers].#
 
 === Fine Control of Buffer Updates
 
 [[gl.color_mask]]
 * *color_mask*(_r_, _g_, _b_, _a_) +
 *color_mask*(_drawbuffer_, _r_, _g_, _b_, _a_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glColorMask[glColorMask].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glColorMask[glColorMask].#
 
 [[gl.depth_mask]]
 * *depth_mask*(_boolean_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glDepthMask[glDepthMask].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDepthMask[glDepthMask].#
 
 [[gl.stencil_mask]]
 * *stencil_mask*(_mask_ [, _face_]) +
 [small]#_face_: '_front_', '_back_', '_front and back_'. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glStencilMask[glStencilMask].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glStencilMask[glStencilMask].#
 
 === Clearing the Buffers
 
 [[gl.clear]]
 * *clear*([_buffer_, _..._ ]) +
 [small]#_buffer_: '_color_', '_depth_', '_stencil_'. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glClear[glClear].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glClear[glClear].#
 [small]#See <<snippet_clear, example>>.#
 
 [[gl.clear_color]]
 * *clear_color*(_r_, _g_, _b_, _a_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glClearColor[glClearColor].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glClearColor[glClearColor].#
 [small]#See <<snippet_clear, example>>.#
 
 [[gl.clear_depth]]
 * *clear_depth*(_d_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glClearDepth[glClearDepth].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glClearDepth[glClearDepth].#
 [small]#See <<snippet_clear, example>>.#
 
 [[gl.clear_stencil]]
 * *clear_stencil*(_s_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glClearStencil[glClearStencil].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glClearStencil[glClearStencil].#
 
 [[gl.clear_buffer]]
 * *clear_buffer*('_color_', _drawbuffer_, _r_, _g_, _b_, _a_) +
@@ -57,13 +57,13 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glClear[glClear].#
 *clear_buffer*(_framebuffer_, '_color_', _drawbuffer_, _r_, _g_, _b_, _a_) +
 *clear_buffer*(_framebuffer_, '_depth_', _value_) +
 *clear_buffer*(_framebuffer_, '_stencil_', _value_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glClearBuffer[glClearBuffer].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glClearBuffer[glClearBuffer].#
 
 
 [[gl.clear_bufferfi]]
 * *clear_bufferfi*(_depth_, _stencil_) +
 *clear_bufferfi*(_framebuffer_, _depth_, _stencil_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glClearBufferfi[glClearBufferfi].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glClearBufferfi[glClearBufferfi].#
 
 === Invalidating Framebuffers
 
@@ -72,6 +72,6 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glClear[glClear].#
 *invalidate_sub_framebuffer*(<<framebuffertarget, _target_>>|_framebuffer_, _x_, _y_, _width_, _height_, _attachment1_ [, _attachment2_, _..._ ]) +
 [small]_attachment_: '_color attachment i_' for GL_COLOR_ATTACHMENTi, '_depth_' for GL_DEPTH, etc. +
 Rfr:
-https://www.opengl.org/wiki/GLAPI/glInvalidateFramebuffer[glInvalidateFramebuffer],
-https://www.opengl.org/wiki/GLAPI/glInvalidateSubFramebuffer[glInvalidateSubFramebuffer].#
+https://www.khronos.org/opengl/wiki/GLAPI/glInvalidateFramebuffer[glInvalidateFramebuffer],
+https://www.khronos.org/opengl/wiki/GLAPI/glInvalidateSubFramebuffer[glInvalidateSubFramebuffer].#
 

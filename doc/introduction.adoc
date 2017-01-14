@@ -12,7 +12,7 @@ This document purposedly reflects the structure of the
 https://www.opengl.org/sdk/docs/[OpenGL 4.5 Reference card],
 so that one can easily find the correspondence between MoonGL and OpenGL API by
 comparing the two documents. Links to corresponding sections of the 
-https://www.opengl.org/wiki/Main_Page[OpenGL Wiki] are also provided for this purpose.
+https://www.khronos.org/opengl/wiki/Main_Page[OpenGL Wiki] are also provided for this purpose.
 
 As a general rule, each OpenGL function is bound to by a MoonGL function whose name is
 a https://en.wikipedia.org/wiki/Snake_case[snake_case] version of the original.

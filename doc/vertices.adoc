@@ -6,11 +6,11 @@
 [[gl.patch_parameter]]
 * *patch_parameter*(_pname_, _val_ [, _val_, _..._]) +
 [small]#_pname_: '_vertices_', '_default outer level_',  '_default inner level_'. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glPatchParameter[glPatchParameter].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glPatchParameter[glPatchParameter].#
 
 === Current Vertex Attribute Values
 
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glVertexAttrib[glVertexAttrib].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glVertexAttrib[glVertexAttrib].#
 
 [[gl.vertex_attrib]]
 * *vertex_attrib*(_index_, _type_, _val1_ [, _val2_, _val3_, _val4_]) +

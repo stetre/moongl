@@ -3,7 +3,7 @@
 
 === Vertex Array Objects
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Vertex_Arrays[Vertex Arrays].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Vertex_Arrays[Vertex Arrays].#
 
 [[gl.gen_vertex_arrays]]
 * _array1_, _array2_, _..._ = *gen_vertex_arrays*([_n_ = 1])
@@ -31,7 +31,7 @@
 
 === Generic Vertex Attribute Arrays
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Vertex_Array_Object_API_State_Functions[Vertex Array Object API State Functions].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Vertex_Array_Object_API_State_Functions[Vertex Array Object API State Functions].#
 
 [[gl.vertex_attrib_format]]
 * *vertex_attrib_format*(_index_, _size_, _type_, _normalized_, _offset_) +
@@ -39,12 +39,12 @@
 [small]#_type_: '_byte_', '_ubyte_', '_short_', '_ushort_', '_int_', '_uint_', '_float_', 
 '_double_', '_half float_', '_fixed_', '_int 2 10 10 10 rev_', '_uint 2 10 10 10 rev_', 
 '_uint 10f 11f 11f rev_'. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glVertexAttribFormat[glVertexAttribFormat].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glVertexAttribFormat[glVertexAttribFormat].#
 
 [[gl.bind_vertex_buffer]]
 * *bind_vertex_buffer*(_index_, _buffer_, _offset_, _stride_) +
 *bind_vertex_buffer*(_array_, _index_, _buffer_, _offset_, _stride_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glBindVertexBuffer[glBindVertexBuffer].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBindVertexBuffer[glBindVertexBuffer].#
 
 [[gl.bind_vertex_buffers]]
 * *bind_vertex_buffers*(_index_, _buffer1_, _offset1_, _stride1_ [, _buffer2_, _offset2_, _stride2_, _..._]) +
@@ -53,7 +53,7 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glVertexAttribFormat[glVertexAttribFormat
 [[gl.vertex_attrib_binding]]
 * *vertex_attrib_binding*(_attribindex_, _bindingindex_) +
 *vertex_attrib_binding*(_array_, _attribindex_, _bindingindex_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glVertexAttribBinding[glVertexAttribBinding].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glVertexAttribBinding[glVertexAttribBinding].#
 
 [[gl.vertex_attrib_pointer]]
 * *vertex_attrib_pointer*(_index_, _size_, _type_, _normalized_, _stride_, _pointer_) +
@@ -61,29 +61,29 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glVertexAttribFormat[glVertexAttribFormat
 '_double_', '_half float_', '_fixed_', '_int 2 10 10 10 rev_', '_uint 2 10 10 10 rev_', 
 '_uint 10f 11f 11f rev_'. +
 Rfr: 
-https://www.opengl.org/wiki/GLAPI/glVertexAttribPointer[glVertexAttribPointer].#
+https://www.khronos.org/opengl/wiki/GLAPI/glVertexAttribPointer[glVertexAttribPointer].#
 [small]#See <<snippet_rectangle, example>>.#
 
 [[gl.enable_vertex_attrib_array]]
 * *enable_vertex_attrib_array*(_index_) +
 *enable_vertex_attrib_array*(_array_, _index_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glEnableVertexAttribArray[glEnableVertexAttribArray].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glEnableVertexAttribArray[glEnableVertexAttribArray].#
 
 [[gl.disable_vertex_attrib_array]]
 * *disable_vertex_attrib_array*(_index_) +
 *disable_vertex_attrib_array*(_array_, _index_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glDisableVertexAttribArray[glDisableVertexAttribArray].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDisableVertexAttribArray[glDisableVertexAttribArray].#
 
 === Vertex Attribute Divisors 
 
 [[gl.vertex_binding_divisor]]
 * *vertex_binding_divisor*(_index_, _divisor_) +
 *vertex_binding_divisor*(_array_, _index_, _divisor_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glVertexBindingDivisor[glVertexBindingDivisor].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glVertexBindingDivisor[glVertexBindingDivisor].#
 
 [[gl.vertex_attrib_divisor]]
 * *vertex_attrib_divisor*(_index_, _divisor_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glVertexAttribDivisor[glVertexAttribDivisor].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glVertexAttribDivisor[glVertexAttribDivisor].#
 
 === Primitive Restart
 
@@ -91,11 +91,11 @@ https://www.opengl.org/wiki/GLAPI/glVertexAttribPointer[glVertexAttribPointer].#
 
 [[gl.primitive_restart_index]]
 * *primitive_restart_index*(_index_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glPrimitiveRestartIndex[glPrimitiveRestartIndex].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glPrimitiveRestartIndex[glPrimitiveRestartIndex].#
 
 === Drawing Commands
 
-[small]#Rfr: https://www.opengl.org/wiki/Category:Core_API_Ref_Vertex_Rendering[Vertex Rendering].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Vertex_Rendering[Vertex Rendering].#
 
 [[gl.draw_arrays]]
 * *draw_arrays*(_mode_, _first_, _count_ [, _instancecount_ [, _baseinstance_]]) +
@@ -103,7 +103,7 @@ https://www.opengl.org/wiki/GLAPI/glVertexAttribPointer[glVertexAttribPointer].#
 *multi_draw_arrays*(_mode_, _first1_, _count1_ [, _first2_, _count2_ _..._]) +
 *multi_draw_arrays_indirect*(_mode_, _indirect_, _drawcount_, _stride_) +
 [small]#_mode_: '_points_' for GL_POINTS, '_patches_' for GL_PATCHES, etc. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glDrawArrays[glDrawArrays].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDrawArrays[glDrawArrays].#
 
 [[gl.draw_elements]]
 * *draw_elements*(_mode_, _count_, _type_, _indices_ [, _instancecount_ [, _baseinstance_]]) +
@@ -116,7 +116,7 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glDrawArrays[glDrawArrays].#
 *draw_range_elements_base_vertex*(_mode_, _start_, _end_, _count_, _type_, _indices_, _basevertex_) +
 [small]#_mode_: '_points_' for GL_POINTS, '_patches_' for GL_PATCHES, etc. +
 _type_: '_ubyte_', '_ushort_', '_uint_'. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glDrawElements[glDrawElements].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDrawElements[glDrawElements].#
 
 === Vertex Array Queries
 
@@ -131,11 +131,11 @@ https://www.opengl.org/sdk/docs/man/html/glGetVertexArrayIndexed.xhtml[glGetVert
 _va1_, _val2_, _val3_, _val4_ = *get_current_vertex_attrib*(_index_, _type_) +
 [small]#_pname_: see <<gl.get_vertex_array, get_vertex_array>>. +
 _type_: '_byte_', _ubyte_', '_short_', '_ushort_', '_int_', '_uint_', '_float_', '_double_'. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glGetVertexAttrib[glGetVertexAttrib].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetVertexAttrib[glGetVertexAttrib].#
 
 [[gl.get_vertex_attrib_pointer]]
 * _pointer_ = *get_vertex_attrib_pointer*(_index_) +
-[small]#Rfr: https://www.opengl.org/wiki/GLAPI/glGetVertexAttribPointerv[glGetVertexAttribPointerv].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetVertexAttribPointerv[glGetVertexAttribPointerv].#
 
 === Conditional Rendering
 
@@ -143,5 +143,5 @@ Rfr: https://www.opengl.org/wiki/GLAPI/glGetVertexAttrib[glGetVertexAttrib].#
 * *begin_conditional_render*(_id_, _mode_ ) +
 *end_conditional_render*( ) +
 [small]#_mode_: '_query wait_' for GL_QUERY_WAIT, '_query no wait_' for GL_QUERY_NO_WAIT, etc. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glBeginConditionalRender[glBeginConditionalRender].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBeginConditionalRender[glBeginConditionalRender].#
 

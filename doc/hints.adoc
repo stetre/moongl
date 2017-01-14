@@ -5,6 +5,6 @@
 * *hint*(_target_, _hint_) +
 [small]#_target_: '_line smooth_' for GL_LINE_SMOOTH_HINT, etc. +
 _hint_: '_fastest_', '_nicest_', '_don't care_'. +
-Rfr: https://www.opengl.org/wiki/GLAPI/glHint[glHint].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glHint[glHint].#
 
 
