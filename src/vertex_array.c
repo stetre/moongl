@@ -260,6 +260,10 @@ static int VertexAttribPointer(lua_State *L)
     GLboolean normalized = checkboolean(L, 4);
     GLsizei stride = luaL_checkinteger(L, 5);
     intptr_t pointer = luaL_checkinteger(L, 6);
+
+    if(size == 0)
+        size = GL_BGRA;
+
     switch(type)
         {
         case GL_BYTE:
