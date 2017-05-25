@@ -762,8 +762,8 @@ p.tableblock.header { color: #6d6e71; }
 <h1>MoonGL Reference Manual</h1>
 <div class="details">
 <span id="author" class="author">Stefano Trettel</span><br>
-<span id="revnumber">version 0.4,</span>
-<span id="revdate">2016-06-01</span>
+<span id="revnumber">version 0.5,</span>
+<span id="revdate">2017-05-25</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -4040,11 +4040,20 @@ for example, <a href="#gl.buffer_data">buffer_data</a>( ) and
 <div id="gl.flatten" class="ulist">
 <ul>
 <li>
-<p><em>val1</em>, <em>&#8230;&#8203;</em>, <em>valN</em> = <strong>flatten</strong>(<em>table</em>) <em>NONGL</em><br>
+<p><em>val<sub>1</sub></em>, <em>&#8230;&#8203;</em>, <em>val<sub>N</sub></em> = <strong>flatten</strong>(<em>table</em>) <em>NONGL</em><br>
 <span class="small">Flattens out the given <em>table</em> and returns the terminal elements in the order they are found.
 Similar to Lua&#8217;s
 <a href="http://www.lua.org/manual/5.3/manual.html#pdf-table.unpack">table.unpack</a>( ),
 it also unpacks any nested table. Only the array part of the table(s) is considered.</span></p>
+</li>
+</ul>
+</div>
+<div id="gl.flatten_table" class="ulist">
+<ul>
+<li>
+<p>{<em>val<sub>1</sub></em>, <em>&#8230;&#8203;</em>, <em>val<sub>N</sub></em>} = <strong>flatten_table</strong>(<em>table</em>) <em>NONGL</em><br>
+<span class="small">Same as <a href="#gl.flatten">flatten</a>(&nbsp;), but returns the values in a flat table.
+Unlike <a href="#gl.flatten">flatten</a>(&nbsp;), this function can be used also with very large tables.</span></p>
 </li>
 </ul>
 </div>
@@ -4059,15 +4068,15 @@ it also unpacks any nested table. Only the array part of the table(s) is conside
 <div id="gl.pack" class="ulist">
 <ul>
 <li>
-<p><em>bstring</em> = <strong>pack</strong>(<a href="#type"><em>type</em></a>, <em>val1</em>, <em>&#8230;&#8203;</em>, <em>valN</em>) <em>NONGL</em><br>
+<p><em>bstring</em> = <strong>pack</strong>(<a href="#type"><em>type</em></a>, <em>val<sub>1</sub></em>, <em>&#8230;&#8203;</em>, <em>val<sub>N</sub></em>) <em>NONGL</em><br>
 <em>bstring</em> = <strong>pack</strong>(<a href="#type"><em>type</em></a>, <em>table</em>) <em>NONGL</em><br>
-<span class="small">Packs the numbers <em>val1</em>, <em>&#8230;&#8203;</em>, <em>valN</em> in a binary string, encoding them
+<span class="small">Packs the numbers <em>val<sub>1</sub></em>, <em>&#8230;&#8203;</em>, <em>val<sub>N</sub></em> in a binary string, encoding them
 according to <em>type</em>. The values may be passed also in a (possibly nested) table <em>t</em>.</span></p>
 </li>
 <li>
-<p><em>val1</em>, <em>&#8230;&#8203;</em>, <em>valN</em> = <strong>unpack</strong>(<a href="#type"><em>type</em></a>, <em>bstring</em>) <em>NONGL</em><br>
+<p>{<em>val<sub>1</sub></em>, <em>&#8230;&#8203;</em>, <em>val<sub>N</sub></em>} = <strong>unpack</strong>(<a href="#type"><em>type</em></a>, <em>bstring</em>) <em>NONGL</em><br>
 <span class="small">Unpacks the binary string <em>bstring</em>, interpreting it as a sequence of values
-enncoded according to <em>type</em>, and returns the extracted values. The length of the
+enncoded according to <em>type</em>, and returns the extracted values in a flat table. The length of the
 binary string must be a multiple of <em>gl.sizeof(type)</em>.</span></p>
 </li>
 </ul>
@@ -4241,8 +4250,8 @@ of MoonGL functionalities in practice.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 0.4<br>
-Last updated 2016-12-21 10:21:13 CET
+Version 0.5<br>
+Last updated 2017-05-25 08:19:24 CEST
 </div>
 </div>
 </body>

@@ -33,10 +33,9 @@ static int Sizeof(lua_State *L)
     return 1;
     }
 
-static int Flatten_(lua_State *L, int arg)
-/* val1, ..., valN = flatten(table) */
+static int Flatten1_(lua_State *L, int table_index, int cur_index, int arg)
     {
-    int len, i, top, n=0;
+    int len, i, top, m, n=0;
 
     if(lua_type(L, arg) != LUA_TTABLE)
         return luaL_error(L, "table expected");
@@ -47,93 +46,138 @@ static int Flatten_(lua_State *L, int arg)
 
     if(len==0) return n;
 
-    luaL_checkstack(L, len, NULL);
     for(i=1; i<=len; i++)
         {
         lua_geti(L, arg, i);
         top = lua_gettop(L);
         if(lua_type(L, top) == LUA_TTABLE)
             {
-            n += Flatten_(L, top);
+            m = Flatten1_(L, table_index, cur_index, top);
+            n += m;
+            cur_index += m;
             lua_remove(L, top);
             }
-        else n++;
+        else
+            {
+            n++;
+            cur_index++;
+            lua_rawseti(L, table_index, cur_index);
+            }
+        }
+    return n;
+    }
+
+static int toflattable(lua_State *L, int arg)
+/* Creates a flat table with all the arguments starting from arg, and leaves 
+ * it on top of the stack.
+ */
+    {
+    int table_index, last_arg, i, n;
+    if(lua_type(L, arg) == LUA_TTABLE)
+        {
+        lua_newtable(L);
+        n = Flatten1_(L, lua_gettop(L), 0, arg);
+        }
+    else
+        {
+        /* create a table with all the arguments, and flatten it */
+        last_arg = lua_gettop(L);
+        lua_newtable(L);
+        table_index = lua_gettop(L);
+        for(i=arg; i <= last_arg; i++)
+            {
+            lua_pushvalue(L, i);
+            lua_rawseti(L, table_index, i-arg+1);
+            }
+        lua_newtable(L);
+        n = Flatten1_(L, lua_gettop(L), 0, table_index);
         }
     return n;
     }
 
 static int Flatten(lua_State *L)
     {
-    return Flatten_(L, 1);
-    }
-
-
-
-static size_t CheckValues(lua_State *L, size_t first, int integral)
-#define CheckNumbers(L, arg) CheckValues((L), (arg), 0) 
-#define CheckIntegers(L, arg) CheckValues((L), (arg), 1) 
-    {
-    size_t n, arg;
-
-    if(lua_istable(L, first))
-        {
-        n = (size_t)Flatten_(L, first);
-        lua_remove(L, first); /* remove table */
-        }
-    else if(integral)
-        {
-        arg = first;
-        while(!lua_isnoneornil(L, arg))
-            luaL_checkinteger(L, arg++);
-        if(arg == first)
-            luaL_checkinteger(L, arg); /* raise an error */
-        n = arg - first;
-        }
-    else
-        {
-        arg = first;
-        while(!lua_isnoneornil(L, arg))
-            luaL_checknumber(L, arg++);
-        if(arg == first)
-            luaL_checknumber(L, arg); /* raise an error */
-        n = arg - first;
-        }
+    int n, i, table_index;
+    n = toflattable(L, 1);
+    table_index = lua_gettop(L);
+    luaL_checkstack(L, n, "too many elements, cannot grow Lua stack");
+    for(i = 0; i < n; i++)
+        lua_rawgeti(L, table_index, i+1);
     return n;
     }
 
-
-#define PACK_NUMBERS(T)                     \
-static int Pack##T(lua_State *L)            \
-    {                                       \
-    size_t n, i, arg, len;                  \
-    T *data;                                \
-    n = CheckNumbers(L, 2);                 \
-    len = n * sizeof(T);                    \
-    data = (T*)Malloc(L, len);              \
-    arg = 2;                                \
-    for(i = 0; i < n; i++)                  \
-        data[i] = lua_tonumber(L, arg++);   \
-    lua_pushlstring(L, (char*)data, len);   \
-    Free(L, data);                          \
-    return 1;                               \
+static int FlattenTable(lua_State *L)
+    {
+    toflattable(L, 1);
+    return 1;
     }
 
-#define PACK_INTEGERS(T)                    \
-static int Pack##T(lua_State *L)            \
-    {                                       \
-    size_t n, i, arg, len;                  \
-    T *data;                                \
-    n = CheckIntegers(L, 2);                \
-    len = n * sizeof(T);                    \
-    data = (T*)Malloc(L, len);              \
-    arg = 2;                                \
-    for(i = 0; i < n; i++)                  \
-        data[i] = lua_tointeger(L, arg++);  \
-    lua_pushlstring(L, (char*)data, len);   \
-    Free(L, data);                          \
-    return 1;                               \
+/*-----------------------------------------------------------------------------*/
+
+/* Internal error codes */
+#define ERR_NOTPRESENT       1
+#define ERR_SUCCESS          0
+#define ERR_GENERIC         -1
+#define ERR_TYPE            -2
+#define ERR_VALUE           -3
+#define ERR_TABLE           -4
+#define ERR_EMPTY           -5
+#define ERR_MEMORY          -6
+#define ERR_LENGTH          -7
+#define ERR_POOL            -8
+#define ERR_BOUNDARIES      -9
+#define ERR_UNKNOWN         -10
+#define errstring moongl_errstring
+static const char* errstring(int err);
+
+static const char* errstring(int err)
+    {
+    switch(err)
+        {
+        case 0: return "success";
+        case ERR_GENERIC: return "generic error";
+        case ERR_TABLE: return "not a table";
+        case ERR_EMPTY: return "empty list";
+        case ERR_TYPE: return "invalid type";
+        case ERR_VALUE: return "invalid value";
+        case ERR_NOTPRESENT: return "missing";
+        case ERR_MEMORY: return "out of memory";
+        case ERR_LENGTH: return "invalid length";
+        case ERR_POOL: return "elements are not from the same pool";
+        case ERR_BOUNDARIES: return "invalid boundaries";
+        case ERR_UNKNOWN: return "unknown field name";
+        default:
+            return "???";
+        }
+    return NULL; /* unreachable */
     }
 
+
+#define PACK(T, what) /* what= number or integer */ \
+static int Pack##T(lua_State *L, size_t n, void *dst, size_t dstsize, int *faulty_element)  \
+    {                                       \
+    int isnum;                              \
+    size_t i;                               \
+    T *data = (T*)dst;                      \
+    if(faulty_element) *faulty_element = 0; \
+    if(dstsize < (n * sizeof(T)))           \
+        return ERR_LENGTH;                  \
+    for(i = 0; i < n; i++)                  \
+        {                                   \
+        lua_rawgeti(L, -1, i+1);            \
+        data[i] = lua_to##what##x(L, -1, &isnum); \
+        if(!isnum)                          \
+            {                               \
+            if(faulty_element) *faulty_element = i+1;   \
+            return ERR_TYPE; /* element i+1 is not a #what */ \
+            }                               \
+        lua_pop(L, 1);                      \
+        }                                   \
+    return 0;                               \
+    }
+
+#define PACK_NUMBERS(T)     PACK(T, number)
+#define PACK_INTEGERS(T)    PACK(T, integer)
 
 PACK_NUMBERS(GLfloat)
 PACK_NUMBERS(GLdouble)
@@ -148,26 +192,29 @@ PACK_INTEGERS(GLhalf)
 
 
 static int Pack(lua_State *L)
-/* pack(type, val1, val2, ..., valN)
- * pack(type, table)
- * -> bstring
- */
     {
+    int err = 0;
+    void *dst = NULL;
+    size_t dstsize = 0;
     GLenum type = checktype(L, 1);
+    size_t n = toflattable(L, 2);
     switch(type)
         {
+#define P(T) do { dstsize = n * sizeof(T);      \
+                  dst = Malloc(L, dstsize);     \
+                  err = Pack##T(L, n, dst, dstsize, NULL); } while(0)
         case GL_UNSIGNED_BYTE_3_3_2:
         case GL_UNSIGNED_BYTE_2_3_3_REV:
-        case GL_UNSIGNED_BYTE: return PackGLbyte(L);
-        case GL_BYTE:  return PackGLubyte(L);
+        case GL_UNSIGNED_BYTE:              P(GLbyte); break;
+        case GL_BYTE:                       P(GLubyte); break;
         case GL_UNSIGNED_SHORT_5_6_5:
         case GL_UNSIGNED_SHORT_5_6_5_REV:
         case GL_UNSIGNED_SHORT_4_4_4_4:
         case GL_UNSIGNED_SHORT_4_4_4_4_REV:
         case GL_UNSIGNED_SHORT_5_5_5_1:
         case GL_UNSIGNED_SHORT_1_5_5_5_REV:
-        case GL_UNSIGNED_SHORT:  return PackGLushort(L);
-        case GL_SHORT:  return PackGLshort(L);
+        case GL_UNSIGNED_SHORT:             P(GLushort); break;
+        case GL_SHORT:                      P(GLshort); break;
         case GL_UNSIGNED_INT_8_8_8_8: 
         case GL_UNSIGNED_INT_8_8_8_8_REV: 
         case GL_UNSIGNED_INT_10_10_10_2: 
@@ -175,49 +222,49 @@ static int Pack(lua_State *L)
         case GL_UNSIGNED_INT_24_8:
         case GL_UNSIGNED_INT_10F_11F_11F_REV:
         case GL_UNSIGNED_INT_5_9_9_9_REV:
-        case GL_UNSIGNED_INT: return PackGLuint(L);
+        case GL_UNSIGNED_INT:               P(GLuint); break;
         case GL_INT_2_10_10_10_REV:
-        case GL_INT:  return PackGLint(L);
-        case GL_FIXED: return PackGLfixed(L);
-        case GL_HALF_FLOAT:  return PackGLhalf(L);
-        case GL_FLOAT:  return PackGLfloat(L);
-        case GL_DOUBLE: return PackGLdouble(L);
+        case GL_INT:                        P(GLint); break;
+        case GL_FIXED:                      P(GLfixed); break;
+        case GL_HALF_FLOAT:                 P(GLhalf); break;
+        case GL_FLOAT:                      P(GLfloat); break;
+        case GL_DOUBLE:                     P(GLdouble); break;
         case GL_FLOAT_32_UNSIGNED_INT_24_8_REV: //@@ 2*32 bit, see 8.4.4.2
         case GL_NONE:
             return luaL_argerror(L, 1, "invalid type");
         default:
-            return luaL_error(L, UNEXPECTED_ERROR);
+            return unexpected(L);
+#undef P
         }
-
-    CheckError(L);
-    return 0;
+    if(err)
+        {
+        Free(L, dst);
+        return luaL_argerror(L, 2, errstring(err));
+        }
+    lua_pushlstring(L, (char*)dst, dstsize);
+    Free(L, dst);
+    return 1;
     }
 
-#define UNPACK_NUMBERS(T)                   \
+#define UNPACK(T, what) /* what= number or integer */   \
 static int Unpack##T(lua_State *L, const void* data, size_t len) \
-    {                                       \
-    size_t n;                               \
-    size_t i=0;                             \
-    if((len < sizeof(T)) || (len % sizeof(T)) != 0) \
-        return luaL_argerror(L, 2, "invalid length");   \
-    n = len / sizeof(T);                    \
-    for(i = 0; i < n; i++)                  \
-        lua_pushnumber(L, ((T*)data)[i]);   \
-    return n;                               \
+    {                                                   \
+    size_t n;                                           \
+    size_t i=0;                                         \
+    if((len < sizeof(T)) || (len % sizeof(T)) != 0)     \
+        return ERR_LENGTH;                              \
+    n = len / sizeof(T);                                \
+    lua_newtable(L);                                    \
+    for(i = 0; i < n; i++)                              \
+        {                                               \
+        lua_push##what(L, ((T*)data)[i]);               \
+        lua_rawseti(L, -2, i+1);                        \
+        }                                               \
+    return 0;                                           \
     }
 
-#define UNPACK_INTEGERS(T)                  \
-static int Unpack##T(lua_State *L, const void* data, size_t len)            \
-    {                                       \
-    size_t n;                               \
-    size_t i=0;                             \
-    if((len < sizeof(T)) || (len % sizeof(T)) != 0) \
-        return luaL_argerror(L, 2, "invalid length");   \
-    n = len / sizeof(T);                    \
-    for(i = 0; i < n; i++)                  \
-        lua_pushnumber(L, ((T*)data)[i]);   \
-    return n;                               \
-    }
+#define UNPACK_NUMBERS(T)   UNPACK(T, number)
+#define UNPACK_INTEGERS(T)  UNPACK(T, integer)
 
 
 UNPACK_NUMBERS(GLfloat)
@@ -232,28 +279,23 @@ UNPACK_INTEGERS(GLfixed)
 UNPACK_INTEGERS(GLhalf)
 
 
-static int Unpack(lua_State *L)
-/* unpack(type, bstring)
- * -> val1, ..., valN
- */
+static int Unpack_(lua_State *L, GLenum type, const void *data, size_t len)
     {
-    size_t len;
-    GLenum type = checktype(L, 1);
-    const void *data = luaL_checklstring(L, 2, &len);
+    int err = 0;
     switch(type)
         {
         case GL_UNSIGNED_BYTE_3_3_2:
         case GL_UNSIGNED_BYTE_2_3_3_REV:
-        case GL_UNSIGNED_BYTE: return UnpackGLbyte(L, data, len);
-        case GL_BYTE:  return UnpackGLubyte(L, data, len);
+        case GL_UNSIGNED_BYTE:      err = UnpackGLbyte(L, data, len); break;
+        case GL_BYTE:           err = UnpackGLubyte(L, data, len); break;
         case GL_UNSIGNED_SHORT_5_6_5:
         case GL_UNSIGNED_SHORT_5_6_5_REV:
         case GL_UNSIGNED_SHORT_4_4_4_4:
         case GL_UNSIGNED_SHORT_4_4_4_4_REV:
         case GL_UNSIGNED_SHORT_5_5_5_1:
         case GL_UNSIGNED_SHORT_1_5_5_5_REV:
-        case GL_UNSIGNED_SHORT:  return UnpackGLushort(L, data, len);
-        case GL_SHORT:  return UnpackGLshort(L, data, len);
+        case GL_UNSIGNED_SHORT:         err = UnpackGLushort(L, data, len); break;
+        case GL_SHORT:          err = UnpackGLshort(L, data, len); break;
         case GL_UNSIGNED_INT_8_8_8_8: 
         case GL_UNSIGNED_INT_8_8_8_8_REV: 
         case GL_UNSIGNED_INT_10_10_10_2: 
@@ -261,28 +303,39 @@ static int Unpack(lua_State *L)
         case GL_UNSIGNED_INT_24_8:
         case GL_UNSIGNED_INT_10F_11F_11F_REV:
         case GL_UNSIGNED_INT_5_9_9_9_REV:
-        case GL_UNSIGNED_INT: return UnpackGLuint(L, data, len);
+        case GL_UNSIGNED_INT:       err = UnpackGLuint(L, data, len); break;
         case GL_INT_2_10_10_10_REV:
-        case GL_INT:  return UnpackGLint(L, data, len);
-        case GL_FIXED: return UnpackGLfixed(L, data, len);
-        case GL_HALF_FLOAT:  return UnpackGLhalf(L, data, len);
-        case GL_FLOAT:  return UnpackGLfloat(L, data, len);
-        case GL_DOUBLE: return UnpackGLdouble(L, data, len);
+        case GL_INT:        err = UnpackGLint(L, data, len); break;
+        case GL_FIXED:          err = UnpackGLfixed(L, data, len); break;
+        case GL_HALF_FLOAT:         err = UnpackGLhalf(L, data, len); break;
+        case GL_FLOAT:          err = UnpackGLfloat(L, data, len); break;
+        case GL_DOUBLE:         err = UnpackGLdouble(L, data, len); break;
         case GL_FLOAT_32_UNSIGNED_INT_24_8_REV: //@@ 2*32 bit, see 8.4.4.2
         case GL_NONE:
             return luaL_argerror(L, 1, "invalid type");
         default:
-            return luaL_error(L, UNEXPECTED_ERROR);
+            return unexpected(L);
         }
-
-    CheckError(L);
-    return 0;
+    if(err)
+        return luaL_error(L, errstring(err));
+    return 1;
     }
+
+
+static int Unpack(lua_State *L)
+    {
+    size_t len;
+    GLenum type = checktype(L, 1);
+    const void *data = luaL_checklstring(L, 2, &len);
+    return Unpack_(L, type, data, len);
+    }
+
 
 static const struct luaL_Reg Functions[] = 
     {
         { "sizeof", Sizeof },
         { "flatten", Flatten },
+        { "flatten_table", FlattenTable },
         { "pack", Pack },
         { "unpack", Unpack },
         { NULL, NULL } /* sentinel */
