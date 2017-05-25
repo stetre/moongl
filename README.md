@@ -1,4 +1,4 @@
-##MoonGL: Lua bindings for OpenGL
+## MoonGL: Lua bindings for OpenGL
 
 MoonGL is a Lua binding library for [OpenGL](https://www.opengl.org/).
 
