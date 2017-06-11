@@ -9,10 +9,10 @@
 * _array1_, _array2_, _..._ = *gen_vertex_arrays*([_n_ = 1])
 
 [[gl.create_vertex_arrays]]
-* *create_vertex_arrays*(_array1_ [, _array2_, _..._])
+* *create_vertex_arrays*(_array1_, [_array2_, _..._])
 
 [[gl.delete_vertex_arrays]]
-* *delete_vertex_arrays*(_array1_ [, _array2_, _..._])
+* *delete_vertex_arrays*(_array1_, [_array2_, _..._])
 
 [[gl.bind_vertex_array]]
 * *bind_vertex_array*([_array_]) +
@@ -47,8 +47,8 @@ Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glVertexAttribFormat[glVertexAttr
 [small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBindVertexBuffer[glBindVertexBuffer].#
 
 [[gl.bind_vertex_buffers]]
-* *bind_vertex_buffers*(_index_, _buffer1_, _offset1_, _stride1_ [, _buffer2_, _offset2_, _stride2_, _..._]) +
-*bind_vertex_buffers*(_array_, _index_, _buffer1_, _offset1_, _stride1_ [, _buffer2_, _offset2_, _stride2_, _..._])
+* *bind_vertex_buffers*(_index_, _buffer1_, _offset1_, _stride1_, [_buffer2_, _offset2_, _stride2_, _..._]) +
+*bind_vertex_buffers*(_array_, _index_, _buffer1_, _offset1_, _stride1_, [_buffer2_, _offset2_, _stride2_, _..._])
 
 [[gl.vertex_attrib_binding]]
 * *vertex_attrib_binding*(_attribindex_, _bindingindex_) +
@@ -99,20 +99,20 @@ https://www.khronos.org/opengl/wiki/GLAPI/glVertexAttribPointer[glVertexAttribPo
 [small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Vertex_Rendering[Vertex Rendering].#
 
 [[gl.draw_arrays]]
-* *draw_arrays*(_mode_, _first_, _count_ [, _instancecount_ [, _baseinstance_]]) +
+* *draw_arrays*(_mode_, _first_, _count_, [_instancecount_], [_baseinstance_]) +
 *draw_arrays_indirect*(_mode_, _indirect_) +
-*multi_draw_arrays*(_mode_, _first1_, _count1_ [, _first2_, _count2_ _..._]) +
+*multi_draw_arrays*(_mode_, _first1_, _count1_, [_first2_, _count2_ _..._]) +
 *multi_draw_arrays_indirect*(_mode_, _indirect_, _drawcount_, _stride_) +
 [small]#_mode_: '_points_' for GL_POINTS, '_patches_' for GL_PATCHES, etc. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDrawArrays[glDrawArrays].#
 
 [[gl.draw_elements]]
-* *draw_elements*(_mode_, _count_, _type_, _indices_ [, _instancecount_ [, _baseinstance_]]) +
+* *draw_elements*(_mode_, _count_, _type_, _indices_, [_instancecount_], [_baseinstance_]) +
 *draw_elements_indirect*(_mode_, _type_, _indirect_) +
-*draw_elements_base_vertex*(_mode_, _count_, _type_, _indices_, _basevertex_  [, _instancecount_ [, _baseinstance_]]) +
-*multi_draw_elements*(_mode_, _type_, _count1_, _indices1_ [, _count2_, _indices2_, _..._]) +
+*draw_elements_base_vertex*(_mode_, _count_, _type_, _indices_, _basevertex_ , [_instancecount_], [_baseinstance_]) +
+*multi_draw_elements*(_mode_, _type_, _count1_, _indices1_, [_count2_, _indices2_, _..._]) +
 *multi_draw_elements_indirect*(_mode_, _type_, _indirect_, _drawcount_, _stride_) +
-*multi_draw_elements_base_vertex*(_mode_, _type_, _count1_, _indices1_, _basevertex1_ [, _count2_, _indices2_, _basevertex2_, _..._]) +
+*multi_draw_elements_base_vertex*(_mode_, _type_, _count1_, _indices1_, _basevertex1_, [_count2_, _indices2_, _basevertex2_, _..._]) +
 *draw_range_elements*(_mode_, _start_, _end_, _count_, _type_, _indices_) +
 *draw_range_elements_base_vertex*(_mode_, _start_, _end_, _count_, _type_, _indices_, _basevertex_) +
 [small]#_mode_: '_points_' for GL_POINTS, '_patches_' for GL_PATCHES, etc. +
@@ -122,7 +122,7 @@ Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDrawElements[glDrawElements].#
 === Vertex Array Queries
 
 [[gl.get_vertex_array]]
-* _value_ = *get_vertex_array*(_array_, _pname_ [, _index_]) +
+* _value_ = *get_vertex_array*(_array_, _pname_, [_index_]) +
 [small]#_pname_: '_size_' for GL_VERTEX_ATTRIB_ARRAY_SIZE, etc (and '_binding offset_' for GL_VERTEX_BINDING_OFFSET, '_element array buffer binding_' for GL_ELEMENT_ARRAY_BUFFER_BINDING, '_current attrib_' for GL_CURRENT_VERTEX_ATTRIB). +
 Rfr: https://www.opengl.org/sdk/docs/man/html/glGetVertexArrayiv.xhtml[glGetVertexArrayiv], 
 https://www.opengl.org/sdk/docs/man/html/glGetVertexArrayIndexed.xhtml[glGetVertexArrayIndexed].#

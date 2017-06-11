@@ -7,23 +7,23 @@
 * _id1_, _id2_, _..._ = *gen_queries*([_n_ = 1])
 
 [[gl.create_queries]]
-* *create_queries*(_target_, _id1_ [, _id2_, _..._]) +
+* *create_queries*(_target_, _id1_, [_id2_, _..._]) +
 [small]#_target_: '_any samples passed_' for GL_ANY_SAMPLE_PASSED, etc.#
 
 [[gl.delete_queries]]
-* *delete_queries*(_id1_ [, _id2_, _..._])
+* *delete_queries*(_id1_, [_id2_, _..._])
 
 [[gl.begin_query]]
-* *begin_query*(_target_, _id_ [, _index_])
+* *begin_query*(_target_, _id_, [_index_])
 
 [[gl.end_query]]
-* *end_query*(_target_ [, _index_])
+* *end_query*(_target_, [_index_])
 
 [[gl.is_query]]
 * _boolean_ = *is_query*(_id_)
 
 [[gl.get_query]]
-* _value_  = *get_query*(_target_, _pname_ [, _index_]) +
+* _value_  = *get_query*(_target_, _pname_, [_index_]) +
 [small]#_pname_: '_current query_', '_query counter bits_'.#
 
 

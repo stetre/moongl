@@ -68,9 +68,9 @@ the creation of shading programs.
 
 [[gl.make_program]]
 * _program_, _shader1_, _shader2_, _..._ = 
-*make_program*(<<shadertype, _shadertype1_>>, _filename1_ [, <<shadertype, _shadertype2_>>, _filename2_, _..._]) _NONGL_ +
+*make_program*(<<shadertype, _shadertype1_>>, _filename1_, [<<shadertype, _shadertype2_>>, _filename2_, _..._]) _NONGL_ +
 _program_, _shader1_, _shader2_, _..._ = 
-*make_program_s*(<<shadertype, _shadertype1_>>, _sourcestring1_ [, <<shadertype, _shadertype2_>>, _sourcestring2_, _..._]) _NONGL_ +
+*make_program_s*(<<shadertype, _shadertype1_>>, _sourcestring1_, [<<shadertype, _shadertype2_>>, _sourcestring2_, _..._]) _NONGL_ +
 [small]#Both these functions create, compile and link a program with the passed shaders,
 and return the names assigned to them by OpenGL.
 They also check for errors at each compilation step. 
@@ -113,10 +113,10 @@ shaders, and deletes them and the program.#
 * _pipeline1_, _pipeline2_, _..._ = *gen_program_pipelines*([_n_ = 1])
 
 [[gl.create_program_pipelines]]
-* *create_program_pipelines*(_pipeline1_ [, _pipeline2_, _..._])
+* *create_program_pipelines*(_pipeline1_, [_pipeline2_, _..._])
 
 [[gl.delete_program_pipelines]]
-* *delete_program_pipelines*(_pipeline1_ [, _pipeline2_, _..._])
+* *delete_program_pipelines*(_pipeline1_, [_pipeline2_, _..._])
 
 [[gl.is_program_pipeline]]
 * _boolean_ = *is_program_pipeline*(_pipeline_)
@@ -158,7 +158,7 @@ shaders, and deletes them and the program.#
 [small]#May return _nil_.#
 
 [[gl.get_active_uniform_indices]]
-* _index1_, _index2_, _..._ = *get_active_uniform_indices*(_program_, _name1_ [, _name2_, _..._]) +
+* _index1_, _index2_, _..._ = *get_active_uniform_indices*(_program_, _name1_, [_name2_, _..._]) +
 [small]#_indexK_ = _false_ if _nameK_ is not a valid uniform name.#
 
 [[gl.get_active_uniform]]
@@ -166,7 +166,7 @@ shaders, and deletes them and the program.#
 [small]#May return _nil_.#
 
 [[gl.get_active_uniforms]]
-* _value1_, _value2_, _..._ = *get_active_uniforms*(_program_, _pname_, _index1_ [, _index2_, _..._]) +
+* _value1_, _value2_, _..._ = *get_active_uniforms*(_program_, _pname_, _index1_, [_index2_, _..._]) +
 [small]#_pname_: '_type_' or GL_UNIFORM_TYPE, '_name length_' for GL_UNIFORM_NAME_LENGTH, etc.#
 
 [[gl.get_uniform_block_index]]
@@ -190,10 +190,10 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.#
 [small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Shader_Program_Usage_and_State[Shader Program Usage and State].#
 
 [[gl.uniform]]
-* *uniform*(_location_, _type_, _val1_ [, _val2_ [, _val3_ [, _val4_]]]) +
-* *uniformv*(_location_, _count_, _type_, _val1_ [, _val2_, _..._ ]) +
-* *program_uniform*(_program_, _location_, _type_, _val1_ [, _val2_ [, _val3_ [, _val4_]]]) +
-* *program_uniformv*(_program_, _location_, _count_, _type_, _val1_ [, _val2_, _..._ ]) +
+* *uniform*(_location_, _type_, _val1_, [_val2_], [_val3_], [_val4_]) +
+* *uniformv*(_location_, _count_, _type_, _val1_, [_val2_, _..._ ]) +
+* *program_uniform*(_program_, _location_, _type_, _val1_, [_val2_], [_val3_], [_val4_]) +
+* *program_uniformv*(_program_, _location_, _count_, _type_, _val1_, [_val2_, _..._ ]) +
 [small]#_type_: '_bool_', '_int_', '_uint_', '_float_' or '_double_'. +
 _count_: number of vectors (or variables) in the array. +
 See <<snippet_uniform, example>>.#
@@ -248,7 +248,7 @@ See <<snippet_uniform_matrix, example>>.#
 [small]#_pname_: '_compatible subroutines_' for GL_COMPATIBLE_SUBROUTINES, etc.#
 
 [[gl.uniform_subroutines]]
-* *uniform_subroutines*(<<shadertype, _shadertype_>>, _index1_ [, _index2_, _..._])
+* *uniform_subroutines*(<<shadertype, _shadertype_>>, _index1_, [_index2_, _..._])
 
 === Shared Memory Access
 

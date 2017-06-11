@@ -13,13 +13,13 @@
 * _buffer1_, _buffer2_, _..._ = *gen_buffers*([_n_ = 1])
 
 [[gl.create_buffers]]
-* *create_buffers*(_buffer1_ [, _buffer2_, _..._])
+* *create_buffers*(_buffer1_, [_buffer2_, _..._])
 
 [[gl.delete_buffers]]
-* *delete_buffers*(_buffer1_ [, _buffer2_, _..._])
+* *delete_buffers*(_buffer1_, [_buffer2_, _..._])
 
 [[gl.bind_buffer]]
-* *bind_buffer*(<<buffertarget,_target_>> [, _buffer_]) +
+* *bind_buffer*(<<buffertarget,_target_>>, [_buffer_]) +
 *unbind_buffer*(<<buffertarget,_target_>>) _NONGL_
 
 [[gl.new_buffer]]
@@ -30,7 +30,7 @@
 === Create/Modify Buffer Object Data
 
 [[gl.buffer_storage]]
-* _size_ = *buffer_storage*(<<buffertarget,_target_>>|_buffer_, <<data,_data_>> [, _flag_, _flag_, _..._]) +
+* _size_ = *buffer_storage*(<<buffertarget,_target_>>|_buffer_, <<data,_data_>>, [_flag_, _flag_, _..._]) +
 [small]#_flag_: '_dynamic range_' for GL_DYNAMIC_RANGE_BIT, '_map read_' for GL_MAP_READ_BIT, etc. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBufferStorage[glBufferStorage].#
 
@@ -47,12 +47,12 @@ See <<snippet_rectangle, example>> and <<datahandling, 'Data handling utilities'
 See also <<datahandling, 'Data handling utilities'>>.#
 
 [[gl.clear_buffer_data]]
-* *clear_buffer_data*(<<buffertarget,_target_>>|_buffer_, <<intformat, _intformat_>>, <<format, _format_>>, <<type, _type_>> [, <<data,_data_>>]) +
+* *clear_buffer_data*(<<buffertarget,_target_>>|_buffer_, <<intformat, _intformat_>>, <<format, _format_>>, <<type, _type_>>, [<<data,_data_>>]) +
 [small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glClearBufferData[glClearBufferData].
 See also <<datahandling, 'Data handling utilities'>>.#
 
 [[gl.clear_buffer_sub_data]]
-* *clear_buffer_sub_data*(<<buffertarget,_target_>>|_buffer_, <<intformat, _intformat_>>), _offset_, _size_, <<format, _format_>>, <<type, _type_>> [, <<data,_data_>>]) +
+* *clear_buffer_sub_data*(<<buffertarget,_target_>>|_buffer_, <<intformat, _intformat_>>), _offset_, _size_, <<format, _format_>>, <<type, _type_>>, [<<data,_data_>>]) +
 [small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glClearBufferSubData[glClearBufferSubData].
 See also <<datahandling, 'Data handling utilities'>>.#
 
@@ -69,7 +69,7 @@ See also <<datahandling, 'Data handling utilities'>>.#
 
 [[gl.map_buffer]]
 * *map_buffer*(<<buffertarget,_target_>>|_buffer_, _access_) +
-*map_buffer_range*(<<buffertarget,_target_>>|_buffer_, _offset_, _length_ [, _accessbit1_, _..._]) +
+*map_buffer_range*(<<buffertarget,_target_>>|_buffer_, _offset_, _length_, [_accessbit1_, _..._]) +
 *unmap_buffer*(<<buffertarget,_target_>>|_buffer_) +
 [small]#_access_: 'read only_', '_write only_', '_read write_', +
 _accessbit_: '_read_' for GL_MAP_READ_BIT, '_invalidate buffer_' for GL_INVALIDATE_BUFFER_BIT, etc. +

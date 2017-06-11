@@ -874,30 +874,8 @@ of the <a href="https://github.com/stetre/moongl">official repository</a> on Git
 <div class="sect2">
 <h3 id="see-also">See also</h3>
 <div class="paragraph">
-<p>The following libraries may be used in conjunction with MoonGL, but they do not
-depend on it (and viceversa):</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Windowing and GUI:
-<a href="https://github.com/stetre/moonfltk">MoonFLTK</a>,
-<a href="https://github.com/stetre/moonglfw">MoonGLFW</a>,
-<a href="https://github.com/stetre/moonglut">MoonGLUT</a>.</p>
-</li>
-<li>
-<p>Math:
-<a href="https://github.com/stetre/moonglmath">MoonGLMATH</a>.</p>
-</li>
-<li>
-<p>Image loading:
-<a href="https://github.com/stetre/moonsoil">MoonSOIL</a>.</p>
-</li>
-<li>
-<p>Audio:
-<a href="https://github.com/stetre/luajack">LuaJACK</a>.</p>
-</li>
-</ul>
+<p>MoonGL is part of <a href="https://github.com/stetre/moonlibs">MoonLibs</a>, a collection of
+Lua libraries for graphics and audio programming.</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1105,7 +1083,7 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glFenceSync.xhtml">glFenc
 <div id="gl.client_wait_sync" class="ulist">
 <ul>
 <li>
-<p><em>sync</em> = <strong>client_wait_sync</strong>(<em>sync</em>, <em>timeout</em> [, <em>flag</em>, <em>&#8230;&#8203;</em> ])<br>
+<p><em>sync</em> = <strong>client_wait_sync</strong>(<em>sync</em>, <em>timeout</em>, [<em>flag</em>, <em>&#8230;&#8203;</em> ])<br>
 <span class="small">Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glClientWaitSync.xhtml">glClientWaitSync</a>.</span></p>
 </li>
 </ul>
@@ -1157,7 +1135,7 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml">glGetSyn
 <div id="gl.create_queries" class="ulist">
 <ul>
 <li>
-<p><strong>create_queries</strong>(<em>target</em>, <em>id1</em> [, <em>id2</em>, <em>&#8230;&#8203;</em>])<br>
+<p><strong>create_queries</strong>(<em>target</em>, <em>id1</em>, [<em>id2</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small"><em>target</em>: '<em>any samples passed</em>' for GL_ANY_SAMPLE_PASSED, etc.</span></p>
 </li>
 </ul>
@@ -1165,21 +1143,21 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml">glGetSyn
 <div id="gl.delete_queries" class="ulist">
 <ul>
 <li>
-<p><strong>delete_queries</strong>(<em>id1</em> [, <em>id2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>delete_queries</strong>(<em>id1</em>, [<em>id2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.begin_query" class="ulist">
 <ul>
 <li>
-<p><strong>begin_query</strong>(<em>target</em>, <em>id</em> [, <em>index</em>])</p>
+<p><strong>begin_query</strong>(<em>target</em>, <em>id</em>, [<em>index</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.end_query" class="ulist">
 <ul>
 <li>
-<p><strong>end_query</strong>(<em>target</em> [, <em>index</em>])</p>
+<p><strong>end_query</strong>(<em>target</em>, [<em>index</em>])</p>
 </li>
 </ul>
 </div>
@@ -1193,7 +1171,7 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml">glGetSyn
 <div id="gl.get_query" class="ulist">
 <ul>
 <li>
-<p><em>value</em>  = <strong>get_query</strong>(<em>target</em>, <em>pname</em> [, <em>index</em>])<br>
+<p><em>value</em>  = <strong>get_query</strong>(<em>target</em>, <em>pname</em>, [<em>index</em>])<br>
 <span class="small"><em>pname</em>: '<em>current query</em>', '<em>query counter bits</em>'.</span></p>
 </li>
 </ul>
@@ -1243,21 +1221,21 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml">glGetSyn
 <div id="gl.create_buffers" class="ulist">
 <ul>
 <li>
-<p><strong>create_buffers</strong>(<em>buffer1</em> [, <em>buffer2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>create_buffers</strong>(<em>buffer1</em>, [<em>buffer2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.delete_buffers" class="ulist">
 <ul>
 <li>
-<p><strong>delete_buffers</strong>(<em>buffer1</em> [, <em>buffer2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>delete_buffers</strong>(<em>buffer1</em>, [<em>buffer2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.bind_buffer" class="ulist">
 <ul>
 <li>
-<p><strong>bind_buffer</strong>(<a href="#buffertarget"><em>target</em></a> [, <em>buffer</em>])<br>
+<p><strong>bind_buffer</strong>(<a href="#buffertarget"><em>target</em></a>, [<em>buffer</em>])<br>
 <strong>unbind_buffer</strong>(<a href="#buffertarget"><em>target</em></a>) <em>NONGL</em></p>
 </li>
 </ul>
@@ -1277,7 +1255,7 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml">glGetSyn
 <div id="gl.buffer_storage" class="ulist">
 <ul>
 <li>
-<p><em>size</em> = <strong>buffer_storage</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#data"><em>data</em></a> [, <em>flag</em>, <em>flag</em>, <em>&#8230;&#8203;</em>])<br>
+<p><em>size</em> = <strong>buffer_storage</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#data"><em>data</em></a>, [<em>flag</em>, <em>flag</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small"><em>flag</em>: '<em>dynamic range</em>' for GL_DYNAMIC_RANGE_BIT, '<em>map read</em>' for GL_MAP_READ_BIT, etc.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glBufferStorage">glBufferStorage</a>.</span></p>
 </li>
@@ -1306,7 +1284,7 @@ See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 <div id="gl.clear_buffer_data" class="ulist">
 <ul>
 <li>
-<p><strong>clear_buffer_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a> [, <a href="#data"><em>data</em></a>])<br>
+<p><strong>clear_buffer_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, [<a href="#data"><em>data</em></a>])<br>
 <span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glClearBufferData">glClearBufferData</a>.
 See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 </li>
@@ -1315,7 +1293,7 @@ See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 <div id="gl.clear_buffer_sub_data" class="ulist">
 <ul>
 <li>
-<p><strong>clear_buffer_sub_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#intformat"><em>intformat</em></a>), <em>offset</em>, <em>size</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a> [, <a href="#data"><em>data</em></a>])<br>
+<p><strong>clear_buffer_sub_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#intformat"><em>intformat</em></a>), <em>offset</em>, <em>size</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, [<a href="#data"><em>data</em></a>])<br>
 <span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glClearBufferSubData">glClearBufferSubData</a>.
 See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 </li>
@@ -1344,7 +1322,7 @@ See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 <ul>
 <li>
 <p><strong>map_buffer</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>access</em>)<br>
-<strong>map_buffer_range</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <em>length</em> [, <em>accessbit1</em>, <em>&#8230;&#8203;</em>])<br>
+<strong>map_buffer_range</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <em>length</em>, [<em>accessbit1</em>, <em>&#8230;&#8203;</em>])<br>
 <strong>unmap_buffer</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>)<br>
 <span class="small"><em>access</em>: 'read only_', '<em>write only</em>', '<em>read write</em>',<br>
 <em>accessbit</em>: '<em>read</em>' for GL_MAP_READ_BIT, '<em>invalidate buffer</em>' for GL_INVALIDATE_BUFFER_BIT, etc.<br>
@@ -1569,9 +1547,9 @@ the creation of shading programs.</p>
 <ul>
 <li>
 <p><em>program</em>, <em>shader1</em>, <em>shader2</em>, <em>&#8230;&#8203;</em> =
-<strong>make_program</strong>(<a href="#shadertype"><em>shadertype1</em></a>, <em>filename1</em> [, <a href="#shadertype"><em>shadertype2</em></a>, <em>filename2</em>, <em>&#8230;&#8203;</em>]) <em>NONGL</em><br>
+<strong>make_program</strong>(<a href="#shadertype"><em>shadertype1</em></a>, <em>filename1</em>, [<a href="#shadertype"><em>shadertype2</em></a>, <em>filename2</em>, <em>&#8230;&#8203;</em>]) <em>NONGL</em><br>
 <em>program</em>, <em>shader1</em>, <em>shader2</em>, <em>&#8230;&#8203;</em> =
-<strong>make_program_s</strong>(<a href="#shadertype"><em>shadertype1</em></a>, <em>sourcestring1</em> [, <a href="#shadertype"><em>shadertype2</em></a>, <em>sourcestring2</em>, <em>&#8230;&#8203;</em>]) <em>NONGL</em><br>
+<strong>make_program_s</strong>(<a href="#shadertype"><em>shadertype1</em></a>, <em>sourcestring1</em>, [<a href="#shadertype"><em>shadertype2</em></a>, <em>sourcestring2</em>, <em>&#8230;&#8203;</em>]) <em>NONGL</em><br>
 <span class="small">Both these functions create, compile and link a program with the passed shaders,
 and return the names assigned to them by OpenGL.
 They also check for errors at each compilation step.
@@ -1650,14 +1628,14 @@ shaders, and deletes them and the program.</span></p>
 <div id="gl.create_program_pipelines" class="ulist">
 <ul>
 <li>
-<p><strong>create_program_pipelines</strong>(<em>pipeline1</em> [, <em>pipeline2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>create_program_pipelines</strong>(<em>pipeline1</em>, [<em>pipeline2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.delete_program_pipelines" class="ulist">
 <ul>
 <li>
-<p><strong>delete_program_pipelines</strong>(<em>pipeline1</em> [, <em>pipeline2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>delete_program_pipelines</strong>(<em>pipeline1</em>, [<em>pipeline2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
@@ -1739,7 +1717,7 @@ shaders, and deletes them and the program.</span></p>
 <div id="gl.get_active_uniform_indices" class="ulist">
 <ul>
 <li>
-<p><em>index1</em>, <em>index2</em>, <em>&#8230;&#8203;</em> = <strong>get_active_uniform_indices</strong>(<em>program</em>, <em>name1</em> [, <em>name2</em>, <em>&#8230;&#8203;</em>])<br>
+<p><em>index1</em>, <em>index2</em>, <em>&#8230;&#8203;</em> = <strong>get_active_uniform_indices</strong>(<em>program</em>, <em>name1</em>, [<em>name2</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small"><em>indexK</em> = <em>false</em> if <em>nameK</em> is not a valid uniform name.</span></p>
 </li>
 </ul>
@@ -1755,7 +1733,7 @@ shaders, and deletes them and the program.</span></p>
 <div id="gl.get_active_uniforms" class="ulist">
 <ul>
 <li>
-<p><em>value1</em>, <em>value2</em>, <em>&#8230;&#8203;</em> = <strong>get_active_uniforms</strong>(<em>program</em>, <em>pname</em>, <em>index1</em> [, <em>index2</em>, <em>&#8230;&#8203;</em>])<br>
+<p><em>value1</em>, <em>value2</em>, <em>&#8230;&#8203;</em> = <strong>get_active_uniforms</strong>(<em>program</em>, <em>pname</em>, <em>index1</em>, [<em>index2</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small"><em>pname</em>: '<em>type</em>' or GL_UNIFORM_TYPE, '<em>name length</em>' for GL_UNIFORM_NAME_LENGTH, etc.</span></p>
 </li>
 </ul>
@@ -1801,16 +1779,16 @@ GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc.</span></p>
 <div id="gl.uniform" class="ulist">
 <ul>
 <li>
-<p><strong>uniform</strong>(<em>location</em>, <em>type</em>, <em>val1</em> [, <em>val2</em> [, <em>val3</em> [, <em>val4</em>]]])<br></p>
+<p><strong>uniform</strong>(<em>location</em>, <em>type</em>, <em>val1</em>, [<em>val2</em>], [<em>val3</em>], [<em>val4</em>])<br></p>
 </li>
 <li>
-<p><strong>uniformv</strong>(<em>location</em>, <em>count</em>, <em>type</em>, <em>val1</em> [, <em>val2</em>, <em>&#8230;&#8203;</em> ])<br></p>
+<p><strong>uniformv</strong>(<em>location</em>, <em>count</em>, <em>type</em>, <em>val1</em>, [<em>val2</em>, <em>&#8230;&#8203;</em> ])<br></p>
 </li>
 <li>
-<p><strong>program_uniform</strong>(<em>program</em>, <em>location</em>, <em>type</em>, <em>val1</em> [, <em>val2</em> [, <em>val3</em> [, <em>val4</em>]]])<br></p>
+<p><strong>program_uniform</strong>(<em>program</em>, <em>location</em>, <em>type</em>, <em>val1</em>, [<em>val2</em>], [<em>val3</em>], [<em>val4</em>])<br></p>
 </li>
 <li>
-<p><strong>program_uniformv</strong>(<em>program</em>, <em>location</em>, <em>count</em>, <em>type</em>, <em>val1</em> [, <em>val2</em>, <em>&#8230;&#8203;</em> ])<br>
+<p><strong>program_uniformv</strong>(<em>program</em>, <em>location</em>, <em>count</em>, <em>type</em>, <em>val1</em>, [<em>val2</em>, <em>&#8230;&#8203;</em> ])<br>
 <span class="small"><em>type</em>: '<em>bool</em>', '<em>int</em>', '<em>uint</em>', '<em>float</em>' or '<em>double</em>'.<br>
 <em>count</em>: number of vectors (or variables) in the array.<br>
 See <a href="#snippet_uniform">example</a>.</span></p>
@@ -1910,7 +1888,7 @@ See <a href="#snippet_uniform_matrix">example</a>.</span></p>
 <div id="gl.uniform_subroutines" class="ulist">
 <ul>
 <li>
-<p><strong>uniform_subroutines</strong>(<a href="#shadertype"><em>shadertype</em></a>, <em>index1</em> [, <em>index2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>uniform_subroutines</strong>(<a href="#shadertype"><em>shadertype</em></a>, <em>index1</em>, [<em>index2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
@@ -2050,7 +2028,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glActiveTexture">glActiv
 <div id="gl.bind_texture" class="ulist">
 <ul>
 <li>
-<p><strong>bind_texture</strong>(<a href="#texturetarget"><em>target</em></a> [, <em>texture</em>])<br>
+<p><strong>bind_texture</strong>(<a href="#texturetarget"><em>target</em></a>, [<em>texture</em>])<br>
 <strong>unbind_texture</strong>(<a href="#texturetarget"><em>target</em></a>) <em>NONGL</em></p>
 </li>
 </ul>
@@ -2058,7 +2036,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glActiveTexture">glActiv
 <div id="gl.bind_textures" class="ulist">
 <ul>
 <li>
-<p><strong>bind_textures</strong>(<em>first</em>, <em>texture1</em> [, <em>texture2</em>, <em>&#8230;&#8203;</em> ])</p>
+<p><strong>bind_textures</strong>(<em>first</em>, <em>texture1</em>, [<em>texture2</em>, <em>&#8230;&#8203;</em> ])</p>
 </li>
 </ul>
 </div>
@@ -2072,14 +2050,14 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glActiveTexture">glActiv
 <div id="gl.create_textures" class="ulist">
 <ul>
 <li>
-<p><strong>create_textures</strong>(<a href="#texturetarget"><em>target</em></a>, <em>texture1</em> [, <em>texture2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>create_textures</strong>(<a href="#texturetarget"><em>target</em></a>, <em>texture1</em>, [<em>texture2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.delete_textures" class="ulist">
 <ul>
 <li>
-<p><strong>delete_textures</strong>(<em>texture1</em> [, <em>texture2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>delete_textures</strong>(<em>texture1</em>, [<em>texture2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
@@ -2115,14 +2093,14 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glActiveTexture">glActiv
 <div id="gl.create_samplers" class="ulist">
 <ul>
 <li>
-<p><strong>create_samplers</strong>(<em>sampler1</em> [, <em>sampler2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>create_samplers</strong>(<em>sampler1</em>, [<em>sampler2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.delete_samplers" class="ulist">
 <ul>
 <li>
-<p><strong>delete_samplers</strong>(<em>sampler1</em> [, <em>sampler2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>delete_samplers</strong>(<em>sampler1</em>, [<em>sampler2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
@@ -2137,7 +2115,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glActiveTexture">glActiv
 <div id="gl.bind_samplers" class="ulist">
 <ul>
 <li>
-<p><strong>bind_samplers</strong>(<em>first</em>, <em>sampler1</em> [, <em>sampler2</em>, <em>&#8230;&#8203;</em>])<br></p>
+<p><strong>bind_samplers</strong>(<em>first</em>, <em>sampler1</em>, [<em>sampler2</em>, <em>&#8230;&#8203;</em>])<br></p>
 </li>
 </ul>
 </div>
@@ -2159,7 +2137,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glActiveTexture">glActiv
 <div id="gl.sampler_parameter" class="ulist">
 <ul>
 <li>
-<p><strong>sampler_parameter</strong>(<em>sampler</em>, <em>pname</em>, <em>val1</em> [, <em>val2</em>, <em>&#8230;&#8203;</em>])<br>
+<p><strong>sampler_parameter</strong>(<em>sampler</em>, <em>pname</em>, <em>val1</em>, [<em>val2</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small"><em>pname</em>: '<em>wrap x</em>' for GL_TEXTURE_WRAP_X, '<em>min filter</em>' for GL_TEXTURE_MIN_FILTERS, etc.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glSamplerParameter">glSamplerParameter</a>.</span></p>
 </li>
@@ -2352,7 +2330,7 @@ Rfr:
 <div id="gl.get_texture_image" class="ulist">
 <ul>
 <li>
-<p><strong>get_texture_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#type"><em>type</em></a> [, <em>buffer</em>])<br>
+<p><strong>get_texture_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#type"><em>type</em></a>, [<em>buffer</em>])<br>
 <a href="#data"><em>data</em></a> (or <em>nil</em>, if <em>buffer</em> is passed)<br>
 <span class="small">Rfr:
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetTexImage">glGetTexImage</a>.</span></p>
@@ -2508,7 +2486,7 @@ Rfr:
 <div id="gl.bind_image_textures" class="ulist">
 <ul>
 <li>
-<p><strong>bind_image_textures</strong>(<em>first</em>, <em>texture1</em> [, <em>texture2</em>, <em>&#8230;&#8203;</em>])<br>
+<p><strong>bind_image_textures</strong>(<em>first</em>, <em>texture1</em>, [<em>texture2</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small">Rfr:
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glBindImageTextures">glBindImageTextures</a>.</span></p>
 </li>
@@ -2538,21 +2516,21 @@ Rfr:
 <div id="gl.create_framebuffers" class="ulist">
 <ul>
 <li>
-<p><strong>create_framebuffers</strong>(<em>framebuffer1</em> [, <em>framebuffer2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>create_framebuffers</strong>(<em>framebuffer1</em>, [<em>framebuffer2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.delete_framebuffers" class="ulist">
 <ul>
 <li>
-<p><strong>delete_framebuffers</strong>(<em>framebuffer1</em> [, <em>framebuffer2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>delete_framebuffers</strong>(<em>framebuffer1</em>, [<em>framebuffer2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.bind_framebuffer" class="ulist">
 <ul>
 <li>
-<p><strong>bind_framebuffer</strong>(<a href="#framebuffertarget"><em>target</em></a> [, <em>framebuffer</em>])<br>
+<p><strong>bind_framebuffer</strong>(<a href="#framebuffertarget"><em>target</em></a>, [<em>framebuffer</em>])<br>
 <strong>unbind_framebuffer</strong>(<a href="#framebuffertarget"><em>target</em></a>) <em>NONGL</em></p>
 </li>
 </ul>
@@ -2615,7 +2593,7 @@ Rfr:
 <div id="gl.bind_renderbuffer" class="ulist">
 <ul>
 <li>
-<p><strong>bind_renderbuffer</strong>(<em>target</em> [, <em>renderbuffer</em>])<br>
+<p><strong>bind_renderbuffer</strong>(<em>target</em>, [<em>renderbuffer</em>])<br>
 <strong>unbind_renderbuffer</strong>(<em>target</em>) <em>NONGL</em></p>
 </li>
 </ul>
@@ -2630,14 +2608,14 @@ Rfr:
 <div id="gl.create_renderbuffers" class="ulist">
 <ul>
 <li>
-<p><strong>create_renderbuffers</strong>(<em>renderbuffer1</em> [, <em>renderbuffer2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>create_renderbuffers</strong>(<em>renderbuffer1</em>, [<em>renderbuffer2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.delete_renderbuffers" class="ulist">
 <ul>
 <li>
-<p><strong>delete_renderbuffers</strong>(<em>renderbuffer1</em> [, <em>renderbuffer2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>delete_renderbuffers</strong>(<em>renderbuffer1</em>, [<em>renderbuffer2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
@@ -2749,7 +2727,7 @@ Rfr:
 <div id="gl.check_framebuffer_status" class="ulist">
 <ul>
 <li>
-<p><em>status</em> = <strong>check_framebuffer_status</strong>(<a href="#framebuffertarget"><em>target</em></a> [, <em>framebuffer</em>])<br>
+<p><em>status</em> = <strong>check_framebuffer_status</strong>(<a href="#framebuffertarget"><em>target</em></a>, [<em>framebuffer</em>])<br>
 <span class="small"><em>status</em>: '<em>complete</em>' for GL_FRAMEBUFFER_COMPLETE, '<em>incomplete attachment</em>' for GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT, etc.</span></p>
 </li>
 </ul>
@@ -2765,7 +2743,7 @@ Rfr:
 <div id="gl.patch_parameter" class="ulist">
 <ul>
 <li>
-<p><strong>patch_parameter</strong>(<em>pname</em>, <em>val</em> [, <em>val</em>, <em>&#8230;&#8203;</em>])<br>
+<p><strong>patch_parameter</strong>(<em>pname</em>, <em>val</em>, [<em>val</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small"><em>pname</em>: '<em>vertices</em>', '<em>default outer level</em>',  '<em>default inner level</em>'.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glPatchParameter">glPatchParameter</a>.</span></p>
 </li>
@@ -2780,7 +2758,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glPatchParameter">glPatc
 <div id="gl.vertex_attrib" class="ulist">
 <ul>
 <li>
-<p><strong>vertex_attrib</strong>(<em>index</em>, <em>type</em>, <em>val1</em> [, <em>val2</em>, <em>val3</em>, <em>val4</em>])<br>
+<p><strong>vertex_attrib</strong>(<em>index</em>, <em>type</em>, <em>val1</em>, [<em>val2</em>, <em>val3</em>, <em>val4</em>])<br>
 <span class="small"><em>type</em>: '<em>byte</em>', '<em>ubyte</em>', '<em>short</em>', '<em>ushort</em>', '<em>int</em>', '<em>uint</em>', '<em>float</em>', '<em>double</em>'.</span></p>
 </li>
 </ul>
@@ -2822,14 +2800,14 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glPatchParameter">glPatc
 <div id="gl.create_vertex_arrays" class="ulist">
 <ul>
 <li>
-<p><strong>create_vertex_arrays</strong>(<em>array1</em> [, <em>array2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>create_vertex_arrays</strong>(<em>array1</em>, [<em>array2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
 <div id="gl.delete_vertex_arrays" class="ulist">
 <ul>
 <li>
-<p><strong>delete_vertex_arrays</strong>(<em>array1</em> [, <em>array2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>delete_vertex_arrays</strong>(<em>array1</em>, [<em>array2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
@@ -2894,8 +2872,8 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glVertexAttribFormat">gl
 <div id="gl.bind_vertex_buffers" class="ulist">
 <ul>
 <li>
-<p><strong>bind_vertex_buffers</strong>(<em>index</em>, <em>buffer1</em>, <em>offset1</em>, <em>stride1</em> [, <em>buffer2</em>, <em>offset2</em>, <em>stride2</em>, <em>&#8230;&#8203;</em>])<br>
-<strong>bind_vertex_buffers</strong>(<em>array</em>, <em>index</em>, <em>buffer1</em>, <em>offset1</em>, <em>stride1</em> [, <em>buffer2</em>, <em>offset2</em>, <em>stride2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>bind_vertex_buffers</strong>(<em>index</em>, <em>buffer1</em>, <em>offset1</em>, <em>stride1</em>, [<em>buffer2</em>, <em>offset2</em>, <em>stride2</em>, <em>&#8230;&#8203;</em>])<br>
+<strong>bind_vertex_buffers</strong>(<em>array</em>, <em>index</em>, <em>buffer1</em>, <em>offset1</em>, <em>stride1</em>, [<em>buffer2</em>, <em>offset2</em>, <em>stride2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
@@ -2987,9 +2965,9 @@ Rfr:
 <div id="gl.draw_arrays" class="ulist">
 <ul>
 <li>
-<p><strong>draw_arrays</strong>(<em>mode</em>, <em>first</em>, <em>count</em> [, <em>instancecount</em> [, <em>baseinstance</em>]])<br>
+<p><strong>draw_arrays</strong>(<em>mode</em>, <em>first</em>, <em>count</em>, [<em>instancecount</em>], [<em>baseinstance</em>])<br>
 <strong>draw_arrays_indirect</strong>(<em>mode</em>, <em>indirect</em>)<br>
-<strong>multi_draw_arrays</strong>(<em>mode</em>, <em>first1</em>, <em>count1</em> [, <em>first2</em>, <em>count2</em> <em>&#8230;&#8203;</em>])<br>
+<strong>multi_draw_arrays</strong>(<em>mode</em>, <em>first1</em>, <em>count1</em>, [<em>first2</em>, <em>count2</em> <em>&#8230;&#8203;</em>])<br>
 <strong>multi_draw_arrays_indirect</strong>(<em>mode</em>, <em>indirect</em>, <em>drawcount</em>, <em>stride</em>)<br>
 <span class="small"><em>mode</em>: '<em>points</em>' for GL_POINTS, '<em>patches</em>' for GL_PATCHES, etc.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glDrawArrays">glDrawArrays</a>.</span></p>
@@ -2999,12 +2977,12 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glDrawArrays">glDrawArra
 <div id="gl.draw_elements" class="ulist">
 <ul>
 <li>
-<p><strong>draw_elements</strong>(<em>mode</em>, <em>count</em>, <em>type</em>, <em>indices</em> [, <em>instancecount</em> [, <em>baseinstance</em>]])<br>
+<p><strong>draw_elements</strong>(<em>mode</em>, <em>count</em>, <em>type</em>, <em>indices</em>, [<em>instancecount</em>], [<em>baseinstance</em>])<br>
 <strong>draw_elements_indirect</strong>(<em>mode</em>, <em>type</em>, <em>indirect</em>)<br>
-<strong>draw_elements_base_vertex</strong>(<em>mode</em>, <em>count</em>, <em>type</em>, <em>indices</em>, <em>basevertex</em>  [, <em>instancecount</em> [, <em>baseinstance</em>]])<br>
-<strong>multi_draw_elements</strong>(<em>mode</em>, <em>type</em>, <em>count1</em>, <em>indices1</em> [, <em>count2</em>, <em>indices2</em>, <em>&#8230;&#8203;</em>])<br>
+<strong>draw_elements_base_vertex</strong>(<em>mode</em>, <em>count</em>, <em>type</em>, <em>indices</em>, <em>basevertex</em> , [<em>instancecount</em>], [<em>baseinstance</em>])<br>
+<strong>multi_draw_elements</strong>(<em>mode</em>, <em>type</em>, <em>count1</em>, <em>indices1</em>, [<em>count2</em>, <em>indices2</em>, <em>&#8230;&#8203;</em>])<br>
 <strong>multi_draw_elements_indirect</strong>(<em>mode</em>, <em>type</em>, <em>indirect</em>, <em>drawcount</em>, <em>stride</em>)<br>
-<strong>multi_draw_elements_base_vertex</strong>(<em>mode</em>, <em>type</em>, <em>count1</em>, <em>indices1</em>, <em>basevertex1</em> [, <em>count2</em>, <em>indices2</em>, <em>basevertex2</em>, <em>&#8230;&#8203;</em>])<br>
+<strong>multi_draw_elements_base_vertex</strong>(<em>mode</em>, <em>type</em>, <em>count1</em>, <em>indices1</em>, <em>basevertex1</em>, [<em>count2</em>, <em>indices2</em>, <em>basevertex2</em>, <em>&#8230;&#8203;</em>])<br>
 <strong>draw_range_elements</strong>(<em>mode</em>, <em>start</em>, <em>end</em>, <em>count</em>, <em>type</em>, <em>indices</em>)<br>
 <strong>draw_range_elements_base_vertex</strong>(<em>mode</em>, <em>start</em>, <em>end</em>, <em>count</em>, <em>type</em>, <em>indices</em>, <em>basevertex</em>)<br>
 <span class="small"><em>mode</em>: '<em>points</em>' for GL_POINTS, '<em>patches</em>' for GL_PATCHES, etc.<br>
@@ -3019,7 +2997,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glDrawElements">glDrawEl
 <div id="gl.get_vertex_array" class="ulist">
 <ul>
 <li>
-<p><em>value</em> = <strong>get_vertex_array</strong>(<em>array</em>, <em>pname</em> [, <em>index</em>])<br>
+<p><em>value</em> = <strong>get_vertex_array</strong>(<em>array</em>, <em>pname</em>, [<em>index</em>])<br>
 <span class="small"><em>pname</em>: '<em>size</em>' for GL_VERTEX_ATTRIB_ARRAY_SIZE, etc (and '<em>binding offset</em>' for GL_VERTEX_BINDING_OFFSET, '<em>element array buffer binding</em>' for GL_ELEMENT_ARRAY_BUFFER_BINDING, '<em>current attrib</em>' for GL_CURRENT_VERTEX_ATTRIB).<br>
 Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetVertexArrayiv.xhtml">glGetVertexArrayiv</a>,
 <a href="https://www.opengl.org/sdk/docs/man/html/glGetVertexArrayIndexed.xhtml">glGetVertexArrayIndexed</a>.</span></p>
@@ -3095,7 +3073,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetAttribLocation">glG
 <div id="gl.transform_feedback_varyings" class="ulist">
 <ul>
 <li>
-<p><strong>transform_feedback_varyings</strong>(<em>program</em>, <em>mode</em>, <em>varying1</em> [, <em>varying2</em>, <em>&#8230;&#8203;</em> ])<br>
+<p><strong>transform_feedback_varyings</strong>(<em>program</em>, <em>mode</em>, <em>varying1</em>, [<em>varying2</em>, <em>&#8230;&#8203;</em> ])<br>
 <span class="small"><em>mode</em>: '<em>interleaved attribs</em>', '<em>separate attribs</em>'.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glTransformFeedbackVaryings">glTransformFeedbackVaryings</a>.</span></p>
 </li>
@@ -3153,7 +3131,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetTransformFeedbackVa
 <div id="gl.delete_transform_feedbacks" class="ulist">
 <ul>
 <li>
-<p><strong>delete_transform_feedbacks</strong>(<em>xfb1</em> [, <em>xfb2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>delete_transform_feedbacks</strong>(<em>xfb1</em>, [<em>xfb2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
@@ -3176,7 +3154,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetTransformFeedbackVa
 <div id="gl.create_transform_feedbacks" class="ulist">
 <ul>
 <li>
-<p><strong>create_transform_feedbacks</strong>(<em>xfb1</em> [, <em>xfb2</em>, <em>&#8230;&#8203;</em>])</p>
+<p><strong>create_transform_feedbacks</strong>(<em>xfb1</em>, [<em>xfb2</em>, <em>&#8230;&#8203;</em>])</p>
 </li>
 </ul>
 </div>
@@ -3233,10 +3211,10 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetTransformFeedbackVa
 <div id="gl.draw_transform_feedback" class="ulist">
 <ul>
 <li>
-<p><strong>draw_transform_feedback</strong>(<em>mode</em>, <em>xfb</em> [, <em>instancecount</em>])<br></p>
+<p><strong>draw_transform_feedback</strong>(<em>mode</em>, <em>xfb</em>, [<em>instancecount</em>])<br></p>
 </li>
 <li>
-<p><strong>draw_transform_feedback_stream</strong>(<em>mode</em>, <em>xfb</em>, <em>stream</em> [, <em>instancecount</em>])<br>
+<p><strong>draw_transform_feedback_stream</strong>(<em>mode</em>, <em>xfb</em>, <em>stream</em>, [<em>instancecount</em>])<br>
 <span class="small"><em>mode</em>: see <a href="#gl.draw_arrays">draw_arrays</a>.</span></p>
 </li>
 </ul>
@@ -3282,7 +3260,7 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glClipControl.xhtml">glCl
 <div id="gl.depth_range" class="ulist">
 <ul>
 <li>
-<p><strong>depth_range</strong>(<em>near</em>, <em>far</em> [, <em>index</em>])<br>
+<p><strong>depth_range</strong>(<em>near</em>, <em>far</em>, [<em>index</em>])<br>
 <span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glDepthRange">glDepthRange</a> -
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glDepthRangeIndexed">glDepthRangeIndexed</a>.</span></p>
 </li>
@@ -3291,7 +3269,7 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glClipControl.xhtml">glCl
 <div id="gl.depth_range_array" class="ulist">
 <ul>
 <li>
-<p><strong>depth_range_array</strong>(<em>first</em>, <em>near1</em>, <em>far1</em> [, <em>near2</em>, <em>far2</em>, <em>&#8230;&#8203;</em>])<br>
+<p><strong>depth_range_array</strong>(<em>first</em>, <em>near1</em>, <em>far1</em>, [<em>near2</em>, <em>far2</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glDepthRangeArray">glDepthRangeArray</a>.</span></p>
 </li>
 </ul>
@@ -3299,7 +3277,7 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glClipControl.xhtml">glCl
 <div id="gl.viewport" class="ulist">
 <ul>
 <li>
-<p><strong>viewport</strong>(<em>x</em>, <em>y</em>, <em>w</em>, <em>h</em> [, <em>index</em>])<br>
+<p><strong>viewport</strong>(<em>x</em>, <em>y</em>, <em>w</em>, <em>h</em>, [<em>index</em>])<br>
 <span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glViewport">glViewport</a> -
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glViewportIndexed">glViewportIndexed</a>.</span></p>
 </li>
@@ -3308,7 +3286,7 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glClipControl.xhtml">glCl
 <div id="gl.viewport_array" class="ulist">
 <ul>
 <li>
-<p><strong>viewport_array</strong>(<em>first</em>, <em>x1</em>, <em>y1</em>, <em>w1</em>, <em>h1</em> [, <em>x2</em>, <em>y2</em>, <em>w2</em>, <em>h2</em>])<br>
+<p><strong>viewport_array</strong>(<em>first</em>, <em>x1</em>, <em>y1</em>, <em>w1</em>, <em>h1</em>, [<em>x2</em>, <em>y2</em>, <em>w2</em>, <em>h2</em>])<br>
 <span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glViewportArray">glViewportArray</a>.</span></p>
 </li>
 </ul>
@@ -3427,7 +3405,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glPolygonMode">glPolygon
 <div id="gl.bind_frag_data_location" class="ulist">
 <ul>
 <li>
-<p><strong>bind_frag_data_location</strong>(<em>program</em>, <em>color</em>, <em>name</em> [, <em>index</em>])<br>
+<p><strong>bind_frag_data_location</strong>(<em>program</em>, <em>color</em>, <em>name</em>, [<em>index</em>])<br>
 <span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glBindFragDataLocation">glBindFragDataLocation</a>,
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glBindFragDataLocationIndexed">glBindFragDataLocationIndexed</a>.</span></p>
 </li>
@@ -3487,7 +3465,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glPolygonMode">glPolygon
 <div id="gl.scissor_array" class="ulist">
 <ul>
 <li>
-<p><strong>scissor_array</strong>(<em>first</em>, <em>x1</em>, <em>y1</em>, <em>w1</em>, <em>h1</em> [, <em>x2, _y2</em>, <em>w2</em>, <em>h2</em>, <em>&#8230;&#8203;</em>])<br>
+<p><strong>scissor_array</strong>(<em>first</em>, <em>x1</em>, <em>y1</em>, <em>w1</em>, <em>h1</em>, [<em>x2, _y2</em>, <em>w2</em>, <em>h2</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glScissorArray">glScissorArray</a>.</span></p>
 </li>
 </ul>
@@ -3495,7 +3473,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glPolygonMode">glPolygon
 <div id="gl.scissor" class="ulist">
 <ul>
 <li>
-<p><strong>scissor</strong>(<em>left</em>, <em>bottom</em>, <em>width</em>, <em>height</em> [, <em>index</em>])<br>
+<p><strong>scissor</strong>(<em>left</em>, <em>bottom</em>, <em>width</em>, <em>height</em>, [<em>index</em>])<br>
 <span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glScissor">glScissor</a>.</span></p>
 </li>
 </ul>
@@ -3525,7 +3503,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glPolygonMode">glPolygon
 <div id="gl.stencil_func" class="ulist">
 <ul>
 <li>
-<p><strong>stencil_func</strong>(<em>func</em>, <em>ref</em>, <em>mask</em> [, <em>face</em>])<br>
+<p><strong>stencil_func</strong>(<em>func</em>, <em>ref</em>, <em>mask</em>, [<em>face</em>])<br>
 <span class="small"><em>func</em>: '<em>never</em>' for GL_NEVER, '<em>always</em>' for GL_ALWAYS, etc.<br>
 <em>face</em>: '<em>front</em>', '<em>back</em>', '<em>front and back</em>'.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glStencilFunc">glStencilFunc</a>.</span></p>
@@ -3535,7 +3513,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glStencilFunc">glStencil
 <div id="gl.stencil_op" class="ulist">
 <ul>
 <li>
-<p><strong>stencil_op</strong>(<em>sfail</em>, <em>dpfail</em>, <em>dppass</em> [, <em>face</em>])<br>
+<p><strong>stencil_op</strong>(<em>sfail</em>, <em>dpfail</em>, <em>dppass</em>, [<em>face</em>])<br>
 <span class="small"><em>sfail</em>, <em>dpfail</em>, <em>dppass</em>: '<em>keep</em>' for GL_KEEP, '<em>incr wrap</em>' for GL_INCR_WRAP, etc.<br>
 <em>face</em>: '<em>front</em>', '<em>back</em>', '<em>front and back</em>'.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glStencilOp">glStencilOp</a>.</span></p>
@@ -3659,8 +3637,8 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glHint">glHint</a>.</spa
 <li>
 <p><strong>draw_buffer</strong>(<em>buf</em>)<br>
 <strong>draw_buffer</strong>(<em>framebuffer</em>, <em>buf</em>)<br>
-<strong>draw_buffers</strong>(<em>buf1</em> [, <em>buf2</em>, <em>&#8230;&#8203;</em>])<br>
-<strong>draw_buffers</strong>(<em>framebuffer</em>, <em>buf1</em> [, <em>buf2</em>, <em>&#8230;&#8203;</em>])<br>
+<strong>draw_buffers</strong>(<em>buf1</em>, [<em>buf2</em>, <em>&#8230;&#8203;</em>])<br>
+<strong>draw_buffers</strong>(<em>framebuffer</em>, <em>buf1</em>, [<em>buf2</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small"><em>buf</em>: '<em>none</em>' for GL_NONE, '<em>front left</em>' for GL_FRONT_LEFT, '<em>color attachment i</em>' for GL_COLOR_ATTACHMENTi, etc.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glDrawBuffer">glDrawBuffer</a>,
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glDrawBuffers">glDrawBuffers</a>.</span></p>
@@ -3690,7 +3668,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glDrawBuffer">glDrawBuff
 <div id="gl.stencil_mask" class="ulist">
 <ul>
 <li>
-<p><strong>stencil_mask</strong>(<em>mask</em> [, <em>face</em>])<br>
+<p><strong>stencil_mask</strong>(<em>mask</em>, [<em>face</em>])<br>
 <span class="small"><em>face</em>: '<em>front</em>', '<em>back</em>', '<em>front and back</em>'.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glStencilMask">glStencilMask</a>.</span></p>
 </li>
@@ -3763,8 +3741,8 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glClear">glClear</a>.</s
 <div id="gl.invalidate_framebuffer" class="ulist">
 <ul>
 <li>
-<p><strong>invalidate_framebuffer</strong>(<a href="#framebuffertarget"><em>target</em></a>|<em>framebuffer</em>, <em>attachment1</em> [, <em>attachment2</em>, <em>&#8230;&#8203;</em> ])<br>
-<strong>invalidate_sub_framebuffer</strong>(<a href="#framebuffertarget"><em>target</em></a>|<em>framebuffer</em>, <em>x</em>, <em>y</em>, <em>width</em>, <em>height</em>, <em>attachment1</em> [, <em>attachment2</em>, <em>&#8230;&#8203;</em> ])<br>
+<p><strong>invalidate_framebuffer</strong>(<a href="#framebuffertarget"><em>target</em></a>|<em>framebuffer</em>, <em>attachment1</em>, [<em>attachment2</em>, <em>&#8230;&#8203;</em> ])<br>
+<strong>invalidate_sub_framebuffer</strong>(<a href="#framebuffertarget"><em>target</em></a>|<em>framebuffer</em>, <em>x</em>, <em>y</em>, <em>width</em>, <em>height</em>, <em>attachment1</em>, [<em>attachment2</em>, <em>&#8230;&#8203;</em> ])<br>
 <em class="small">attachment</em>: '<em>color attachment i</em>' for GL_COLOR_ATTACHMENTi, '<em>depth</em>' for GL_DEPTH, etc.<br>
 Rfr:
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glInvalidateFramebuffer">glInvalidateFramebuffer</a>,
@@ -3818,7 +3796,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glClampColor">glClampCol
 <div id="gl.blit_framebuffer" class="ulist">
 <ul>
 <li>
-<p><strong>blit_framebuffer</strong>(<em>srcx0</em>, <em>srcy0</em>, <em>srcx1</em>, <em>srcy1</em>, <em>dstx0</em>, <em>dsty0</em>, <em>dstx1</em>, <em>dsty1</em>, <em>filter</em> [, <em>maskbit1</em>, &#8230;&#8203;])<br>
+<p><strong>blit_framebuffer</strong>(<em>srcx0</em>, <em>srcy0</em>, <em>srcx1</em>, <em>srcy1</em>, <em>dstx0</em>, <em>dsty0</em>, <em>dstx1</em>, <em>dsty1</em>, <em>filter</em>, [<em>maskbit1</em>, &#8230;&#8203;])<br>
 <strong>blit_framebuffer</strong>(<em>readframebuffer</em>, <em>drawframebuffer</em>, <em>..ditto..</em>)<br>
 <span class="small"><em>filter</em>: '<em>linear</em>', '<em>nearest</em>'.<br>
 <em>maskbit</em>(s): '<em>color</em>', '<em>depth</em>', '<em>stencil</em>'.<br>
@@ -3870,7 +3848,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glDebugMessageCallback">
 <div id="gl.debug_message_control" class="ulist">
 <ul>
 <li>
-<p><strong>debug_message_control</strong>(<em>source</em>, <em>type</em>, <em>severity</em>, <em>enabled</em> [, <em>id1</em>, <em>&#8230;&#8203;</em>])<br>
+<p><strong>debug_message_control</strong>(<em>source</em>, <em>type</em>, <em>severity</em>, <em>enabled</em>, [<em>id1</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glDebugMessageControl">glDebugMessageControl</a>.</span></p>
 </li>
 </ul>
@@ -3949,7 +3927,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glObjectLabel">glObjectL
 <div id="gl.get" class="ulist">
 <ul>
 <li>
-<p><em>value(s)</em> = <strong>get</strong>(<em>pname</em> [, <em>index</em>])<br>
+<p><em>value(s)</em> = <strong>get</strong>(<em>pname</em>, [<em>index</em>])<br>
 <span class="small"><em>pname</em>: '<em>context flags</em>' for GL_CONTEXT_FLAGS, '<em>major version</em>' for GL_MAJOR_VERSION, etc.<br>
 The <em>index</em> argument may be mandatory or optional, depending on <em>pname</em>.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGet">glGet</a>.</span></p>
@@ -3972,11 +3950,11 @@ supported by the OpenGL version being used (a mis-spelled <em>pname</em> causes 
 <div id="gl.enable" class="ulist">
 <ul>
 <li>
-<p><strong>enable</strong>(<em>cap</em> [,<em>index</em>])<br>
-<strong>disable</strong>(<em>cap</em> [,<em>index</em>])<br></p>
+<p><strong>enable</strong>(<em>cap</em>,[<em>index</em>])<br>
+<strong>disable</strong>(<em>cap</em>,[<em>index</em>])<br></p>
 </li>
 <li>
-<p><em>boolean</em> = <strong>is_enabled</strong>(<em>cap</em> [,<em>index</em>])<br>
+<p><em>boolean</em> = <strong>is_enabled</strong>(<em>cap</em>,[<em>index</em>])<br>
 <span class="small"><em>cap</em>: '<em>blend</em>' for GL_BLEND, '<em>depth test</em>' for GL_DEPTH_TEST,
 '<em>clip distance 5</em>' for GL_CLIP_DISTANCE5, etc.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glEnable">glEnable</a>,
@@ -3990,7 +3968,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glIsEnable">glIsEnabled<
 <div id="gl.get_string" class="ulist">
 <ul>
 <li>
-<p><em>value(s)</em> = <strong>get_string</strong>(<em>pname</em> [, <em>index</em>])<br>
+<p><em>value(s)</em> = <strong>get_string</strong>(<em>pname</em>, [<em>index</em>])<br>
 <span class="small"><em>pname</em>: '<em>renderer</em>', '<em>vendor</em>', '<em>version</em>', '<em>extensions</em>', '<em>shading language version</em>'.<br>
 The <em>index</em> argument may be mandatory or optional, depending on <em>pname</em>.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetString">glGetString</a>.</span></p>

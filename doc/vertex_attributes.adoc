@@ -19,7 +19,7 @@ Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetAttribLocation[glGetAttribLo
 === Transform Feedback Variables
 
 [[gl.transform_feedback_varyings]]
-* *transform_feedback_varyings*(_program_, _mode_, _varying1_ [, _varying2_, _..._ ]) +
+* *transform_feedback_varyings*(_program_, _mode_, _varying1_, [_varying2_, _..._ ]) +
 [small]#_mode_: '_interleaved attribs_', '_separate attribs_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glTransformFeedbackVaryings[glTransformFeedbackVaryings].#
 

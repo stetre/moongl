@@ -15,7 +15,7 @@ Rfr: https://www.opengl.org/sdk/docs/man/html/glFenceSync.xhtml[glFenceSync].#
 === Waiting for Sync Objects
 
 [[gl.client_wait_sync]]
-* _sync_ = *client_wait_sync*(_sync_, _timeout_ [, _flag_, _..._ ]) +
+* _sync_ = *client_wait_sync*(_sync_, _timeout_, [_flag_, _..._ ]) +
 [small]#Rfr: https://www.opengl.org/sdk/docs/man/html/glClientWaitSync.xhtml[glClientWaitSync].#
 
 [[gl.wait_sync]]

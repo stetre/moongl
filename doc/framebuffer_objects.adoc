@@ -12,13 +12,13 @@
 * _framebuffer1_, _framebuffer2_, _..._ = *gen_framebuffers*([_n_ = 1])
 
 [[gl.create_framebuffers]]
-* *create_framebuffers*(_framebuffer1_ [, _framebuffer2_, _..._])
+* *create_framebuffers*(_framebuffer1_, [_framebuffer2_, _..._])
 
 [[gl.delete_framebuffers]]
-* *delete_framebuffers*(_framebuffer1_ [, _framebuffer2_, _..._])
+* *delete_framebuffers*(_framebuffer1_, [_framebuffer2_, _..._])
 
 [[gl.bind_framebuffer]]
-* *bind_framebuffer*(<<framebuffertarget, _target_>> [, _framebuffer_]) +
+* *bind_framebuffer*(<<framebuffertarget, _target_>>, [_framebuffer_]) +
 *unbind_framebuffer*(<<framebuffertarget, _target_>>) _NONGL_
 
 [[gl.is_framebuffer]]
@@ -54,17 +54,17 @@ _pname_: '_object type_' for GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE, etc.#
 [small]#*renderbuffer target*: '_renderbuffer_'.#
 
 [[gl.bind_renderbuffer]]
-* *bind_renderbuffer*(_target_ [, _renderbuffer_]) +
+* *bind_renderbuffer*(_target_, [_renderbuffer_]) +
 *unbind_renderbuffer*(_target_) _NONGL_
 
 [[gl.gen_renderbuffers]]
 * _renderbuffer1_, _renderbuffer2_, _..._ = *gen_renderbuffers*([_n_ = 1])
 
 [[gl.create_renderbuffers]]
-* *create_renderbuffers*(_renderbuffer1_ [, _renderbuffer2_, _..._])
+* *create_renderbuffers*(_renderbuffer1_, [_renderbuffer2_, _..._])
 
 [[gl.delete_renderbuffers]]
-* *delete_renderbuffers*(_renderbuffer1_ [, _renderbuffer2_, _..._])
+* *delete_renderbuffers*(_renderbuffer1_, [_renderbuffer2_, _..._])
 
 [[gl.is_renderbuffer]]
 * _boolean_ = *is_renderbuffer*(_renderbuffer_)
@@ -120,7 +120,7 @@ _pname_: '_object type_' for GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE, etc.#
 === Framebuffer Completeness 
 
 [[gl.check_framebuffer_status]]
-* _status_ = *check_framebuffer_status*(<<framebuffertarget, _target_>> [, _framebuffer_]) +
+* _status_ = *check_framebuffer_status*(<<framebuffertarget, _target_>>, [_framebuffer_]) +
 [small]#_status_: '_complete_' for GL_FRAMEBUFFER_COMPLETE, '_incomplete attachment_' for GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT, etc.#
 
 

@@ -18,20 +18,20 @@ Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glActiveTexture[glActiveTexture].
 * _texture1_, _texture2_, _..._ = *gen_textures*([_n_ = 1])
 
 [[gl.bind_texture]]
-* *bind_texture*(<<texturetarget,_target_>> [, _texture_]) +
+* *bind_texture*(<<texturetarget,_target_>>, [_texture_]) +
 *unbind_texture*(<<texturetarget,_target_>>) _NONGL_
 
 [[gl.bind_textures]]
-* *bind_textures*(_first_, _texture1_ [, _texture2_, _..._ ])
+* *bind_textures*(_first_, _texture1_, [_texture2_, _..._ ])
 
 [[gl.bind_texture_unit]]
 * *bind_texture_unit*(_unit_, _texture_)
 
 [[gl.create_textures]]
-* *create_textures*(<<texturetarget,_target_>>, _texture1_ [, _texture2_, _..._])
+* *create_textures*(<<texturetarget,_target_>>, _texture1_, [_texture2_, _..._])
 
 [[gl.delete_textures]]
-* *delete_textures*(_texture1_ [, _texture2_, _..._])
+* *delete_textures*(_texture1_, [_texture2_, _..._])
 
 [[gl.is_texture]]
 * _boolean_ = *is_texture*( )
@@ -49,17 +49,17 @@ Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glActiveTexture[glActiveTexture].
 * _sampler1_, _sampler2_, _..._ = *gen_samplers*([_n_ = 1])
 
 [[gl.create_samplers]]
-* *create_samplers*(_sampler1_ [, _sampler2_, _..._])
+* *create_samplers*(_sampler1_, [_sampler2_, _..._])
 
 [[gl.delete_samplers]]
-* *delete_samplers*(_sampler1_ [, _sampler2_, _..._])
+* *delete_samplers*(_sampler1_, [_sampler2_, _..._])
 
 [[gl.bind_sampler]]
 * *bind_sampler*(_unit_, [_sampler_]) +
 *unbind_sampler*(_unit_) _NONGL_
 
 [[gl.bind_samplers]]
-* *bind_samplers*(_first_, _sampler1_ [, _sampler2_, _..._]) +
+* *bind_samplers*(_first_, _sampler1_, [_sampler2_, _..._]) +
 
 [[gl.is_sampler]]
 * _boolean_ = *is_sampler*(_sampler_)
@@ -69,7 +69,7 @@ Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glActiveTexture[glActiveTexture].
 [small]#Gen & bind one sampler.#
 
 [[gl.sampler_parameter]]
-* *sampler_parameter*(_sampler_, _pname_, _val1_ [, _val2_, _..._]) +
+* *sampler_parameter*(_sampler_, _pname_, _val1_, [_val2_, _..._]) +
 [small]#_pname_: '_wrap x_' for GL_TEXTURE_WRAP_X, '_min filter_' for GL_TEXTURE_MIN_FILTERS, etc. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glSamplerParameter[glSamplerParameter].#
 
@@ -195,7 +195,7 @@ Rfr:
 https://www.khronos.org/opengl/wiki/GLAPI/glGetTexLevelParameter[glGetTexLevelParameter].#
 
 [[gl.get_texture_image]]
-* *get_texture_image*(<<texturetarget,_target_>>|_texture_, _level_, <<type,_type_>> [, _buffer_]) +
+* *get_texture_image*(<<texturetarget,_target_>>|_texture_, _level_, <<type,_type_>>, [_buffer_]) +
 <<data,_data_>> (or _nil_, if _buffer_ is passed) +
 [small]#Rfr: 
 https://www.khronos.org/opengl/wiki/GLAPI/glGetTexImage[glGetTexImage].#
@@ -303,7 +303,7 @@ Rfr:
 https://www.khronos.org/opengl/wiki/GLAPI/glBindImageTexture[glBindImageTexture].#
 
 [[gl.bind_image_textures]]
-* *bind_image_textures*(_first_, _texture1_ [, _texture2_, _..._]) +
+* *bind_image_textures*(_first_, _texture1_, [_texture2_, _..._]) +
 [small]#Rfr:
 https://www.khronos.org/opengl/wiki/GLAPI/glBindImageTextures[glBindImageTextures].#
 

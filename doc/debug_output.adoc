@@ -16,7 +16,7 @@ Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDebugMessageCallback[glDebugMes
 === Controlling Debug Messages
 
 [[gl.debug_message_control]]
-* *debug_message_control*(_source_, _type_, _severity_, _enabled_ [, _id1_, _..._]) +
+* *debug_message_control*(_source_, _type_, _severity_, _enabled_, [_id1_, _..._]) +
 [small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDebugMessageControl[glDebugMessageControl].#
 
 === Externally Generated Messages
