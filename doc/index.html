@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.4">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
 <meta name="author" content="Stefano Trettel">
 <title>MoonGL Reference Manual</title>
 <style>
@@ -696,12 +696,14 @@ p.tableblock.header { color: #6d6e71; }
 </style>
 <style>
 .listingblock .pygments .hll { background-color: #ffffcc }
-.listingblock .pygments  { background: #ffffff; }
+.listingblock .pygments, .listingblock .pygments code { background: #ffffff; }
 .listingblock .pygments .tok-c { color: #aaaaaa; font-style: italic } /* Comment */
 .listingblock .pygments .tok-err { color: #FF0000; background-color: #FFAAAA } /* Error */
 .listingblock .pygments .tok-k { color: #0000aa } /* Keyword */
+.listingblock .pygments .tok-ch { color: #aaaaaa; font-style: italic } /* Comment.Hashbang */
 .listingblock .pygments .tok-cm { color: #aaaaaa; font-style: italic } /* Comment.Multiline */
 .listingblock .pygments .tok-cp { color: #4c8317 } /* Comment.Preproc */
+.listingblock .pygments .tok-cpf { color: #aaaaaa; font-style: italic } /* Comment.PreprocFile */
 .listingblock .pygments .tok-c1 { color: #aaaaaa; font-style: italic } /* Comment.Single */
 .listingblock .pygments .tok-cs { color: #0000aa; font-style: italic } /* Comment.Special */
 .listingblock .pygments .tok-gd { color: #aa0000 } /* Generic.Deleted */
@@ -739,8 +741,10 @@ p.tableblock.header { color: #6d6e71; }
 .listingblock .pygments .tok-mh { color: #009999 } /* Literal.Number.Hex */
 .listingblock .pygments .tok-mi { color: #009999 } /* Literal.Number.Integer */
 .listingblock .pygments .tok-mo { color: #009999 } /* Literal.Number.Oct */
+.listingblock .pygments .tok-sa { color: #aa5500 } /* Literal.String.Affix */
 .listingblock .pygments .tok-sb { color: #aa5500 } /* Literal.String.Backtick */
 .listingblock .pygments .tok-sc { color: #aa5500 } /* Literal.String.Char */
+.listingblock .pygments .tok-dl { color: #aa5500 } /* Literal.String.Delimiter */
 .listingblock .pygments .tok-sd { color: #aa5500 } /* Literal.String.Doc */
 .listingblock .pygments .tok-s2 { color: #aa5500 } /* Literal.String.Double */
 .listingblock .pygments .tok-se { color: #aa5500 } /* Literal.String.Escape */
@@ -751,9 +755,11 @@ p.tableblock.header { color: #6d6e71; }
 .listingblock .pygments .tok-s1 { color: #aa5500 } /* Literal.String.Single */
 .listingblock .pygments .tok-ss { color: #0000aa } /* Literal.String.Symbol */
 .listingblock .pygments .tok-bp { color: #00aaaa } /* Name.Builtin.Pseudo */
+.listingblock .pygments .tok-fm { color: #00aa00 } /* Name.Function.Magic */
 .listingblock .pygments .tok-vc { color: #aa0000 } /* Name.Variable.Class */
 .listingblock .pygments .tok-vg { color: #aa0000 } /* Name.Variable.Global */
 .listingblock .pygments .tok-vi { color: #aa0000 } /* Name.Variable.Instance */
+.listingblock .pygments .tok-vm { color: #aa0000 } /* Name.Variable.Magic */
 .listingblock .pygments .tok-il { color: #009999 } /* Literal.Number.Integer.Long */
 </style>
 </head>
@@ -844,7 +850,7 @@ table is named <strong>gl</strong>, i.e. that it is loaded with:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="lua"> <span class="tok-n">gl</span> <span class="tok-o">=</span> <span class="tok-nb">require</span><span class="tok-p">(</span><span class="tok-s2">&quot;</span><span class="tok-s">moongl&quot;</span><span class="tok-p">)</span></code></pre>
+<pre class="pygments highlight"><code data-lang="lua"><span></span> <span class="tok-n">gl</span> <span class="tok-o">=</span> <span class="tok-nb">require</span><span class="tok-p">(</span><span class="tok-s2">&quot;moongl&quot;</span><span class="tok-p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4093,11 +4099,11 @@ of MoonGL functionalities in practice.</p>
 <div id="snippet_init" class="listingblock">
 <div class="title">OpenGL initialization with MoonGLFW.</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="lua"><span class="tok-n">gl</span> <span class="tok-o">=</span> <span class="tok-nb">require</span><span class="tok-p">(</span><span class="tok-s2">&quot;</span><span class="tok-s">moongl&quot;</span><span class="tok-p">)</span>
-<span class="tok-n">glfw</span> <span class="tok-o">=</span> <span class="tok-nb">require</span><span class="tok-p">(</span><span class="tok-s2">&quot;</span><span class="tok-s">moonglfw&quot;</span><span class="tok-p">)</span>
+<pre class="pygments highlight"><code data-lang="lua"><span></span><span class="tok-n">gl</span> <span class="tok-o">=</span> <span class="tok-nb">require</span><span class="tok-p">(</span><span class="tok-s2">&quot;moongl&quot;</span><span class="tok-p">)</span>
+<span class="tok-n">glfw</span> <span class="tok-o">=</span> <span class="tok-nb">require</span><span class="tok-p">(</span><span class="tok-s2">&quot;moonglfw&quot;</span><span class="tok-p">)</span>
 
 <span class="tok-c1">-- Create a window and make its GL context current:</span>
-<span class="tok-n">window</span> <span class="tok-o">=</span> <span class="tok-n">glfw</span><span class="tok-p">.</span><span class="tok-n">create_window</span><span class="tok-p">(</span><span class="tok-mi">600</span><span class="tok-p">,</span> <span class="tok-mi">400</span><span class="tok-p">,</span> <span class="tok-s2">&quot;</span><span class="tok-s">Hello, MoonGL!&quot;</span><span class="tok-p">)</span>
+<span class="tok-n">window</span> <span class="tok-o">=</span> <span class="tok-n">glfw</span><span class="tok-p">.</span><span class="tok-n">create_window</span><span class="tok-p">(</span><span class="tok-mi">600</span><span class="tok-p">,</span> <span class="tok-mi">400</span><span class="tok-p">,</span> <span class="tok-s2">&quot;Hello, MoonGL!&quot;</span><span class="tok-p">)</span>
 <span class="tok-n">glfw</span><span class="tok-p">.</span><span class="tok-n">make_context_current</span><span class="tok-p">(</span><span class="tok-n">window</span><span class="tok-p">)</span>
 
 <span class="tok-c1">-- This is actually glewInit():</span>
@@ -4109,28 +4115,28 @@ of MoonGL functionalities in practice.</p>
 <div id="snippet_is_supported" class="listingblock">
 <div class="title">Usage of is_supported( ).</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="lua"><span class="tok-k">if</span> <span class="tok-ow">not</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">is_supported</span><span class="tok-p">(</span><span class="tok-s2">&quot;</span><span class="tok-s">GL_VERSION_4_5&quot;</span><span class="tok-p">)</span> <span class="tok-k">then</span>
-  <span class="tok-nb">error</span><span class="tok-p">(</span><span class="tok-s2">&quot;</span><span class="tok-s">Sorry, OpenGL 4.5 is not supported by your system&quot;</span><span class="tok-p">)</span>
-<span class="tok-k">end</span></code></pre>
+<pre class="pygments highlight"><code data-lang="lua"><span></span><span class="tok-kr">if</span> <span class="tok-ow">not</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">is_supported</span><span class="tok-p">(</span><span class="tok-s2">&quot;GL_VERSION_4_5&quot;</span><span class="tok-p">)</span> <span class="tok-kr">then</span>
+  <span class="tok-nb">error</span><span class="tok-p">(</span><span class="tok-s2">&quot;Sorry, OpenGL 4.5 is not supported by your system&quot;</span><span class="tok-p">)</span>
+<span class="tok-kr">end</span></code></pre>
 </div>
 </div>
 <div id="snippet_clear" class="listingblock">
 <div class="title">Clearing the framebuffer.</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="lua"><span class="tok-c1">-- specify the clear value for the color buffer:</span>
+<pre class="pygments highlight"><code data-lang="lua"><span></span><span class="tok-c1">-- specify the clear value for the color buffer:</span>
 <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">clear_color</span><span class="tok-p">(</span><span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-mf">1.0</span><span class="tok-p">)</span>
 
 <span class="tok-c1">-- specify the clear value for the depth buffer:</span>
 <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">clear_depth</span><span class="tok-p">(</span><span class="tok-mf">0.6</span><span class="tok-p">)</span>
 
 <span class="tok-c1">-- clear the color buffer and the depth buffer:</span>
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">clear</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">color&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">depth&#39;</span><span class="tok-p">)</span></code></pre>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">clear</span><span class="tok-p">(</span><span class="tok-s1">&#39;color&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;depth&#39;</span><span class="tok-p">)</span></code></pre>
 </div>
 </div>
 <div id="snippet_rectangle" class="listingblock">
 <div class="title">Defining a rectangle.</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="lua"><span class="tok-n">vertices</span> <span class="tok-o">=</span> <span class="tok-p">{</span>
+<pre class="pygments highlight"><code data-lang="lua"><span></span><span class="tok-n">vertices</span> <span class="tok-o">=</span> <span class="tok-p">{</span>
 <span class="tok-c1">-- position:        color:          texture coords:    0 ____ 1</span>
   <span class="tok-o">-</span><span class="tok-mf">0.5</span><span class="tok-p">,</span>  <span class="tok-mf">0.5</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span>  <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span>  <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-c1">-- 0      |   /|</span>
    <span class="tok-mf">0.5</span><span class="tok-p">,</span>  <span class="tok-mf">0.5</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span>  <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span>  <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-c1">-- 1      | /  |</span>
@@ -4143,23 +4149,23 @@ of MoonGL functionalities in practice.</p>
     <span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-mi">2</span><span class="tok-p">,</span> <span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-c1">-- second triangle</span>
 <span class="tok-p">}</span>
 
-<span class="tok-n">floatsz</span> <span class="tok-o">=</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">sizeof</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">float&#39;</span><span class="tok-p">)</span>
+<span class="tok-n">floatsz</span> <span class="tok-o">=</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">sizeof</span><span class="tok-p">(</span><span class="tok-s1">&#39;float&#39;</span><span class="tok-p">)</span>
 
 <span class="tok-n">vao</span> <span class="tok-o">=</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">new_vertex_array</span><span class="tok-p">()</span>  <span class="tok-c1">-- vertex array object</span>
-<span class="tok-n">vbo</span> <span class="tok-o">=</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">new_buffer</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">array&#39;</span><span class="tok-p">)</span> <span class="tok-c1">-- vertex buffer object</span>
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">buffer_data</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">array&#39;</span><span class="tok-p">,</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">pack</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">float&#39;</span><span class="tok-p">,</span> <span class="tok-n">vertices</span><span class="tok-p">),</span> <span class="tok-s1">&#39;</span><span class="tok-s">static draw&#39;</span><span class="tok-p">)</span>
+<span class="tok-n">vbo</span> <span class="tok-o">=</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">new_buffer</span><span class="tok-p">(</span><span class="tok-s1">&#39;array&#39;</span><span class="tok-p">)</span> <span class="tok-c1">-- vertex buffer object</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">buffer_data</span><span class="tok-p">(</span><span class="tok-s1">&#39;array&#39;</span><span class="tok-p">,</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">pack</span><span class="tok-p">(</span><span class="tok-s1">&#39;float&#39;</span><span class="tok-p">,</span> <span class="tok-n">vertices</span><span class="tok-p">),</span> <span class="tok-s1">&#39;static draw&#39;</span><span class="tok-p">)</span>
 <span class="tok-c1">-- position attribute</span>
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">vertex_attrib_pointer</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">float&#39;</span><span class="tok-p">,</span> <span class="tok-kc">false</span><span class="tok-p">,</span> <span class="tok-mi">8</span><span class="tok-o">*</span><span class="tok-n">floatsz</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">vertex_attrib_pointer</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-s1">&#39;float&#39;</span><span class="tok-p">,</span> <span class="tok-kc">false</span><span class="tok-p">,</span> <span class="tok-mi">8</span><span class="tok-o">*</span><span class="tok-n">floatsz</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">)</span>
 <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">enable_vertex_attrib_array</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">)</span>
 <span class="tok-c1">-- color attribute</span>
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">vertex_attrib_pointer</span><span class="tok-p">(</span><span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">float&#39;</span><span class="tok-p">,</span> <span class="tok-kc">false</span><span class="tok-p">,</span> <span class="tok-mi">8</span><span class="tok-o">*</span><span class="tok-n">floatsz</span><span class="tok-p">,</span> <span class="tok-mi">3</span><span class="tok-o">*</span><span class="tok-n">floatsz</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">vertex_attrib_pointer</span><span class="tok-p">(</span><span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-s1">&#39;float&#39;</span><span class="tok-p">,</span> <span class="tok-kc">false</span><span class="tok-p">,</span> <span class="tok-mi">8</span><span class="tok-o">*</span><span class="tok-n">floatsz</span><span class="tok-p">,</span> <span class="tok-mi">3</span><span class="tok-o">*</span><span class="tok-n">floatsz</span><span class="tok-p">)</span>
 <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">enable_vertex_attrib_array</span><span class="tok-p">(</span><span class="tok-mi">1</span><span class="tok-p">)</span>
 <span class="tok-c1">-- texture coords attribute</span>
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">vertex_attrib_pointer</span><span class="tok-p">(</span><span class="tok-mi">2</span><span class="tok-p">,</span> <span class="tok-mi">2</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">float&#39;</span><span class="tok-p">,</span> <span class="tok-kc">false</span><span class="tok-p">,</span> <span class="tok-mi">8</span><span class="tok-o">*</span><span class="tok-n">floatsz</span><span class="tok-p">,</span> <span class="tok-mi">6</span><span class="tok-o">*</span><span class="tok-n">floatsz</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">vertex_attrib_pointer</span><span class="tok-p">(</span><span class="tok-mi">2</span><span class="tok-p">,</span> <span class="tok-mi">2</span><span class="tok-p">,</span> <span class="tok-s1">&#39;float&#39;</span><span class="tok-p">,</span> <span class="tok-kc">false</span><span class="tok-p">,</span> <span class="tok-mi">8</span><span class="tok-o">*</span><span class="tok-n">floatsz</span><span class="tok-p">,</span> <span class="tok-mi">6</span><span class="tok-o">*</span><span class="tok-n">floatsz</span><span class="tok-p">)</span>
 <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">enable_vertex_attrib_array</span><span class="tok-p">(</span><span class="tok-mi">2</span><span class="tok-p">)</span>
 
-<span class="tok-n">ebo</span> <span class="tok-o">=</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">new_buffer</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">element array&#39;</span><span class="tok-p">)</span> <span class="tok-c1">-- element buffer object</span>
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">buffer_data</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">element array&#39;</span><span class="tok-p">,</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">pack</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">uint&#39;</span><span class="tok-p">,</span> <span class="tok-n">indices</span><span class="tok-p">),</span> <span class="tok-s1">&#39;</span><span class="tok-s">static draw&#39;</span><span class="tok-p">)</span>
+<span class="tok-n">ebo</span> <span class="tok-o">=</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">new_buffer</span><span class="tok-p">(</span><span class="tok-s1">&#39;element array&#39;</span><span class="tok-p">)</span> <span class="tok-c1">-- element buffer object</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">buffer_data</span><span class="tok-p">(</span><span class="tok-s1">&#39;element array&#39;</span><span class="tok-p">,</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">pack</span><span class="tok-p">(</span><span class="tok-s1">&#39;uint&#39;</span><span class="tok-p">,</span> <span class="tok-n">indices</span><span class="tok-p">),</span> <span class="tok-s1">&#39;static draw&#39;</span><span class="tok-p">)</span>
 
 <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">unbind_vertex_array</span><span class="tok-p">()</span></code></pre>
 </div>
@@ -4167,53 +4173,54 @@ of MoonGL functionalities in practice.</p>
 <div id="snippet_uniform" class="listingblock">
 <div class="title">Assigning values to uniform variables.</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="lua"><span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">uint&#39;</span><span class="tok-p">,</span> <span class="tok-mi">123</span><span class="tok-p">)</span>
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">float&#39;</span><span class="tok-p">,</span> <span class="tok-mf">1.234</span><span class="tok-p">)</span>
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-mi">2</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">bool&#39;</span><span class="tok-p">,</span> <span class="tok-kc">true</span><span class="tok-p">)</span>
+<pre class="pygments highlight"><code data-lang="lua"><span></span><span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-s1">&#39;uint&#39;</span><span class="tok-p">,</span> <span class="tok-mi">123</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-s1">&#39;float&#39;</span><span class="tok-p">,</span> <span class="tok-mf">1.234</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-mi">2</span><span class="tok-p">,</span> <span class="tok-s1">&#39;bool&#39;</span><span class="tok-p">,</span> <span class="tok-kc">true</span><span class="tok-p">)</span>
 
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">int&#39;</span><span class="tok-p">,</span> <span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-mi">2</span><span class="tok-p">)</span> <span class="tok-c1">-- 2D vector</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-mi">3</span><span class="tok-p">,</span> <span class="tok-s1">&#39;int&#39;</span><span class="tok-p">,</span> <span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-mi">2</span><span class="tok-p">)</span> <span class="tok-c1">-- 2D vector</span>
 
 <span class="tok-n">v</span> <span class="tok-o">=</span> <span class="tok-p">{</span> <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">2.0</span><span class="tok-p">,</span> <span class="tok-mf">3.0</span> <span class="tok-p">}</span>
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-mi">4</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">float&#39;</span><span class="tok-p">,</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">flatten</span><span class="tok-p">(</span><span class="tok-n">v</span><span class="tok-p">))</span> <span class="tok-c1">-- table.unpack(v) would do also</span></code></pre>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-mi">4</span><span class="tok-p">,</span> <span class="tok-s1">&#39;float&#39;</span><span class="tok-p">,</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">flatten</span><span class="tok-p">(</span><span class="tok-n">v</span><span class="tok-p">))</span> <span class="tok-c1">-- table.unpack(v) would do also</span></code></pre>
 </div>
 </div>
 <div id="snippet_uniform_matrix" class="listingblock">
 <div class="title">Assigning values to uniform matrices.</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="lua"><span class="tok-n">M</span> <span class="tok-o">=</span> <span class="tok-p">{</span> <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">2.0</span><span class="tok-p">,</span> <span class="tok-mf">3.0</span>  <span class="tok-c1">-- row-major order</span>
+<pre class="pygments highlight"><code data-lang="lua"><span></span>
+<span class="tok-n">M</span> <span class="tok-o">=</span> <span class="tok-p">{</span> <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">2.0</span><span class="tok-p">,</span> <span class="tok-mf">3.0</span>  <span class="tok-c1">-- row-major order</span>
       <span class="tok-mf">4.0</span><span class="tok-p">,</span> <span class="tok-mf">5.0</span><span class="tok-p">,</span> <span class="tok-mf">6.0</span>
       <span class="tok-mf">7.0</span><span class="tok-p">,</span> <span class="tok-mf">8.0</span><span class="tok-p">,</span> <span class="tok-mf">9.0</span> <span class="tok-p">}</span>
 
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform_matrix</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">float&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">3x3&#39;</span><span class="tok-p">,</span> <span class="tok-kc">true</span><span class="tok-p">,</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">flatten</span><span class="tok-p">(</span><span class="tok-n">M</span><span class="tok-p">))</span></code></pre>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform_matrix</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-s1">&#39;float&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;3x3&#39;</span><span class="tok-p">,</span> <span class="tok-kc">true</span><span class="tok-p">,</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">flatten</span><span class="tok-p">(</span><span class="tok-n">M</span><span class="tok-p">))</span></code></pre>
 </div>
 </div>
 <div id="snippet_new_texture" class="listingblock">
 <div class="title">Creating and using a texture (with MoonSOIL).</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="lua"><span class="tok-c1">-- 1) Creating the texture:</span>
-<span class="tok-n">tex_id</span> <span class="tok-o">=</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">new_texture</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">2d&#39;</span><span class="tok-p">)</span>
+<pre class="pygments highlight"><code data-lang="lua"><span></span><span class="tok-c1">-- 1) Creating the texture:</span>
+<span class="tok-n">tex_id</span> <span class="tok-o">=</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">new_texture</span><span class="tok-p">(</span><span class="tok-s1">&#39;2d&#39;</span><span class="tok-p">)</span>
 <span class="tok-c1">-- configure it:</span>
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_parameter</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">2d&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">wrap s&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">repeat&#39;</span><span class="tok-p">)</span>
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_parameter</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">2d&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">wrap t&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">repeat&#39;</span><span class="tok-p">)</span>
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_parameter</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">2d&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">min filter&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">linear&#39;</span><span class="tok-p">)</span>
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_parameter</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">2d&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">mag filter&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">linear&#39;</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_parameter</span><span class="tok-p">(</span><span class="tok-s1">&#39;2d&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;wrap s&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;repeat&#39;</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_parameter</span><span class="tok-p">(</span><span class="tok-s1">&#39;2d&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;wrap t&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;repeat&#39;</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_parameter</span><span class="tok-p">(</span><span class="tok-s1">&#39;2d&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;min filter&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;linear&#39;</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_parameter</span><span class="tok-p">(</span><span class="tok-s1">&#39;2d&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;mag filter&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;linear&#39;</span><span class="tok-p">)</span>
 <span class="tok-c1">-- load the texture image using MoonSOIL:</span>
-<span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">w</span><span class="tok-p">,</span> <span class="tok-n">h</span> <span class="tok-o">=</span> <span class="tok-n">soil</span><span class="tok-p">.</span><span class="tok-n">load_image</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">myimage.jpg&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">rgb&#39;</span><span class="tok-p">)</span>
+<span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">w</span><span class="tok-p">,</span> <span class="tok-n">h</span> <span class="tok-o">=</span> <span class="tok-n">soil</span><span class="tok-p">.</span><span class="tok-n">load_image</span><span class="tok-p">(</span><span class="tok-s1">&#39;myimage.jpg&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;rgb&#39;</span><span class="tok-p">)</span>
 <span class="tok-nb">assert</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">soil</span><span class="tok-p">.</span><span class="tok-n">last_result</span><span class="tok-p">())</span>
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_image</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">2d&#39;</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">rgb&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">rgb&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">ubyte&#39;</span><span class="tok-p">,</span> <span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">w</span><span class="tok-p">,</span> <span class="tok-n">h</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_image</span><span class="tok-p">(</span><span class="tok-s1">&#39;2d&#39;</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-s1">&#39;rgb&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;rgb&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;ubyte&#39;</span><span class="tok-p">,</span> <span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">w</span><span class="tok-p">,</span> <span class="tok-n">h</span><span class="tok-p">)</span>
 <span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">w</span><span class="tok-p">,</span> <span class="tok-n">h</span> <span class="tok-o">=</span> <span class="tok-kc">nil</span><span class="tok-p">,</span> <span class="tok-kc">nil</span><span class="tok-p">,</span> <span class="tok-kc">nil</span> <span class="tok-c1">-- let the GC collect them</span>
 <span class="tok-c1">-- generate the mipmap:</span>
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">generate_mipmap</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">2d&#39;</span><span class="tok-p">)</span>
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">unbind_texture</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">2d&#39;</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">generate_mipmap</span><span class="tok-p">(</span><span class="tok-s1">&#39;2d&#39;</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">unbind_texture</span><span class="tok-p">(</span><span class="tok-s1">&#39;2d&#39;</span><span class="tok-p">)</span>
 
 <span class="tok-c1">-- ...</span>
 
 <span class="tok-c1">-- 2) Using the texture in the game loop:</span>
 <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">use_program</span><span class="tok-p">(</span><span class="tok-n">prog_id</span><span class="tok-p">)</span>
 <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">active_texture</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">)</span> <span class="tok-c1">-- activate texture unit 0</span>
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">bind_texture</span><span class="tok-p">(</span><span class="tok-s1">&#39;</span><span class="tok-s">2d&#39;</span><span class="tok-p">,</span> <span class="tok-n">tex_id</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">bind_texture</span><span class="tok-p">(</span><span class="tok-s1">&#39;2d&#39;</span><span class="tok-p">,</span> <span class="tok-n">tex_id</span><span class="tok-p">)</span>
 <span class="tok-c1">-- Assuming our program has a sampler2D uniform named mytexture:</span>
-<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform_location</span><span class="tok-p">(</span><span class="tok-n">prog_id</span><span class="tok-p">,</span> <span class="tok-s1">&#39;</span><span class="tok-s">mytexture&#39;</span><span class="tok-p">),</span> <span class="tok-s1">&#39;</span><span class="tok-s">int&#39;</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">)</span>
+<span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform_location</span><span class="tok-p">(</span><span class="tok-n">prog_id</span><span class="tok-p">,</span> <span class="tok-s1">&#39;mytexture&#39;</span><span class="tok-p">),</span> <span class="tok-s1">&#39;int&#39;</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">)</span>
 <span class="tok-c1">-- ... bind geometry and draw ...</span></code></pre>
 </div>
 </div>
@@ -4229,7 +4236,7 @@ of MoonGL functionalities in practice.</p>
 <div id="footer">
 <div id="footer-text">
 Version 0.5<br>
-Last updated 2017-05-25 08:19:24 CEST
+Last updated 2017-08-09 20:11:14 CEST
 </div>
 </div>
 </body>

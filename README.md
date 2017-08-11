@@ -22,7 +22,7 @@ See the [Reference Manual](https://stetre.github.io/moongl/doc/index.html).
 
 #### Getting and installing
 
-Setup the build environment as described [here](./SETUP.md), then:
+Setup the build environment as described [here](https://github.com/stetre/moonlibs), then:
 
 ```sh
 $ git clone https://github.com/stetre/moongl
