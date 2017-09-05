@@ -401,6 +401,7 @@ ENUM_STRINGS(PnameStrings) = {
     "vertex binding divisor",
     "vertex binding offset",
     "vertex binding stride",
+    "max varying floats",
     NULL
 };
 ENUM_CODES(PnameCodes) = {
@@ -779,6 +780,7 @@ ENUM_CODES(PnameCodes) = {
     GL_VERTEX_BINDING_DIVISOR,
     GL_VERTEX_BINDING_OFFSET,
     GL_VERTEX_BINDING_STRIDE,
+    GL_MAX_VARYING_FLOATS,
 };
 ENUM_T(PnameEnum, PnameStrings, PnameCodes)
 #define CheckPname(L, arg) enumCheck((L), (arg), &PnameEnum)
@@ -1565,10 +1567,8 @@ static int Get(lua_State *L)
         case GL_VERTEX_BINDING_DIVISOR: return GetIntIndex(L, pname);
         case GL_VERTEX_BINDING_OFFSET: return GetIntIndex(L, pname);
         case GL_VERTEX_BINDING_STRIDE: return GetIntIndex(L, pname);
-#if 0
-/*      case GL_MAX_VARYING_COMPONENTS = GL_MAX_VARYING_FLOATS */
+//      case GL_MAX_VARYING_COMPONENTS = GL_MAX_VARYING_FLOATS
         case GL_MAX_VARYING_FLOATS: return GetInt(L, pname);
-#endif
         case GL_RESET_NOTIFICATION_STRATEGY: return GetEnum(L, pname, &RNStrategyEnum);
         default:
             luaL_error(L, UNEXPECTED_ERROR);
