@@ -85,9 +85,43 @@ static int GetString(lua_State *L)
     return 1;
     }
 
+
+static int GetExtensions(lua_State *L)
+    {
+    GLsizei i, count;
+    const GLubyte *s;
+    GLboolean byname = optboolean(L, 1, 0);
+
+    count = getSizei(L, GL_NUM_EXTENSIONS);
+    CheckError(L);
+
+    lua_newtable(L);
+
+    for(i=0; i<count; i++)
+        {
+        s = glGetStringi(GL_EXTENSIONS, i);
+        CheckError(L);
+        if(s == NULL)
+            return luaL_error(L, UNEXPECTED_ERROR);
+        if(byname)
+            {
+            lua_pushboolean(L, 1);
+            lua_setfield(L, -2, (char*)s);
+            }
+        else
+            {
+            lua_pushstring(L, (char*)s);
+            lua_rawseti(L, -2, i+1);
+            }
+        }
+
+    return 1;
+    }
+
 static const struct luaL_Reg Functions[] = 
     {
         { "get_string", GetString },
+        { "get_extensions", GetExtensions },
         { NULL, NULL } /* sentinel */
     };
 

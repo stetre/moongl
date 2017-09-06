@@ -49,6 +49,14 @@ GLboolean checkboolean(lua_State *L, int arg)
     return lua_toboolean(L, arg) ? GL_TRUE : GL_FALSE;
     }
 
+GLboolean optboolean(lua_State *L, int arg, GLboolean d)
+    {
+    if(!lua_isboolean(L, arg))
+        return d;
+    return lua_toboolean(L, arg) ? GL_TRUE : GL_FALSE;
+    }
+
+
 int checkoption_hint(lua_State *L, int arg, const char *def, const char *const lst[])
 /* Variant of luaL_checkoption(), with an added hint in the error message */
     {

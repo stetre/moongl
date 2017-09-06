@@ -64,6 +64,8 @@ int checkoption_hint(lua_State *L, int arg, const char *def, const char *const l
 int isoption(lua_State *L, int arg, const char *const lst[]);
 #define checkboolean moongl_checkboolean
 GLboolean checkboolean(lua_State *L, int arg);
+#define optboolean moongl_optboolean
+GLboolean optboolean(lua_State *L, int arg, GLboolean d);
 #define noprintf moongl_noprintf
 int noprintf(const char *fmt, ...); 
 #define notavailable moongl_notavailable

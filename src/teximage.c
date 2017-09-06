@@ -68,8 +68,8 @@ static int TextureImage(lua_State *L)
         {
         data = (intptr_t)luaL_checkstring(L, arg++);
         }
-	else if(lua_isnil(L, arg))
-		{ data = 0; arg++; }
+    else if(lua_isnil(L, arg))
+        { data = 0; arg++; }
     else
         {
         /* data may be a buffer name (if a buffer is bound to GL_PIXEL_UNPACK_BUFFER) */
@@ -156,8 +156,8 @@ static int TextureSubImage(lua_State *L)
     GLenum type = checktype(L, arg++);
     if(lua_type(L, arg) == LUA_TSTRING)
         data = (intptr_t)luaL_checkstring(L, arg++);
-	else if(lua_isnil(L, arg))
-		{ data = 0; arg++; }
+    else if(lua_isnil(L, arg))
+        { data = 0; arg++; }
     else /* data may be a buffer name (if a buffer is bound to GL_PIXEL_UNPACK_BUFFER) */
         data = luaL_checkinteger(L, arg++);
     v1 = luaL_checkinteger(L, arg++);
