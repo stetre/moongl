@@ -149,9 +149,7 @@ shaders, and deletes them and the program.#
 [small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Shader_Program_Query[Shader Program Query].#
 
 [[gl.get_uniform_location]]
-* _location_ = *get_uniform_location*(_program_, _name_) +
-[small]#Returns _nil_ if _name_ is not an active uniform variable.#
-
+* _location_ = *get_uniform_location*(_program_, _name_)
 
 [[gl.get_active_uniform_name]]
 * _name_ = *get_active_uniform_name*(_program_, _index_) +
