@@ -39,7 +39,6 @@ struct moongl_node_s {
     RB_ENTRY(moongl_node_s) entry;
     int id;     /* search key */
     GLsync  sync;
-
 };
 
 static node_t *node_search(int id); 
@@ -354,6 +353,15 @@ static int GetSync(lua_State *L)
     }
 
 
+static int RawSync(lua_State *L)
+    {
+    node_t *node = CheckSync(L, 1);
+    lua_pushlightuserdata(L, (void*)&node->sync);
+    return 1;
+    }
+
+
+
 static const struct luaL_Reg Functions[] = 
     {
         { "fence_sync", FenceSync },
@@ -362,6 +370,7 @@ static const struct luaL_Reg Functions[] =
         { "client_wait_sync", ClientWaitSync },
         { "wait_sync", WaitSync },
         { "get_sync", GetSync },
+        { "raw_sync", RawSync },
         { NULL, NULL } /* sentinel */
     };
 
@@ -369,6 +378,4 @@ void moongl_open_sync(lua_State *L)
     {
     luaL_setfuncs(L, Functions, 0);
     }
-
-
 

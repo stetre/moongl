@@ -33,3 +33,7 @@ Rfr: https://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml[glGetSync].#
 * _boolean_ = *is_sync*(_sync_) +
 [small]#Rfr: https://www.opengl.org/sdk/docs/man/html/glIsSync.xhtml[glIsSync].#
 
+[[gl.raw_sync]]
+* _lightuserdata_ = *raw_sync*(_sync_) _NONGL_ +
+[small]#Returns the raw sync object as a lightuserdata (_GLsync*_).#
+
