@@ -133,35 +133,26 @@ Uniform Variables Queries:
 
 [[gl.get_uniform_location]]
 * _location_ = *get_uniform_location*(_program_, _name_) +
-[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetUniformLocation[glGetUniformLocation].#
-
-[[gl.get_active_uniform_name]]
-* _name_ = *get_active_uniform_name*(_program_, _index_) +
-[small]#May return _nil_. +
-Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniformName[glGetActiveUniformName].#
-
-[[gl.get_uniform_indices]]
-* _index~1~_, _index~2~_, _..._ = *get_uniform_indices*(_program_, _name~1~_, [_name~2~_, _..._]) +
-[small]#_index~k~_ = _false_ if _name~k~_ is not a valid uniform name. +
-Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetUniformIndices[glGetUniformIndices].#
+_name_ = *get_active_uniform_name*(_program_, _index_) +
+_index~1~_, _..._ = *get_uniform_indices*(_program_, _name~1~_, [_name~2~_, _..._]) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetUniformLocation[glGetUniformLocation] -
+https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniformName[glGetActiveUniformName] -
+https://www.khronos.org/opengl/wiki/GLAPI/glGetUniformIndices[glGetUniformIndices].#
 
 [[gl.get_active_uniform]]
 * _name_, _type_, _size_ = *get_active_uniform*(_program_, _index_) +
-[small]#May return _nil_. +
-Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniform[glGetActiveUniform].#
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniform[glGetActiveUniform].#
 
 [[gl.get_active_uniforms]]
-* _value~1~_, _value~2~_, _..._ = *get_active_uniforms*(_program_, _pname_, _index~1~_, [_index~2~_, _..._]) +
+* _value~1~_, _..._ = *get_active_uniforms*(_program_, _pname_, _index~1~_, [_index~2~_, _..._]) +
 [small]#_pname_: '_type_' for GL_UNIFORM_TYPE, '_name length_' for GL_UNIFORM_NAME_LENGTH, etc. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniforms[glGetActiveUniforms].#
 
 [[gl.get_uniform_block_index]]
 * _index_ = *get_uniform_block_index*(_program_, _name_) +
-[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetUniformBlockIndex[glGetUniformBlockIndex].#
-
-[[gl.get_active_uniform_block_name]]
-* _name_ = *get_active_uniform_block_name*(_program_, _index_) +
-[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniformBlockName[glGetActiveUniformBlockName].#
+_name_ = *get_active_uniform_block_name*(_program_, _index_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetUniformBlockIndex[glGetUniformBlockIndex] -
+https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniformBlockName[glGetActiveUniformBlockName].#
 
 [[gl.get_active_uniform_block]]
 * _value_ = *get_active_uniform_block*(_program_, _index_, _pname_) +
@@ -227,19 +218,13 @@ Subroutine Uniform Variables:
 
 [[gl.get_subroutine_uniform_location]]
 * _location_ = *get_subroutine_uniform_location*(_program_, <<shadertype, _shadertype_>>, _name_) +
-[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glSubroutineUniformLocation[glSubroutineUniformLocation].#
-
-[[gl.get_active_subroutine_index]]
-* _index_ = *get_active_subroutine_index*(_program_, <<shadertype, _shadertype_>>, _name_) +
-[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineIndex[glGetActiveSubroutineIndex].#
-
-[[gl.get_active_subroutine_name]]
-* _name_ = *get_active_subroutine_name*(_program_, <<shadertype, _shadertype_>>, _index_) +
-[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineName[glGetActiveSubroutineName].#
-
-[[gl.get_active_subroutine_uniform_name]]
-* _name_ = *get_active_subroutine_uniform_name*(_program_, <<shadertype, _shadertype_>>, _index_) +
-[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineUniformName[glGetActiveSubroutineUniformName].#
+_index_ = *get_active_subroutine_index*(_program_, <<shadertype, _shadertype_>>, _name_) +
+_name_ = *get_active_subroutine_name*(_program_, <<shadertype, _shadertype_>>, _index_) +
+_name_ = *get_active_subroutine_uniform_name*(_program_, <<shadertype, _shadertype_>>, _index_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glSubroutineUniformLocation[glSubroutineUniformLocation] -
+https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineIndex[glGetActiveSubroutineIndex] -
+https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineName[glGetActiveSubroutineName] -
+https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineUniformName[glGetActiveSubroutineUniformName].#
 
 [[gl.get_active_subroutine_uniform]]
 * _value_, _..._ = 

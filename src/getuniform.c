@@ -214,14 +214,10 @@ static int GetActiveUniformName(lua_State *L)
     if(length > 0) 
         lua_pushstring(L, name);
     Free(L, name);
-    return (length > 0) ? 1 : 0;
+    return (length > 0) ? 1 : luaL_error(L, "invalid index %d", index);
     }
 
 static int GetUniformIndices(lua_State *L)
-/* get_uniform_indices(program, name1, name2, ...)
- * -> index1, index2, ...
- * (indexN=false if not a valid uniform name)
- */
     {
     GLsizei i, count;
     const GLchar **names;
@@ -239,11 +235,16 @@ static int GetUniformIndices(lua_State *L)
     CheckErrorFree2(L, names, indices);
     for(i = 0; i < count; i++)
         {
-        if(indices[i] != GL_INVALID_INDEX)
-            lua_pushinteger(L, indices[i]);
-        else
-            lua_pushboolean(L, 0);
+        if(indices[i] == GL_INVALID_INDEX)
+            {
+            lua_pushfstring(L, "invalid name '%s'", names[i]);
+            Free(L, names);
+            Free(L, indices);
+            return lua_error(L);
+            }
         }
+    for(i = 0; i < count; i++)
+        lua_pushinteger(L, indices[i]);
     Free(L, names);
     Free(L, indices);
     return count;
@@ -342,7 +343,10 @@ static int GetActiveUniform(lua_State *L)
     glGetActiveUniform(program, index, maxlen, &length, &size, &type, name);
     CheckErrorFree(L, name);
     if(length == 0)
-        { Free(L, name); return 0; }
+        {
+        Free(L, name);
+        return luaL_error(L, "invalid index %d", index);
+        }
     lua_pushstring(L, name);
     pushglsltype(L, type);
     lua_pushinteger(L, size);

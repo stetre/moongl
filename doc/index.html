@@ -1467,25 +1467,11 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glUseProgramStages">glUs
 <ul>
 <li>
 <p><em>location</em> = <strong>get_uniform_location</strong>(<em>program</em>, <em>name</em>)<br>
-<span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetUniformLocation">glGetUniformLocation</a>.</span></p>
-</li>
-</ul>
-</div>
-<div id="gl.get_active_uniform_name" class="ulist">
-<ul>
-<li>
-<p><em>name</em> = <strong>get_active_uniform_name</strong>(<em>program</em>, <em>index</em>)<br>
-<span class="small">May return <em>nil</em>.<br>
-Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniformName">glGetActiveUniformName</a>.</span></p>
-</li>
-</ul>
-</div>
-<div id="gl.get_uniform_indices" class="ulist">
-<ul>
-<li>
-<p><em>index<sub>1</sub></em>, <em>index<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>get_uniform_indices</strong>(<em>program</em>, <em>name<sub>1</sub></em>, [<em>name<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
-<span class="small"><em>index<sub>k</sub></em> = <em>false</em> if <em>name<sub>k</sub></em> is not a valid uniform name.<br>
-Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetUniformIndices">glGetUniformIndices</a>.</span></p>
+<em>name</em> = <strong>get_active_uniform_name</strong>(<em>program</em>, <em>index</em>)<br>
+<em>index<sub>1</sub></em>, <em>&#8230;&#8203;</em> = <strong>get_uniform_indices</strong>(<em>program</em>, <em>name<sub>1</sub></em>, [<em>name<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
+<span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetUniformLocation">glGetUniformLocation</a> -
+<a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniformName">glGetActiveUniformName</a> -
+<a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetUniformIndices">glGetUniformIndices</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -1493,15 +1479,14 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetUniformIndices">glG
 <ul>
 <li>
 <p><em>name</em>, <em>type</em>, <em>size</em> = <strong>get_active_uniform</strong>(<em>program</em>, <em>index</em>)<br>
-<span class="small">May return <em>nil</em>.<br>
-Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniform">glGetActiveUniform</a>.</span></p>
+<span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniform">glGetActiveUniform</a>.</span></p>
 </li>
 </ul>
 </div>
 <div id="gl.get_active_uniforms" class="ulist">
 <ul>
 <li>
-<p><em>value<sub>1</sub></em>, <em>value<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>get_active_uniforms</strong>(<em>program</em>, <em>pname</em>, <em>index<sub>1</sub></em>, [<em>index<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
+<p><em>value<sub>1</sub></em>, <em>&#8230;&#8203;</em> = <strong>get_active_uniforms</strong>(<em>program</em>, <em>pname</em>, <em>index<sub>1</sub></em>, [<em>index<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small"><em>pname</em>: '<em>type</em>' for GL_UNIFORM_TYPE, '<em>name length</em>' for GL_UNIFORM_NAME_LENGTH, etc.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniforms">glGetActiveUniforms</a>.</span></p>
 </li>
@@ -1511,15 +1496,9 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniforms">glG
 <ul>
 <li>
 <p><em>index</em> = <strong>get_uniform_block_index</strong>(<em>program</em>, <em>name</em>)<br>
-<span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetUniformBlockIndex">glGetUniformBlockIndex</a>.</span></p>
-</li>
-</ul>
-</div>
-<div id="gl.get_active_uniform_block_name" class="ulist">
-<ul>
-<li>
-<p><em>name</em> = <strong>get_active_uniform_block_name</strong>(<em>program</em>, <em>index</em>)<br>
-<span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniformBlockName">glGetActiveUniformBlockName</a>.</span></p>
+<em>name</em> = <strong>get_active_uniform_block_name</strong>(<em>program</em>, <em>index</em>)<br>
+<span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetUniformBlockIndex">glGetUniformBlockIndex</a> -
+<a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniformBlockName">glGetActiveUniformBlockName</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -1613,31 +1592,13 @@ See <a href="#snippet_uniform_matrix">example</a>.</span></p>
 <ul>
 <li>
 <p><em>location</em> = <strong>get_subroutine_uniform_location</strong>(<em>program</em>, <a href="#shadertype"><em>shadertype</em></a>, <em>name</em>)<br>
-<span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glSubroutineUniformLocation">glSubroutineUniformLocation</a>.</span></p>
-</li>
-</ul>
-</div>
-<div id="gl.get_active_subroutine_index" class="ulist">
-<ul>
-<li>
-<p><em>index</em> = <strong>get_active_subroutine_index</strong>(<em>program</em>, <a href="#shadertype"><em>shadertype</em></a>, <em>name</em>)<br>
-<span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineIndex">glGetActiveSubroutineIndex</a>.</span></p>
-</li>
-</ul>
-</div>
-<div id="gl.get_active_subroutine_name" class="ulist">
-<ul>
-<li>
-<p><em>name</em> = <strong>get_active_subroutine_name</strong>(<em>program</em>, <a href="#shadertype"><em>shadertype</em></a>, <em>index</em>)<br>
-<span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineName">glGetActiveSubroutineName</a>.</span></p>
-</li>
-</ul>
-</div>
-<div id="gl.get_active_subroutine_uniform_name" class="ulist">
-<ul>
-<li>
-<p><em>name</em> = <strong>get_active_subroutine_uniform_name</strong>(<em>program</em>, <a href="#shadertype"><em>shadertype</em></a>, <em>index</em>)<br>
-<span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineUniformName">glGetActiveSubroutineUniformName</a>.</span></p>
+<em>index</em> = <strong>get_active_subroutine_index</strong>(<em>program</em>, <a href="#shadertype"><em>shadertype</em></a>, <em>name</em>)<br>
+<em>name</em> = <strong>get_active_subroutine_name</strong>(<em>program</em>, <a href="#shadertype"><em>shadertype</em></a>, <em>index</em>)<br>
+<em>name</em> = <strong>get_active_subroutine_uniform_name</strong>(<em>program</em>, <a href="#shadertype"><em>shadertype</em></a>, <em>index</em>)<br>
+<span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glSubroutineUniformLocation">glSubroutineUniformLocation</a> -
+<a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineIndex">glGetActiveSubroutineIndex</a> -
+<a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineName">glGetActiveSubroutineName</a> -
+<a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineUniformName">glGetActiveSubroutineUniformName</a>.</span></p>
 </li>
 </ul>
 </div>
