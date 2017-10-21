@@ -3,10 +3,12 @@
 
 * <<gl.enable, enable/disable/is_enabled>>
 
-=== Multisampling
+'''
+
+Multisampling:
 
 [[gl.get_multisample]]
-* _value(s)_ = *get_multisample*(_pname_) +
+* _value_, _..._ = *get_multisample*(_pname_) +
 [small]#_pname_: '_sample position_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetMultisample[glGetMultisample].#
 
@@ -14,24 +16,32 @@ Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetMultisample[glGetMultisample
 * *min_sample_shading*(_value_) +
 [small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glMinSampleShading[glMinSampleShading].#
 
-=== Points
+'''
+
+Points:
 
 [[gl.point_size]]
 * *point_size*(_size_) +
 [small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glPointSize[glPointSize].#
 
 [[gl.point_parameter]]
-* _value(s)_ = *point_parameter*(_pname_) +
-[small]#_pname_: '_fade threshold size_' for GL_POINT_FADE_THRESHOLD_SIZE, etc. +
+* *point_parameter*(_pname_, _value_) +
+[small]#_pname_: '_fade threshold size_' '_point sprite coord origin_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glPointParameter[glPointParameter].#
 
-=== Line Segments
+* <<gl.get, get>>
+
+'''
+
+Line Segments:
 
 [[gl.line_width]]
 * *line_width*(_width_) +
 [small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glLineWidth[glLineWidth].#
 
-=== Polygons
+'''
+
+Polygons:
 
 [[gl.front_face]]
 * *front_face*(_dir_) +
@@ -43,7 +53,9 @@ Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glFrontFace[glFrontFace].#
 [small]#_mode_: '_front_', '_back_', '_front and back_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glCullFace[glCullFace].#
 
-=== Polygon Rast. & Depth Offset
+'''
+
+Polygon Rast. & Depth Offset:
 
 [[gl.polygon_mode]]
 * *polygon_mode*(_face_, _mode_) +

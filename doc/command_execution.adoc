@@ -1,42 +1,29 @@
 
 == Initialization
 
-
-=== GLEW Init
 [[gl.init]]
 * *init*( ) +
-[small]#Binding to http://glew.sourceforge.net/basic.html[glewInit]().#
-[small]#See <<snippet_init, example>>.#
-
-IMPORTANT: The <<gl.init, gl.init>>( ) function must be called as soon as a GL context is obtained,
-in order to correctly initialize OpenGL's function pointers, *before calling any other MoonGL function*
-(see <<snippet_init, example>>). Failing to do so would likely cause a segmentation fault.
-
-=== Other GLEW bindings
+[small]#Binding to http://glew.sourceforge.net/basic.html[glewInit](). 
+This function *must* be called as soon as a GL context is obtained and made current, and
+*before calling any other MoonGL function* 
+(since it initializes OpenGL's function pointers, failing to do so would likely cause a
+segmentation fault). +
+See <<snippet_init, example>>.#
 
 * _boolean_ = *is_supported*(_string_) +
 [small]#Binding to http://glew.sourceforge.net/basic.html[glewIsSupported]() (accepts the same strings).# 
 [small]#See <<snippet_is_supported, example>>.#
 
-=== Version information
 
-The *gl* table contains the following version fields:
+* The *gl* table contains the following version fields for *version information*: +
+[small]#pass:[-] *pass:[gl._VERSION]*: a string describing the MoonGL version (e.g. '_MoonGL 0.4_'), and +
+pass:[-] *pass:[gl._GLEW_VERSION]*: a string describing the GLEW version (e.g. '_GLEW 1.13.0_').#
 
-* *pass:[_VERSION]*: a string describing the MoonGL version (e.g. '_MoonGL 0.4_'), and
-* *pass:[_GLEW_VERSION]*: a string describing the GLEW version (e.g. '_GLEW 1.13.0_').
-
-To retrieve the OpenGL version, use the <<gl.get, get>>() function (this can be
+* To retrieve the *OpenGL version*, use the <<gl.get, get>>() function (this can be
 done only after initialization).
 
 == Command Execution
 
-=== OpenGL Errors
-
-The *glGetError* function is not exposed. It is used internally by MoonGL, 
-which checks for errors each time it executes an OpenGL command and raises
-an error if the command did not succeed.
-
-=== Graphics Reset Recovery
 
 [[gl.get_graphics_reset_status]]
 * _status_ = *get_graphics_reset_status*( ) +
@@ -45,13 +32,13 @@ an error if the command did not succeed.
 
 * <<gl.get, get>>
 
-=== Flush and Finish
-
 [[gl.flush]]
 * *flush*( ) +
-[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glFlush[glFlush].#
+*finish*( ) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glFlush[glFlush] -
+https://www.khronos.org/opengl/wiki/GLAPI/glFinish[glFinish].#
 
-[[gl.finish]]
-* *finish*( ) +
-[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glFinish[glFinish].#
+NOTE: The *glGetError*(&nbsp;) function is not exposed. It is used internally by MoonGL, 
+that checks for errors each time it executes an OpenGL command and raises
+an error if the command did not succeed.
 

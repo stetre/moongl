@@ -1,7 +1,7 @@
 
 == Reading and Copying Pixels
 
-=== Reading Pixels
+Reading Pixels:
 
 [[gl.read_buffer]]
 * *read_buffer*(_src_) +
@@ -16,7 +16,9 @@ _type_: '_half float_' for GL_HALF_FLOAT, '_float_' for GL_FLOAT, etc. +
 Returns _data_ as a binary string. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glReadPixels[glReadPixels].#
 
-=== Final Conversion
+'''
+
+Final Conversion:
 
 [[gl.clamp_color]]
 * *clamp_color*(_target_, _clamp_) +
@@ -26,13 +28,15 @@ _clamp_: '_true_', '_false_', '_fixed only_'
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glClampColor[glClampColor].#
 
 [[gl.blit_framebuffer]]
-* *blit_framebuffer*(_srcx0_, _srcy0_, _srcx1_, _srcy1_, _dstx0_, _dsty0_, _dstx1_, _dsty1_, _filter_, [_maskbit1_, ...]) +
+* *blit_framebuffer*(_srcx~0~_, _srcy~0~_, _srcx~1~_, _srcy~1~_, _dstx~0~_, _dsty~0~_, _dstx~1~_, _dsty~1~_, _filter_, [_maskbit~1~_, ...]) +
 *blit_framebuffer*(_readframebuffer_, _drawframebuffer_, _..ditto.._) +
 [small]#_filter_: '_linear_', '_nearest_'. +
 _maskbit_(s): '_color_', '_depth_', '_stencil_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBlitFramebuffer[glBlitFramebuffer].#
 
-=== Copying Pixels
+'''
+
+Copying Pixels:
 
 [[gl.copy_image_sub_data]]
 * *copy_image_sub_data*(_srcname_, _srctarget_, _srclevel_, _srcx_, _srcy_, _srcz_, _dstname_, _dsttarget_, _dstlevel_, _dstx_, _dsty_, _dstz_, _width_, _height_, _depth_) +

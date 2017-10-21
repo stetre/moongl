@@ -1,64 +1,57 @@
 
 == Vertex Post-Processing
 
-=== Transform Feedback
-
-[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Transform_Feedback[Transform Feedback].#
-
-[[gl.gen_transform_feedbacks]]
-* _xfb1_, _xfb2_, _..._ = *gen_transform_feedbacks*([_n_ = 1])
-
-[[gl.delete_transform_feedbacks]]
-* *delete_transform_feedbacks*(_xfb1_, [_xfb2_, _..._])
-
-[[gl.is_transform_feedback]]
-* _boolean_ = *is_transform_feedback*(_xfb_)
+Transform Feedback:
 
 [[gl.bind_transform_feedback]]
-* *bind_transform_feedback*(_target_, [_xfb_]) +
-*unbind_transform_feedback*(_target_) _NONGL_ +
-[small]#_target_: '_transform feedback_'.#
-
-[[gl.create_transform_feedbacks]]
-* *create_transform_feedbacks*(_xfb1_, [_xfb2_, _..._])
-
-[[gl.new_transform_feedback]]
 * _xfb_= *new_transform_feedback*(_target_ ) _NONGL_ +
-[small]#Gen & bind one transform feedback.#
+_xfb~1~_, _xfb~2~_, _..._ = *gen_transform_feedbacks*([_n_ = 1]) +
+*create_transform_feedbacks*(_xfb~1~_, [_xfb~2~_, _..._]) +
+*bind_transform_feedback*(_target_, [_xfb_]) +
+*unbind_transform_feedback*(_target_) _NONGL_ +
+*delete_transform_feedbacks*(_xfb~1~_, [_xfb~2~_, _..._]) +
+[small]#_target_: '_transform feedback_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGenTransformFeedbacks[glGenTransformFeedbacks] -
+https://www.khronos.org/opengl/wiki/GLAPI/glBindTransformFeedback[glBindTransformFeedback] -
+https://www.khronos.org/opengl/wiki/GLAPI/glDeleteTransformFeedbacks[glDeleteTransformFeedbacks].#
+
+////
+[[gl.is_transform_feedback]]
+* _boolean_ = *is_transform_feedback*(_xfb_)
+////
 
 [[gl.begin_transform_feedback]]
 * *begin_transform_feedback*(_primitivemode_) +
-[small]#_primitivemode_: '_triangles_', '_lines_', '_points_'.#
-
-[[gl.end_transform_feedback]]
-* *end_transform_feedback*( )
-
-[[gl.pause_transform_feedback]]
-* *pause_transform_feedback*( )
+*end_transform_feedback*( ) +
+*pause_transform_feedback*( ) +
+[small]#_primitivemode_: '_triangles_', '_lines_', '_points_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBeginTransformFeedback[glBeginTransformFeedback] -
+https://www.khronos.org/opengl/wiki/GLAPI/glEndTransformFeedback[glEndTransformFeedback] -
+https://www.khronos.org/opengl/wiki/GLAPI/glPauseTransformFeedback[glPauseTransformFeedback].#
 
 [[gl.transform_feedback_buffer_range]]
-* *transform_feedback_buffer_range*(_xfb_, _index_, _buffer_, _offset_, _size_)
-
-[[gl.transform_feedback_buffer_base]]
-* *transform_feedback_buffer_base*(_xfb_, _index_, _buffer_)
-
-=== Transform Feedback Drawing
-
-[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Vertex_Rendering[Vertex Rendering].#
+* *transform_feedback_buffer_range*(_xfb_, _index_, _buffer_, _offset_, _size_) +
+*transform_feedback_buffer_base*(_xfb_, _index_, _buffer_)
 
 [[gl.draw_transform_feedback]]
 * *draw_transform_feedback*(_mode_, _xfb_, [_instancecount_]) +
-* *draw_transform_feedback_stream*(_mode_, _xfb_, _stream_, [_instancecount_]) +
-[small]#_mode_: see <<gl.draw_arrays, draw_arrays>>.#
+*draw_transform_feedback_stream*(_mode_, _xfb_, _stream_, [_instancecount_]) +
+[small]#_mode_: see <<gl.draw_arrays, draw_arrays>>. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDrawTransformFeedback[glDrawTransformFeedback] -
+https://www.khronos.org/opengl/wiki/GLAPI/glDrawTransformFeedbackStream[glDrawTransformFeedbackStream].#
 
-=== Flatshading
+'''
+
+Flatshading:
 
 [[gl.provoking_vertex]]
 * *provoking_vertex*(_provokemode_) +
 [small]#_provokemode_: '_first vertex convention_', '_last vertex convention_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glProvokingVertex[glProvokingVertex].#
 
-=== Primitive Clipping
+'''
+
+Primitive Clipping:
 
 * <<gl.enable, enable/disable/is_enabled>>
 
@@ -68,25 +61,21 @@ Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glProvokingVertex[glProvokingVert
 _depth_: '_negative one to one_', '_zero to one_'. +
 Rfr: https://www.opengl.org/sdk/docs/man/html/glClipControl.xhtml[glClipControl].#
 
-=== Controlling Viewport
+'''
 
-[small]#Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Viewport_and_Clipping[Viewport and Clipping].#
+Controlling Viewport:
 
 [[gl.depth_range]]
 * *depth_range*(_near_, _far_, [_index_]) +
+*depth_range_array*(_first_, _near~1~_, _far~1~_, [_near~2~_, _far~2~_, _..._]) +
 [small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDepthRange[glDepthRange] -
-https://www.khronos.org/opengl/wiki/GLAPI/glDepthRangeIndexed[glDepthRangeIndexed].#
-
-[[gl.depth_range_array]]
-* *depth_range_array*(_first_, _near1_, _far1_, [_near2_, _far2_, _..._]) +
-[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDepthRangeArray[glDepthRangeArray].#
+https://www.khronos.org/opengl/wiki/GLAPI/glDepthRangeIndexed[glDepthRangeIndexed] -
+https://www.khronos.org/opengl/wiki/GLAPI/glDepthRangeArray[glDepthRangeArray].#
 
 [[gl.viewport]]
 * *viewport*(_x_, _y_, _w_, _h_, [_index_]) +
+*viewport_array*(_first_, _x~1~_, _y~1~_, _w~1~_, _h~1~_, [_x~2~_, _y~2~_, _w~2~_, _h~2~_]) +
 [small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glViewport[glViewport] -
-https://www.khronos.org/opengl/wiki/GLAPI/glViewportIndexed[glViewportIndexed].#
-
-[[gl.viewport_array]]
-* *viewport_array*(_first_, _x1_, _y1_, _w1_, _h1_, [_x2_, _y2_, _w2_, _h2_]) +
-[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glViewportArray[glViewportArray].#
+https://www.khronos.org/opengl/wiki/GLAPI/glViewportIndexed[glViewportIndexed] -
+https://www.khronos.org/opengl/wiki/GLAPI/glViewportArray[glViewportArray].#
 

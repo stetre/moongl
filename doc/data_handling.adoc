@@ -28,14 +28,14 @@ Unlike <<gl.flatten, flatten>>(&nbsp;), this function can be used also with very
 
 
 [[gl.pack]]
-* _bstring_ = *pack*(<<type, _type_>>, _val~1~_, _..._, _val~N~_) _NONGL_ +
-_bstring_ = *pack*(<<type, _type_>>, _table_) _NONGL_ +
+* <<data, _data_>> = *pack*(<<type, _type_>>, _val~1~_, _..._, _val~N~_) _NONGL_ +
+<<data, _data_>> = *pack*(<<type, _type_>>, _table_) _NONGL_ +
 [small]#Packs the numbers _val~1~_, _..._, _val~N~_ in a binary string, encoding them
 according to _type_. The values may be passed also in a (possibly nested) table _t_.#
 
 
-* {_val~1~_, _..._, _val~N~_} = *unpack*(<<type, _type_>>, _bstring_) _NONGL_ +
-[small]#Unpacks the binary string _bstring_, interpreting it as a sequence of values
+* {_val~1~_, _..._, _val~N~_} = *unpack*(<<type, _type_>>, <<data, _data_>>) _NONGL_ +
+[small]#Unpacks the binary string _data_, interpreting it as a sequence of values
 enncoded according to _type_, and returns the extracted values in a flat table. The length of the
 binary string must be a multiple of _gl.sizeof(type)_.#
 
