@@ -53,7 +53,7 @@ Map/Unmap Buffer Data:
 * *map_buffer*(<<buffertarget,_target_>>|_buffer_, _access_) +
 *map_buffer_range*(<<buffertarget,_target_>>|_buffer_, _offset_, _length_, [_accessbit~1~_, _..._]) +
 *unmap_buffer*(<<buffertarget,_target_>>|_buffer_) +
-[small]#_access_: 'read only_', '_write only_', '_read write_', +
+[small]#_access_: '_read only_', '_write only_', '_read write_', +
 _accessbit_: '_read_' for GL_MAP_READ_BIT, '_invalidate buffer_' for GL_INVALIDATE_BUFFER_BIT, etc. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glMapBuffer[glMapBuffer] -
 https://www.khronos.org/opengl/wiki/GLAPI/glMapBufferRange[glMapBufferRange].#

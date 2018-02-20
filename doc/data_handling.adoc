@@ -7,7 +7,7 @@ equivalent in OpenGL) that can be used to encode data from Lua variables to
 binary strings, and to decode data the other way round.
 They are useful to deal with the binary string format expected by GL functions like, 
 for example, <<gl.buffer_data, buffer_data>>( ) and 
-<<gl.buffer_sub_data, buffer_sub_data>>( ).
+<<gl.buffer_data, buffer_sub_data>>( ).
 
 
 [[gl.flatten]]

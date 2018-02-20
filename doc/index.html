@@ -1210,7 +1210,7 @@ See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 <p><strong>map_buffer</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>access</em>)<br>
 <strong>map_buffer_range</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <em>length</em>, [<em>accessbit<sub>1</sub></em>, <em>&#8230;&#8203;</em>])<br>
 <strong>unmap_buffer</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>)<br>
-<span class="small"><em>access</em>: 'read only_', '<em>write only</em>', '<em>read write</em>',<br>
+<span class="small"><em>access</em>: '<em>read only</em>', '<em>write only</em>', '<em>read write</em>',<br>
 <em>accessbit</em>: '<em>read</em>' for GL_MAP_READ_BIT, '<em>invalidate buffer</em>' for GL_INVALIDATE_BUFFER_BIT, etc.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glMapBuffer">glMapBuffer</a> -
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glMapBufferRange">glMapBufferRange</a>.</span></p>
@@ -2805,7 +2805,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetMultisample">glGetM
 <ul>
 <li>
 <p><strong>point_parameter</strong>(<em>pname</em>, <em>value</em>)<br>
-<span class="small"><em>pname</em>: '<em>fade threshold size</em>' '<em>point sprite coord origin</em>'.<br>
+<span class="small"><em>pname</em>: '<em>fade threshold size</em>', '<em>point sprite coord origin</em>'.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glPointParameter">glPointParameter</a>.</span></p>
 </li>
 <li>
@@ -2938,7 +2938,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glPolygonMode">glPolygon
 <div id="gl.scissor" class="ulist">
 <ul>
 <li>
-<p><strong>scissor_array</strong>(<em>first</em>, <em>x<sub>1</sub></em>, <em>y<sub>1</sub></em>, <em>w<sub>1</sub></em>, <em>h<sub>1</sub></em>, [<em>x<sub>2</sub>, _y<sub>2</sub></em>, <em>w<sub>2</sub></em>, <em>h<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
+<p><strong>scissor_array</strong>(<em>first</em>, <em>x<sub>1</sub></em>, <em>y<sub>1</sub></em>, <em>w<sub>1</sub></em>, <em>h<sub>1</sub></em>, [<em>x<sub>2</sub></em>, <em>y<sub>2</sub></em>, <em>w<sub>2</sub></em>, <em>h<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
 <strong>scissor</strong>(<em>left</em>, <em>bottom</em>, <em>width</em>, <em>height</em>, [<em>index</em>])<br>
 <span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glScissor">glScissor</a> -
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glScissorArray">glScissorArray</a>.</span></p>
@@ -3498,7 +3498,7 @@ equivalent in OpenGL) that can be used to encode data from Lua variables to
 binary strings, and to decode data the other way round.
 They are useful to deal with the binary string format expected by GL functions like,
 for example, <a href="#gl.buffer_data">buffer_data</a>( ) and
-<a href="#gl.buffer_sub_data">buffer_sub_data</a>( ).</p>
+<a href="#gl.buffer_data">buffer_sub_data</a>( ).</p>
 </div>
 <div id="gl.flatten" class="ulist">
 <ul>
