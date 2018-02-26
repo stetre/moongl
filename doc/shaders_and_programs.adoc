@@ -218,11 +218,11 @@ Subroutine Uniform Variables:
 
 [[gl.get_subroutine_uniform_location]]
 * _location_ = *get_subroutine_uniform_location*(_program_, <<shadertype, _shadertype_>>, _name_) +
-_index_ = *get_active_subroutine_index*(_program_, <<shadertype, _shadertype_>>, _name_) +
+_index_ = *get_subroutine_index*(_program_, <<shadertype, _shadertype_>>, _name_) +
 _name_ = *get_active_subroutine_name*(_program_, <<shadertype, _shadertype_>>, _index_) +
 _name_ = *get_active_subroutine_uniform_name*(_program_, <<shadertype, _shadertype_>>, _index_) +
-[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glSubroutineUniformLocation[glSubroutineUniformLocation] -
-https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineIndex[glGetActiveSubroutineIndex] -
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetSubroutineUniformLocation[glGetSubroutineUniformLocation] -
+https://www.khronos.org/opengl/wiki/GLAPI/glGetSubroutineIndex[glGetSubroutineIndex] -
 https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineName[glGetActiveSubroutineName] -
 https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineUniformName[glGetActiveSubroutineUniformName].#
 
