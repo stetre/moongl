@@ -77,9 +77,9 @@ Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetSamplerParameter[glGetSample
 Texture Image Spec.:
 
 [[gl.texture_image]]
-* *texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _width_)  1D +
-*texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _width_, _height_)  2D +
-*texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _width_, _height_, _depth_) 3D +
+* *texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_offset_, _width_)  1D +
+*texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_offset_, _width_, _height_)  2D +
+*texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_offset_, _width_, _height_, _depth_) 3D +
 [small]#The _data_ parameter may be _nil_ (no pixel transfer). +
 Rfr: 
 https://www.khronos.org/opengl/wiki/GLAPI/glTexImage1D[glTexImage1D] -
@@ -100,9 +100,9 @@ https://www.khronos.org/opengl/wiki/GLAPI/glCopyTexImage2D[glCopyTexImage2D].#
 
 
 [[gl.texture_sub_image]]
-* *texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _xofs_, _width_) 1D +
-*texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _xofs_, _yofs_, _width_, _height_) 2D +
-*texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_buffer_, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) 3D +
+* *texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_offset_, _xofs_, _width_) 1D +
+*texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_offset_, _xofs_, _yofs_, _width_, _height_) 2D +
+*texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_offset_, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) 3D +
 [small]#The _data_ parameter may be _nil_ (no pixel transfer). +
 Rfr: 
 https://www.khronos.org/opengl/wiki/GLAPI/glTexSubImage1D[glTexSubImage1D] -
@@ -211,11 +211,18 @@ Rfr:
 https://www.khronos.org/opengl/wiki/GLAPI/glGetTexLevelParameter[glGetTexLevelParameter].#
 
 [[gl.get_texture_image]]
-* <<data,_data_>> = *get_texture_image*(<<texturetarget,_target_>>|_texture_, _level_, <<type,_type_>>, [_buffer_]) +
-<<data,_data_>> = *get_texture_sub_image*(_texture_, _level_, <<format, _format_>>, <<type,_type_>>, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) +
-[small]#If _buffer_ is passed, _get_texture_image(&nbsp;)_ returns _nil_. +
-Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetTexImage[glGetTexImage] -
-https://www.opengl.org/sdk/docs/man/html/glGetTextureSubImage.xhtml[glGetTextureSubImage].#
+* <<data,_data_>> = *get_texture_image*(<<texturetarget,_target_>>|_texture_, _level_, <<type,_type_>>, _n_) +
+[small]#_n_: data size or offset in buffer. +
+If a <<gl.bind_buffer, buffer>> is bound to the '_pixel pack_' target, then _n_ is
+interpreted as an offset and this function returns _nil_ (in this case OpenGL copies
+the data to that buffer at the given offset). +
+Otherwise _n_ must be the size in bytes of the expected data, which this function returns as a binary string. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetTexImage[glGetTexImage].#
+
+[[gl.get_texture_sub_image]]
+* <<data,_data_>> = *get_texture_sub_image*(_texture_, _level_, <<format, _format_>>, <<type,_type_>>, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_, _n_) +
+[small]#_n_: data size. +
+Rfr: https://www.opengl.org/sdk/docs/man/html/glGetTextureSubImage.xhtml[glGetTextureSubImage].#
 
 ////
 [[gl.getn_texture_image]]
@@ -227,10 +234,10 @@ https://www.opengl.org/sdk/docs/man/html/glGetTexImage.xhtml[glGetTexImage].#
 
 [[gl.get_compressed_texture_image]]
 * <<data,_data_>> =
-*get_compressed_texture_image*(<<texturetarget,_target_>>|_texture_, _level_) +
-<<data,_data_>> = *get_compressed_texture_sub_image*(_texture_, _level_, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) +
-[small]#Rfr: 
-https://www.khronos.org/opengl/wiki/GLAPI/glGetCompressedTexImage[glGetCompressedTexImage] -
+*get_compressed_texture_image*(<<texturetarget,_target_>>|_texture_, _level_, _n_) +
+<<data,_data_>> = *get_compressed_texture_sub_image*(_texture_, _level_, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_, _n_) +
+[small]#_n_: data size. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetCompressedTexImage[glGetCompressedTexImage] -
 https://www.opengl.org/sdk/docs/man/html/glGetCompressedTextureSubImage.xhtml[glGetCompressedTextureSubImage].#
 
 ////

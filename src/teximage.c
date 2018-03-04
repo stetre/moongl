@@ -51,9 +51,9 @@ ENUM_T(AccessEnum, AccessStrings, AccessCodes)
  *------------------------------------------------------------------------------*/
 
 static int TextureImage(lua_State *L)
-/* texture_image(target, level, intfmt, format, type, data|buffer, width)
- * texture_image(target, level, intfmt, format, type, data|buffer, width, height)
- * texture_image(target, level, intfmt, format, type, data|buffer, width, height, depth)
+/* texture_image(target, level, intfmt, format, type, data|offset, width)
+ * texture_image(target, level, intfmt, format, type, data|offset, width, height)
+ * texture_image(target, level, intfmt, format, type, data|offset, width, height, depth)
  */
     {
     intptr_t data;
@@ -72,7 +72,7 @@ static int TextureImage(lua_State *L)
         { data = 0; arg++; }
     else
         {
-        /* data may be a buffer name (if a buffer is bound to GL_PIXEL_UNPACK_BUFFER) */
+        /* data may be an offset (if a buffer is bound to GL_PIXEL_UNPACK_BUFFER) */
         data = luaL_checkinteger(L, arg++);
         }
     width = luaL_checkinteger(L, arg++);
@@ -141,9 +141,9 @@ static int TextureStorage(lua_State *L)
     }
 
 static int TextureSubImage(lua_State *L)
-/* texture_sub_image(target|texture, level, format, type, data|buffer, xofs, w)
- * texture_sub_image(target|texture, level, format, type, data|buffer, xofs, yofs, w, h)
- * texture_sub_image(target|texture, level, format, type, data|buffer, xofs, yofs, zofs, w, h, d)
+/* texture_sub_image(target|texture, level, format, type, data|offset, xofs, w)
+ * texture_sub_image(target|texture, level, format, type, data|offset, xofs, yofs, w, h)
+ * texture_sub_image(target|texture, level, format, type, data|offset, xofs, yofs, zofs, w, h, d)
  */
     {
     intptr_t data;
@@ -158,7 +158,7 @@ static int TextureSubImage(lua_State *L)
         data = (intptr_t)luaL_checkstring(L, arg++);
     else if(lua_isnil(L, arg))
         { data = 0; arg++; }
-    else /* data may be a buffer name (if a buffer is bound to GL_PIXEL_UNPACK_BUFFER) */
+    else /* data may be an offset (if a buffer is bound to GL_PIXEL_UNPACK_BUFFER) */
         data = luaL_checkinteger(L, arg++);
     v1 = luaL_checkinteger(L, arg++);
     v2 = luaL_checkinteger(L, arg++);
@@ -537,33 +537,12 @@ static int TexBufferRange(lua_State *L)
  * map the buffer in order to transfer the pixel data into your application.
  */
 
-static GLsizei Bsz = 0;
-static GLsizei BufSize(lua_State *L)
-    {
-    GLsizei bufsz = Bsz;
-    if(bufsz == 0)
-        return luaL_error(L, "missing gl.expected_data_size() call");
-    Bsz = 0; /* one shot only */
-    return bufsz;
-    }
-
-static int ExpectedDataSize(lua_State *L) /* NONGL @@DOC */
-/* Sets the size of the temporary buffer where to receive data
- * for some functions */
-    {
-    int bufsz = luaL_checkinteger(L, 1);
-    if(bufsz <= 0)
-        return luaL_argerror(L, 1, "positive integer expected");
-    Bsz = bufsz;    
-    return 0;
-    }
-
 static int GetTextureImage(lua_State *L)
-/* get_texture_image(target|texture, lod, format, type [, buffer])
- * -> bstring (or nil if buffer is passed)
+/* get_texture_image(target|texture, lod, format, type, n)
+ * -> bstring or nil
  */
     {
-    intptr_t buffer, data = 0;
+    intptr_t data = 0;
     GLsizei bufsz = 0;
     int arg = 1;
     GLenum target;
@@ -571,9 +550,12 @@ static int GetTextureImage(lua_State *L)
     GLint level = luaL_checkinteger(L, arg++);
     GLenum format = checkformat(L, arg++);
     GLenum type = checktype(L, arg++);
-    if(lua_isnoneornil(L, arg))
+    intptr_t n = luaL_checkinteger(L, arg++);
+    GLint64 bound_buffer = getUint(L, GL_PIXEL_PACK_BUFFER_BINDING);
+    if(bound_buffer == 0)
         {
-        bufsz = BufSize(L);
+        /* no buffer is bound to GL_PIXEL_PACK_BUFFER, so treat n as the data size */
+        bufsz = (GLsizei)n;
         data = (intptr_t)Malloc(L, bufsz *sizeof(char));
         if(texture==0)
             glGetTexImage(target, level, format, type, (void*)data);
@@ -584,13 +566,14 @@ static int GetTextureImage(lua_State *L)
         Free(L, (void*)data);
         return 1;
         }
-    /* buffer should be bound to GL_PIXEL_PACK_BUFFER... */
-    buffer = luaL_checkinteger(L, arg++);
-    if(texture==0)
-        glGetTexImage(target, level, format, type, (void*)buffer);
-    else
-        glGetTextureImage(texture, level, format, type, 0, (void*)buffer);
-    CheckError(L);
+    else /* a buffer is bound to GL_PIXEL_PACK_BUFFER, so treat n as an offset */
+        {
+        if(texture==0)
+            glGetTexImage(target, level, format, type, (void*)n);
+        else
+            glGetTextureImage(texture, level, format, type, 0, (void*)n);
+        CheckError(L);
+        }
     return 0;
     }
 
@@ -607,7 +590,7 @@ static int GetTextureSubImage(lua_State *L)
     GLsizei width = luaL_checkinteger(L, arg++);
     GLsizei height = luaL_checkinteger(L, arg++);
     GLsizei depth = luaL_checkinteger(L, arg++);
-    GLsizei bufsz = BufSize(L);
+    GLsizei bufsz = luaL_checkinteger(L, arg++);
     char* data = (char*)Malloc(L, bufsz *sizeof(char));
     glGetTextureSubImage(texture, level, xoffset, yoffset, zoffset, width, height, depth, format, type, bufsz, (void*)data);
     CheckErrorFree(L, data);
@@ -625,7 +608,7 @@ static int GetnTextureImage(lua_State *L)
     GLint level = luaL_checkinteger(L, arg++);
     GLenum format = checkformat(L, arg++);
     GLenum type = checktype(L, arg++);
-    GLsizei bufsz = BufSize(L);
+    GLsizei bufsz = luaL_checkinteger(L, arg++);
     char* data = (char*)Malloc(L, bufsz *sizeof(char));
     glGetnTexImage(target, level, format, type, bufsz, (void*)data);
     CheckErrorFree(L, data);
@@ -641,7 +624,7 @@ static int GetnCompressedTextureImage(lua_State *L)
     int arg = 1;
     GLuint target = CheckTarget(L, arg++);
     GLint lod = luaL_checkinteger(L, arg++);
-    GLsizei bufsz = BufSize(L);
+    GLsizei bufsz = luaL_checkinteger(L, arg++);
     char* data = (char*)Malloc(L, bufsz *sizeof(char));
     glGetnCompressedTexImage(target, lod, bufsz, (void*)data);
     CheckErrorFree(L, data);
@@ -657,7 +640,7 @@ static int GetCompressedTextureImage(lua_State *L)
     GLenum target;
     GLuint texture = CheckTargetOrName(L, arg++, &target);
     GLint level = luaL_checkinteger(L, arg++);
-    GLsizei bufsz = BufSize(L);
+    GLsizei bufsz = luaL_checkinteger(L, arg++);
     char* data = (char*)Malloc(L, bufsz *sizeof(char));
     if(texture==0)
         glGetCompressedTexImage(target, level, (void*)data);
@@ -680,7 +663,7 @@ static int GetCompressedTextureSubImage(lua_State *L)
     GLsizei width = luaL_checkinteger(L, arg++);
     GLsizei height = luaL_checkinteger(L, arg++);
     GLsizei depth = luaL_checkinteger(L, arg++);
-    GLsizei bufsz = BufSize(L);
+    GLsizei bufsz = luaL_checkinteger(L, arg++);
     char* data = (char*)Malloc(L, bufsz *sizeof(char));
     glGetCompressedTextureSubImage(texture, level, xoffset, yoffset, zoffset, width, height, depth, bufsz, (void*)data);
     CheckErrorFree(L, data);
@@ -796,7 +779,6 @@ static const struct luaL_Reg Functions[] =
         { "texture_view", TextureView },
         { "bind_image_texture", BindImageTexture },
         { "bind_image_textures", BindImageTextures },
-        { "expected_data_size", ExpectedDataSize },
         { NULL, NULL } /* sentinel */
     };
 

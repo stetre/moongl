@@ -2,6 +2,7 @@
 *.so
 *.dll
 *.o
+*.swp
 core.*
 local/
 tutorials/

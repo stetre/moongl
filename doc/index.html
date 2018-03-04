@@ -1846,9 +1846,9 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetSamplerParameter">g
 <div id="gl.texture_image" class="ulist">
 <ul>
 <li>
-<p><strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>width</em>)  1D<br>
-<strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>width</em>, <em>height</em>)  2D<br>
-<strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
+<p><strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>offset</em>, <em>width</em>)  1D<br>
+<strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>offset</em>, <em>width</em>, <em>height</em>)  2D<br>
+<strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>offset</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
 <span class="small">The <em>data</em> parameter may be <em>nil</em> (no pixel transfer).<br>
 Rfr:
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glTexImage1D">glTexImage1D</a> -
@@ -1876,9 +1876,9 @@ Rfr:
 <div id="gl.texture_sub_image" class="ulist">
 <ul>
 <li>
-<p><strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>xofs</em>, <em>width</em>) 1D<br>
-<strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>xofs</em>, <em>yofs</em>, <em>width</em>, <em>height</em>) 2D<br>
-<strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>buffer</em>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
+<p><strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>offset</em>, <em>xofs</em>, <em>width</em>) 1D<br>
+<strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>offset</em>, <em>xofs</em>, <em>yofs</em>, <em>width</em>, <em>height</em>) 2D<br>
+<strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>offset</em>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
 <span class="small">The <em>data</em> parameter may be <em>nil</em> (no pixel transfer).<br>
 Rfr:
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glTexSubImage1D">glTexSubImage1D</a> -
@@ -2034,11 +2034,22 @@ Rfr:
 <div id="gl.get_texture_image" class="ulist">
 <ul>
 <li>
-<p><a href="#data"><em>data</em></a> = <strong>get_texture_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#type"><em>type</em></a>, [<em>buffer</em>])<br>
-<a href="#data"><em>data</em></a> = <strong>get_texture_sub_image</strong>(<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>)<br>
-<span class="small">If <em>buffer</em> is passed, <em>get_texture_image(&nbsp;)</em> returns <em>nil</em>.<br>
-Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetTexImage">glGetTexImage</a> -
-<a href="https://www.opengl.org/sdk/docs/man/html/glGetTextureSubImage.xhtml">glGetTextureSubImage</a>.</span></p>
+<p><a href="#data"><em>data</em></a> = <strong>get_texture_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#type"><em>type</em></a>, <em>n</em>)<br>
+<span class="small"><em>n</em>: data size or offset in buffer.<br>
+If a <a href="#gl.bind_buffer">buffer</a> is bound to the '<em>pixel pack</em>' target, then <em>n</em> is
+interpreted as an offset and this function returns <em>nil</em> (in this case OpenGL copies
+the data to that buffer at the given offset).<br>
+Otherwise <em>n</em> must be the size in bytes of the expected data, which this function returns as a binary string.<br>
+Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetTexImage">glGetTexImage</a>.</span></p>
+</li>
+</ul>
+</div>
+<div id="gl.get_texture_sub_image" class="ulist">
+<ul>
+<li>
+<p><a href="#data"><em>data</em></a> = <strong>get_texture_sub_image</strong>(<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>, <em>n</em>)<br>
+<span class="small"><em>n</em>: data size.<br>
+Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetTextureSubImage.xhtml">glGetTextureSubImage</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -2046,10 +2057,10 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetTexImage">glGetTexI
 <ul>
 <li>
 <p><a href="#data"><em>data</em></a> =
-<strong>get_compressed_texture_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>)<br>
-<a href="#data"><em>data</em></a> = <strong>get_compressed_texture_sub_image</strong>(<em>texture</em>, <em>level</em>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>)<br>
-<span class="small">Rfr:
-<a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetCompressedTexImage">glGetCompressedTexImage</a> -
+<strong>get_compressed_texture_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <em>n</em>)<br>
+<a href="#data"><em>data</em></a> = <strong>get_compressed_texture_sub_image</strong>(<em>texture</em>, <em>level</em>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>, <em>n</em>)<br>
+<span class="small"><em>n</em>: data size.<br>
+Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetCompressedTexImage">glGetCompressedTexImage</a> -
 <a href="https://www.opengl.org/sdk/docs/man/html/glGetCompressedTextureSubImage.xhtml">glGetCompressedTextureSubImage</a>.</span></p>
 </li>
 </ul>
