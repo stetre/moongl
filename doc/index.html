@@ -3711,7 +3711,7 @@ of MoonGL functionalities in practice.</p>
 </div>
 </div>
 <div id="snippet_new_texture" class="listingblock">
-<div class="title">Creating and using a texture (with MoonSOIL).</div>
+<div class="title">Creating and using a texture (loaded with MoonImage).</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="lua"><span></span><span class="tok-c1">-- 1) Creating the texture:</span>
 <span class="tok-n">tex_id</span> <span class="tok-o">=</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">new_texture</span><span class="tok-p">(</span><span class="tok-s1">&#39;2d&#39;</span><span class="tok-p">)</span>
@@ -3720,9 +3720,8 @@ of MoonGL functionalities in practice.</p>
 <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_parameter</span><span class="tok-p">(</span><span class="tok-s1">&#39;2d&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;wrap t&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;repeat&#39;</span><span class="tok-p">)</span>
 <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_parameter</span><span class="tok-p">(</span><span class="tok-s1">&#39;2d&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;min filter&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;linear&#39;</span><span class="tok-p">)</span>
 <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_parameter</span><span class="tok-p">(</span><span class="tok-s1">&#39;2d&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;mag filter&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;linear&#39;</span><span class="tok-p">)</span>
-<span class="tok-c1">-- load the texture image using MoonSOIL:</span>
-<span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">w</span><span class="tok-p">,</span> <span class="tok-n">h</span> <span class="tok-o">=</span> <span class="tok-n">soil</span><span class="tok-p">.</span><span class="tok-n">load_image</span><span class="tok-p">(</span><span class="tok-s1">&#39;myimage.jpg&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;rgb&#39;</span><span class="tok-p">)</span>
-<span class="tok-nb">assert</span><span class="tok-p">(</span><span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">soil</span><span class="tok-p">.</span><span class="tok-n">last_result</span><span class="tok-p">())</span>
+<span class="tok-c1">-- load the texture image using MoonImage:</span>
+<span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">w</span><span class="tok-p">,</span> <span class="tok-n">h</span> <span class="tok-o">=</span> <span class="tok-n">mi</span><span class="tok-p">.</span><span class="tok-n">load</span><span class="tok-p">(</span><span class="tok-s1">&#39;myimage.png&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;rgb&#39;</span><span class="tok-p">)</span>
 <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_image</span><span class="tok-p">(</span><span class="tok-s1">&#39;2d&#39;</span><span class="tok-p">,</span> <span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-s1">&#39;rgb&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;rgb&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;ubyte&#39;</span><span class="tok-p">,</span> <span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">w</span><span class="tok-p">,</span> <span class="tok-n">h</span><span class="tok-p">)</span>
 <span class="tok-n">image</span><span class="tok-p">,</span> <span class="tok-n">w</span><span class="tok-p">,</span> <span class="tok-n">h</span> <span class="tok-o">=</span> <span class="tok-kc">nil</span><span class="tok-p">,</span> <span class="tok-kc">nil</span><span class="tok-p">,</span> <span class="tok-kc">nil</span> <span class="tok-c1">-- let the GC collect them</span>
 <span class="tok-c1">-- generate the mipmap:</span>

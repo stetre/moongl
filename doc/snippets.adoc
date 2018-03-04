@@ -112,7 +112,7 @@ gl.uniform_matrix(0, 'float', '3x3', true, gl.flatten(M))
 
 
 [[snippet_new_texture]]
-.Creating and using a texture (with MoonSOIL).
+.Creating and using a texture (loaded with MoonImage).
 [source,lua]
 ----
 -- 1) Creating the texture:
@@ -122,9 +122,8 @@ gl.texture_parameter('2d', 'wrap s', 'repeat')
 gl.texture_parameter('2d', 'wrap t', 'repeat')
 gl.texture_parameter('2d', 'min filter', 'linear')
 gl.texture_parameter('2d', 'mag filter', 'linear')
--- load the texture image using MoonSOIL:
-image, w, h = soil.load_image('myimage.jpg', 'rgb')
-assert(image, soil.last_result())
+-- load the texture image using MoonImage:
+image, w, h = mi.load('myimage.png', 'rgb')
 gl.texture_image('2d', 0, 'rgb', 'rgb', 'ubyte', image, w, h)
 image, w, h = nil, nil, nil -- let the GC collect them
 -- generate the mipmap:
