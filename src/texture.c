@@ -385,13 +385,10 @@ static int SetFloat(lua_State *L, GLuint texture, GLenum target, GLenum pname, i
     return 0;
     }
 
-static int SetFloat4(lua_State *L, GLuint texture, GLenum target, GLenum pname, int arg)
+static int SetColor(lua_State *L, GLuint texture, GLenum target, GLenum pname, int arg)
     {
     GLfloat param[4];
-    param[0] = luaL_checknumber(L, arg++); 
-    param[1] = luaL_checknumber(L, arg++);
-    param[2] = luaL_checknumber(L, arg++); 
-    param[3] = luaL_checknumber(L, arg++);
+    checkcolor(L, arg, param);
     if(texture==0)
         glTexParameterfv(target, pname, param);
     else 
@@ -440,7 +437,7 @@ static int TextureParameter(lua_State *L)
                 return SetEnum(L, texture, target, pname, arg, &DepthStencilEnum);
         case GL_TEXTURE_BASE_LEVEL: 
         case GL_TEXTURE_MAX_LEVEL:  return SetInt(L, texture, target, pname, arg);
-        case GL_TEXTURE_BORDER_COLOR:   return SetFloat4(L, texture, target, pname, arg); 
+        case GL_TEXTURE_BORDER_COLOR:   return SetColor(L, texture, target, pname, arg);
         case GL_TEXTURE_COMPARE_FUNC:
                 return SetEnum(L, texture, target, pname, arg, &CompareFuncEnum);
         case GL_TEXTURE_COMPARE_MODE:   

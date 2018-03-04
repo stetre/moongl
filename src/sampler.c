@@ -105,13 +105,10 @@ static int SetFloat(lua_State *L, GLuint sampler, GLenum pname, int arg)
     return 0;
     }
 
-static int SetFloat4(lua_State *L, GLuint sampler, GLenum pname, int arg)
+static int SetColor(lua_State *L, GLuint sampler, GLenum pname, int arg)
     {
     GLfloat params[4];
-    params[0] = luaL_checknumber(L, arg++);
-    params[1] = luaL_checknumber(L, arg++);
-    params[2] = luaL_checknumber(L, arg++);
-    params[3] = luaL_checknumber(L, arg++);
+    checkcolor(L, arg, params);
     glSamplerParameterfv(sampler, pname, params);
     CheckError(L);
     return 0;
@@ -137,7 +134,7 @@ static int SamplerParameter(lua_State *L)
         case GL_TEXTURE_WRAP_R: return SetEnum(L, sampler, pname, 3, WrapEnum);
         case GL_TEXTURE_MIN_FILTER:  return SetEnum(L, sampler, pname, 3, MinFilterEnum);
         case GL_TEXTURE_MAG_FILTER:  return SetEnum(L, sampler, pname, 3, MagFilterEnum);
-        case GL_TEXTURE_BORDER_COLOR:  return SetFloat4(L, sampler, pname, 3);
+        case GL_TEXTURE_BORDER_COLOR:  return SetColor(L, sampler, pname, 3);
         case GL_TEXTURE_MIN_LOD:  return SetFloat(L, sampler, pname, 3);
         case GL_TEXTURE_MAX_LOD:  return SetFloat(L, sampler, pname, 3);
         case GL_TEXTURE_LOD_BIAS: return SetFloat(L, sampler, pname, 3);
