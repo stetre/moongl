@@ -3137,7 +3137,8 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glDrawBuffer">glDrawBuff
 <li>
 <p><strong>color_mask</strong>(<em>r</em>, <em>g</em>, <em>b</em>, <em>a</em>)<br>
 <strong>color_mask</strong>(<em>drawbuffer</em>, <em>r</em>, <em>g</em>, <em>b</em>, <em>a</em>)<br>
-<span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glColorMask">glColorMask</a>.</span></p>
+<span class="small"><em>r</em>, <em>g</em>, <em>b</em>, <em>a</em>: booleans.<br>
+Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glColorMask">glColorMask</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -3176,6 +3177,7 @@ See <a href="#snippet_clear">example</a>.</span></p>
 <ul>
 <li>
 <p><strong>clear_color</strong>(<em>r</em>, <em>g</em>, <em>b</em>, <em>a</em>)<br>
+<strong>clear_color</strong>(<a href="#color"><em>color</em></a>)<br>
 <span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glClearColor">glClearColor</a>.
 See <a href="#snippet_clear">example</a>.</span></p>
 </li>
@@ -3202,9 +3204,11 @@ See <a href="#snippet_clear">example</a>.</span></p>
 <ul>
 <li>
 <p><strong>clear_buffer</strong>('<em>color</em>', <em>drawbuffer</em>, <em>r</em>, <em>g</em>, <em>b</em>, <em>a</em>)<br>
+<strong>clear_buffer</strong>('<em>color</em>', <em>drawbuffer</em>, <a href="#color"><em>color</em></a>)<br>
 <strong>clear_buffer</strong>('<em>depth</em>', <em>value</em>)<br>
 <strong>clear_buffer</strong>('<em>stencil</em>', <em>value</em>)<br>
 <strong>clear_buffer</strong>(<em>framebuffer</em>, '<em>color</em>', <em>drawbuffer</em>, <em>r</em>, <em>g</em>, <em>b</em>, <em>a</em>)<br>
+<strong>clear_buffer</strong>(<em>framebuffer</em>, '<em>color</em>', <em>drawbuffer</em>, <a href="#color"><em>color</em></a>)<br>
 <strong>clear_buffer</strong>(<em>framebuffer</em>, '<em>depth</em>', <em>value</em>)<br>
 <strong>clear_buffer</strong>(<em>framebuffer</em>, '<em>stencil</em>', <em>value</em>)<br>
 <span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glClearBuffer">glClearBuffer</a>.</span></p>
@@ -3561,6 +3565,9 @@ binary string must be a multiple of <em>gl.sizeof(type)</em>.</span></p>
 <div class="sect1">
 <h2 id="_common_data_types">Common data types</h2>
 <div class="sectionbody">
+<div id="color" class="paragraph">
+<p><span class="small"><strong>color</strong>: {float}[4] (normalized rgba components).</span></p>
+</div>
 <div id="data" class="paragraph">
 <p><span class="small"><strong>data</strong>: binary string.</span></p>
 </div>

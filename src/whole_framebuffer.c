@@ -221,11 +221,9 @@ static int Clear(lua_State *L)
 
 static int ClearColor(lua_State *L)
     {
-    GLfloat r = luaL_checknumber(L, 1);
-    GLfloat g = luaL_checknumber(L, 2);
-    GLfloat b = luaL_checknumber(L, 3);
-    GLfloat a = luaL_checknumber(L, 4);
-    glClearColor(r, g, b, a);
+    GLfloat color[4];
+    checkcolor(L, 1, color);
+    glClearColor(color[0], color[1], color[2], color[3]);
     CheckError(L);
     return 0;
     }
@@ -301,10 +299,7 @@ static int ClearBuffer(lua_State *L)
     switch(buffer)
         {
         case GL_COLOR:      drawbuffer = luaL_checkinteger(L, arg++);
-                            value[0] = luaL_checknumber(L, arg++);
-                            value[1] = luaL_checknumber(L, arg++);
-                            value[2] = luaL_checknumber(L, arg++);
-                            value[3] = luaL_checknumber(L, arg++);
+                            checkcolor(L, arg, value);
                             if(named)
                                 glClearNamedFramebufferfv(framebuffer, buffer, drawbuffer, value);
                             else

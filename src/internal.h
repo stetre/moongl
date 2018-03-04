@@ -70,6 +70,8 @@ GLboolean optboolean(lua_State *L, int arg, GLboolean d);
 int noprintf(const char *fmt, ...); 
 #define notavailable moongl_notavailable
 int notavailable(lua_State *L, ...);
+#define checkcolor moongl_checkcolor
+int checkcolor(lua_State *L, int arg, GLfloat dst[4]);
 
 /* init.c */
 #define check_init_called moongl_check_init_called

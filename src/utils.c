@@ -100,4 +100,27 @@ int isoption(lua_State *L, int arg, const char *const lst[])
     return 0;
     }
 
+int checkcolor(lua_State *L, int arg, GLfloat dst[4])
+    {
+    int i;
+    if(lua_type(L, arg) == LUA_TTABLE)
+        {
+        for(i=0; i<4; i++)
+            {
+            lua_rawgeti(L, arg, i+1);
+            dst[i] = luaL_checknumber(L, -1);
+            lua_pop(L, 1);
+            }
+        }
+    else if(lua_type(L, arg) == LUA_TNUMBER)
+        {
+        dst[0] = luaL_checknumber(L, arg);
+        dst[1] = luaL_checknumber(L, arg+1);
+        dst[2] = luaL_checknumber(L, arg+2);
+        dst[3] = luaL_checknumber(L, arg+3);
+        }
+    else
+        return luaL_error(L, "color expected");
+    return 0;
+    }
 

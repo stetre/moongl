@@ -19,7 +19,8 @@ Fine Control of Buffer Updates:
 [[gl.color_mask]]
 * *color_mask*(_r_, _g_, _b_, _a_) +
 *color_mask*(_drawbuffer_, _r_, _g_, _b_, _a_) +
-[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glColorMask[glColorMask].#
+[small]#_r_, _g_, _b_, _a_: booleans. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glColorMask[glColorMask].#
 
 [[gl.depth_mask]]
 * *depth_mask*(_boolean_) +
@@ -42,6 +43,7 @@ See <<snippet_clear, example>>.#
 
 [[gl.clear_color]]
 * *clear_color*(_r_, _g_, _b_, _a_) +
+*clear_color*(<<color, _color_>>) +
 [small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glClearColor[glClearColor].
 See <<snippet_clear, example>>.#
 
@@ -56,9 +58,11 @@ See <<snippet_clear, example>>.#
 
 [[gl.clear_buffer]]
 * *clear_buffer*('_color_', _drawbuffer_, _r_, _g_, _b_, _a_) +
+*clear_buffer*('_color_', _drawbuffer_, <<color, _color_>>) +
 *clear_buffer*('_depth_', _value_) +
 *clear_buffer*('_stencil_', _value_) +
 *clear_buffer*(_framebuffer_, '_color_', _drawbuffer_, _r_, _g_, _b_, _a_) +
+*clear_buffer*(_framebuffer_, '_color_', _drawbuffer_, <<color, _color_>>) +
 *clear_buffer*(_framebuffer_, '_depth_', _value_) +
 *clear_buffer*(_framebuffer_, '_stencil_', _value_) +
 [small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glClearBuffer[glClearBuffer].#

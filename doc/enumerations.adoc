@@ -1,6 +1,9 @@
 
 == Common data types
 
+[[color]]
+[small]#*color*: {float}[4] (normalized rgba components).#
+
 [[data]]
 [small]#*data*: binary string.#
 
