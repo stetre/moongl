@@ -80,7 +80,8 @@ Texture Image Spec.:
 * *texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_offset_, _width_)  1D +
 *texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_offset_, _width_, _height_)  2D +
 *texture_image*(<<texturetarget,_target_>>, _level_, <<intformat,_intformat_>>, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_offset_, _width_, _height_, _depth_) 3D +
-[small]#The _data_ parameter may be _nil_ (no pixel transfer). +
+[small]#If a <<gl.bind_buffer, buffer>> is bound to the '_pixel unpack_' target, then an integer _offset_ parameter must be passed (in this case OpenGL gets the data from that buffer at the given offset).
+Otherwise the _data_ parameter must be passed, either as a binary string containing the data, or as _nil_ for no pixel transfer. +
 Rfr: 
 https://www.khronos.org/opengl/wiki/GLAPI/glTexImage1D[glTexImage1D] -
 https://www.khronos.org/opengl/wiki/GLAPI/glTexImage2D[glTexImage2D] -
@@ -103,7 +104,7 @@ https://www.khronos.org/opengl/wiki/GLAPI/glCopyTexImage2D[glCopyTexImage2D].#
 * *texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_offset_, _xofs_, _width_) 1D +
 *texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_offset_, _xofs_, _yofs_, _width_, _height_) 2D +
 *texture_sub_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, <<data,_data_>>|_offset_, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) 3D +
-[small]#The _data_ parameter may be _nil_ (no pixel transfer). +
+[small]#_data_|_offset_: see <<gl.texture_image, gl.texture_image>>(&nbsp;). +
 Rfr: 
 https://www.khronos.org/opengl/wiki/GLAPI/glTexSubImage1D[glTexSubImage1D] -
 https://www.khronos.org/opengl/wiki/GLAPI/glTexSubImage2D[glTexSubImage2D] -
@@ -171,7 +172,7 @@ Invalidate/Clear Texture Image Data:
 
 [[gl.invalidate_texture_image]]
 * *invalidate_texture_image*(_texture_, _level_) +
-invalidate_texture_sub_image*(_texture_, _level_, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) +
+*invalidate_texture_sub_image*(_texture_, _level_, _xofs_, _yofs_, _zofs_, _width_, _height_, _depth_) +
 [small]#Rfr: 
 https://www.khronos.org/opengl/wiki/GLAPI/glInvalidateTexImage[glInvalidateTexImage] -
 https://www.khronos.org/opengl/wiki/GLAPI/glInvalidateTexSubImage[glInvalidateTexSubImage].#
@@ -215,7 +216,7 @@ https://www.khronos.org/opengl/wiki/GLAPI/glGetTexLevelParameter[glGetTexLevelPa
 [small]#_n_: data size or offset in buffer. +
 If a <<gl.bind_buffer, buffer>> is bound to the '_pixel pack_' target, then _n_ is
 interpreted as an offset and this function returns _nil_ (in this case OpenGL copies
-the data to that buffer at the given offset). +
+the data to that buffer at the given offset).
 Otherwise _n_ must be the size in bytes of the expected data, which this function returns as a binary string. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetTexImage[glGetTexImage].#
 

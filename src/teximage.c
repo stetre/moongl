@@ -64,17 +64,16 @@ static int TextureImage(lua_State *L)
     GLenum intfmt = checkinternalformat(L, arg++);
     GLenum format = checkformat(L, arg++);
     GLenum type = checktype(L, arg++);
-    if(lua_type(L, arg) == LUA_TSTRING)
+    GLint64 bound_buffer = getUint(L, GL_PIXEL_UNPACK_BUFFER_BINDING);
+    if(bound_buffer == 0) /* no buffer is bound to GL_PIXEL_UNPACK_BUFFER */
         {
-        data = (intptr_t)luaL_checkstring(L, arg++);
+        if(lua_isnil(L, arg)) /* no pixel transfer */
+            { data = 0; arg++; }
+        else
+            data = (intptr_t)luaL_checkstring(L, arg++);
         }
-    else if(lua_isnil(L, arg))
-        { data = 0; arg++; }
-    else
-        {
-        /* data may be an offset (if a buffer is bound to GL_PIXEL_UNPACK_BUFFER) */
+    else /* a buffer is bound to GL_PIXEL_UNPACK_BUFFER, so data must be an offset */
         data = luaL_checkinteger(L, arg++);
-        }
     width = luaL_checkinteger(L, arg++);
     if(lua_isnoneornil(L, arg))
         {
@@ -154,11 +153,15 @@ static int TextureSubImage(lua_State *L)
     GLint level = luaL_checkinteger(L, arg++);
     GLenum format = checkformat(L, arg++);
     GLenum type = checktype(L, arg++);
-    if(lua_type(L, arg) == LUA_TSTRING)
-        data = (intptr_t)luaL_checkstring(L, arg++);
-    else if(lua_isnil(L, arg))
-        { data = 0; arg++; }
-    else /* data may be an offset (if a buffer is bound to GL_PIXEL_UNPACK_BUFFER) */
+    GLint64 bound_buffer = getUint(L, GL_PIXEL_UNPACK_BUFFER_BINDING);
+    if(bound_buffer == 0) /* no buffer is bound to GL_PIXEL_UNPACK_BUFFER */
+        {
+        if(lua_isnil(L, arg)) /* no pixel transfer */
+            { data = 0; arg++; }
+        else
+            data = (intptr_t)luaL_checkstring(L, arg++);
+        }
+    else /* a buffer is bound to GL_PIXEL_UNPACK_BUFFER, so data must be an offset */
         data = luaL_checkinteger(L, arg++);
     v1 = luaL_checkinteger(L, arg++);
     v2 = luaL_checkinteger(L, arg++);

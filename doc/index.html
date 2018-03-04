@@ -1849,7 +1849,8 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetSamplerParameter">g
 <p><strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>offset</em>, <em>width</em>)  1D<br>
 <strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>offset</em>, <em>width</em>, <em>height</em>)  2D<br>
 <strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>offset</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
-<span class="small">The <em>data</em> parameter may be <em>nil</em> (no pixel transfer).<br>
+<span class="small">If a <a href="#gl.bind_buffer">buffer</a> is bound to the '<em>pixel unpack</em>' target, then an integer <em>offset</em> parameter must be passed (in this case OpenGL gets the data from that buffer at the given offset).
+Otherwise the <em>data</em> parameter must be passed, either as a binary string containing the data, or as <em>nil</em> for no pixel transfer.<br>
 Rfr:
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glTexImage1D">glTexImage1D</a> -
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glTexImage2D">glTexImage2D</a> -
@@ -1879,7 +1880,7 @@ Rfr:
 <p><strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>offset</em>, <em>xofs</em>, <em>width</em>) 1D<br>
 <strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>offset</em>, <em>xofs</em>, <em>yofs</em>, <em>width</em>, <em>height</em>) 2D<br>
 <strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>offset</em>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
-<span class="small">The <em>data</em> parameter may be <em>nil</em> (no pixel transfer).<br>
+<span class="small"><em>data</em>|<em>offset</em>: see <a href="#gl.texture_image">gl.texture_image</a>(&nbsp;).<br>
 Rfr:
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glTexSubImage1D">glTexSubImage1D</a> -
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glTexSubImage2D">glTexSubImage2D</a> -
@@ -1975,7 +1976,7 @@ Rfr:
 <ul>
 <li>
 <p><strong>invalidate_texture_image</strong>(<em>texture</em>, <em>level</em>)<br>
-invalidate_texture_sub_image*(<em>texture</em>, <em>level</em>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>)<br>
+<strong>invalidate_texture_sub_image</strong>(<em>texture</em>, <em>level</em>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>)<br>
 <span class="small">Rfr:
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glInvalidateTexImage">glInvalidateTexImage</a> -
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glInvalidateTexSubImage">glInvalidateTexSubImage</a>.</span></p>
@@ -2038,7 +2039,7 @@ Rfr:
 <span class="small"><em>n</em>: data size or offset in buffer.<br>
 If a <a href="#gl.bind_buffer">buffer</a> is bound to the '<em>pixel pack</em>' target, then <em>n</em> is
 interpreted as an offset and this function returns <em>nil</em> (in this case OpenGL copies
-the data to that buffer at the given offset).<br>
+the data to that buffer at the given offset).
 Otherwise <em>n</em> must be the size in bytes of the expected data, which this function returns as a binary string.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetTexImage">glGetTexImage</a>.</span></p>
 </li>
