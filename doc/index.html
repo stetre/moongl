@@ -1296,12 +1296,20 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glCopyBufferSubData">glC
 <p><em>program</em>, <em>shader<sub>1</sub></em>, <em>shader<sub>2</sub></em>, <em>&#8230;&#8203;</em> =
 <strong>make_program</strong>(<a href="#shadertype"><em>shadertype<sub>1</sub></em></a>, <em>filename<sub>1</sub></em>, [<a href="#shadertype"><em>shadertype<sub>2</sub></em></a>, <em>filename<sub>2</sub></em>, <em>&#8230;&#8203;</em>]) <em>NONGL</em><br>
 <em>program</em>, <em>shader<sub>1</sub></em>, <em>shader<sub>2</sub></em>, <em>&#8230;&#8203;</em> =
+<strong>make_program</strong>({<a href="#shadertype"><em>shadertype</em></a> = <em>filename</em>}) <em>NONGL</em><br>
+<span class="small">Creates, compiles and links a program with the given shaders, checking for errors at each compilation step.<br>
+Returns the OpenGL names assigned to the program and to the shaders.</span></p>
+</li>
+</ul>
+</div>
+<div id="gl.make_program_s" class="ulist">
+<ul>
+<li>
+<p><em>program</em>, <em>shader<sub>1</sub></em>, <em>shader<sub>2</sub></em>, <em>&#8230;&#8203;</em> =
 <strong>make_program_s</strong>(<a href="#shadertype"><em>shadertype<sub>1</sub></em></a>, <em>sourcestring<sub>1</sub></em>, [<a href="#shadertype"><em>shadertype<sub>2</sub></em></a>, <em>sourcestring<sub>2</sub></em>, <em>&#8230;&#8203;</em>]) <em>NONGL</em><br>
-<span class="small">Both these functions create, compile and link a program with the passed shaders,
-and return the names assigned to them by OpenGL.
-They also check for errors at each compilation step.
-The only difference between the two is that the former loads the shaders' code from files,
-while the latter (with the trailing '_s') loads the code from strings.</span></p>
+<em>program</em>, <em>shader<sub>1</sub></em>, <em>shader<sub>2</sub></em>, <em>&#8230;&#8203;</em> =
+<strong>make_program_s</strong>({<a href="#shadertype"><em>shadertype</em></a>, <em>sourcestring</em>}) <em>NONGL</em><br>
+<span class="small">Same as <a href="#gl.make_program">gl.make_program</a>(&nbsp;), but loads the shaders' code from strings instead of from files.</span></p>
 </li>
 <li>
 <p><strong>clean_program</strong>(<em>program</em>, <em>shader<sub>1</sub></em>, <em>shader<sub>2</sub></em>, <em>&#8230;&#8203;</em>) <em>NONGL</em><br>
