@@ -673,6 +673,51 @@ static int MapRead(lua_State *L) /* nongl */
     return 1;
     }
 
+static int MapCopyFrom(lua_State *L) /* nongl */
+/* mapped_buffer_copy_from(target|buffer, offset, length, srcptr, [srcoffset]) */
+    {
+    size_t buflen;
+    GLenum target;
+    GLuint buffer = CheckTargetOrName(L, 1, &target);
+    char *ptr = (char*)GetPointer(L, target, buffer);
+    GLintptr offset = luaL_checkinteger(L, 2);
+    size_t length = luaL_checkinteger(L, 3);
+    char *srcptr = (char*)checklightuserdata(L, 4);
+    size_t srcoffset = luaL_optinteger(L, 5, 0);
+    /* access and boundary checks */
+    GLbitfield flags = GetAccessFlags(L, target, buffer);
+    if(!(flags & GL_MAP_WRITE_BIT))
+        return luaL_error(L, "no write access");
+    buflen = GetMapLength(L, target, buffer);
+    if(length > (buflen - offset))
+        return luaL_error(L, "length is too large");
+    memcpy(ptr + offset, srcptr + srcoffset, length);
+    return 0;
+    }
+
+static int MapCopyTo(lua_State *L) /* nongl */
+/* bstring = mapped_buffer_copy_to(target|buffer, offset, length, dstptr, [dstoffset]) */
+    {
+    size_t buflen;
+    GLenum target;
+    GLuint buffer = CheckTargetOrName(L, 1, &target);
+    char *ptr = (char*)GetPointer(L, target, buffer);
+    GLintptr offset = luaL_checkinteger(L, 2);
+    size_t length =  luaL_checkinteger(L, 3);
+    char *dstptr = (char*)checklightuserdata(L, 4);
+    size_t dstoffset = luaL_optinteger(L, 5, 0);
+    /* access and boundary checks */
+    GLbitfield flags = GetAccessFlags(L, target, buffer);
+    if(!(flags & GL_MAP_READ_BIT))
+        return luaL_error(L, "no read access");
+    buflen = GetMapLength(L, target, buffer);
+    if(length > (buflen - offset))
+        return luaL_error(L, "length is too large");
+    memcpy(dstptr + dstoffset, ptr + offset, length);
+    return 0;
+    }
+
+
 /*------------------------------------------------------------------------------*
  | Registration                                                                 |
  *------------------------------------------------------------------------------*/
@@ -705,6 +750,8 @@ static const struct luaL_Reg Functions[] =
         { "unmap_buffer", UnmapBuffer },
         { "mapped_buffer_write", MapWrite },
         { "mapped_buffer_read", MapRead },
+        { "mapped_buffer_copy_from", MapCopyFrom },
+        { "mapped_buffer_copy_to", MapCopyTo },
         { NULL, NULL } /* sentinel */
     };
 

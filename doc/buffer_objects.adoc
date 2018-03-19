@@ -67,6 +67,13 @@ https://www.khronos.org/opengl/wiki/GLAPI/glMapBufferRange[glMapBufferRange].#
 <<data,_data_>> = *mapped_buffer_read*(<<buffertarget,_target_>>|_buffer_, _offset_, _length_) _NONGL_ +
 [small]#Write/read data to/from a mapped buffer (non-OpenGL functions).#
 
+[[gl.mapped_buffer_copy_from]]
+* *mapped_buffer_copy_from*(<<buffertarget,_target_>>|_buffer_, _offset_, _length_, _srcptr_, [_srcoffset_=0]) _NONGL_ +
+*mapped_buffer_copy_to*(<<buffertarget,_target_>>|_buffer_, _offset_, _length_, _dstptr_, [_dstoffset_=0]) _NONGL_ +
+[small]#Copy data from/to raw memory to/from a mapped buffer (non-OpenGL functions). +
+_srcptr_, _dstptr_: lightuserdata containing a pointer to raw memory. +
+(Note that MoonGL has no means to perform boundary checks on the passed raw memory, so use with caution.)#
+
 '''
 
 Invalidate Buffer Data:

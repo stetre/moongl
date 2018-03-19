@@ -72,6 +72,8 @@ int noprintf(const char *fmt, ...);
 int notavailable(lua_State *L, ...);
 #define checkcolor moongl_checkcolor
 int checkcolor(lua_State *L, int arg, GLfloat dst[4]);
+#define checklightuserdata moongl_checklightuserdata
+void *checklightuserdata(lua_State *L, int arg);
 
 /* init.c */
 #define check_init_called moongl_check_init_called

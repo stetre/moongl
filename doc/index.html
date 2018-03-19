@@ -1234,6 +1234,17 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glMapBuffer">glMapBuffer
 </li>
 </ul>
 </div>
+<div id="gl.mapped_buffer_copy_from" class="ulist">
+<ul>
+<li>
+<p><strong>mapped_buffer_copy_from</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <em>length</em>, <em>srcptr</em>, [<em>srcoffset</em>=0]) <em>NONGL</em><br>
+<strong>mapped_buffer_copy_to</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <em>length</em>, <em>dstptr</em>, [<em>dstoffset</em>=0]) <em>NONGL</em><br>
+<span class="small">Copy data from/to raw memory to/from a mapped buffer (non-OpenGL functions).<br>
+<em>srcptr</em>, <em>dstptr</em>: lightuserdata containing a pointer to raw memory.<br>
+(Note that MoonGL has no means to perform boundary checks on the passed raw memory, so use with caution.)</span></p>
+</li>
+</ul>
+</div>
 <hr>
 <div class="paragraph">
 <p>Invalidate Buffer Data:</p>

@@ -124,3 +124,10 @@ int checkcolor(lua_State *L, int arg, GLfloat dst[4])
     return 0;
     }
 
+void *checklightuserdata(lua_State *L, int arg)
+    {
+    if(lua_type(L, arg) != LUA_TLIGHTUSERDATA)
+        { luaL_argerror(L, arg, "expected lightuserdata"); return NULL; }
+    return lua_touserdata(L, arg);
+    }
+
