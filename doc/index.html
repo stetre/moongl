@@ -1207,11 +1207,12 @@ See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
 <div id="gl.map_buffer" class="ulist">
 <ul>
 <li>
-<p><strong>map_buffer</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>access</em>)<br>
-<strong>map_buffer_range</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <em>length</em>, [<em>accessbit<sub>1</sub></em>, <em>&#8230;&#8203;</em>])<br>
+<p><em>ptr</em> = <strong>map_buffer</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>access</em>)<br>
+<em>ptr</em> = <strong>map_buffer_range</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <em>length</em>, [<em>accessbit<sub>1</sub></em>, <em>&#8230;&#8203;</em>])<br>
 <strong>unmap_buffer</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>)<br>
 <span class="small"><em>access</em>: '<em>read only</em>', '<em>write only</em>', '<em>read write</em>',<br>
 <em>accessbit</em>: '<em>read</em>' for GL_MAP_READ_BIT, '<em>invalidate buffer</em>' for GL_INVALIDATE_BUFFER_BIT, etc.<br>
+The returned <em>ptr</em> value is a lightuserdata containing the raw pointer to the mapped memory (use at your peril).<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glMapBuffer">glMapBuffer</a> -
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glMapBufferRange">glMapBufferRange</a>.</span></p>
 </li>

@@ -560,7 +560,8 @@ static int MapBuffer(lua_State *L)
     CheckError(L);
     if(ptr==NULL)
         return luaL_error(L, "cannot bind buffer");
-    return 0;
+    lua_pushlightuserdata(L, ptr);
+    return 1;
     }
 
 static int MapBufferRange(lua_State *L)
@@ -579,7 +580,8 @@ static int MapBufferRange(lua_State *L)
     CheckError(L);
     if(ptr==NULL)
         return luaL_error(L, "cannot bind buffer");
-    return 0;
+    lua_pushlightuserdata(L, ptr);
+    return 1;
     }
 
 
