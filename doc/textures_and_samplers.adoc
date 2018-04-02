@@ -269,7 +269,7 @@ Cube Map Texture Select:
 Manual Mipmap Generation:
 
 [[gl.generate_mipmap]]
-* *generate_mipmap*(<<texturetarget,_target_>>|_texture_, _level_) +
+* *generate_mipmap*(<<texturetarget,_target_>>|_texture_) +
 [small]#Rfr: 
 https://www.opengl.org/sdk/docs/man/html/glGenerateMipmap.xhtml[glGenerateMipmap].#
 [small]#See <<snippet_new_texture, example>>.#
