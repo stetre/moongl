@@ -27,25 +27,6 @@
 
 #define border 0 /* obsolete, must be zero */
 
-#define TargetEnum enumTextureTarget()
-#define CheckTarget(L, arg) enumCheck((L), (arg), TargetEnum)
-#define CheckTargetOrName(L, arg, dst) enumOrUint((L), (arg), (dst), TargetEnum, 0)
-
-ENUM_STRINGS(AccessStrings) = {
-    "read only",
-    "write only",
-    "read write",
-    NULL
-};
-ENUM_CODES(AccessCodes) = {
-    GL_READ_ONLY,
-    GL_WRITE_ONLY,
-    GL_READ_WRITE,
-};
-ENUM_T(AccessEnum, AccessStrings, AccessCodes)
-#define CheckAccess(L, arg) enumCheck((L), (arg), &AccessEnum)
-#define PushAccess(L, code) enumPush((L), (code), &AccessEnum)
-
 /*------------------------------------------------------------------------------*
  | Mutable textures                                                             |
  *------------------------------------------------------------------------------*/
@@ -59,7 +40,7 @@ static int TextureImage(lua_State *L)
     intptr_t data;
     GLsizei width, height, depth;
     int arg = 1;
-    GLenum target = CheckTarget(L, arg++);
+    GLenum target = checktexturetarget(L, arg++);
     GLint level = luaL_checkinteger(L, arg++);
     GLenum intfmt = checkinternalformat(L, arg++);
     GLenum format = checkformat(L, arg++);
@@ -107,7 +88,7 @@ static int TextureStorage(lua_State *L)
     GLsizei height, depth;
     int arg = 1;
     GLenum target;
-    GLuint texture = CheckTargetOrName(L, arg++, &target);
+    GLuint texture = checktargetorname(L, arg++, &target, DOMAIN_TEXTURE_TARGET);
     GLsizei levels = luaL_checkinteger(L, arg++);
     GLenum intfmt = checkinternalformat(L, arg++);
     GLsizei width = luaL_checkinteger(L, arg++);
@@ -149,7 +130,7 @@ static int TextureSubImage(lua_State *L)
     int arg = 1;
     GLint v1, v2, v3, v4, v5, v6;
     GLenum target;
-    GLuint texture = CheckTargetOrName(L, arg++, &target);
+    GLuint texture = checktargetorname(L, arg++, &target, DOMAIN_TEXTURE_TARGET);
     GLint level = luaL_checkinteger(L, arg++);
     GLenum format = checkformat(L, arg++);
     GLenum type = checktype(L, arg++);
@@ -210,7 +191,7 @@ static int CompressedTextureImage(lua_State *L)
     size_t len;
     GLsizei height, depth;
     int arg = 1;
-    GLenum target = CheckTarget(L, arg++);
+    GLenum target = checktexturetarget(L, arg++);
     GLint level = luaL_checkinteger(L, arg++);
     GLenum intfmt = checkinternalformat(L, arg++);
     const void* data = (void*)luaL_checklstring(L, arg++, &len);
@@ -247,7 +228,7 @@ static int CompressedTextureSubImage(lua_State *L)
     int arg = 1;
     GLint v1, v2, v3, v4, v5, v6;
     GLenum target;
-    GLuint texture = CheckTargetOrName(L, arg++, &target);
+    GLuint texture = checktargetorname(L, arg++, &target, DOMAIN_TEXTURE_TARGET);
     GLint level = luaL_checkinteger(L, arg++);
     GLenum intfmt = checkinternalformat(L, arg++);
     const void* data = (void*)luaL_checklstring(L, arg++, &len);
@@ -297,7 +278,7 @@ static int TextureStorageMultisample(lua_State *L)
     GLsizei depth;
     int arg = 1;
     GLenum target;
-    GLuint texture = CheckTargetOrName(L, arg++, &target);
+    GLuint texture = checktargetorname(L, arg++, &target, DOMAIN_TEXTURE_TARGET);
     GLsizei samples = luaL_checkinteger(L, arg++);
     GLenum intfmt = checkinternalformat(L, arg++);
     GLboolean fslocs = checkboolean(L, arg++);
@@ -326,7 +307,7 @@ static int TextureImageMultisample(lua_State *L)
     {
     GLsizei depth;
     int arg = 1;
-    GLenum target = CheckTarget(L, arg++);
+    GLenum target = checktexturetarget(L, arg++);
     GLsizei samples = luaL_checkinteger(L, arg++);
     GLenum intfmt = checkinternalformat(L, arg++);
     GLboolean fslocs = checkboolean(L, arg++);
@@ -355,7 +336,7 @@ static int CopyTextureImage(lua_State *L)
     {
     GLsizei height;
     int arg = 1;
-    GLenum target = CheckTarget(L, arg++);
+    GLenum target = checktexturetarget(L, arg++);
     GLint level = luaL_checkinteger(L, arg++);
     GLenum intfmt = checkinternalformat(L, arg++);
     GLint x = luaL_checkinteger(L, arg++);
@@ -383,7 +364,7 @@ static int CopyTextureSubImage(lua_State *L)
     GLint v1, v2, v3, v4, v5, v6, v7;
     int arg = 1;
     GLenum target;
-    GLuint texture = CheckTargetOrName(L, arg++, &target);
+    GLuint texture = checktargetorname(L, arg++, &target, DOMAIN_TEXTURE_TARGET);
     GLint level = luaL_checkinteger(L, arg++);
     v1 = luaL_checkinteger(L, arg++);
     v2 = luaL_checkinteger(L, arg++);
@@ -492,7 +473,7 @@ static int TexBuffer(lua_State *L)
     {
     int arg = 1;
     GLenum target;
-    GLuint texture = CheckTargetOrName(L, arg++, &target);
+    GLuint texture = checktargetorname(L, arg++, &target, DOMAIN_TEXTURE_TARGET);
     GLenum intfmt = checkinternalformat(L, arg++);
     GLuint buffer = luaL_checkinteger(L, arg++);
     if(texture==0)
@@ -508,7 +489,7 @@ static int TexBufferRange(lua_State *L)
     {
     int arg = 1;
     GLenum target;
-    GLuint texture = CheckTargetOrName(L, arg++, &target);
+    GLuint texture = checktargetorname(L, arg++, &target, DOMAIN_TEXTURE_TARGET);
     GLenum intfmt = checkinternalformat(L, arg++);
     GLuint buffer = luaL_checkinteger(L, arg++);
     GLintptr offset = luaL_checkinteger(L, arg++);
@@ -549,7 +530,7 @@ static int GetTextureImage(lua_State *L)
     GLsizei bufsz = 0;
     int arg = 1;
     GLenum target;
-    GLuint texture = CheckTargetOrName(L, arg++, &target);
+    GLuint texture = checktargetorname(L, arg++, &target, DOMAIN_TEXTURE_TARGET);
     GLint level = luaL_checkinteger(L, arg++);
     GLenum format = checkformat(L, arg++);
     GLenum type = checktype(L, arg++);
@@ -607,7 +588,7 @@ static int GetTextureSubImage(lua_State *L)
 static int GetnTextureImage(lua_State *L)
     {
     int arg = 1;
-    GLuint target = CheckTarget(L, arg++);
+    GLuint target = checktexturetarget(L, arg++);
     GLint level = luaL_checkinteger(L, arg++);
     GLenum format = checkformat(L, arg++);
     GLenum type = checktype(L, arg++);
@@ -625,7 +606,7 @@ static int GetnTextureImage(lua_State *L)
 static int GetnCompressedTextureImage(lua_State *L)
     {
     int arg = 1;
-    GLuint target = CheckTarget(L, arg++);
+    GLuint target = checktexturetarget(L, arg++);
     GLint lod = luaL_checkinteger(L, arg++);
     GLsizei bufsz = luaL_checkinteger(L, arg++);
     char* data = (char*)Malloc(L, bufsz *sizeof(char));
@@ -641,7 +622,7 @@ static int GetCompressedTextureImage(lua_State *L)
     {
     int arg = 1;
     GLenum target;
-    GLuint texture = CheckTargetOrName(L, arg++, &target);
+    GLuint texture = checktargetorname(L, arg++, &target, DOMAIN_TEXTURE_TARGET);
     GLint level = luaL_checkinteger(L, arg++);
     GLsizei bufsz = luaL_checkinteger(L, arg++);
     char* data = (char*)Malloc(L, bufsz *sizeof(char));
@@ -684,7 +665,7 @@ static int GenerateMipmap(lua_State *L)
     {
     int arg = 1;
     GLenum target;
-    GLuint texture = CheckTargetOrName(L, arg++, &target);
+    GLuint texture = checktargetorname(L, arg++, &target, DOMAIN_TEXTURE_TARGET);
     if(texture==0)
         glGenerateMipmap(target);
     else
@@ -698,7 +679,7 @@ static int TextureView(lua_State *L)
     {
     int arg = 1;
     GLuint texture = luaL_checkinteger(L, arg++);
-    GLenum target = CheckTarget(L, arg++);
+    GLenum target = checktexturetarget(L, arg++);
     GLuint origtexture = luaL_checkinteger(L, arg++);
     GLenum intfmt = checkinternalformat(L, arg++);
     GLuint minlevel = luaL_checkinteger(L, arg++);
@@ -719,7 +700,7 @@ static int BindImageTexture(lua_State *L)
     GLint level = luaL_checkinteger(L, arg++);
     GLboolean layered = checkboolean(L, arg++);
     GLint layer = luaL_checkinteger(L, arg++);
-    GLenum access = CheckAccess(L, arg++);
+    GLenum access = checktextureaccess(L, arg++);
     GLenum format = checkinternalformat(L, arg++);
     glBindImageTexture(unit, texture, level, layered, layer, access, format);
     CheckError(L);

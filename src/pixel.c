@@ -25,147 +25,8 @@
 
 #include "internal.h"
 
-#define SrcEnum enumBuffer()
-#define CheckSrc(L, arg) enumCheck((L), (arg), SrcEnum)
-#define PushSrc(L, code) enumPush((L), (code), SrcEnum)
-
 #define MaskBitfield bitfieldBuffer()
 #define CheckMask(L, arg, mand) bitfieldCheck((L), (arg), (mand), MaskBitfield)
-#define PushMask(L, code) bitfieldPush((L), (code), MaskBitfield)
-
-ENUM_STRINGS(FilterStrings) = {
-    "nearest",
-    "linear",
-    NULL
-};
-ENUM_CODES(FilterCodes) = {
-    GL_NEAREST,
-    GL_LINEAR
-};
-ENUM_T(FilterEnum, FilterStrings, FilterCodes)
-#define CheckFilter(L, arg) enumCheck((L), (arg), &FilterEnum)
-#define PushFilter(L, code) enumPush((L), (code), &FilterEnum)
-
-
-ENUM_STRINGS(TargetStrings) = {
-    "clamp read color",
-    NULL
-};
-ENUM_CODES(TargetCodes) = {
-    GL_CLAMP_READ_COLOR,
-};
-ENUM_T(TargetEnum, TargetStrings, TargetCodes)
-#define CheckTarget(L, arg) enumCheck((L), (arg), &TargetEnum)
-#define PushTarget(L, code) enumPush((L), (code), &TargetEnum)
-
-ENUM_STRINGS(ClampStrings) = {
-    "true",
-    "false",
-    "fixed only",
-    NULL
-};
-ENUM_CODES(ClampCodes) = {
-    GL_TRUE,
-    GL_FALSE,
-    GL_FIXED_ONLY,
-};
-ENUM_T(ClampEnum, ClampStrings, ClampCodes)
-#define CheckClamp(L, arg) enumCheck((L), (arg), &ClampEnum)
-#define PushClamp(L, code) enumPush((L), (code), &ClampEnum)
-
-enum_t *enumClamp(void)
-    { return &ClampEnum; }
-
-
-ENUM_STRINGS(ImageTargetStrings) = {
-    "renderbuffer",
-    "1d",
-    "2d",
-    "3d",
-    "1d array",
-    "2d array",
-    "rectangle",
-    "cube map",
-    "cube map array",
-    "buffer", 
-    "2d multisample",
-    "2d multisample array",
-    NULL
-};
-ENUM_CODES(ImageTargetCodes) = {
-    GL_RENDERBUFFER,
-    GL_TEXTURE_1D,
-    GL_TEXTURE_2D,
-    GL_TEXTURE_3D,
-    GL_TEXTURE_1D_ARRAY,
-    GL_TEXTURE_2D_ARRAY,
-    GL_TEXTURE_RECTANGLE,
-    GL_TEXTURE_CUBE_MAP,
-    GL_TEXTURE_CUBE_MAP_ARRAY,
-    GL_TEXTURE_BUFFER, 
-    GL_TEXTURE_2D_MULTISAMPLE,
-    GL_TEXTURE_2D_MULTISAMPLE_ARRAY
-};
-ENUM_T(ImageTargetEnum,ImageTargetStrings, ImageTargetCodes)
-#define CheckImageTarget(L, arg) enumCheck((L), (arg), &ImageTargetEnum)
-
-ENUM_STRINGS(PnameStrings) = {
-    "unpack swap bytes", 
-    "unpack lsb first", 
-    "unpack row length", 
-    "unpack skip rows", 
-    "unpack skip pixels", 
-    "unpack alignment",
-    "unpack image height",
-    "unpack skip images", 
-    "unpack compressed block width", 
-    "unpack compressed block height", 
-    "unpack compressed block depth", 
-    "unpack compressed block size", 
-    "pack swap bytes", 
-    "pack lsb first", 
-    "pack row length", 
-    "pack skip rows", 
-    "pack skip pixels", 
-    "pack alignment",
-    "pack image height", 
-    "pack skip images", 
-    "pack compressed block width", 
-    "pack compressed block height", 
-    "pack compressed block depth", 
-    "pack compressed block size", 
-    NULL
-};
-ENUM_CODES(PnameCodes) = {
-    GL_UNPACK_SWAP_BYTES, 
-    GL_UNPACK_LSB_FIRST, 
-    GL_UNPACK_ROW_LENGTH, 
-    GL_UNPACK_SKIP_ROWS, 
-    GL_UNPACK_SKIP_PIXELS, 
-    GL_UNPACK_ALIGNMENT,
-    GL_UNPACK_IMAGE_HEIGHT,
-    GL_UNPACK_SKIP_IMAGES, 
-    GL_UNPACK_COMPRESSED_BLOCK_WIDTH, 
-    GL_UNPACK_COMPRESSED_BLOCK_HEIGHT, 
-    GL_UNPACK_COMPRESSED_BLOCK_DEPTH, 
-    GL_UNPACK_COMPRESSED_BLOCK_SIZE, 
-    GL_PACK_SWAP_BYTES, 
-    GL_PACK_LSB_FIRST, 
-    GL_PACK_ROW_LENGTH, 
-    GL_PACK_SKIP_ROWS, 
-    GL_PACK_SKIP_PIXELS, 
-    GL_PACK_ALIGNMENT,
-    GL_PACK_IMAGE_HEIGHT, 
-    GL_PACK_SKIP_IMAGES, 
-    GL_PACK_COMPRESSED_BLOCK_WIDTH, 
-    GL_PACK_COMPRESSED_BLOCK_HEIGHT, 
-    GL_PACK_COMPRESSED_BLOCK_DEPTH, 
-    GL_PACK_COMPRESSED_BLOCK_SIZE, 
-};
-ENUM_T(PnameEnum, PnameStrings, PnameCodes)
-#define CheckPname(L, arg) enumCheck((L), (arg), &PnameEnum)
-#define PushPname(L, code) enumPush((L), (code), &PnameEnum)
-
 
 static int ReadBuffer(lua_State *L)
 /* read_buffer(src)
@@ -176,13 +37,13 @@ static int ReadBuffer(lua_State *L)
     GLenum src;
     if(lua_isstring(L, 1))
         {
-        src = CheckSrc(L, 1);
+        src = checkbuffer(L, 1);
         glReadBuffer(src);
         }
     else
         {
         framebuffer = luaL_checkinteger(L, 1);
-        src = CheckSrc(L, 2);
+        src = checkbuffer(L, 2);
         glNamedFramebufferReadBuffer(framebuffer, src);
         }
     CheckError(L);
@@ -213,11 +74,11 @@ static int ReadPixels(lua_State *L)
 static int ClampColor(lua_State *L)
     {
     GLenum clamp;
-    GLenum target = CheckTarget(L, 1);
+    GLenum target = checkclamptarget(L, 1);
     if(lua_isboolean(L, 2))
         clamp = lua_toboolean(L, 2) ? GL_TRUE : GL_FALSE;
     else
-        clamp = CheckClamp(L, 2);
+        clamp = checkclamp(L, 2);
     glClampColor(target, clamp);
     CheckError(L);
     return 0;
@@ -250,7 +111,7 @@ static int BlitFramebuffer(lua_State *L)
     dstY0 = luaL_checkinteger(L, arg++);
     dstX1 = luaL_checkinteger(L, arg++);
     dstY1 = luaL_checkinteger(L, arg++);
-    filter = CheckFilter(L, arg++); 
+    filter = checkfilter(L, arg++); 
     mask = CheckMask(L, arg, 0);
     if(named==0)
         glBlitFramebuffer(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
@@ -265,13 +126,13 @@ static int CopyImageSubData(lua_State *L)
     {
     int arg = 1;
     GLuint srcName = luaL_checkinteger(L, arg++);
-    GLenum srcTarget = CheckImageTarget(L, arg++);
+    GLenum srcTarget = checkimagetarget(L, arg++);
     GLint srcLevel = luaL_checkinteger(L, arg++);
     GLint srcX = luaL_checkinteger(L, arg++);
     GLint srcY = luaL_checkinteger(L, arg++);
     GLint srcZ = luaL_checkinteger(L, arg++);
     GLuint dstName = luaL_checkinteger(L, arg++);
-    GLenum dstTarget = CheckImageTarget(L, arg++);
+    GLenum dstTarget = checkimagetarget(L, arg++);
     GLint dstLevel = luaL_checkinteger(L, arg++);
     GLint dstX = luaL_checkinteger(L, arg++);
     GLint dstY = luaL_checkinteger(L, arg++);
@@ -303,7 +164,7 @@ static int Storei_(lua_State *L, GLenum pname, int arg, int boolean)
 
 static int PixelStore(lua_State *L)
     {
-    GLenum pname = CheckPname(L, 1);
+    GLenum pname = checkpixelstorepname(L, 1);
     switch(pname)
         {
         case GL_UNPACK_SWAP_BYTES: 

@@ -46,6 +46,7 @@ Objs := $(Src:.c=.o)
 COPT	+= -O2
 #COPT	+= -O0 -g
 COPT	+= -Wall -Wextra -Wpedantic
+COPT	+= -Wfatal-errors
 COPT    += -std=gnu99
 COPT 	+= -DLUAVER=$(LUAVER)
 ifdef LINUX

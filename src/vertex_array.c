@@ -25,21 +25,6 @@
 
 #include "internal.h"
 
-ENUM_STRINGS(PatchPnameStrings) = {
-    "vertices", 
-    "default outer level", 
-    "default inner level",
-    NULL
-};
-ENUM_CODES(PatchPnameCodes) = {
-    GL_PATCH_VERTICES, 
-    GL_PATCH_DEFAULT_OUTER_LEVEL, 
-    GL_PATCH_DEFAULT_INNER_LEVEL,
-};
-ENUM_T(PatchPnameEnum, PatchPnameStrings, PatchPnameCodes)
-#define CheckPatchPname(L, arg) enumCheck((L), (arg), &PatchPnameEnum)
-#define PushPatchPname(L, code) enumPush((L), (code), &PatchPnameEnum)
-
 
 #define VERTEX_ATTRIB_FUNC(T, t, checkt)                                \
 static int VertexAttrib_##T(lua_State *L, GLuint index, int n, int arg) \
@@ -454,7 +439,7 @@ static int PatchParameter(lua_State *L)
     int arg, i, count;
     GLint value;
     GLfloat *values;
-    GLenum pname = CheckPatchPname(L, 1);
+    GLenum pname = checkpatchpname(L, 1);
     switch(pname)
         {
         case GL_PATCH_VERTICES:

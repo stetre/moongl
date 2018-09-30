@@ -25,93 +25,13 @@
 
 #include "internal.h"
 
-ENUM_STRINGS(ModeStrings) = {
-    "points", 
-    "patches",
-    "line strip", 
-    "line loop", 
-    "triangle strip", 
-    "triangle fan", 
-    "lines", 
-    "lines adjacency", 
-    "triangles", 
-    "triangles adjacency",
-    "line strip adjacency", 
-    "triangle strip adjacency",
-    NULL
-};
-ENUM_CODES(ModeCodes) = {
-    GL_POINTS, 
-    GL_PATCHES,
-    GL_LINE_STRIP, 
-    GL_LINE_LOOP, 
-    GL_TRIANGLE_STRIP, 
-    GL_TRIANGLE_FAN, 
-    GL_LINES, 
-    GL_LINES_ADJACENCY, 
-    GL_TRIANGLES, 
-    GL_TRIANGLES_ADJACENCY,
-    GL_LINE_STRIP_ADJACENCY, 
-    GL_TRIANGLE_STRIP_ADJACENCY
-};
-ENUM_T(ModeEnum, ModeStrings, ModeCodes)
-#define CheckMode(L, arg) enumCheck((L), (arg), &ModeEnum)
-#define PushMode(L, code) enumPush((L), (code), &ModeEnum)
-
-enum_t *enumDrawMode(void)
-    { return &ModeEnum; }
-
-ENUM_STRINGS(TypeStrings) = {
-    "ubyte",
-    "ushort",
-    "uint",
-    NULL
-};
-ENUM_CODES(TypeCodes) = {
-    GL_UNSIGNED_BYTE,
-    GL_UNSIGNED_SHORT,
-    GL_UNSIGNED_INT
-};
-
-ENUM_T(TypeEnum, TypeStrings, TypeCodes)
-#define CheckType(L, arg) enumCheck((L), (arg), &TypeEnum)
-#define PushType(L, code) enumPush((L), (code), &TypeEnum)
-
-ENUM_STRINGS(CondRenderModeStrings) = {
-    "query wait",
-    "query no wait",
-    "query by region wait",
-    "query by region no wait",
-    "query wait inverted",
-    "query no wait inverted",
-    "query by region wait inverted",
-    "query by region no wait inverted",
-    NULL
-};
-
-
-ENUM_CODES(CondRenderModeCodes) = {
-    GL_QUERY_WAIT,
-    GL_QUERY_NO_WAIT,
-    GL_QUERY_BY_REGION_WAIT,
-    GL_QUERY_BY_REGION_NO_WAIT,
-    GL_QUERY_WAIT_INVERTED,
-    GL_QUERY_NO_WAIT_INVERTED,
-    GL_QUERY_BY_REGION_WAIT_INVERTED,
-    GL_QUERY_BY_REGION_NO_WAIT_INVERTED,
-};
-ENUM_T(CondRenderModeEnum, CondRenderModeStrings, CondRenderModeCodes)
-#define CheckCondRenderMode(L, arg) enumCheck((L), (arg), &CondRenderModeEnum)
-#define PushCondRenderMode(L, code) enumPush((L), (code), &CondRenderModeEnum)
-
-
 static int DrawArrays(lua_State *L)
 /* draw_arrays(mode, first, count [, instancecount [, baseinstance]])
  */
     {
     GLsizei instancecount;
     GLuint baseinstance;
-    GLenum mode = CheckMode(L, 1);
+    GLenum mode = checkdrawmode(L, 1);
     GLint first = luaL_checkinteger(L, 2);
     GLsizei count = luaL_checkinteger(L, 3);
     if(lua_isnoneornil(L, 4))
@@ -137,7 +57,7 @@ static int DrawArraysIndirect(lua_State *L)
 /* draw_arrays_indirect(mode, indirect)
  */
     {
-    GLenum mode = CheckMode(L, 1);
+    GLenum mode = checkdrawmode(L, 1);
     GLintptr indirect = luaL_checkinteger(L, 2);
     glDrawArraysIndirect(mode, (const void *)indirect);
     CheckError(L);
@@ -151,7 +71,7 @@ static int MultiDrawArrays(lua_State *L)
     GLsizei arg, i, drawcount;
     GLint *first;
     GLsizei *count;
-    GLenum mode = CheckMode(L, 1);
+    GLenum mode = checkdrawmode(L, 1);
     arg = 2;
     while(!lua_isnoneornil(L, arg))
         luaL_checkinteger(L, arg++);
@@ -177,7 +97,7 @@ static int MultiDrawArraysIndirect(lua_State *L)
 /* multi_draw_arrays_indirect(mode, indirect, drawcount, stride)
  */
     {
-    GLenum mode = CheckMode(L, 1);
+    GLenum mode = checkdrawmode(L, 1);
     GLintptr indirect = luaL_checkinteger(L, 2);
     GLsizei drawcount = luaL_checkinteger(L, 3);
     GLsizei stride = luaL_checkinteger(L, 4);
@@ -193,9 +113,9 @@ static int DrawElements(lua_State *L)
     {
     GLsizei instancecount;
     GLuint baseinstance;
-    GLenum mode = CheckMode(L, 1);
+    GLenum mode = checkdrawmode(L, 1);
     GLsizei count = luaL_checkinteger(L, 2);
-    GLenum type = CheckType(L, 3);
+    GLenum type = checkdrawtype(L, 3);
     GLintptr indices = luaL_checkinteger(L, 4);
     if(lua_isnoneornil(L, 5))
         {
@@ -222,8 +142,8 @@ static int DrawElementsIndirect(lua_State *L)
 /* draw_elements_indirect(mode, type, indirect)
  */
     {
-    GLenum mode = CheckMode(L, 1);
-    GLenum type = CheckType(L, 2);
+    GLenum mode = checkdrawmode(L, 1);
+    GLenum type = checkdrawtype(L, 2);
     GLintptr indirect = luaL_checkinteger(L, 3);
     glDrawElementsIndirect(mode, type, (const void *)indirect);
     CheckError(L);
@@ -238,8 +158,8 @@ static int MultiDrawElements(lua_State *L)
     {
     GLsizei *count, drawcount, i, arg;
     GLintptr *indices;
-    GLenum mode = CheckMode(L, 1);
-    GLenum type = CheckType(L, 2);
+    GLenum mode = checkdrawmode(L, 1);
+    GLenum type = checkdrawtype(L, 2);
     arg = 3;
     while(!lua_isnoneornil(L, arg))
         luaL_checkinteger(L, arg++);
@@ -266,8 +186,8 @@ static int MultiDrawElementsIndirect(lua_State *L)
 /* draw_elements_indirect(mode, type, indirect, drawcount, stride)
  */
     {
-    GLenum mode = CheckMode(L, 1);
-    GLenum type = CheckType(L, 2);
+    GLenum mode = checkdrawmode(L, 1);
+    GLenum type = checkdrawtype(L, 2);
     GLintptr indirect = luaL_checkinteger(L, 3);
     GLsizei drawcount = luaL_checkinteger(L, 4);
     GLsizei stride = luaL_checkinteger(L, 5);
@@ -283,9 +203,9 @@ static int DrawElementsBaseVertex(lua_State *L)
     {
     GLsizei instancecount;
     GLuint baseinstance;
-    GLenum mode = CheckMode(L, 1);
+    GLenum mode = checkdrawmode(L, 1);
     GLsizei count = luaL_checkinteger(L, 2);
-    GLenum type = CheckType(L, 3);
+    GLenum type = checkdrawtype(L, 3);
     GLintptr indices = luaL_checkinteger(L, 4);
     GLsizei basevertex = luaL_checkinteger(L, 5);
     if(lua_isnoneornil(L, 6))
@@ -317,8 +237,8 @@ static int MultiDrawElementsBaseVertex(lua_State *L)
     GLsizei *count, drawcount, i, arg;
     GLintptr *indices;
     GLint *basevertex;
-    GLenum mode = CheckMode(L, 1);
-    GLenum type = CheckType(L, 2);
+    GLenum mode = checkdrawmode(L, 1);
+    GLenum type = checkdrawtype(L, 2);
     arg = 3;
     while(!lua_isnoneornil(L, arg))
         luaL_checkinteger(L, arg++);
@@ -347,11 +267,11 @@ static int MultiDrawElementsBaseVertex(lua_State *L)
 
 static int DrawRangeElements(lua_State *L)
     {
-    GLenum mode = CheckMode(L, 1);
+    GLenum mode = checkdrawmode(L, 1);
     GLuint start = luaL_checkinteger(L, 2);
     GLuint end = luaL_checkinteger(L, 3);
     GLsizei count = luaL_checkinteger(L, 4);
-    GLenum type = CheckType(L, 5);
+    GLenum type = checkdrawtype(L, 5);
     GLintptr indices = luaL_checkinteger(L, 6);
     glDrawRangeElements(mode, start, end, count, type, (const void *)indices);
     CheckError(L);
@@ -360,11 +280,11 @@ static int DrawRangeElements(lua_State *L)
 
 static int DrawRangeElementsBaseVertex(lua_State *L)
     {
-    GLenum mode = CheckMode(L, 1);
+    GLenum mode = checkdrawmode(L, 1);
     GLuint start = luaL_checkinteger(L, 2);
     GLuint end = luaL_checkinteger(L, 3);
     GLsizei count = luaL_checkinteger(L, 4);
-    GLenum type = CheckType(L, 5);
+    GLenum type = checkdrawtype(L, 5);
     GLintptr indices = luaL_checkinteger(L, 6);
     GLint basevertex = luaL_checkinteger(L, 7);
     glDrawRangeElementsBaseVertex(mode, start, end, count, type, (const void *)indices, basevertex);
@@ -384,7 +304,7 @@ static int PrimitiveRestartIndex(lua_State *L)
 static int BeginConditionalRender(lua_State *L)
     {
     GLuint id = luaL_checkinteger(L, 1);
-    GLenum mode = CheckCondRenderMode(L, 2);
+    GLenum mode = checkconditionalrendermode(L, 2);
     glBeginConditionalRender(id, mode);
     CheckError(L);
     return 0;

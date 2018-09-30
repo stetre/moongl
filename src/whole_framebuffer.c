@@ -25,100 +25,6 @@
 
 #include "internal.h"
 
-ENUM_STRINGS(BufStrings) = {
-    "none",
-    "front left",
-    "front right",
-    "back left",
-    "back right",
-    "front",
-    "back",
-    "left",
-    "right",
-    "front and back",
-    "color attachment 0",
-    "color attachment 1",
-    "color attachment 2",
-    "color attachment 3",
-    "color attachment 4",
-    "color attachment 5",
-    "color attachment 6",
-    "color attachment 7",
-    "color attachment 8",
-    "color attachment 9",
-    "color attachment 10",
-    "color attachment 11",
-    "color attachment 12",
-    "color attachment 13",
-    "color attachment 14",
-    "color attachment 15",
-/*-------------------------------------*/
-    "color",
-    "depth",
-    "stencil",
-    "depth attachment",
-    "stencil attachment",
-    "depth stencil attachment",
-    NULL
-};
-ENUM_CODES(BufCodes) = {
-    GL_NONE,
-    GL_FRONT_LEFT,
-    GL_FRONT_RIGHT,
-    GL_BACK_LEFT,
-    GL_BACK_RIGHT,
-    GL_FRONT,
-    GL_BACK,
-    GL_LEFT,
-    GL_RIGHT,
-    GL_FRONT_AND_BACK,
-    GL_COLOR_ATTACHMENT0,
-    GL_COLOR_ATTACHMENT1,
-    GL_COLOR_ATTACHMENT2,
-    GL_COLOR_ATTACHMENT3,
-    GL_COLOR_ATTACHMENT4,
-    GL_COLOR_ATTACHMENT5,
-    GL_COLOR_ATTACHMENT6,
-    GL_COLOR_ATTACHMENT7,
-    GL_COLOR_ATTACHMENT8,
-    GL_COLOR_ATTACHMENT9,
-    GL_COLOR_ATTACHMENT10,
-    GL_COLOR_ATTACHMENT11,
-    GL_COLOR_ATTACHMENT12,
-    GL_COLOR_ATTACHMENT13,
-    GL_COLOR_ATTACHMENT14,
-    GL_COLOR_ATTACHMENT15,
-/* for attachments (see framebuffer.c): */
-    GL_COLOR,
-    GL_DEPTH,
-    GL_STENCIL,
-    GL_DEPTH_ATTACHMENT,
-    GL_STENCIL_ATTACHMENT,
-    GL_DEPTH_STENCIL_ATTACHMENT,
-};
-ENUM_T(BufEnum, BufStrings, BufCodes)
-#define CheckBuf(L, arg) enumCheck((L), (arg), &BufEnum)
-#define PushBuf(L, code) enumPush((L), (code), &BufEnum)
-
-enum_t *enumBuffer(void)
-    { return &BufEnum; }
-
-
-ENUM_STRINGS(ClearBufStrings) = {
-    "color",
-    "depth",
-    "stencil",
-    NULL
-};
-ENUM_CODES(ClearBufCodes) = {
-    GL_COLOR,
-    GL_DEPTH,
-    GL_STENCIL
-};
-ENUM_T(ClearBufEnum, ClearBufStrings, ClearBufCodes)
-#define CheckClearBuf(L, arg) enumCheck((L), (arg), &ClearBufEnum)
-#define PushClearBuf(L, code) enumPush((L), (code), &ClearBufEnum)
-
 BITFIELD_STRINGS(BufferBitStrings) = {
     "color", 
     "depth", 
@@ -143,31 +49,16 @@ static GLenum* CheckBufList(lua_State *L, int arg, GLsizei *n)
     GLenum *bufs;
     int i = arg;
     while(!lua_isnoneornil(L, i))
-        { CheckBuf(L, i); i++; }
+        { checkbuffer(L, i); i++; }
     if(i==arg) /* raise an error */
-        CheckBuf(L, arg); 
+        checkbuffer(L, arg); 
     *n = i - arg;
     bufs = (GLenum*)Malloc(L, (*n)*sizeof(GLenum));
     i = 0;
     for(i = 0; i < (*n); i++)
-        bufs[i] = CheckBuf(L, arg + i);
+        bufs[i] = checkbuffer(L, arg + i);
     return bufs;
     }
-
-ENUM_STRINGS(FaceStrings) = {
-    "back",
-    "front",
-    "front and back",
-    NULL
-};
-ENUM_CODES(FaceCodes) = {
-    GL_FRONT,
-    GL_BACK,
-    GL_FRONT_AND_BACK
-};
-ENUM_T(FaceEnum, FaceStrings, FaceCodes)
-#define CheckFace(L, arg) enumCheck((L), (arg), &FaceEnum)
-#define PushFace(L, code) enumPush((L), (code), &FaceEnum)
 
 static int ColorMask(lua_State *L)
     {
@@ -202,7 +93,7 @@ static int StencilMask(lua_State *L)
     GLuint mask = luaL_checkinteger(L, 1);
     if(lua_isstring(L, 2))
         {
-        face = CheckFace(L, 2);
+        face = checkface(L, 2);
         glStencilMaskSeparate(face, mask);
         }
     else
@@ -239,12 +130,12 @@ static int DrawBuffer(lua_State *L)
     if(lua_isinteger(L, 1))
         {
         framebuffer = luaL_checkinteger(L, 1);
-        buf = CheckBuf(L, 2);
+        buf = checkbuffer(L, 2);
         glNamedFramebufferDrawBuffer(framebuffer, buf);
         }
     else
         {
-        buf = CheckBuf(L, 1);
+        buf = checkbuffer(L, 1);
         glDrawBuffer(buf);
         }
     CheckError(L);
@@ -295,7 +186,7 @@ static int ClearBuffer(lua_State *L)
         }
     else
         named = 0;
-    buffer = CheckClearBuf(L, arg++);
+    buffer = checkclearbuffer(L, arg++);
     switch(buffer)
         {
         case GL_COLOR:      drawbuffer = luaL_checkinteger(L, arg++);

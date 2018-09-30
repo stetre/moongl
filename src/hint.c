@@ -25,45 +25,10 @@
 
 #include "internal.h"
 
-ENUM_STRINGS(HintTargetStrings) = {
-    "line smooth",
-    "polygon smooth",
-    "texture compression",
-    "fragment shader derivative",
-    NULL
-};
-ENUM_CODES(HintTargetCodes) = {
-    GL_LINE_SMOOTH_HINT,
-    GL_POLYGON_SMOOTH_HINT,
-    GL_TEXTURE_COMPRESSION_HINT,
-    GL_FRAGMENT_SHADER_DERIVATIVE_HINT,
-};
-ENUM_T(HintTargetEnum, HintTargetStrings, HintTargetCodes)
-#define CheckHintTarget(L, arg) enumCheck((L), (arg), &HintTargetEnum)
-#define PushHintTarget(L, code) enumPush((L), (code), &HintTargetEnum)
-
-ENUM_STRINGS(HintModeStrings) = {
-    "fastest",
-    "nicest",
-    "don't care",
-    NULL
-};
-ENUM_CODES(HintModeCodes) = {
-    GL_FASTEST,
-    GL_NICEST,
-    GL_DONT_CARE,
-};
-ENUM_T(HintModeEnum, HintModeStrings, HintModeCodes)
-#define CheckHintMode(L, arg) enumCheck((L), (arg), &HintModeEnum)
-#define PushHintMode(L, code) enumPush((L), (code), &HintModeEnum)
-
-enum_t *enumHintMode(void)
-    { return &HintModeEnum; }
-
 static int Hint(lua_State *L)
     {
-    GLenum target = CheckHintTarget(L, 1);
-    GLenum mode = CheckHintMode(L, 2);
+    GLenum target = checkhinttarget(L, 1);
+    GLenum mode = checkhintmode(L, 2);
     glHint(target, mode);
     CheckError(L);
     return 0;

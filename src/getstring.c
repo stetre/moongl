@@ -25,31 +25,12 @@
 
 #include "internal.h"
 
-ENUM_STRINGS(NameStrings) = {
-    "renderer",
-    "vendor",
-    "version",
-    "extensions",
-    "shading language version",
-    NULL
-};
-ENUM_CODES(NameCodes) = {
-    GL_RENDERER,
-    GL_VENDOR,
-    GL_VERSION,
-    GL_EXTENSIONS,
-    GL_SHADING_LANGUAGE_VERSION
-};
-ENUM_T(NameEnum, NameStrings, NameCodes)
-#define CheckName(L, arg) enumCheck((L), (arg), &NameEnum)
-#define PushName(L, code) enumPush((L), (code), &NameEnum)
-
 static int GetString(lua_State *L)
     {
     GLsizei index;
     GLsizei num;
     const GLubyte *s;
-    GLenum name = CheckName(L, 1);
+    GLenum name = checkstringname(L, 1);
     switch(name)
         {
         case GL_RENDERER:

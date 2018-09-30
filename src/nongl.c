@@ -114,45 +114,6 @@ static int FlattenTable(lua_State *L)
 
 /*-----------------------------------------------------------------------------*/
 
-/* Internal error codes */
-#define ERR_NOTPRESENT       1
-#define ERR_SUCCESS          0
-#define ERR_GENERIC         -1
-#define ERR_TYPE            -2
-#define ERR_VALUE           -3
-#define ERR_TABLE           -4
-#define ERR_EMPTY           -5
-#define ERR_MEMORY          -6
-#define ERR_LENGTH          -7
-#define ERR_POOL            -8
-#define ERR_BOUNDARIES      -9
-#define ERR_UNKNOWN         -10
-#define errstring moongl_errstring
-static const char* errstring(int err);
-
-static const char* errstring(int err)
-    {
-    switch(err)
-        {
-        case 0: return "success";
-        case ERR_GENERIC: return "generic error";
-        case ERR_TABLE: return "not a table";
-        case ERR_EMPTY: return "empty list";
-        case ERR_TYPE: return "invalid type";
-        case ERR_VALUE: return "invalid value";
-        case ERR_NOTPRESENT: return "missing";
-        case ERR_MEMORY: return "out of memory";
-        case ERR_LENGTH: return "invalid length";
-        case ERR_POOL: return "elements are not from the same pool";
-        case ERR_BOUNDARIES: return "invalid boundaries";
-        case ERR_UNKNOWN: return "unknown field name";
-        default:
-            return "???";
-        }
-    return NULL; /* unreachable */
-    }
-
-
 #define PACK(T, what) /* what= number or integer */ \
 static int Pack##T(lua_State *L, size_t n, void *dst, size_t dstsize, int *faulty_element)  \
     {                                       \

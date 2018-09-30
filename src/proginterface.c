@@ -25,138 +25,6 @@
 
 #include "internal.h"
 
-ENUM_STRINGS(InterfaceStrings) = {
-    "uniform",
-    "uniform block",
-    "atomic counter buffer",
-    "program input",
-    "program output",
-    "vertex subroutine",
-    "tess control subroutine",
-    "tess evaluation subroutine",
-    "geometry subroutine",
-    "fragment subroutine",
-    "compute subroutine",
-    "vertex subroutine uniform",
-    "tess control subroutine uniform",
-    "tess evaluation subroutine uniform",
-    "geometry subroutine uniform",
-    "fragment subroutine uniform",
-    "compute subroutine uniform",
-    "transform feedback varying",
-    "buffer variable",
-    "shader storage block",
-    "transform feedback buffer",
-    NULL
-};
-ENUM_CODES(InterfaceCodes) = {
-    GL_UNIFORM,
-    GL_UNIFORM_BLOCK,
-    GL_ATOMIC_COUNTER_BUFFER,
-    GL_PROGRAM_INPUT,
-    GL_PROGRAM_OUTPUT,
-    GL_VERTEX_SUBROUTINE,
-    GL_TESS_CONTROL_SUBROUTINE,
-    GL_TESS_EVALUATION_SUBROUTINE,
-    GL_GEOMETRY_SUBROUTINE,
-    GL_FRAGMENT_SUBROUTINE,
-    GL_COMPUTE_SUBROUTINE,
-    GL_VERTEX_SUBROUTINE_UNIFORM,
-    GL_TESS_CONTROL_SUBROUTINE_UNIFORM,
-    GL_TESS_EVALUATION_SUBROUTINE_UNIFORM,
-    GL_GEOMETRY_SUBROUTINE_UNIFORM,
-    GL_FRAGMENT_SUBROUTINE_UNIFORM,
-    GL_COMPUTE_SUBROUTINE_UNIFORM,
-    GL_TRANSFORM_FEEDBACK_VARYING,
-    GL_BUFFER_VARIABLE,
-    GL_SHADER_STORAGE_BLOCK,
-    GL_TRANSFORM_FEEDBACK_BUFFER,
-};
-ENUM_T(InterfaceEnum, InterfaceStrings, InterfaceCodes)
-#define CheckInterface(L, arg) enumCheck((L), (arg), &InterfaceEnum)
-#define PushInterface(L, code) enumPush((L), (code), &InterfaceEnum)
-
-ENUM_STRINGS(PnameStrings) = {
-    "active resources",
-    "max name length",
-    "max num active variables",
-    "max num compatible subroutines",
-    NULL
-};
-ENUM_CODES(PnameCodes) = {
-    GL_ACTIVE_RESOURCES,
-    GL_MAX_NAME_LENGTH,
-    GL_MAX_NUM_ACTIVE_VARIABLES,
-    GL_MAX_NUM_COMPATIBLE_SUBROUTINES,
-};
-ENUM_T(PnameEnum, PnameStrings, PnameCodes)
-#define CheckPname(L, arg) enumCheck((L), (arg), &PnameEnum)
-#define PushPname(L, code) enumPush((L), (code), &PnameEnum)
-
-ENUM_STRINGS(PropertyStrings) = {
-    "active variables",
-    "array size",
-    "array stride",
-    "atomic counter buffer index",
-    "block index",
-    "buffer binding", 
-    "buffer data size",
-    "is per patch",
-    "is row major",
-    "location",
-    "location component",
-    "location index",
-    "matrix stride",
-    "name length",
-    "num active variables",
-    "offset",
-    "referenced by vertex shader",
-    "referenced by tess control shader",
-    "referenced by tess evaluation shader",
-    "referenced by geometry shader",
-    "referenced by fragment shader", 
-    "referenced by compute shader", 
-    "top level array size",
-    "top level array stride",
-    "transform feedback buffer index",
-    "transform feedback buffer stride",
-    "type",
-    NULL
-};
-ENUM_CODES(PropertyCodes) = {
-    GL_ACTIVE_VARIABLES,
-    GL_ARRAY_SIZE,
-    GL_ARRAY_STRIDE,
-    GL_ATOMIC_COUNTER_BUFFER_INDEX,
-    GL_BLOCK_INDEX,
-    GL_BUFFER_BINDING, 
-    GL_BUFFER_DATA_SIZE,
-    GL_IS_PER_PATCH,
-    GL_IS_ROW_MAJOR,
-    GL_LOCATION,
-    GL_LOCATION_COMPONENT,
-    GL_LOCATION_INDEX,
-    GL_MATRIX_STRIDE,
-    GL_NAME_LENGTH,
-    GL_NUM_ACTIVE_VARIABLES,
-    GL_OFFSET,
-    GL_REFERENCED_BY_VERTEX_SHADER,
-    GL_REFERENCED_BY_TESS_CONTROL_SHADER,
-    GL_REFERENCED_BY_TESS_EVALUATION_SHADER,
-    GL_REFERENCED_BY_GEOMETRY_SHADER,
-    GL_REFERENCED_BY_FRAGMENT_SHADER, 
-    GL_REFERENCED_BY_COMPUTE_SHADER, 
-    GL_TOP_LEVEL_ARRAY_SIZE,
-    GL_TOP_LEVEL_ARRAY_STRIDE,
-    GL_TRANSFORM_FEEDBACK_BUFFER_INDEX,
-    GL_TRANSFORM_FEEDBACK_BUFFER_STRIDE,
-    GL_TYPE,
-};
-ENUM_T(PropertyEnum, PropertyStrings, PropertyCodes)
-#define CheckProperty(L, arg) enumCheck((L), (arg), &PropertyEnum)
-#define PushProperty(L, code) enumPush((L), (code), &PropertyEnum)
-
-
 static GLint GetParam(lua_State *L, GLuint prog, GLenum itf, GLenum pname)
     {
     GLint param;    
@@ -183,8 +51,8 @@ static int GetInt(lua_State *L, GLuint prog, GLenum itf, GLenum pname)
 static int GetProgramInterface(lua_State *L)
     {
     GLuint prog = luaL_checkinteger(L, 1);
-    GLenum itf = CheckInterface(L, 2);
-    GLenum pname = CheckPname(L, 3);
+    GLenum itf = checkinterface(L, 2);
+    GLenum pname = checkinterfacepname(L, 3);
     switch(pname)
         {
         case GL_ACTIVE_RESOURCES: return GetInt(L, prog, itf, pname);
@@ -200,7 +68,7 @@ static int GetProgramInterface(lua_State *L)
 static int GetProgramResourceIndex(lua_State *L)
     {
     GLuint prog = luaL_checkinteger(L, 1);
-    GLenum itf = CheckInterface(L, 2);
+    GLenum itf = checkinterface(L, 2);
     const char *name = luaL_checkstring(L, 3);
     GLuint index = glGetProgramResourceIndex(prog, itf, name);
     CheckError(L);
@@ -213,7 +81,7 @@ static int GetProgramResourceName(lua_State *L)
     GLsizei length;
     char *name;
     GLuint prog = luaL_checkinteger(L, 1);
-    GLenum itf = CheckInterface(L, 2);
+    GLenum itf = checkinterface(L, 2);
     GLuint index = luaL_checkinteger(L, 3);
     GLsizei bufsz = GetMaxNameLength(L, prog, itf);
     name = (char*)Malloc(L, bufsz*sizeof(char));
@@ -227,7 +95,7 @@ static int GetProgramResourceName(lua_State *L)
 static int GetProgramResourceLocation(lua_State *L)
     {
     GLuint prog = luaL_checkinteger(L, 1);
-    GLenum itf = CheckInterface(L, 2);
+    GLenum itf = checkinterface(L, 2);
     const char *name = luaL_checkstring(L, 3);
     GLint loc = glGetProgramResourceLocation(prog, itf, name);
     CheckError(L);
@@ -238,7 +106,7 @@ static int GetProgramResourceLocation(lua_State *L)
 static int GetProgramResourceLocationIndex(lua_State *L)
     {
     GLuint prog = luaL_checkinteger(L, 1);
-    GLenum itf = CheckInterface(L, 2);
+    GLenum itf = checkinterface(L, 2);
     const char *name = luaL_checkstring(L, 3);
     GLint index = glGetProgramResourceLocationIndex(prog, itf, name);
     CheckError(L);
@@ -298,9 +166,9 @@ static int GetPropType(lua_State *L, GLuint prog, GLenum itf, GLuint index, GLen
 static int GetProgramResource(lua_State *L)
     {
     GLuint prog = luaL_checkinteger(L, 1);
-    GLenum itf = CheckInterface(L, 2);
+    GLenum itf = checkinterface(L, 2);
     GLuint index = luaL_checkinteger(L, 3);
-    GLenum prop = CheckProperty(L, 4);
+    GLenum prop = checkresourceproperty(L, 4);
     switch(prop)
         {
         case GL_ACTIVE_VARIABLES: return GetActiveVariables(L, prog, itf, index, prop);

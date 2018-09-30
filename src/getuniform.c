@@ -25,97 +25,6 @@
 
 #include "internal.h"
 
-#define TypeEnum enumUniformType()
-#define CheckType(L, arg) enumCheck((L), (arg), TypeEnum)
-#define PushType(L, code) enumPush((L), (code), TypeEnum)
-
-ENUM_STRINGS(PnameStrings) = {
-    "type",
-    "size",
-    "name length",
-    "block index",
-    "offset",
-    "array stride",
-    "matrix stride",
-    "is row major",
-    "atomic counter buffer index",
-    NULL
-};
-ENUM_CODES(PnameCodes) = {
-    GL_UNIFORM_TYPE,
-    GL_UNIFORM_SIZE,
-    GL_UNIFORM_NAME_LENGTH,
-    GL_UNIFORM_BLOCK_INDEX,
-    GL_UNIFORM_OFFSET,
-    GL_UNIFORM_ARRAY_STRIDE,
-    GL_UNIFORM_MATRIX_STRIDE,
-    GL_UNIFORM_IS_ROW_MAJOR,
-    GL_UNIFORM_ATOMIC_COUNTER_BUFFER_INDEX,
-};
-ENUM_T(PnameEnum, PnameStrings, PnameCodes)
-#define CheckPname(L, arg) enumCheck((L), (arg), &PnameEnum)
-#define PushPname(L, code) enumPush((L), (code), &PnameEnum)
-
-ENUM_STRINGS(BlockPnameStrings) = {
-    "binding",
-    "data size", 
-    "name length",
-    "active uniforms",
-    "active uniform indices",
-    "referenced by vertex shader",
-    "referenced by tess control shader",
-    "referenced by tess evaluation shader",
-    "referenced by geometry shader",
-    "referenced by fragment shader",
-    "referenced by compute shader",
-    NULL
-};
-ENUM_CODES(BlockPnameCodes) = {
-    GL_UNIFORM_BLOCK_BINDING,
-    GL_UNIFORM_BLOCK_DATA_SIZE, 
-    GL_UNIFORM_BLOCK_NAME_LENGTH,
-    GL_UNIFORM_BLOCK_ACTIVE_UNIFORMS,
-    GL_UNIFORM_BLOCK_ACTIVE_UNIFORM_INDICES,
-    GL_UNIFORM_BLOCK_REFERENCED_BY_VERTEX_SHADER,
-    GL_UNIFORM_BLOCK_REFERENCED_BY_TESS_CONTROL_SHADER,
-    GL_UNIFORM_BLOCK_REFERENCED_BY_TESS_EVALUATION_SHADER,
-    GL_UNIFORM_BLOCK_REFERENCED_BY_GEOMETRY_SHADER,
-    GL_UNIFORM_BLOCK_REFERENCED_BY_FRAGMENT_SHADER,
-    GL_UNIFORM_BLOCK_REFERENCED_BY_COMPUTE_SHADER,
-};
-ENUM_T(BlockPnameEnum, BlockPnameStrings, BlockPnameCodes)
-#define CheckBlockPname(L, arg) enumCheck((L), (arg), &BlockPnameEnum)
-#define PushBlockPname(L, code) enumPush((L), (code), &BlockPnameEnum)
-
-ENUM_STRINGS(AcbPnameStrings) = {
-    "binding",
-    "data size",
-    "active atomic counters",
-    "active atomic counter indices",
-    "referenced by vertex shader",
-    "referenced by tess control shader",
-    "referenced by tess evaluation shader",
-    "referenced by geometry shader",
-    "referenced by fragment shader",
-    "referenced by compute shader",
-    NULL
-};
-ENUM_CODES(AcbPnameCodes) = {
-    GL_ATOMIC_COUNTER_BUFFER_BINDING,
-    GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE,
-    GL_ATOMIC_COUNTER_BUFFER_ACTIVE_ATOMIC_COUNTERS,
-    GL_ATOMIC_COUNTER_BUFFER_ACTIVE_ATOMIC_COUNTER_INDICES,
-    GL_ATOMIC_COUNTER_BUFFER_REFERENCED_BY_VERTEX_SHADER,
-    GL_ATOMIC_COUNTER_BUFFER_REFERENCED_BY_TESS_CONTROL_SHADER,
-    GL_ATOMIC_COUNTER_BUFFER_REFERENCED_BY_TESS_EVALUATION_SHADER,
-    GL_ATOMIC_COUNTER_BUFFER_REFERENCED_BY_GEOMETRY_SHADER,
-    GL_ATOMIC_COUNTER_BUFFER_REFERENCED_BY_FRAGMENT_SHADER,
-    GL_ATOMIC_COUNTER_BUFFER_REFERENCED_BY_COMPUTE_SHADER,
-};
-ENUM_T(AcbPnameEnum, AcbPnameStrings, AcbPnameCodes)
-#define CheckAcbPname(L, arg) enumCheck((L), (arg), &AcbPnameEnum)
-#define PushAcbPname(L, code) enumPush((L), (code), &AcbPnameEnum)
-
 /*------------------------------------------------------------------------------*
  | get_uniform()                                                                |
  *------------------------------------------------------------------------------*/
@@ -157,13 +66,13 @@ static int GetUniform(lua_State *L)
     {
     GLuint program = luaL_checkinteger(L, 1);
     GLint location = luaL_checkinteger(L, 2);
-    GLenum type = CheckType(L, 3);
+    GLenum type = checkuniformtype(L, 3);
     GLsizei size = luaL_checkinteger(L, 4); 
     if((size < 1) || (size>16))
         return luaL_argerror(L, 4, "out of range");
     switch(type)
         {
-        case MOONGL_BOOLEAN: return GetUniform_b(L, program, location, size);
+        case NONGL_BOOLEAN: return GetUniform_b(L, program, location, size);
         case GL_INT: return GetUniform_i(L, program, location, size);
         case GL_UNSIGNED_INT: return GetUniform_ui(L, program, location, size);
         case GL_FLOAT:  return GetUniform_f(L, program, location, size);
@@ -301,7 +210,7 @@ static int GetActiveUniforms(lua_State *L)
     GLuint *indices;
     GLint *params;
     GLuint program = luaL_checkinteger(L, 1);
-    GLenum pname = CheckPname(L, 2);
+    GLenum pname = checkuniformpname(L, 2);
     arg = 3;
     while(!lua_isnoneornil(L, arg))
         luaL_checkinteger(L, arg++);
@@ -390,7 +299,7 @@ static int GetActiveUniformBlock(lua_State *L)
     {
     GLuint program = luaL_checkinteger(L, 1);
     GLuint index = luaL_checkinteger(L, 2);
-    GLenum pname = CheckBlockPname(L, 3);
+    GLenum pname = checkblockpname(L, 3);
     switch(pname)
         {
         case GL_UNIFORM_BLOCK_BINDING:
@@ -463,7 +372,7 @@ static int GetActiveAtomicCounterBuffer(lua_State *L)
     {
     GLuint program = luaL_checkinteger(L, 1);
     GLuint index = luaL_checkinteger(L, 2);
-    GLenum pname = CheckAcbPname(L, 3);
+    GLenum pname = checkacbpname(L, 3);
     switch(pname)
         {
         case GL_ATOMIC_COUNTER_BUFFER_BINDING:

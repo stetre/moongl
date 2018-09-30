@@ -44,7 +44,8 @@
  */
 
 #include "wrangler.h"
-#include "enum.h"
+#include "tree.h"
+#include "enums.h"
 #include "bitfield.h"
 #include "func.h"
 
@@ -74,6 +75,11 @@ int notavailable(lua_State *L, ...);
 int checkcolor(lua_State *L, int arg, GLfloat dst[4]);
 #define checklightuserdata moongl_checklightuserdata
 void *checklightuserdata(lua_State *L, int arg);
+#define checktargetorname moongl_checktargetorname
+GLuint checktargetorname(lua_State *L, int arg, GLenum *dst, uint32_t domain);
+#define sizeoftype moongl_sizeoftype
+size_t sizeoftype(lua_State *L, int type);
+
 
 /* init.c */
 #define check_init_called moongl_check_init_called
@@ -89,6 +95,7 @@ GLint programGet(lua_State *L, GLuint program, GLenum pname);
 
 
 int luaopen_moongl(lua_State *L);
+void moongl_open_enums(lua_State *L);
 void moongl_open_init(lua_State *L);
 void moongl_open_hint(lua_State *L);
 void moongl_open_capabilities(lua_State *L);
@@ -125,7 +132,25 @@ void moongl_open_nongl(lua_State *L);
  | Debug and other utilities                                                    |
  *------------------------------------------------------------------------------*/
 
-#define MOONGL_BOOLEAN 0 /* see uniform.c */
+/* Internal error codes */
+#define ERR_NOTPRESENT       1
+#define ERR_SUCCESS          0
+#define ERR_GENERIC         -1
+#define ERR_TYPE            -2
+#define ERR_VALUE           -3
+#define ERR_TABLE           -4
+#define ERR_EMPTY           -5
+#define ERR_MEMORY          -6
+#define ERR_MALLOC_ZERO     -7
+#define ERR_LENGTH          -8
+#define ERR_POOL            -9
+#define ERR_BOUNDARIES      -10
+#define ERR_UNKNOWN         -11
+#define errstring moongl_errstring
+const char* errstring(int err);
+
+#define badvalue(L,s)   lua_pushfstring((L), "invalid value '%s'", (s))
+
 
 //#define checkoption checkoption_hint
 #define checkoption luaL_checkoption

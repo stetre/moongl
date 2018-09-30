@@ -25,69 +25,11 @@
 
 #include "internal.h"
 
+#define Dimension(dim) (((dim) & 0x00ff) * (((dim) & 0xff00)>>8))
+
 /* #define checkboolean */
 #define checkinteger luaL_checkinteger
 #define checknumber luaL_checknumber
-
-ENUM_STRINGS(TypeStrings) = {
-    "bool",
-    "int",
-    "uint",
-    "float",
-    "double",
-    NULL
-};
-
-ENUM_CODES(TypeCodes) = {
-    MOONGL_BOOLEAN,
-    GL_INT,
-    GL_UNSIGNED_INT,
-    GL_FLOAT,
-    GL_DOUBLE,
-};
-ENUM_T(TypeEnum, TypeStrings, TypeCodes)
-#define CheckType(L, arg) enumCheck((L), (arg), &TypeEnum)
-#define PushType(L, code) enumPush((L), (code), &TypeEnum)
-
-enum_t *enumUniformType(void)
-    { return &TypeEnum; }
-
-#define MATRIX_2x2  0x0202
-#define MATRIX_3x3  0x0303
-#define MATRIX_4x4  0x0404
-#define MATRIX_2x3  0x0203
-#define MATRIX_3x2  0x0302
-#define MATRIX_2x4  0x0204
-#define MATRIX_4x2  0x0402
-#define MATRIX_3x4  0x0304
-#define MATRIX_4x3  0x0403
-#define Dimension(dim) (((dim) & 0x00ff) * (((dim) & 0xff00)>>8))
-ENUM_STRINGS(DimStrings) = {
-    "2x2",
-    "3x3",
-    "4x4",
-    "2x3",
-    "3x2",
-    "2x4",
-    "4x2",
-    "3x4",
-    "4x3",
-    NULL
-};
-ENUM_CODES(DimCodes) = {
-    MATRIX_2x2,
-    MATRIX_3x3,
-    MATRIX_4x4,
-    MATRIX_2x3,
-    MATRIX_3x2,
-    MATRIX_2x4,
-    MATRIX_4x2,
-    MATRIX_3x4,
-    MATRIX_4x3,
-};
-ENUM_T(DimEnum, DimStrings, DimCodes)
-#define CheckDim(L, arg) enumCheck((L), (arg), &DimEnum)
-#define PushDim(L, code) enumPush((L), (code), &DimEnum)
 
 static int CheckN(lua_State *L, int first)
     {
@@ -132,11 +74,11 @@ UNIFORM_FUNC(GLdouble, d, d, number)
 static int Uniform(lua_State *L)
     {
     GLint location = luaL_checkinteger(L, 1);
-    GLenum type = CheckType(L, 2);
+    GLenum type = checkuniformtype(L, 2);
 #define arg_first 3
     switch(type)
         {
-        case MOONGL_BOOLEAN: return Uniform_b(L, location, arg_first);
+        case NONGL_BOOLEAN: return Uniform_b(L, location, arg_first);
         case GL_INT: return Uniform_i(L, location, arg_first);
         case GL_UNSIGNED_INT: return Uniform_ui(L, location, arg_first);
         case GL_FLOAT: return Uniform_f(L, location, arg_first);
@@ -194,13 +136,13 @@ static int Uniformv(lua_State *L)
     {
     GLint location = luaL_checkinteger(L, 1);
     GLsizei count = luaL_checkinteger(L, 2);
-    GLenum type = CheckType(L, 3);
+    GLenum type = checkuniformtype(L, 3);
     if(count<=0)
         return luaL_error(L, "count should be positive");
 #define arg_first 4
     switch(type)
         {
-        case MOONGL_BOOLEAN: return Uniformv_b(L, location, count, arg_first);
+        case NONGL_BOOLEAN: return Uniformv_b(L, location, count, arg_first);
         case GL_INT: return Uniformv_i(L, location, count, arg_first);
         case GL_UNSIGNED_INT: return Uniformv_ui(L, location, count, arg_first);
         case GL_FLOAT: return Uniformv_f(L, location, count, arg_first);
@@ -251,11 +193,11 @@ static int ProgramUniform(lua_State *L)
     {
     GLuint program = luaL_checkinteger(L, 1);
     GLint location = luaL_checkinteger(L, 2);
-    GLenum type = CheckType(L, 3);
+    GLenum type = checkuniformtype(L, 3);
 #define arg_first 4
     switch(type)
         {
-        case MOONGL_BOOLEAN: return ProgramUniform_b(L, program, location, arg_first);
+        case NONGL_BOOLEAN: return ProgramUniform_b(L, program, location, arg_first);
         case GL_INT: return ProgramUniform_i(L, program, location, arg_first);
         case GL_UNSIGNED_INT: return ProgramUniform_ui(L, program, location, arg_first);
         case GL_FLOAT: return ProgramUniform_f(L, program, location, arg_first);
@@ -316,13 +258,13 @@ static int ProgramUniformv(lua_State *L)
     GLuint program = luaL_checkinteger(L, 1);
     GLint location = luaL_checkinteger(L, 2);
     GLsizei count = luaL_checkinteger(L, 3);
-    GLenum type = CheckType(L, 4);
+    GLenum type = checkuniformtype(L, 4);
     if(count<=0)
         return luaL_error(L, "count should be positive");
 #define arg_first 5
     switch(type)
         {
-        case MOONGL_BOOLEAN: return ProgramUniformv_b(L, program, location, count, arg_first);
+        case NONGL_BOOLEAN: return ProgramUniformv_b(L, program, location, count, arg_first);
         case GL_INT: return ProgramUniformv_i(L, program, location, count, arg_first);
         case GL_UNSIGNED_INT: return ProgramUniformv_ui(L, program, location, count, arg_first);
         case GL_FLOAT: return ProgramUniformv_f(L, program, location, count, arg_first);
@@ -355,15 +297,15 @@ static int UniformMatrixv_##nt                                          \
         }                                                               \
     switch(dim)                                                         \
         {                                                               \
-        case MATRIX_2x2: glUniformMatrix2##t##v(location, count, transpose, values); break; \
-        case MATRIX_3x3: glUniformMatrix3##t##v(location, count, transpose, values); break; \
-        case MATRIX_4x4: glUniformMatrix4##t##v(location, count, transpose, values); break; \
-        case MATRIX_2x3: glUniformMatrix2x3##t##v(location, count, transpose, values); break;\
-        case MATRIX_3x2: glUniformMatrix3x2##t##v(location, count, transpose, values); break;\
-        case MATRIX_2x4: glUniformMatrix2x4##t##v(location, count, transpose, values); break;\
-        case MATRIX_4x2: glUniformMatrix4x2##t##v(location, count, transpose, values); break;\
-        case MATRIX_3x4: glUniformMatrix3x4##t##v(location, count, transpose, values); break;\
-        case MATRIX_4x3: glUniformMatrix4x3##t##v(location, count, transpose, values); break;\
+        case NONGL_MATRIX_2x2: glUniformMatrix2##t##v(location, count, transpose, values); break; \
+        case NONGL_MATRIX_3x3: glUniformMatrix3##t##v(location, count, transpose, values); break; \
+        case NONGL_MATRIX_4x4: glUniformMatrix4##t##v(location, count, transpose, values); break; \
+        case NONGL_MATRIX_2x3: glUniformMatrix2x3##t##v(location, count, transpose, values); break;\
+        case NONGL_MATRIX_3x2: glUniformMatrix3x2##t##v(location, count, transpose, values); break;\
+        case NONGL_MATRIX_2x4: glUniformMatrix2x4##t##v(location, count, transpose, values); break;\
+        case NONGL_MATRIX_4x2: glUniformMatrix4x2##t##v(location, count, transpose, values); break;\
+        case NONGL_MATRIX_3x4: glUniformMatrix3x4##t##v(location, count, transpose, values); break;\
+        case NONGL_MATRIX_4x3: glUniformMatrix4x3##t##v(location, count, transpose, values); break;\
         default: Free(L, values); return luaL_error(L, UNEXPECTED_ERROR);               \
         }                                                               \
     Free(L, values);                                                    \
@@ -379,8 +321,8 @@ static int UniformMatrixv(lua_State *L)
     {
     GLint location = luaL_checkinteger(L, 1);
     GLsizei count = luaL_checkinteger(L, 2);
-    GLenum type = CheckType(L, 3);
-    GLenum dim = CheckDim(L, 4);
+    GLenum type = checkuniformtype(L, 3);
+    GLenum dim = checkmatrixdimensions(L, 4);
     GLboolean transpose = checkboolean(L, 5);
     if(count<=0)
         return luaL_error(L, "count should be positive");
@@ -389,7 +331,7 @@ static int UniformMatrixv(lua_State *L)
 #define arg_first 6
         case GL_FLOAT: return UniformMatrixv_f(L, location, count, dim, transpose, arg_first);
         case GL_DOUBLE: return UniformMatrixv_d(L, location, count, dim, transpose, arg_first);
-        case MOONGL_BOOLEAN:
+        case NONGL_BOOLEAN:
         case GL_INT:
         case GL_UNSIGNED_INT:
             return luaL_error(L, "operation not supported for this type");
@@ -404,15 +346,15 @@ static int UniformMatrix(lua_State *L)
 /* uniform_matrix(location, type, dim, transpose, dim values) */
     {
     GLint location = luaL_checkinteger(L, 1);
-    GLenum type = CheckType(L, 2);
-    GLenum dim = CheckDim(L, 3);
+    GLenum type = checkuniformtype(L, 2);
+    GLenum dim = checkmatrixdimensions(L, 3);
     GLboolean transpose = checkboolean(L, 4);
     switch(type)
         {
 #define arg_first 5
         case GL_FLOAT: return UniformMatrixv_f(L, location, 1, dim, transpose, arg_first);
         case GL_DOUBLE: return UniformMatrixv_d(L, location, 1, dim, transpose, arg_first);
-        case MOONGL_BOOLEAN:
+        case NONGL_BOOLEAN:
         case GL_INT:
         case GL_UNSIGNED_INT:
             return luaL_error(L, "operation not supported for this type");
@@ -444,23 +386,23 @@ static int ProgramUniformMatrixv_##nt                                       \
         }                                                                   \
     switch(dim)                                                             \
         {                                                                   \
-        case MATRIX_2x2: glProgramUniformMatrix2##t##v                      \
+        case NONGL_MATRIX_2x2: glProgramUniformMatrix2##t##v                      \
                         (program, location, count, transpose, values); break;   \
-        case MATRIX_3x3: glProgramUniformMatrix3##t##v                      \
+        case NONGL_MATRIX_3x3: glProgramUniformMatrix3##t##v                      \
                         (program, location, count, transpose, values); break;   \
-        case MATRIX_4x4: glProgramUniformMatrix4##t##v                      \
+        case NONGL_MATRIX_4x4: glProgramUniformMatrix4##t##v                      \
                         (program, location, count, transpose, values); break;   \
-        case MATRIX_2x3: glProgramUniformMatrix2x3##t##v                    \
+        case NONGL_MATRIX_2x3: glProgramUniformMatrix2x3##t##v                    \
                         (program, location, count, transpose, values); break;   \
-        case MATRIX_3x2: glProgramUniformMatrix3x2##t##v                    \
+        case NONGL_MATRIX_3x2: glProgramUniformMatrix3x2##t##v                    \
                         (program, location, count, transpose, values); break;   \
-        case MATRIX_2x4: glProgramUniformMatrix2x4##t##v                    \
+        case NONGL_MATRIX_2x4: glProgramUniformMatrix2x4##t##v                    \
                         (program, location, count, transpose, values); break;   \
-        case MATRIX_4x2: glProgramUniformMatrix4x2##t##v                    \
+        case NONGL_MATRIX_4x2: glProgramUniformMatrix4x2##t##v                    \
                         (program, location, count, transpose, values); break;   \
-        case MATRIX_3x4: glProgramUniformMatrix3x4##t##v                    \
+        case NONGL_MATRIX_3x4: glProgramUniformMatrix3x4##t##v                    \
                         (program, location, count, transpose, values); break;   \
-        case MATRIX_4x3: glProgramUniformMatrix4x3##t##v                    \
+        case NONGL_MATRIX_4x3: glProgramUniformMatrix4x3##t##v                    \
                         (program, location, count, transpose, values); break;   \
         default:                                                            \
             Free(L, values); return luaL_error(L, UNEXPECTED_ERROR);        \
@@ -479,8 +421,8 @@ static int ProgramUniformMatrixv(lua_State *L)
     GLuint program = luaL_checkinteger(L, 1);
     GLint location = luaL_checkinteger(L, 2);
     GLsizei count = luaL_checkinteger(L, 3);
-    GLenum type = CheckType(L, 4);
-    GLenum dim = CheckDim(L, 5);
+    GLenum type = checkuniformtype(L, 4);
+    GLenum dim = checkmatrixdimensions(L, 5);
     GLboolean transpose = checkboolean(L, 6);
     if(count<=0)
         return luaL_error(L, "count should be positive");
@@ -491,7 +433,7 @@ static int ProgramUniformMatrixv(lua_State *L)
             return ProgramUniformMatrixv_f(L, program, location, count, dim, transpose, arg_first);
         case GL_DOUBLE: 
             return ProgramUniformMatrixv_d(L, program, location, count, dim, transpose, arg_first);
-        case MOONGL_BOOLEAN:
+        case NONGL_BOOLEAN:
         case GL_INT:
         case GL_UNSIGNED_INT:
             return luaL_error(L, "operation not supported for this type");
@@ -507,8 +449,8 @@ static int ProgramUniformMatrix(lua_State *L)
     {
     GLuint program = luaL_checkinteger(L, 1);
     GLint location = luaL_checkinteger(L, 2);
-    GLenum type = CheckType(L, 3);
-    GLenum dim = CheckDim(L, 4);
+    GLenum type = checkuniformtype(L, 3);
+    GLenum dim = checkmatrixdimensions(L, 4);
     GLboolean transpose = checkboolean(L, 5);
     switch(type)
         {
@@ -517,7 +459,7 @@ static int ProgramUniformMatrix(lua_State *L)
             return ProgramUniformMatrixv_f(L, program, location, 1, dim, transpose, arg_first);
         case GL_DOUBLE: 
             return ProgramUniformMatrixv_d(L, program, location, 1, dim, transpose, arg_first);
-        case MOONGL_BOOLEAN:
+        case NONGL_BOOLEAN:
         case GL_INT:
         case GL_UNSIGNED_INT:
             return luaL_error(L, "operation not supported for this type");

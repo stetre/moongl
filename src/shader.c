@@ -25,89 +25,9 @@
 
 #include "internal.h"
 
-ENUM_STRINGS(TypeStrings) = {
-    "compute",
-    "fragment",
-    "geometry",
-    "vertex",
-    "tess evaluation",
-    "tess control",
-    NULL
-};
-ENUM_CODES(TypeCodes) = {
-    GL_COMPUTE_SHADER,
-    GL_FRAGMENT_SHADER,
-    GL_GEOMETRY_SHADER,
-    GL_VERTEX_SHADER,
-    GL_TESS_EVALUATION_SHADER,
-    GL_TESS_CONTROL_SHADER
-};
-
-ENUM_T(TypeEnum, TypeStrings, TypeCodes)
-#define CheckType(L, arg) enumCheck((L), (arg), &TypeEnum)
-#define PushType(L, code) enumPush((L), (code), &TypeEnum)
-
-enum_t *enumShaderType(void)
-    { return &TypeEnum; }
-
-ENUM_STRINGS(PnameStrings) = {
-    "type",
-    "delete status",
-    "compile status",
-    "info log length",
-    "source length",
-    NULL
-};
-ENUM_CODES(PnameCodes) = {
-    GL_SHADER_TYPE,
-    GL_DELETE_STATUS,
-    GL_COMPILE_STATUS,
-    GL_INFO_LOG_LENGTH,
-    GL_SHADER_SOURCE_LENGTH,
-};
-ENUM_T(PnameEnum, PnameStrings, PnameCodes)
-#define CheckPname(L, arg) enumCheck((L), (arg), &PnameEnum)
-#define PushPname(L, code) enumPush((L), (code), &PnameEnum)
-
-ENUM_STRINGS(ShaderTypeStrings) = {
-    "vertex",
-    "geometry",
-    "fragment",
-    NULL
-};
-ENUM_CODES(ShaderTypeCodes) = {
-    GL_VERTEX_SHADER,
-    GL_GEOMETRY_SHADER,
-    GL_FRAGMENT_SHADER,
-};
-ENUM_T(ShaderTypeEnum, ShaderTypeStrings, ShaderTypeCodes)
-#define CheckShaderType(L, arg) enumCheck((L), (arg), &ShaderTypeEnum)
-#define PushShaderType(L, code) enumPush((L), (code), &ShaderTypeEnum)
-
-ENUM_STRINGS(PrecisionFormatStrings) = {
-    "low float",
-    "medium float",
-    "high float", 
-    "low int", 
-    "medium int", 
-    "high int",
-    NULL
-};
-ENUM_CODES(PrecisionFormatCodes) = {
-    GL_LOW_FLOAT,
-    GL_MEDIUM_FLOAT,
-    GL_HIGH_FLOAT, 
-    GL_LOW_INT, 
-    GL_MEDIUM_INT, 
-    GL_HIGH_INT,
-};
-ENUM_T(PrecisionFormatEnum, PrecisionFormatStrings, PrecisionFormatCodes)
-#define CheckPrecisionFormat(L, arg) enumCheck((L), (arg), &PrecisionFormatEnum)
-#define PushPrecisionFormat(L, code) enumPush((L), (code), &PrecisionFormatEnum)
-
 static int CreateShader(lua_State *L)
     {
-    GLenum type = CheckType(L, 1);
+    GLenum type = checkshadertype(L, 1);
     GLuint ref;
     check_init_called(L);
     ref = glCreateShader(type);
@@ -132,7 +52,7 @@ static int ShaderSource(lua_State *L)
 static int CreateShaderProgram(lua_State *L)
 /* ref = create_shader_program(type, string) */
     {
-    GLenum type = CheckType(L, 1);
+    GLenum type = checkshadertype(L, 1);
     const GLchar *string = luaL_checkstring(L, 2);
     GLuint program;
     check_init_called(L);
@@ -254,24 +174,23 @@ static int GetInteger(lua_State *L, GLuint shader, GLenum pname)
     return 1;
     }
 
-static int GetEnum(lua_State *L, GLuint shader, GLenum pname, enum_t *e)
+static int GetEnum(lua_State *L, GLuint shader, GLenum pname, uint32_t domain)
     {
     GLint params;
     glGetShaderiv(shader, pname, &params);
     CheckError(L);
-    return enumPush(L, params, e);
+    return enums_push(L, domain, params);
     }
 
 static int GetShader(lua_State *L)
     {
 #define BOOLEAN return GetBoolean(L, shader, pname);
 #define INTEGER return GetInteger(L, shader, pname);
-#define ENUM(e) return GetEnum(L, shader, pname, (e));
     GLuint shader = luaL_checkinteger(L, 1);
-    GLenum pname = CheckPname(L, 2);
+    GLenum pname = checkshaderpname(L, 2);
     switch(pname)
         {
-        case GL_SHADER_TYPE: ENUM(&ShaderTypeEnum)
+        case GL_SHADER_TYPE: return GetEnum(L, shader, pname, DOMAIN_SHADER_TYPE);
         case GL_DELETE_STATUS: BOOLEAN
         case GL_COMPILE_STATUS: BOOLEAN
         case GL_INFO_LOG_LENGTH: INTEGER
@@ -279,7 +198,6 @@ static int GetShader(lua_State *L)
         default: return luaL_error(L, UNEXPECTED_ERROR);
         }
     return 0;
-#undef ENUM
 #undef BOOLEAN
 #undef INTEGER
     }
@@ -291,8 +209,8 @@ static int GetShaderPrecisionFormat(lua_State *L)
     {
     GLint range[2];
     GLint precision;
-    GLenum type = CheckType(L, 1);
-    GLenum precisiontype = CheckPrecisionFormat(L, 2);
+    GLenum type = checkshadertype(L, 1);
+    GLenum precisiontype = checkprecisionformat(L, 2);
     glGetShaderPrecisionFormat(type, precisiontype, range, &precision);
     CheckError(L);
     lua_pushinteger(L, range[0]);

@@ -29,91 +29,6 @@
 
 #include "internal.h"
 
-ENUM_STRINGS(TargetStrings) = {
-    "array",
-    "uniform",
-    "atomic counter",
-    "query",
-    "copy read",
-    "copy write",
-    "dispatch indirect",
-    "draw indirect",
-    "element array",
-    "texture",
-    "pixel pack",
-    "pixel unpack",
-    "shader storage",
-    "transform feedback",
-    NULL
-};
-ENUM_CODES(TargetCodes) = {
-    GL_ARRAY_BUFFER,
-    GL_UNIFORM_BUFFER,
-    GL_ATOMIC_COUNTER_BUFFER,
-    GL_QUERY_BUFFER,
-    GL_COPY_READ_BUFFER,
-    GL_COPY_WRITE_BUFFER,
-    GL_DISPATCH_INDIRECT_BUFFER,
-    GL_DRAW_INDIRECT_BUFFER,
-    GL_ELEMENT_ARRAY_BUFFER,
-    GL_TEXTURE_BUFFER,
-    GL_PIXEL_PACK_BUFFER,
-    GL_PIXEL_UNPACK_BUFFER,
-    GL_SHADER_STORAGE_BUFFER,
-    GL_TRANSFORM_FEEDBACK_BUFFER
-};
-ENUM_T(TargetEnum,TargetStrings, TargetCodes)
-#define CheckTarget(L, arg) enumCheck((L), (arg), &TargetEnum)
-#define PushTarget(L, code) enumPush((L), (code), &TargetEnum)
-#define CheckTargetOrName(L, arg, dst) enumOrUint((L), (arg), (dst), &TargetEnum, 0)
-
-enum_t *enumBufferTarget(void)
-    { return &TargetEnum; }
-
-ENUM_STRINGS(RangeTargetStrings) = {
-    "atomic counter",
-    "shader storage",
-    "uniform",
-    "transform feedback",
-    NULL
-};
-ENUM_CODES(RangeTargetCodes) = {
-    GL_ATOMIC_COUNTER_BUFFER,
-    GL_SHADER_STORAGE_BUFFER,
-    GL_UNIFORM_BUFFER,
-    GL_TRANSFORM_FEEDBACK_BUFFER
-};
-ENUM_T(RangeTargetEnum, RangeTargetStrings, RangeTargetCodes)
-#define CheckRangeTarget(L, arg) enumCheck((L), (arg), &RangeTargetEnum)
-#define PushRangeTarget(L, code) enumPush((L), (code), &RangeTargetEnum)
-
-ENUM_STRINGS(UsageStrings) = {
-    "stream draw", 
-    "stream read", 
-    "stream copy", 
-    "static draw",  
-    "static read",
-    "static copy", 
-    "dynamic draw", 
-    "dynamic read", 
-    "dynamic copy",
-    NULL
-};
-ENUM_CODES(UsageCodes) = {
-    GL_STREAM_DRAW, 
-    GL_STREAM_READ, 
-    GL_STREAM_COPY, 
-    GL_STATIC_DRAW, 
-    GL_STATIC_READ, 
-    GL_STATIC_COPY, 
-    GL_DYNAMIC_DRAW, 
-    GL_DYNAMIC_READ, 
-    GL_DYNAMIC_COPY
-};
-ENUM_T(UsageEnum, UsageStrings, UsageCodes)
-#define CheckUsage(L, arg) enumCheck((L), (arg), &UsageEnum)
-#define PushUsage(L, code) enumPush((L), (code), &UsageEnum)
-
 BITFIELD_STRINGS(StorageFlagsStrings) = {
     "dynamic storage",
     "map read",
@@ -134,36 +49,6 @@ BITFIELD_CODES(StorageFlagsCodes) = {
 BITFIELD_T(StorageFlagsBitfield, StorageFlagsStrings, StorageFlagsCodes)
 #define CheckStorageFlags(L, arg, mand) bitfieldCheck((L), (arg), (mand), &StorageFlagsBitfield)
 #define PushStorageFlags(L, code) bitfieldPush((L), (code), &StorageFlagsBitfield)
-
-ENUM_STRINGS(PnameStrings) = {
-    "size",
-    "usage",
-    "access",
-    "access flags",
-    "immutable storage",
-    "mapped",
-    "map pointer",
-    "map offset",
-    "map length",
-    "storage flags",
-    NULL
-};
-ENUM_CODES(PnameCodes) = {
-    GL_BUFFER_SIZE,
-    GL_BUFFER_USAGE,
-    GL_BUFFER_ACCESS,
-    GL_BUFFER_ACCESS_FLAGS,
-    GL_BUFFER_IMMUTABLE_STORAGE,
-    GL_BUFFER_MAPPED,
-    GL_BUFFER_MAP_POINTER,
-    GL_BUFFER_MAP_OFFSET,
-    GL_BUFFER_MAP_LENGTH,
-    GL_BUFFER_STORAGE_FLAGS,
-};
-ENUM_T(PnameEnum, PnameStrings, PnameCodes)
-#define CheckPname(L, arg) enumCheck((L), (arg), &PnameEnum)
-#define PushPname(L, code) enumPush((L), (code), &PnameEnum)
-
 
 BITFIELD_STRINGS(AccessFlagsStrings) = {
     "read",
@@ -190,37 +75,20 @@ BITFIELD_T(AccessFlagsBitfield, AccessFlagsStrings, AccessFlagsCodes)
 #define CheckAccessFlags(L, arg, mand) bitfieldCheck((L), (arg), (mand), &AccessFlagsBitfield)
 #define PushAccessFlags(L, code) bitfieldPush((L), (code), &AccessFlagsBitfield)
 
-ENUM_STRINGS(AccessStrings) = {
-    "read only",
-    "write only",
-    "read write",
-    NULL
-};
-ENUM_CODES(AccessCodes) = {
-    GL_READ_ONLY,
-    GL_WRITE_ONLY,
-    GL_READ_WRITE,
-};
-ENUM_T(AccessEnum, AccessStrings, AccessCodes)
-#define CheckAccess(L, arg) enumCheck((L), (arg), &AccessEnum)
-#define PushAccess(L, code) enumPush((L), (code), &AccessEnum)
-
-
-
 /*------------------------------------------------------------------------------*
  | Buffer objects                                                               |
  *------------------------------------------------------------------------------*/
 
-NEW_TARGET_FUNC(Buffer, &TargetEnum)
+NEW_TARGET_FUNC(Buffer, checkbuffertarget)
 GEN_FUNC(Buffer)
-BIND_TARGET_FUNC(Buffer, &TargetEnum)
+BIND_TARGET_FUNC(Buffer, checkbuffertarget)
 DELETE_FUNC(Buffer)
 IS_FUNC(Buffer)
 CREATE_FUNC(Buffer)
 
 static int BindBufferRange(lua_State *L)
     {
-    GLenum target = CheckRangeTarget(L, 1);
+    GLenum target = checkbufferrangetarget(L, 1);
     GLuint index = luaL_checkinteger(L, 2);
     GLuint buffer = luaL_checkinteger(L, 3); 
     GLintptr offset = luaL_checkinteger(L, 4);
@@ -232,7 +100,7 @@ static int BindBufferRange(lua_State *L)
 
 static int BindBufferBase(lua_State *L)
     {
-    GLenum target = CheckRangeTarget(L, 1);
+    GLenum target = checkbufferrangetarget(L, 1);
     GLuint index = luaL_checkinteger(L, 2);
     GLuint buffer = luaL_checkinteger(L, 3); 
     glBindBufferBase(target, index, buffer);
@@ -264,7 +132,7 @@ static int BufferStorage(lua_State *L)
     GLsizeiptr size;
     GLbitfield flags;
     GLenum target;
-    GLuint buffer = CheckTargetOrName(L, 1, &target);
+    GLuint buffer = checktargetorname(L, 1, &target, DOMAIN_BUFFER_TARGET);
     data = lua_tolstring(L, 2, &len);
     size = len;
     flags = 0;
@@ -289,7 +157,7 @@ static int BufferData(lua_State *L)
     const char *data;
     GLsizeiptr size;
     GLenum target, usage;
-    GLuint buffer = CheckTargetOrName(L, 1, &target);
+    GLuint buffer = checktargetorname(L, 1, &target, DOMAIN_BUFFER_TARGET);
 
     if(lua_isinteger(L, 2))
         {
@@ -303,7 +171,7 @@ static int BufferData(lua_State *L)
         }
     else
         return luaL_argerror(L, 2, "integer or binary string expected");
-    usage = CheckUsage(L, 3);
+    usage = checkbufferusage(L, 3);
     
     if(buffer == 0)
         glBufferData(target, size, data, usage);
@@ -323,7 +191,7 @@ static int BufferSubData(lua_State *L)
     const char *data;
     GLsizeiptr size;
     GLenum target;
-    GLuint buffer = CheckTargetOrName(L, 1, &target);
+    GLuint buffer = checktargetorname(L, 1, &target, DOMAIN_BUFFER_TARGET);
     GLintptr offset = lua_tointeger(L, 2);
     if(!lua_isstring(L, 3))
         return luaL_argerror(L, 3, "binary string expected");
@@ -345,7 +213,7 @@ static int ClearBufferData(lua_State *L)
     {
     int arg = 1;
     GLenum target;
-    GLuint buffer = CheckTargetOrName(L, arg++, &target);
+    GLuint buffer = checktargetorname(L, arg++, &target, DOMAIN_BUFFER_TARGET);
     GLenum internalformat = checkinternalformat(L, arg++);
     GLenum format = checkformat(L, arg++);
     GLenum type = checktype(L, arg++);
@@ -362,7 +230,7 @@ static int ClearBufferSubData(lua_State *L)
     {
     int arg = 1;
     GLenum target;
-    GLuint buffer = CheckTargetOrName(L, arg++, &target);
+    GLuint buffer = checktargetorname(L, arg++, &target, DOMAIN_BUFFER_TARGET);
     GLenum internalformat = checkinternalformat(L, arg++);
     GLintptr offset = luaL_checkinteger(L, arg++);
     GLsizei size = luaL_checkinteger(L, arg++);
@@ -386,7 +254,7 @@ static int GetBufferSubData(lua_State *L)
     {
     char *data;
     GLenum target;
-    GLuint buffer = CheckTargetOrName(L, 1, &target);
+    GLuint buffer = checktargetorname(L, 1, &target, DOMAIN_BUFFER_TARGET);
     GLintptr offset = lua_tointeger(L, 2);
     GLsizeiptr size = lua_tointeger(L, 3);
     data = (char*)Malloc(L, size*sizeof(char));
@@ -411,8 +279,8 @@ static int CopyBufferSubData(lua_State *L)
  */
     {
     GLenum src_target, dst_target;
-    GLuint src_buffer = CheckTargetOrName(L, 1, &src_target);
-    GLuint dst_buffer = CheckTargetOrName(L, 2, &dst_target);
+    GLuint src_buffer = checktargetorname(L, 1, &src_target, DOMAIN_BUFFER_TARGET);
+    GLuint dst_buffer = checktargetorname(L, 2, &dst_target, DOMAIN_BUFFER_TARGET);
     GLintptr src_offset = lua_tointeger(L, 3);
     GLintptr dst_offset = lua_tointeger(L, 4);
     GLsizeiptr size = lua_tointeger(L, 5);
@@ -453,7 +321,7 @@ static int InvalidateBufferSubData(lua_State *L)
  | Get buffer parameter                                                         |
  *------------------------------------------------------------------------------*/
 
-static int GetEnum(lua_State *L, GLenum target, GLuint buffer, GLenum pname, enum_t *e)
+static int GetEnum(lua_State *L, GLenum target, GLuint buffer, GLenum pname, uint32_t domain)
     {
     GLint param;
     if(buffer==0)
@@ -461,7 +329,7 @@ static int GetEnum(lua_State *L, GLenum target, GLuint buffer, GLenum pname, enu
     else
         glGetNamedBufferParameteriv(buffer, pname, &param);
     CheckError(L);
-    return enumPush(L, (GLenum)param, e);
+    return enums_push(L, domain, param);
     }
 
 static GLbitfield GetBitfield_(lua_State *L, GLenum target, GLuint buffer, GLenum pname)
@@ -518,13 +386,13 @@ static int GetBufferParameter(lua_State *L)
 /* get_buffer_parameter(target|buffer, pname) */
     {
     GLenum target;
-    GLuint buffer = CheckTargetOrName(L, 1, &target);
-    GLenum pname = CheckPname(L, 2);
+    GLuint buffer = checktargetorname(L, 1, &target, DOMAIN_BUFFER_TARGET);
+    GLenum pname = checkbufferpname(L, 2);
     switch(pname)
         {
         case GL_BUFFER_SIZE: return GetInt64(L, target, buffer, pname);
-        case GL_BUFFER_USAGE: return GetEnum(L, target, buffer, pname, &UsageEnum);
-        case GL_BUFFER_ACCESS: return GetEnum(L, target, buffer, pname, &AccessEnum);
+        case GL_BUFFER_USAGE: return GetEnum(L, target, buffer, pname, DOMAIN_BUFFER_USAGE);
+        case GL_BUFFER_ACCESS: return GetEnum(L, target, buffer, pname, DOMAIN_BUFFER_ACCESS);
         case GL_BUFFER_ACCESS_FLAGS:
                     return GetBitfield(L, target, buffer, pname, &AccessFlagsBitfield);
         case GL_BUFFER_IMMUTABLE_STORAGE: return GetBoolean(L, target, buffer, pname);
@@ -551,8 +419,8 @@ static int MapBuffer(lua_State *L)
     {
     void *ptr;
     GLenum target;
-    GLuint buffer = CheckTargetOrName(L, 1, &target);
-    GLenum access = CheckAccess(L, 2);
+    GLuint buffer = checktargetorname(L, 1, &target, DOMAIN_BUFFER_TARGET);
+    GLenum access = checkbufferaccess(L, 2);
     if(buffer == 0)
         ptr = glMapBuffer(target, access);
     else
@@ -569,7 +437,7 @@ static int MapBufferRange(lua_State *L)
     {
     void *ptr;
     GLenum target;
-    GLuint buffer = CheckTargetOrName(L, 1, &target);
+    GLuint buffer = checktargetorname(L, 1, &target, DOMAIN_BUFFER_TARGET);
     GLintptr offset = luaL_checkinteger(L, 2);
     GLsizei length = luaL_checkinteger(L, 3);
     GLbitfield access = CheckAccessFlags(L, 4, 0);
@@ -588,7 +456,7 @@ static int MapBufferRange(lua_State *L)
 static int FlushMappedBufferRange(lua_State *L)
     {
     GLenum target;
-    GLuint buffer = CheckTargetOrName(L, 1, &target);
+    GLuint buffer = checktargetorname(L, 1, &target, DOMAIN_BUFFER_TARGET);
     GLintptr offset = luaL_checkinteger(L, 2);
     GLsizei length = luaL_checkinteger(L, 3);
     if(buffer == 0)
@@ -607,7 +475,7 @@ static int UnmapBuffer(lua_State *L)
     {
     GLboolean res;
     GLenum target;
-    GLuint buffer = CheckTargetOrName(L, 1, &target);
+    GLuint buffer = checktargetorname(L, 1, &target, DOMAIN_BUFFER_TARGET);
     if(buffer == 0)
         res = glUnmapBuffer(target);
     else
@@ -640,7 +508,7 @@ static int MapWrite(lua_State *L) /* nongl */
     {
     size_t length, buflen;
     GLenum target;
-    GLuint buffer = CheckTargetOrName(L, 1, &target);
+    GLuint buffer = checktargetorname(L, 1, &target, DOMAIN_BUFFER_TARGET);
     char *ptr = (char*)GetPointer(L, target, buffer);
     GLintptr offset = luaL_checkinteger(L, 2);
     const char *data = luaL_checklstring(L, 3, &length);    
@@ -660,7 +528,7 @@ static int MapRead(lua_State *L) /* nongl */
     {
     size_t buflen;
     GLenum target;
-    GLuint buffer = CheckTargetOrName(L, 1, &target);
+    GLuint buffer = checktargetorname(L, 1, &target, DOMAIN_BUFFER_TARGET);
     char *ptr = (char*)GetPointer(L, target, buffer);
     GLintptr offset = luaL_checkinteger(L, 2);
     size_t length =  luaL_checkinteger(L, 3);
@@ -680,7 +548,7 @@ static int MapCopyFrom(lua_State *L) /* nongl */
     {
     size_t buflen;
     GLenum target;
-    GLuint buffer = CheckTargetOrName(L, 1, &target);
+    GLuint buffer = checktargetorname(L, 1, &target, DOMAIN_BUFFER_TARGET);
     char *ptr = (char*)GetPointer(L, target, buffer);
     GLintptr offset = luaL_checkinteger(L, 2);
     size_t length = luaL_checkinteger(L, 3);
@@ -702,7 +570,7 @@ static int MapCopyTo(lua_State *L) /* nongl */
     {
     size_t buflen;
     GLenum target;
-    GLuint buffer = CheckTargetOrName(L, 1, &target);
+    GLuint buffer = checktargetorname(L, 1, &target, DOMAIN_BUFFER_TARGET);
     char *ptr = (char*)GetPointer(L, target, buffer);
     GLintptr offset = luaL_checkinteger(L, 2);
     size_t length =  luaL_checkinteger(L, 3);

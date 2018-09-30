@@ -25,340 +25,6 @@
 
 #include "internal.h"
 
-ENUM_STRINGS(TargetStrings) = {
-    "1d",
-    "2d",
-    "3d",
-    "1d array",
-    "2d array",
-    "rectangle",
-    "cube map",
-    "cube map array",
-    "2d multisample",
-    "2d multisample array",
-    "cube map positive x", 
-    "cube map positive y", 
-    "cube map positive z", 
-    "cube map negative x", 
-    "cube map negative y", 
-    "cube map negative z", 
-    "proxy 1d",
-    "proxy 2d",
-    "proxy 3d",
-    "proxy 1d array",
-    "proxy 2d array",
-    "proxy rectangle",
-    "proxy cube map",
-    "proxy cube map array",
-    "proxy 2d multisample",
-    "proxy 2d multisample array",
-    "buffer",
-    "renderbuffer",
-    NULL
-};
-ENUM_CODES(TargetCodes) = {
-    GL_TEXTURE_1D,
-    GL_TEXTURE_2D,
-    GL_TEXTURE_3D,
-    GL_TEXTURE_1D_ARRAY,
-    GL_TEXTURE_2D_ARRAY,
-    GL_TEXTURE_RECTANGLE,
-    GL_TEXTURE_CUBE_MAP,
-    GL_TEXTURE_CUBE_MAP_ARRAY,
-    GL_TEXTURE_2D_MULTISAMPLE,
-    GL_TEXTURE_2D_MULTISAMPLE_ARRAY,
-    GL_TEXTURE_CUBE_MAP_POSITIVE_X, 
-    GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 
-    GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 
-    GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 
-    GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 
-    GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 
-    GL_PROXY_TEXTURE_1D,
-    GL_PROXY_TEXTURE_2D,
-    GL_PROXY_TEXTURE_3D,
-    GL_PROXY_TEXTURE_1D_ARRAY,
-    GL_PROXY_TEXTURE_2D_ARRAY,
-    GL_PROXY_TEXTURE_RECTANGLE,
-    GL_PROXY_TEXTURE_CUBE_MAP,
-    GL_PROXY_TEXTURE_CUBE_MAP_ARRAY,
-    GL_PROXY_TEXTURE_2D_MULTISAMPLE,
-    GL_PROXY_TEXTURE_2D_MULTISAMPLE_ARRAY,
-    GL_TEXTURE_BUFFER,
-    GL_RENDERBUFFER, /* for GetInternalFormat() only */
-};
-ENUM_T(TargetEnum,TargetStrings, TargetCodes)
-#define CheckTarget(L, arg) enumCheck((L), (arg), &TargetEnum)
-#define CheckTargetOrName(L, arg, dst) enumOrUint((L), (arg), (dst), &TargetEnum, 0)
-enum_t *enumTextureTarget(void)
-    { return &TargetEnum; }
-
-ENUM_STRINGS(PnameStrings) = {
-    "depth stencil mode",
-    "base level",
-    "compare func",
-    "compare mode",
-    "lod bias",
-    "min filter", 
-    "mag filter",
-    "min lod",
-    "max lod",
-    "max level",
-    "swizzle r",
-    "swizzle g",
-    "swizzle b",
-    "swizzle a",
-    "wrap s",
-    "wrap t", 
-    "wrap r",
-    "border color",
-    "swizzle rgba",
-    /* get only: */
-    "image format compatibility type", 
-    "immutable format",
-    "immutable levels", 
-    "view min level", 
-    "view num levels", 
-    "view min layer", 
-    "view num layers",
-    "target", 
-    NULL
-};
-ENUM_CODES(PnameCodes) = {
-    GL_DEPTH_STENCIL_TEXTURE_MODE,
-    GL_TEXTURE_BASE_LEVEL,
-    GL_TEXTURE_COMPARE_FUNC,
-    GL_TEXTURE_COMPARE_MODE,
-    GL_TEXTURE_LOD_BIAS,
-    GL_TEXTURE_MIN_FILTER, 
-    GL_TEXTURE_MAG_FILTER,
-    GL_TEXTURE_MIN_LOD,
-    GL_TEXTURE_MAX_LOD,
-    GL_TEXTURE_MAX_LEVEL,
-    GL_TEXTURE_SWIZZLE_R,
-    GL_TEXTURE_SWIZZLE_G,
-    GL_TEXTURE_SWIZZLE_B,
-    GL_TEXTURE_SWIZZLE_A,
-    GL_TEXTURE_WRAP_S,
-    GL_TEXTURE_WRAP_T, 
-    GL_TEXTURE_WRAP_R,
-    GL_TEXTURE_BORDER_COLOR,
-    GL_TEXTURE_SWIZZLE_RGBA,
-    /* get only: */
-    GL_IMAGE_FORMAT_COMPATIBILITY_TYPE, 
-    GL_TEXTURE_IMMUTABLE_FORMAT,
-    GL_TEXTURE_IMMUTABLE_LEVELS, 
-    GL_TEXTURE_VIEW_MIN_LEVEL, 
-    GL_TEXTURE_VIEW_NUM_LEVELS, 
-    GL_TEXTURE_VIEW_MIN_LAYER, 
-    GL_TEXTURE_VIEW_NUM_LAYERS,
-    GL_TEXTURE_TARGET
-};
-ENUM_T(PnameEnum, PnameStrings, PnameCodes)
-#define CheckPname(L, arg) enumCheck((L), (arg), &PnameEnum)
-#define PushPname(L, code) enumPush((L), (code), &PnameEnum)
-
-ENUM_STRINGS(DepthStencilStrings) = {
-    "depth",
-    "stencil",
-    NULL
-};
-ENUM_CODES(DepthStencilCodes) = {
-    GL_DEPTH_COMPONENT,
-    GL_STENCIL_INDEX
-};
-ENUM_T(DepthStencilEnum, DepthStencilStrings, DepthStencilCodes)
-#define CheckDepthStencil(L, arg) enumCheck((L), (arg), &DepthStencilEnum)
-#define PushDepthStencil(L, code) enumPush((L), (code), &DepthStencilEnum)
-
-ENUM_STRINGS(CompareFuncStrings) = {
-    "never",
-    "less",
-    "equal",
-    "lequal",
-    "greater",
-    "notequal",
-    "gequal",
-    "always",
-    NULL
-};
-ENUM_CODES(CompareFuncCodes) = {
-    GL_NEVER,
-    GL_LESS,
-    GL_EQUAL,
-    GL_LEQUAL,
-    GL_GREATER,
-    GL_NOTEQUAL,
-    GL_GEQUAL,
-    GL_ALWAYS
-};
-ENUM_T(CompareFuncEnum, CompareFuncStrings, CompareFuncCodes)
-#define CheckCompareFunc(L, arg) enumCheck((L), (arg), &CompareFuncEnum)
-#define PushCompareFunc(L, code) enumPush((L), (code), &CompareFuncEnum)
-enum_t *enumCompareFunc(void)
-    { return &CompareFuncEnum; }
-
-ENUM_STRINGS(CompareModeStrings) = {
-    "none",
-    "compare ref to texture",
-    NULL
-};
-ENUM_CODES(CompareModeCodes) = {
-    GL_NONE,
-    GL_COMPARE_REF_TO_TEXTURE
-};
-ENUM_T(CompareModeEnum, CompareModeStrings, CompareModeCodes)
-#define CheckCompareMode(L, arg) enumCheck((L), (arg), &CompareModeEnum)
-#define PushCompareMode(L, code) enumPush((L), (code), &CompareModeEnum)
-enum_t *enumCompareMode(void)
-    { return &CompareModeEnum; }
-
-ENUM_STRINGS(RgbaStrings) = {
-    "red",
-    "green",
-    "blue",
-    "alpha",
-    "zero",
-    "one",
-    NULL
-};
-ENUM_CODES(RgbaCodes) = {
-    GL_RED,
-    GL_GREEN,
-    GL_BLUE,
-    GL_ALPHA,
-    GL_ZERO,
-    GL_ONE
-};
-ENUM_T(RgbaEnum, RgbaStrings, RgbaCodes)
-#define CheckRgba(L, arg) enumCheck((L), (arg), &RgbaEnum)
-#define PushRgba(L, code) enumPush((L), (code), &RgbaEnum)
-
-ENUM_STRINGS(WrapStrings) = {
-    "clamp to edge",
-    "repeat",
-    "clamp to border",
-    "mirrored repeat",
-    "mirror clamp to edge",
-    NULL
-};
-ENUM_CODES(WrapCodes) = {
-    GL_CLAMP_TO_EDGE,
-    GL_REPEAT,
-    GL_CLAMP_TO_BORDER,
-    GL_MIRRORED_REPEAT,
-    GL_MIRROR_CLAMP_TO_EDGE
-};
-ENUM_T(WrapEnum, WrapStrings, WrapCodes)
-#define CheckWrap(L, arg) enumCheck((L), (arg), &WrapEnum)
-#define PushWrap(L, code) enumPush((L), (code), &WrapEnum)
-enum_t *enumWrap(void)
-    { return &WrapEnum; }
-
-ENUM_STRINGS(MagFilterStrings) = {
-    "nearest",
-    "linear",
-    NULL
-};
-ENUM_CODES(MagFilterCodes) = {
-    GL_NEAREST,
-    GL_LINEAR
-};
-ENUM_T(MagFilterEnum, MagFilterStrings, MagFilterCodes)
-#define CheckMagFilter(L, arg) enumCheck((L), (arg), &MagFilterEnum)
-#define PushMagFilter(L, code) enumPush((L), (code), &MagFilterEnum)
-enum_t *enumMagFilter(void)
-    { return &MagFilterEnum; }
-
-ENUM_STRINGS(MinFilterStrings) = {
-    "nearest",
-    "linear",
-    "nearest mipmap nearest",
-    "nearest mipmap linear",
-    "linear mipmap nearest",
-    "linear mipmap linear",
-    NULL
-};
-ENUM_CODES(MinFilterCodes) = {
-    GL_NEAREST,
-    GL_LINEAR,
-    GL_NEAREST_MIPMAP_NEAREST,
-    GL_NEAREST_MIPMAP_LINEAR,
-    GL_LINEAR_MIPMAP_NEAREST,
-    GL_LINEAR_MIPMAP_LINEAR
-};
-ENUM_T(MinFilterEnum, MinFilterStrings, MinFilterCodes)
-#define CheckMinFilter(L, arg) enumCheck((L), (arg), &MinFilterEnum)
-#define PushMinFilter(L, code) enumPush((L), (code), &MinFilterEnum)
-enum_t *enumMinFilter(void)
-    { return &MinFilterEnum; }
-
-ENUM_STRINGS(ImageFormatCTStrings) = {
-    "by size",
-    "by class",
-    "none",
-    NULL
-};
-ENUM_CODES(ImageFormatCTCodes) = {
-    GL_IMAGE_FORMAT_COMPATIBILITY_BY_SIZE,
-    GL_IMAGE_FORMAT_COMPATIBILITY_BY_CLASS,
-    GL_NONE
-};
-ENUM_T(ImageFormatCTEnum, ImageFormatCTStrings, ImageFormatCTCodes)
-#define CheckImageFormatCT(L, arg) enumCheck((L), (arg), &ImageFormatCTEnum)
-#define PushImageFormatCT(L, code) enumPush((L), (code), &ImageFormatCTEnum)
-
-ENUM_STRINGS(LPnameStrings) = {
-    "width",
-    "height", 
-    "depth",
-    "fixed sample locations",
-    "internal format",
-    "shared size",
-    "compressed",
-    "compressed image size",
-    "samples",
-    "buffer offset",
-    "buffer size",
-    "red size",
-    "green size",
-    "blue size",
-    "alpha size",
-    "depth size",
-    "red type",
-    "green type",
-    "blue type",
-    "alpha type",
-    "depth type",
-    NULL
-};
-ENUM_CODES(LPnameCodes) = {
-    GL_TEXTURE_WIDTH,
-    GL_TEXTURE_HEIGHT, 
-    GL_TEXTURE_DEPTH,
-    GL_TEXTURE_FIXED_SAMPLE_LOCATIONS,
-    GL_TEXTURE_INTERNAL_FORMAT,
-    GL_TEXTURE_SHARED_SIZE,
-    GL_TEXTURE_COMPRESSED,
-    GL_TEXTURE_COMPRESSED_IMAGE_SIZE,
-    GL_TEXTURE_SAMPLES,
-    GL_TEXTURE_BUFFER_OFFSET,
-    GL_TEXTURE_BUFFER_SIZE,
-    GL_TEXTURE_RED_SIZE,
-    GL_TEXTURE_GREEN_SIZE,
-    GL_TEXTURE_BLUE_SIZE,
-    GL_TEXTURE_ALPHA_SIZE,
-    GL_TEXTURE_DEPTH_SIZE,
-    GL_TEXTURE_RED_TYPE,
-    GL_TEXTURE_GREEN_TYPE,
-    GL_TEXTURE_BLUE_TYPE,
-    GL_TEXTURE_ALPHA_TYPE,
-    GL_TEXTURE_DEPTH_TYPE,
-};
-ENUM_T(LPnameEnum, LPnameStrings, LPnameCodes)
-#define CheckLPname(L, arg) enumCheck((L), (arg), &LPnameEnum)
-#define PushLPname(L, code) enumPush((L), (code), &LPnameEnum)
-
-
 /*--------------------------------------------------------------------------*
  | Set parameter                                                            |   
  *--------------------------------------------------------------------------*/
@@ -397,9 +63,9 @@ static int SetColor(lua_State *L, GLuint texture, GLenum target, GLenum pname, i
     return 0;
     }
 
-static int SetEnum(lua_State *L, GLuint texture, GLenum target, GLenum pname, int arg, enum_t *e) 
+static int SetEnum(lua_State *L, GLuint texture, GLenum target, GLenum pname, int arg, uint32_t domain) 
     {
-    GLint param = enumCheck(L, arg, e);
+    GLint param = enums_check(L, domain, arg);
     if(texture==0)
         glTexParameteri(target, pname, param);
     else 
@@ -408,13 +74,13 @@ static int SetEnum(lua_State *L, GLuint texture, GLenum target, GLenum pname, in
     return 0;
     }
 
-static int SetEnum4(lua_State *L, GLuint texture, GLenum target, GLenum pname, int arg, enum_t *e) 
+static int SetEnum4(lua_State *L, GLuint texture, GLenum target, GLenum pname, int arg, uint32_t domain) 
     {
     GLint param[4];
-    param[0] = enumCheck(L, arg++, e);
-    param[1] = enumCheck(L, arg++, e);
-    param[2] = enumCheck(L, arg++, e);
-    param[3] = enumCheck(L, arg++, e);
+    param[0] = enums_check(L, domain, arg++);
+    param[1] = enums_check(L, domain, arg++);
+    param[2] = enums_check(L, domain, arg++);
+    param[3] = enums_check(L, domain, arg++);
     if(texture==0)
         glTexParameteriv(target, pname, param);
     else 
@@ -428,20 +94,20 @@ static int TextureParameter(lua_State *L)
     {
     int arg = 1;
     GLenum target, pname;
-    GLuint texture = CheckTargetOrName(L, arg++, &target);
-    pname = CheckPname(L, arg++);
+    GLuint texture = checktargetorname(L, arg++, &target, DOMAIN_TEXTURE_TARGET);
+    pname = checktexturepname(L, arg++);
     
     switch(pname)
         {
         case GL_DEPTH_STENCIL_TEXTURE_MODE: 
-                return SetEnum(L, texture, target, pname, arg, &DepthStencilEnum);
+                return SetEnum(L, texture, target, pname, arg, DOMAIN_DEPTH_STENCIL);
         case GL_TEXTURE_BASE_LEVEL: 
         case GL_TEXTURE_MAX_LEVEL:  return SetInt(L, texture, target, pname, arg);
         case GL_TEXTURE_BORDER_COLOR:   return SetColor(L, texture, target, pname, arg);
         case GL_TEXTURE_COMPARE_FUNC:
-                return SetEnum(L, texture, target, pname, arg, &CompareFuncEnum);
+                return SetEnum(L, texture, target, pname, arg, DOMAIN_COMPARE_FUNC);
         case GL_TEXTURE_COMPARE_MODE:   
-                return SetEnum(L, texture, target, pname, arg, &CompareModeEnum);
+                return SetEnum(L, texture, target, pname, arg, DOMAIN_COMPARE_MODE);
         case GL_TEXTURE_LOD_BIAS:
         case GL_TEXTURE_MIN_LOD:
         case GL_TEXTURE_MAX_LOD:   return SetFloat(L, texture, target, pname, arg);
@@ -449,17 +115,17 @@ static int TextureParameter(lua_State *L)
         case GL_TEXTURE_SWIZZLE_G:
         case GL_TEXTURE_SWIZZLE_B:
         case GL_TEXTURE_SWIZZLE_A:   
-                return SetEnum(L, texture, target, pname, arg, &RgbaEnum);
+                return SetEnum(L, texture, target, pname, arg, DOMAIN_RGBA);
         case GL_TEXTURE_SWIZZLE_RGBA:   
-                return SetEnum4(L, texture, target, pname, arg, &RgbaEnum);
+                return SetEnum4(L, texture, target, pname, arg, DOMAIN_RGBA);
         case GL_TEXTURE_MIN_FILTER:
-                return SetEnum(L, texture, target, pname, arg, &MinFilterEnum);
+                return SetEnum(L, texture, target, pname, arg, DOMAIN_MIN_FILTER);
         case GL_TEXTURE_MAG_FILTER:  
-                return SetEnum(L, texture, target, pname, arg, &MagFilterEnum);
+                return SetEnum(L, texture, target, pname, arg, DOMAIN_MAG_FILTER);
         case GL_TEXTURE_WRAP_S:
         case GL_TEXTURE_WRAP_T:
         case GL_TEXTURE_WRAP_R:  
-                return SetEnum(L, texture, target, pname, arg, &WrapEnum);
+                return SetEnum(L, texture, target, pname, arg, DOMAIN_WRAP);
         default:
             return luaL_error(L, "cannot set parameter '%s'",  luaL_checkstring(L, arg));
         }
@@ -514,7 +180,7 @@ static int GetFloat4(lua_State *L, GLuint texture, GLenum target, GLenum pname)
     return 4;
     }
 
-static int GetEnum(lua_State *L, GLuint texture, GLenum target, GLenum pname, enum_t *e)
+static int GetEnum(lua_State *L, GLuint texture, GLenum target, GLenum pname, uint32_t domain)
     {
     GLint param;
     if(texture==0)
@@ -522,11 +188,11 @@ static int GetEnum(lua_State *L, GLuint texture, GLenum target, GLenum pname, en
     else
         glGetTextureParameteriv(texture, pname, &param);
     CheckError(L);
-    enumPush(L, param, e);
+    enums_push(L, domain, param);
     return 1;
     }
 
-static int GetEnum4(lua_State *L, GLuint texture, GLenum target, GLenum pname, enum_t *e)
+static int GetEnum4(lua_State *L, GLuint texture, GLenum target, GLenum pname, uint32_t domain)
     {
     GLint param[4];
     if(texture==0)
@@ -534,10 +200,10 @@ static int GetEnum4(lua_State *L, GLuint texture, GLenum target, GLenum pname, e
     else
         glGetTextureParameteriv(texture, pname, param);
     CheckError(L);
-    enumPush(L, param[0], e);
-    enumPush(L, param[1], e);
-    enumPush(L, param[2], e);
-    enumPush(L, param[3], e);
+    enums_push(L, domain, param[0]);
+    enums_push(L, domain, param[1]);
+    enums_push(L, domain, param[2]);
+    enums_push(L, domain, param[3]);
     return 4;
     }
 
@@ -545,21 +211,21 @@ static int GetTextureParameter(lua_State *L)
 /* get_texture_parameter(texture|target, pname) */
     {
     GLenum target, pname;
-    GLuint texture = CheckTargetOrName(L, 1, &target);
-    pname = CheckPname(L, 2);
+    GLuint texture = checktargetorname(L, 1, &target, DOMAIN_TEXTURE_TARGET);
+    pname = checktexturepname(L, 2);
 
     switch(pname)
         {
         case GL_DEPTH_STENCIL_TEXTURE_MODE:
-                return GetEnum(L, texture, target, pname, &DepthStencilEnum);
+                return GetEnum(L, texture, target, pname, DOMAIN_DEPTH_STENCIL);
         case GL_TEXTURE_BASE_LEVEL: 
         case GL_TEXTURE_MAX_LEVEL:  return GetInt(L, texture, target, pname);
 
         case GL_TEXTURE_BORDER_COLOR:   return GetFloat4(L, texture, target, pname);
         case GL_TEXTURE_COMPARE_FUNC:
-                return GetEnum(L, texture, target, pname, &CompareFuncEnum);
+                return GetEnum(L, texture, target, pname, DOMAIN_COMPARE_FUNC);
         case GL_TEXTURE_COMPARE_MODE:
-                return GetEnum(L, texture, target, pname, &CompareModeEnum);
+                return GetEnum(L, texture, target, pname, DOMAIN_COMPARE_MODE);
         case GL_TEXTURE_LOD_BIAS:
         case GL_TEXTURE_MIN_LOD:
         case GL_TEXTURE_MAX_LOD:    return GetFloat(L, texture, target, pname);
@@ -567,21 +233,21 @@ static int GetTextureParameter(lua_State *L)
         case GL_TEXTURE_SWIZZLE_G:
         case GL_TEXTURE_SWIZZLE_B:
         case GL_TEXTURE_SWIZZLE_A:  
-                return GetEnum(L, texture, target, pname, &RgbaEnum);
+                return GetEnum(L, texture, target, pname, DOMAIN_RGBA);
         case GL_TEXTURE_SWIZZLE_RGBA: 
-            return GetEnum4(L, texture, target, pname, &RgbaEnum);
+            return GetEnum4(L, texture, target, pname, DOMAIN_RGBA);
 
         case GL_TEXTURE_MIN_FILTER:
-                return GetEnum(L, texture, target, pname, &MinFilterEnum);
+                return GetEnum(L, texture, target, pname, DOMAIN_MIN_FILTER);
         case GL_TEXTURE_MAG_FILTER:
-                return GetEnum(L, texture, target, pname, &MagFilterEnum);
+                return GetEnum(L, texture, target, pname, DOMAIN_MAG_FILTER);
 
         case GL_TEXTURE_WRAP_S:
         case GL_TEXTURE_WRAP_T:
         case GL_TEXTURE_WRAP_R:
-                return GetEnum(L, texture, target, pname, &WrapEnum);
+                return GetEnum(L, texture, target, pname, DOMAIN_WRAP);
         case GL_IMAGE_FORMAT_COMPATIBILITY_TYPE:
-                return GetEnum(L, texture, target, pname, &ImageFormatCTEnum);
+                return GetEnum(L, texture, target, pname, DOMAIN_IMAGE_FORMAT_COMPATIBILITY);
         case GL_TEXTURE_IMMUTABLE_FORMAT:   return GetBoolean(L, texture, target, pname); 
         case GL_TEXTURE_IMMUTABLE_LEVELS:
         case GL_TEXTURE_VIEW_MIN_LEVEL:
@@ -619,7 +285,7 @@ static int LGetInt_(lua_State *L, GLuint texture, GLenum target, GLint level, GL
     return 1;
     }
 
-static int LGetEnum(lua_State *L, GLuint texture, GLenum target, GLint level, GLenum pname, enum_t *e)
+static int LGetEnum(lua_State *L, GLuint texture, GLenum target, GLint level, GLenum pname, uint32_t domain)
     {
     GLint param;
     if(texture==0)
@@ -627,7 +293,7 @@ static int LGetEnum(lua_State *L, GLuint texture, GLenum target, GLint level, GL
     else
         glGetTextureLevelParameteriv(texture, level, pname, &param);
     CheckError(L);
-    enumPush(L, param, e);
+    enums_push(L, domain, param);
     return 1;
     }
 
@@ -638,9 +304,9 @@ static int LGetEnum(lua_State *L, GLuint texture, GLenum target, GLint level, GL
 static int GetTextureLevelParameter(lua_State *L)
     {
     GLenum target;
-    GLuint texture = CheckTargetOrName(L, 1, &target);
+    GLuint texture = checktargetorname(L, 1, &target, DOMAIN_TEXTURE_TARGET);
     GLint level = luaL_checkinteger(L, 2);
-    GLenum pname = CheckLPname(L, 3);
+    GLenum pname = checklevelpname(L, 3);
     switch(pname)
         {
         case GL_TEXTURE_COMPRESSED:
@@ -663,9 +329,9 @@ static int GetTextureLevelParameter(lua_State *L)
         case GL_TEXTURE_BLUE_TYPE:
         case GL_TEXTURE_ALPHA_TYPE:
         case GL_TEXTURE_DEPTH_TYPE: 
-                return LGetEnum(L, texture, target, level, pname, enumComponentType());
+                return LGetEnum(L, texture, target, level, pname, DOMAIN_COMPONENT_TYPE);
         case GL_TEXTURE_INTERNAL_FORMAT:  
-                    return LGetEnum(L, texture, target, level, pname, enumInternalFormat());
+                    return LGetEnum(L, texture, target, level, pname, DOMAIN_INTERNAL_FORMAT);
         default:
             return luaL_error(L, UNEXPECTED_ERROR);
         }
@@ -677,9 +343,9 @@ static int GetTextureLevelParameter(lua_State *L)
  | Gen, bind etc                                                            |
  *--------------------------------------------------------------------------*/
 
-NEW_TARGET_FUNC(Texture, &TargetEnum)
+NEW_TARGET_FUNC(Texture, checktexturetarget)
 GEN_FUNC(Texture)
-BIND_TARGET_FUNC(Texture, &TargetEnum)
+BIND_TARGET_FUNC(Texture, checktexturetarget)
 DELETE_FUNC(Texture)
 IS_FUNC(Texture)
 BINDN_FUNC(Texture)
@@ -689,7 +355,7 @@ static int CreateTextures(lua_State *L)
     {
     GLuint* names;
     GLsizei i, n;
-    GLenum target = CheckTarget(L, 1);
+    GLenum target = checktexturetarget(L, 1);
     check_init_called(L);
     n = 2;
     while(lua_isinteger(L, n)) n++; /* get the number of names */

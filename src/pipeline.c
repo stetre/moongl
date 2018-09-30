@@ -25,34 +25,6 @@
 
 #include "internal.h"
 
-ENUM_STRINGS(PnameStrings) = {
-    "active program",
-    "validate status",
-    "vertex shader",
-    "geometry shader",
-    "fragment shader",
-    "compute shader",
-    "tess control shader",
-    "tess evaluation shader",
-    "info log length",
-    NULL
-};
-ENUM_CODES(PnameCodes) = {
-    GL_ACTIVE_PROGRAM,
-    GL_VALIDATE_STATUS,
-    GL_VERTEX_SHADER,
-    GL_GEOMETRY_SHADER,
-    GL_FRAGMENT_SHADER,
-    GL_COMPUTE_SHADER,
-    GL_TESS_CONTROL_SHADER,
-    GL_TESS_EVALUATION_SHADER,
-    GL_INFO_LOG_LENGTH,
-};
-ENUM_T(PnameEnum, PnameStrings, PnameCodes)
-#define CheckPname(L, arg) enumCheck((L), (arg), &PnameEnum)
-#define PushPname(L, code) enumPush((L), (code), &PnameEnum)
-
-
 BITFIELD_STRINGS(StagesCodesStrings) = {
     "all",
     "tess control",
@@ -130,7 +102,7 @@ static int GetProgramPipeline(lua_State *L)
     {
 #define INTEGER return GetInteger(L, pipeline, pname);
     GLuint pipeline = luaL_checkinteger(L, 1);
-    GLenum pname = CheckPname(L, 2);
+    GLenum pname = checkpipelinepname(L, 2);
     switch(pname)
         {
         case GL_ACTIVE_PROGRAM: INTEGER

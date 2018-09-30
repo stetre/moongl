@@ -25,44 +25,6 @@
 
 #include "internal.h"
 
-#define MagFilterEnum enumMagFilter()
-#define MinFilterEnum enumMinFilter()
-#define WrapEnum enumWrap()
-#define CompareFuncEnum enumCompareFunc()
-#define CompareModeEnum enumCompareMode()
-
-ENUM_STRINGS(PnameStrings) = {
-    "wrap s", 
-    "wrap t", 
-    "wrap r", 
-    "min filter", 
-    "mag filter", 
-    "border color", 
-    "min lod", 
-    "max lod", 
-    "lod bias",
-    "compare mode", 
-    "compare func",
-    NULL
-};
-ENUM_CODES(PnameCodes) = {
-    GL_TEXTURE_WRAP_S, 
-    GL_TEXTURE_WRAP_T, 
-    GL_TEXTURE_WRAP_R, 
-    GL_TEXTURE_MIN_FILTER, 
-    GL_TEXTURE_MAG_FILTER, 
-    GL_TEXTURE_BORDER_COLOR, 
-    GL_TEXTURE_MIN_LOD, 
-    GL_TEXTURE_MAX_LOD, 
-    GL_TEXTURE_LOD_BIAS,
-    GL_TEXTURE_COMPARE_MODE, 
-    GL_TEXTURE_COMPARE_FUNC,
-};
-ENUM_T(PnameEnum, PnameStrings, PnameCodes)
-#define CheckPname(L, arg) enumCheck((L), (arg), &PnameEnum)
-#define PushPname(L, code) enumPush((L), (code), &PnameEnum)
-
-
 GEN_FUNC(Sampler)
 CREATE_FUNC(Sampler)
 DELETE_FUNC(Sampler)
@@ -114,9 +76,9 @@ static int SetColor(lua_State *L, GLuint sampler, GLenum pname, int arg)
     return 0;
     }
 
-static int SetEnum(lua_State *L, GLuint sampler, GLenum pname, int arg, enum_t *e)
+static int SetEnum(lua_State *L, GLuint sampler, GLenum pname, int arg, uint32_t domain)
     {
-    GLenum param = enumCheck(L, arg, e);
+    GLenum param = enums_check(L, domain, arg);
     glSamplerParameteri(sampler, pname, param);
     CheckError(L);
     return 0;
@@ -126,20 +88,20 @@ static int SetEnum(lua_State *L, GLuint sampler, GLenum pname, int arg, enum_t *
 static int SamplerParameter(lua_State *L)
     {
     GLuint sampler = luaL_checkinteger(L, 1);
-    GLenum pname = CheckPname(L, 2);
+    GLenum pname = checksamplerpname(L, 2);
     switch(pname)
         {
         case GL_TEXTURE_WRAP_S:
         case GL_TEXTURE_WRAP_T: 
-        case GL_TEXTURE_WRAP_R: return SetEnum(L, sampler, pname, 3, WrapEnum);
-        case GL_TEXTURE_MIN_FILTER:  return SetEnum(L, sampler, pname, 3, MinFilterEnum);
-        case GL_TEXTURE_MAG_FILTER:  return SetEnum(L, sampler, pname, 3, MagFilterEnum);
+        case GL_TEXTURE_WRAP_R: return SetEnum(L, sampler, pname, 3, DOMAIN_WRAP);
+        case GL_TEXTURE_MIN_FILTER:  return SetEnum(L, sampler, pname, 3, DOMAIN_MIN_FILTER);
+        case GL_TEXTURE_MAG_FILTER:  return SetEnum(L, sampler, pname, 3, DOMAIN_MAG_FILTER);
         case GL_TEXTURE_BORDER_COLOR:  return SetColor(L, sampler, pname, 3);
         case GL_TEXTURE_MIN_LOD:  return SetFloat(L, sampler, pname, 3);
         case GL_TEXTURE_MAX_LOD:  return SetFloat(L, sampler, pname, 3);
         case GL_TEXTURE_LOD_BIAS: return SetFloat(L, sampler, pname, 3);
-        case GL_TEXTURE_COMPARE_MODE:  return SetEnum(L, sampler, pname, 3, CompareModeEnum);
-        case GL_TEXTURE_COMPARE_FUNC:  return SetEnum(L, sampler, pname, 3, CompareFuncEnum);
+        case GL_TEXTURE_COMPARE_MODE:  return SetEnum(L, sampler, pname, 3, DOMAIN_COMPARE_MODE);
+        case GL_TEXTURE_COMPARE_FUNC:  return SetEnum(L, sampler, pname, 3, DOMAIN_COMPARE_FUNC);
         default:
             return luaL_error(L, UNEXPECTED_ERROR);
         }
@@ -151,12 +113,12 @@ static int SamplerParameter(lua_State *L)
  | Get                                                                          |
  *------------------------------------------------------------------------------*/
 
-static int GetEnum(lua_State *L, GLuint sampler, GLenum pname, enum_t *e)
+static int GetEnum(lua_State *L, GLuint sampler, GLenum pname, uint32_t domain)
     {
     GLint param;
     glGetSamplerParameteriv(sampler, pname, &param);
     CheckError(L);
-    enumPush(L, param, e);
+    enums_push(L, domain, param);
     return 1;
     }
 
@@ -184,20 +146,20 @@ static int GetFloat4(lua_State *L, GLuint sampler, GLenum pname)
 static int GetSamplerParameter(lua_State *L)
     {
     GLuint sampler = luaL_checkinteger(L, 1);
-    GLenum pname = CheckPname(L, 2);
+    GLenum pname = checksamplerpname(L, 2);
     switch(pname)
         {
         case GL_TEXTURE_WRAP_S:
         case GL_TEXTURE_WRAP_T:
-        case GL_TEXTURE_WRAP_R: return GetEnum(L, sampler, pname, WrapEnum);
-        case GL_TEXTURE_MIN_FILTER:  return GetEnum(L, sampler, pname, MinFilterEnum);
-        case GL_TEXTURE_MAG_FILTER:  return GetEnum(L, sampler, pname, MagFilterEnum);
+        case GL_TEXTURE_WRAP_R: return GetEnum(L, sampler, pname, DOMAIN_WRAP);
+        case GL_TEXTURE_MIN_FILTER:  return GetEnum(L, sampler, pname, DOMAIN_MIN_FILTER);
+        case GL_TEXTURE_MAG_FILTER:  return GetEnum(L, sampler, pname, DOMAIN_MAG_FILTER);
         case GL_TEXTURE_BORDER_COLOR:  return GetFloat4(L, sampler, pname);
         case GL_TEXTURE_MIN_LOD:  return GetFloat(L, sampler, pname);
         case GL_TEXTURE_MAX_LOD:  return GetFloat(L, sampler, pname);
         case GL_TEXTURE_LOD_BIAS: return GetFloat(L, sampler, pname);
-        case GL_TEXTURE_COMPARE_MODE:  return GetEnum(L, sampler, pname, CompareModeEnum);
-        case GL_TEXTURE_COMPARE_FUNC: return GetEnum(L, sampler, pname, CompareFuncEnum);
+        case GL_TEXTURE_COMPARE_MODE:  return GetEnum(L, sampler, pname, DOMAIN_COMPARE_MODE);
+        case GL_TEXTURE_COMPARE_FUNC: return GetEnum(L, sampler, pname, DOMAIN_COMPARE_FUNC);
         default:
             return luaL_error(L, UNEXPECTED_ERROR);
         }

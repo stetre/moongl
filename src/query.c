@@ -25,59 +25,6 @@
 
 #include "internal.h"
 
-ENUM_STRINGS(TargetStrings) = {
-    "any samples passed", 
-    "any samples passed conservative", 
-    "primitives generated", 
-    "samples passed", 
-    "time elapsed",
-    "transform feedback primitives written",
-    "timestamp",
-    NULL
-};
-ENUM_CODES(TargetCodes) = {
-    GL_ANY_SAMPLES_PASSED, 
-    GL_ANY_SAMPLES_PASSED_CONSERVATIVE, 
-    GL_PRIMITIVES_GENERATED, 
-    GL_SAMPLES_PASSED, 
-    GL_TIME_ELAPSED,
-    GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN,
-    GL_TIMESTAMP,
-};
-ENUM_T(TargetEnum, TargetStrings, TargetCodes)
-#define CheckTarget(L, arg) enumCheck((L), (arg), &TargetEnum)
-#define PushTarget(L, code) enumPush((L), (code), &TargetEnum)
-
-ENUM_STRINGS(PnameStrings) = {
-    "current query",
-    "query counter bits",
-    NULL
-};
-ENUM_CODES(PnameCodes) = {
-    GL_CURRENT_QUERY,
-    GL_QUERY_COUNTER_BITS,
-};
-ENUM_T(PnameEnum, PnameStrings, PnameCodes)
-#define CheckPname(L, arg) enumCheck((L), (arg), &PnameEnum)
-#define PushPname(L, code) enumPush((L), (code), &PnameEnum)
-
-#if 0
-ENUM_STRINGS(ObjectPnameStrings) = {
-    "target",
-    "result no wait",
-    "result available",
-    NULL
-};
-ENUM_CODES(ObjectPnameCodes) = {
-    GL_TARGET,
-    GL_RESULT_NO_WAIT,
-    GL_RESULT_AVAILABLE,
-};
-ENUM_T(ObjectPnameEnum, ObjectPnameStrings, ObjectPnameCodes)
-#define CheckObjectPname(L, arg) enumCheck((L), (arg), &ObjectPnameEnum)
-#define PushObjectPname(L, code) enumPush((L), (code), &ObjectPnameEnum)
-#endif
-
 GEN_FUNC(Querie)
 DELETE_FUNC(Querie)
 IS_FUNC(Query)
@@ -87,7 +34,7 @@ static int CreateQueries(lua_State *L)
     int i;
     GLuint* names;
     GLsizei n = 1;
-    GLenum target = CheckTarget(L, 1);
+    GLenum target = checkquerytarget(L, 1);
     check_init_called(L);
     while(lua_isinteger(L, n)) n++; /* get the number of names */
     if(--n==0)  return luaL_argerror(L, 2, "integer expected");
@@ -106,7 +53,7 @@ static int CreateQueries(lua_State *L)
 static int BeginQuery(lua_State *L)
     {
     GLenum index;
-    GLenum target = CheckTarget(L, 1);
+    GLenum target = checkquerytarget(L, 1);
     GLuint name = luaL_checkinteger(L, 2);
     if(lua_isnoneornil(L, 3))
         glBeginQuery(target, name);
@@ -122,7 +69,7 @@ static int BeginQuery(lua_State *L)
 static int EndQuery(lua_State *L)
     {
     GLenum index;
-    GLenum target = CheckTarget(L, 1);
+    GLenum target = checkquerytarget(L, 1);
     if(lua_isnoneornil(L, 2))
         glEndQuery(target);
     else
@@ -137,7 +84,7 @@ static int EndQuery(lua_State *L)
 static int QueryCounter(lua_State *L)
     {
     GLuint name = luaL_checkinteger(L, 1);
-    GLenum target = GL_TIMESTAMP; /* CheckTarget(L, 2); only TIMESTAMP */
+    GLenum target = GL_TIMESTAMP; /* checkquerytarget(L, 2); only TIMESTAMP */
     glQueryCounter(name, target);
     CheckError(L);
     return 0;
@@ -170,8 +117,8 @@ static int GetQuery(lua_State *L)
     {
     int indexed = 0;
     GLenum index;
-    GLenum target = CheckTarget(L, 1);
-    GLenum pname = CheckPname(L, 2);
+    GLenum target = checkquerytarget(L, 1);
+    GLenum pname = checkquerypname(L, 2);
     if(!lua_isnoneornil(L, 3))
         {
         indexed = 1;

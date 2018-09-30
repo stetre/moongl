@@ -25,48 +25,6 @@
 
 #include "internal.h"
 
-#define ShaderTypeEnum enumShaderType()
-#define CheckShaderType(L, arg) enumCheck((L), (arg), ShaderTypeEnum)
-#define PushShaderType(L, code) enumPush((L), (code), ShaderTypeEnum)
-
-ENUM_STRINGS(StagePnameStrings) = {
-    "subroutines",
-    "subroutine uniforms",
-    "subroutine max length",
-    "subroutine uniform locations",
-    "subroutine uniform max length",
-    NULL
-};
-ENUM_CODES(StagePnameCodes) = {
-    GL_ACTIVE_SUBROUTINES,
-    GL_ACTIVE_SUBROUTINE_UNIFORMS,
-    GL_ACTIVE_SUBROUTINE_MAX_LENGTH,
-    GL_ACTIVE_SUBROUTINE_UNIFORM_LOCATIONS,
-    GL_ACTIVE_SUBROUTINE_UNIFORM_MAX_LENGTH,
-};
-
-ENUM_T(StagePnameEnum, StagePnameStrings, StagePnameCodes)
-#define CheckStagePname(L, arg) enumCheck((L), (arg), &StagePnameEnum)
-#define PushStagePname(L, code) enumPush((L), (code), &StagePnameEnum)
-
-ENUM_STRINGS(PnameStrings) = {
-    "num compatible subroutines",
-    "compatible subroutines",
-    "uniform size",
-    "uniform name length",
-    NULL
-};
-ENUM_CODES(PnameCodes) = {
-    GL_NUM_COMPATIBLE_SUBROUTINES,
-    GL_COMPATIBLE_SUBROUTINES,
-    GL_UNIFORM_SIZE,
-    GL_UNIFORM_NAME_LENGTH,
-};
-ENUM_T(PnameEnum, PnameStrings, PnameCodes)
-#define CheckPname(L, arg) enumCheck((L), (arg), &PnameEnum)
-#define PushPname(L, code) enumPush((L), (code), &PnameEnum)
-
-
 static GLint GetProgramStage_(lua_State *L, GLuint program, GLenum shadertype, GLenum pname)
     {
     GLint value;
@@ -99,7 +57,7 @@ static int UniformSubroutines(lua_State *L)
     {
     GLsizei count, arg, i;
     GLuint *indices;
-    GLenum shadertype = CheckShaderType(L, 1);
+    GLenum shadertype = checkshadertype(L, 1);
     arg = 2;
     while(!lua_isnoneornil(L, arg))
         luaL_checkinteger(L, arg++);
@@ -145,9 +103,9 @@ static int GetCompatibleSubroutines(lua_State *L, GLuint program, GLenum shadert
 static int GetActiveSubroutineUniform(lua_State *L)
     {
     GLuint program = luaL_checkinteger(L, 1);
-    GLenum shadertype = CheckShaderType(L, 2);
+    GLenum shadertype = checkshadertype(L, 2);
     GLuint index = luaL_checkinteger(L, 3);
-    GLenum pname = CheckPname(L, 4);
+    GLenum pname = checksubroutinepname(L, 4);
     
     switch(pname)
         {
@@ -168,7 +126,7 @@ static int GetActiveSubroutineUniform(lua_State *L)
 static int GetUniformSubroutine(lua_State *L)
     {
     GLuint value;
-    GLenum shadertype = CheckShaderType(L, 1);
+    GLenum shadertype = checkshadertype(L, 1);
     GLint location = luaL_checkinteger(L, 2);
     glGetUniformSubroutineuiv(shadertype, location, &value);
     CheckError(L);
@@ -179,7 +137,7 @@ static int GetUniformSubroutine(lua_State *L)
 static int GetSubroutineUniformLocation(lua_State *L)
     {
     GLuint program = luaL_checkinteger(L, 1);
-    GLenum shadertype = CheckShaderType(L, 2);
+    GLenum shadertype = checkshadertype(L, 2);
     const GLchar *name = luaL_checkstring(L, 3);
     GLint loc = glGetSubroutineUniformLocation(program, shadertype, name);
     CheckError(L);
@@ -190,7 +148,7 @@ static int GetSubroutineUniformLocation(lua_State *L)
 static int GetSubroutineIndex(lua_State *L) 
     {
     GLuint program = luaL_checkinteger(L, 1);
-    GLenum shadertype = CheckShaderType(L, 2);
+    GLenum shadertype = checkshadertype(L, 2);
     const GLchar *name = luaL_checkstring(L, 3);
     GLuint index = glGetSubroutineIndex(program, shadertype, name);
     CheckError(L);
@@ -203,7 +161,7 @@ static int GetActiveSubroutineName(lua_State *L)
     {
     GLsizei length;
     GLuint program = luaL_checkinteger(L, 1);
-    GLenum shadertype = CheckShaderType(L, 2);
+    GLenum shadertype = checkshadertype(L, 2);
     GLuint index = luaL_checkinteger(L, 3);
     GLsizei bufsz = GetProgramStage_(L, program, shadertype, 
                             GL_ACTIVE_SUBROUTINE_MAX_LENGTH);
@@ -219,7 +177,7 @@ static int GetActiveSubroutineUniformName(lua_State *L)
     {
     GLsizei length;
     GLuint program = luaL_checkinteger(L, 1);
-    GLenum shadertype = CheckShaderType(L, 2);
+    GLenum shadertype = checkshadertype(L, 2);
     GLuint index = luaL_checkinteger(L, 3);
     GLsizei bufsz = GetProgramStage_(L, program, shadertype, 
                             GL_ACTIVE_SUBROUTINE_UNIFORM_MAX_LENGTH);
@@ -244,8 +202,8 @@ static int GetStageInt(lua_State *L, GLuint program, GLenum shadertype, GLenum p
 static int GetProgramStage(lua_State *L)
     {
     GLuint program = luaL_checkinteger(L, 1);
-    GLenum shadertype = CheckShaderType(L, 2);
-    GLenum pname = CheckStagePname(L, 3);
+    GLenum shadertype = checkshadertype(L, 2);
+    GLenum pname = checkstagepname(L, 3);
     switch(pname)
         {
         case GL_ACTIVE_SUBROUTINES: 

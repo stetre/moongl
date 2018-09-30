@@ -25,119 +25,14 @@
 
 #include "internal.h"
 
-ENUM_STRINGS(PolygonModeFaceStrings) = {
-    "front and back",
-    NULL
-};
-ENUM_CODES(PolygonModeFaceCodes) = {
-    GL_FRONT_AND_BACK
-};
-ENUM_T(PolygonModeFaceEnum, PolygonModeFaceStrings, PolygonModeFaceCodes)
-#define CheckPolygonModeFace(L, arg) enumCheck((L), (arg), &PolygonModeFaceEnum)
-#define PushPolygonModeFace(L, code) enumPush((L), (code), &PolygonModeFaceEnum)
-
-ENUM_STRINGS(PolygonModeModeStrings) = {
-    "point",
-    "line",
-    "fill",
-    NULL
-};
-ENUM_CODES(PolygonModeModeCodes) = {
-    GL_POINT,
-    GL_LINE,
-    GL_FILL
-};
-ENUM_T(PolygonModeModeEnum, PolygonModeModeStrings, PolygonModeModeCodes)
-#define CheckPolygonModeMode(L, arg) enumCheck((L), (arg), &PolygonModeModeEnum)
-#define PushPolygonModeMode(L, code) enumPush((L), (code), &PolygonModeModeEnum)
-
-enum_t *enumPolygonModeMode(void)
-    { return &PolygonModeModeEnum; }
-
-ENUM_STRINGS(FrontFaceModeStrings) = {
-    "ccw",
-    "cw",
-    NULL
-};
-ENUM_CODES(FrontFaceModeCodes) = {
-    GL_CCW,
-    GL_CW
-};
-ENUM_T(FrontFaceModeEnum, FrontFaceModeStrings, FrontFaceModeCodes)
-#define CheckFrontFaceMode(L, arg) enumCheck((L), (arg), &FrontFaceModeEnum)
-#define PushFrontFaceMode(L, code) enumPush((L), (code), &FrontFaceModeEnum)
-
-enum_t *enumFrontFaceMode(void)
-    { return &FrontFaceModeEnum; }
-
-ENUM_STRINGS(CullFaceModeStrings) = {
-    "front",
-    "back",
-    "front and back",
-    NULL
-};
-ENUM_CODES(CullFaceModeCodes) = {
-    GL_FRONT,
-    GL_BACK,
-    GL_FRONT_AND_BACK
-};
-ENUM_T(CullFaceModeEnum, CullFaceModeStrings, CullFaceModeCodes)
-#define CheckCullFaceMode(L, arg) enumCheck((L), (arg), &CullFaceModeEnum)
-#define PushCullFaceMode(L, code) enumPush((L), (code), &CullFaceModeEnum)
-
-enum_t *enumCullFaceMode(void)
-    { return &CullFaceModeEnum; }
-
-
-ENUM_STRINGS(MultisamplePnameStrings) = {
-    "sample position",
-    NULL
-};
-ENUM_CODES(MultisamplePnameCodes) = {
-    GL_SAMPLE_POSITION
-};
-ENUM_T(MultisamplePnameEnum, MultisamplePnameStrings, MultisamplePnameCodes)
-#define CheckMultisamplePname(L, arg) enumCheck((L), (arg), &MultisamplePnameEnum)
-#define PushMultisamplePname(L, code) enumPush((L), (code), &MultisamplePnameEnum)
-
-ENUM_STRINGS(PnameStrings) = {
-    "fade threshold size",
-    "sprite coord origin",
-    NULL
-};
-ENUM_CODES(PnameCodes) = {
-    GL_POINT_FADE_THRESHOLD_SIZE,
-    GL_POINT_SPRITE_COORD_ORIGIN
-};
-ENUM_T(PnameEnum, PnameStrings, PnameCodes)
-#define CheckPname(L, arg) enumCheck((L), (arg), &PnameEnum)
-#define PushPname(L, code) enumPush((L), (code), &PnameEnum)
-
-ENUM_STRINGS(OriginStrings) = {
-    "lower left",
-    "upper left",
-    NULL
-};
-ENUM_CODES(OriginCodes) = {
-    GL_LOWER_LEFT,
-    GL_UPPER_LEFT
-};
-ENUM_T(OriginEnum, OriginStrings, OriginCodes)
-#define CheckOrigin(L, arg) enumCheck((L), (arg), &OriginEnum)
-#define PushOrigin(L, code) enumPush((L), (code), &OriginEnum)
-
-enum_t *enumOrigin(void)
-    { return &OriginEnum; }
-
-
 static int PointParameter(lua_State *L)
     {
-    GLenum pname = CheckPname(L, 1);
+    GLenum pname = checkpointpname(L, 1);
     switch(pname)
         {
         case GL_POINT_FADE_THRESHOLD_SIZE: glPointParameterf(pname, luaL_checknumber(L, 2));
                                             break;
-        case GL_POINT_SPRITE_COORD_ORIGIN: glPointParameteri(pname, CheckOrigin(L, 2)); 
+        case GL_POINT_SPRITE_COORD_ORIGIN: glPointParameteri(pname, checkorigin(L, 2)); 
                                             break;
         default: 
             return luaL_error(L, UNEXPECTED_ERROR);
@@ -152,7 +47,7 @@ FLOAT_FUNC(MinSampleShading)
 
 static int GetMultisample(lua_State *L)
     {
-    GLenum pname = CheckMultisamplePname(L, 1);
+    GLenum pname = checkmultisamplepname(L, 1);
     switch(pname)
         {
         case GL_SAMPLE_POSITION:
@@ -174,7 +69,7 @@ static int GetMultisample(lua_State *L)
 
 static int CullFace(lua_State *L)
     {
-    GLenum mode = CheckCullFaceMode(L, 1);
+    GLenum mode = checkcullfacemode(L, 1);
     glCullFace(mode);
     CheckError(L);
     return 0;
@@ -182,7 +77,7 @@ static int CullFace(lua_State *L)
 
 static int FrontFace(lua_State *L)
     {
-    GLenum mode = CheckFrontFaceMode(L, 1);
+    GLenum mode = checkfrontfacemode(L, 1);
     glFrontFace(mode);
     CheckError(L);
     return 0;
@@ -190,8 +85,8 @@ static int FrontFace(lua_State *L)
 
 static int PolygonMode(lua_State *L)
     {
-    GLenum face = CheckPolygonModeFace(L, 1);
-    GLenum mode = CheckPolygonModeMode(L, 2);
+    GLenum face = checkpolygonmodeface(L, 1);
+    GLenum mode = checkpolygonmodemode(L, 2);
     glPolygonMode(face, mode);
     CheckError(L);
     return 0;

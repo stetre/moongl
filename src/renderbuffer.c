@@ -25,56 +25,11 @@
 
 #include "internal.h"
 
-ENUM_STRINGS(TargetStrings) = {
-    "renderbuffer",
-    NULL
-};
-ENUM_CODES(TargetCodes) = {
-    GL_RENDERBUFFER,
-};
-ENUM_T(TargetEnum,TargetStrings, TargetCodes)
-#define CheckTarget(L, arg) enumCheck((L), (arg), &TargetEnum)
-#define CheckTargetOrName(L, arg, dst) enumOrUint((L), (arg), (dst), &TargetEnum, 0)
-
-enum_t *enumRbTarget(void)
-    { return &TargetEnum; }
-
-ENUM_STRINGS(PnameStrings) = {
-    "width",
-    "height", 
-    "internal format",
-    "samples",
-    "red size", 
-    "green size", 
-    "blue size", 
-    "alpha size", 
-    "depth size",
-    "stencil size",
-    NULL
-};
-ENUM_CODES(PnameCodes) = {
-    GL_RENDERBUFFER_WIDTH,
-    GL_RENDERBUFFER_HEIGHT, 
-    GL_RENDERBUFFER_INTERNAL_FORMAT,
-    GL_RENDERBUFFER_SAMPLES,
-    GL_RENDERBUFFER_RED_SIZE, 
-    GL_RENDERBUFFER_GREEN_SIZE, 
-    GL_RENDERBUFFER_BLUE_SIZE, 
-    GL_RENDERBUFFER_ALPHA_SIZE, 
-    GL_RENDERBUFFER_DEPTH_SIZE,
-    GL_RENDERBUFFER_STENCIL_SIZE,
-};
-ENUM_T(PnameEnum, PnameStrings, PnameCodes)
-#define CheckPname(L, arg) enumCheck((L), (arg), &PnameEnum)
-#define PushPname(L, code) enumPush((L), (code), &PnameEnum)
-
-
-
 static int RenderbufferStorageMultisample(lua_State *L)
     {
     int arg = 1;
     GLenum target;
-    GLuint renderbuffer = CheckTargetOrName(L, arg++, &target);
+    GLuint renderbuffer = checktargetorname(L, arg++, &target, DOMAIN_RENDERBUFFER_TARGET);
     GLsizei samples = luaL_checkinteger(L, arg++);
     GLenum internalformat = checkinternalformat(L, arg++);
     GLsizei width = luaL_checkinteger(L, arg++);
@@ -91,7 +46,7 @@ static int RenderbufferStorage(lua_State *L)
     {
     int arg = 1;
     GLenum target;
-    GLuint renderbuffer = CheckTargetOrName(L, arg++, &target);
+    GLuint renderbuffer = checktargetorname(L, arg++, &target, DOMAIN_RENDERBUFFER_TARGET);
     GLenum internalformat = checkinternalformat(L, arg++);
     GLsizei width = luaL_checkinteger(L, arg++);
     GLsizei height = luaL_checkinteger(L, arg++);
@@ -116,7 +71,7 @@ static int GetInt(lua_State *L, GLenum target, GLuint renderbuffer, GLenum pname
     return 1;
     }
 
-static int GetEnum(lua_State *L, GLenum target, GLuint renderbuffer, GLenum pname, enum_t *e)
+static int GetInternalFormat(lua_State *L, GLenum target, GLuint renderbuffer, GLenum pname)
     {
     GLint param;
     if(renderbuffer==0)
@@ -124,7 +79,7 @@ static int GetEnum(lua_State *L, GLenum target, GLuint renderbuffer, GLenum pnam
     else
         glGetNamedRenderbufferParameteriv(renderbuffer, pname, &param);
     CheckError(L);
-    return enumPush(L, param, e);
+    return pushinternalformat(L, param);
     }
 
 
@@ -132,8 +87,8 @@ static int GetRenderbufferParameter(lua_State *L)
     {
     int arg = 1;
     GLenum target;
-    GLuint renderbuffer = CheckTargetOrName(L, arg++, &target);
-    GLenum pname = CheckPname(L, arg++);
+    GLuint renderbuffer = checktargetorname(L, arg++, &target, DOMAIN_RENDERBUFFER_TARGET);
+    GLenum pname = checkrenderbufferpname(L, arg++);
     switch(pname)
         {   
         case GL_RENDERBUFFER_WIDTH:
@@ -146,7 +101,7 @@ static int GetRenderbufferParameter(lua_State *L)
         case GL_RENDERBUFFER_DEPTH_SIZE:
         case GL_RENDERBUFFER_STENCIL_SIZE: return GetInt(L, target, renderbuffer, pname);
         case GL_RENDERBUFFER_INTERNAL_FORMAT: 
-            return GetEnum(L, target, renderbuffer, pname, enumInternalFormat());
+            return GetInternalFormat(L, target, renderbuffer, pname);
         default:
             return luaL_error(L, UNEXPECTED_ERROR);
         }
@@ -154,9 +109,9 @@ static int GetRenderbufferParameter(lua_State *L)
     }
 
 
-NEW_TARGET_FUNC(Renderbuffer, &TargetEnum)
+NEW_TARGET_FUNC(Renderbuffer, checkrenderbuffertarget)
 GEN_FUNC(Renderbuffer)
-BIND_TARGET_FUNC(Renderbuffer, &TargetEnum)
+BIND_TARGET_FUNC(Renderbuffer, checkrenderbuffertarget)
 DELETE_FUNC(Renderbuffer)
 IS_FUNC(Renderbuffer)
 CREATE_FUNC(Renderbuffer)

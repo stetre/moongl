@@ -25,46 +25,6 @@
 
 #include "internal.h"
 
-ENUM_STRINGS(PnameStrings) = {
-    "enabled",
-    "size",
-    "stride",
-    "type",
-    "normalized",
-    "integer",
-    "long",
-    "divisor",
-    "relative offset",
-    "binding offset",
-    "buffer binding",
-    "attrib binding",
-    "current attrib",
-    "element array buffer binding",
-    NULL
-};
-ENUM_CODES(PnameCodes) = {
-//VAO
-    GL_VERTEX_ATTRIB_ARRAY_ENABLED,
-    GL_VERTEX_ATTRIB_ARRAY_SIZE,
-    GL_VERTEX_ATTRIB_ARRAY_STRIDE,
-    GL_VERTEX_ATTRIB_ARRAY_TYPE,
-    GL_VERTEX_ATTRIB_ARRAY_NORMALIZED,
-    GL_VERTEX_ATTRIB_ARRAY_INTEGER,
-    GL_VERTEX_ATTRIB_ARRAY_LONG,
-    GL_VERTEX_ATTRIB_ARRAY_DIVISOR,
-    GL_VERTEX_ATTRIB_RELATIVE_OFFSET,
-    GL_VERTEX_BINDING_OFFSET,
-//CURRENT ONLY
-    GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING,
-    GL_VERTEX_ATTRIB_BINDING,
-    GL_CURRENT_VERTEX_ATTRIB,
-    GL_ELEMENT_ARRAY_BUFFER_BINDING,
-};
-ENUM_T(PnameEnum, PnameStrings, PnameCodes)
-#define CheckPname(L, arg) enumCheck((L), (arg), &PnameEnum)
-#define PushPname(L, code) enumPush((L), (code), &PnameEnum)
-#define ToStringPname(code) enumToString((code), &PnameEnum)
-
 /*------------------------------------------------------------------------------*
  | GetVertexArray                                                               |
  *------------------------------------------------------------------------------*/
@@ -110,13 +70,13 @@ static int ArrayGetInt64(lua_State *L, GLuint array, GLenum pname)
     }
 
 
-static int ArrayGetEnum(lua_State *L, GLuint array, GLenum pname, enum_t *e)
+static int ArrayGetEnum(lua_State *L, GLuint array, GLenum pname)
     {
     GLint param;
     GLuint index = luaL_checkinteger(L, 3);
     glGetVertexArrayIndexediv(array, index, pname, &param);
     CheckError(L);
-    return enumPush(L, param, e);
+    return pushtype(L, param);
     }
 
 
@@ -124,7 +84,7 @@ static int GetVertexArray(lua_State *L)
 /* get_vertex_array(array, pname [, index]) */
     {
     GLuint array = luaL_checkinteger(L, 1);
-    GLenum pname = CheckPname(L,2);
+    GLenum pname = checkvertexpname(L, 2);
 
     switch(pname)
         {
@@ -139,7 +99,7 @@ static int GetVertexArray(lua_State *L)
         case GL_VERTEX_ATTRIB_RELATIVE_OFFSET:
                 return ArrayGetInt(L, array, pname);
         case GL_VERTEX_ATTRIB_ARRAY_TYPE:
-                return ArrayGetEnum(L, array, pname, enumType());
+                return ArrayGetEnum(L, array, pname);
         case GL_VERTEX_BINDING_OFFSET:
                 return ArrayGetInt64(L, array, pname);
         case GL_ELEMENT_ARRAY_BUFFER_BINDING:
@@ -170,19 +130,19 @@ static int GetInt_(lua_State *L, GLuint index, GLenum pname, int boolean)
     return 1;
     }
 
-static int GetEnum(lua_State *L, GLuint index, GLenum pname, enum_t *e)
+static int GetEnum(lua_State *L, GLuint index, GLenum pname)
     {
     GLint param;
     glGetVertexAttribiv(index, pname, &param);
     CheckError(L);
-    return enumPush(L, param, e);
+    return pushtype(L, param);
     }
 
 
 static int GetVertexAttrib(lua_State *L)
     {
     GLuint index = luaL_checkinteger(L, 1);
-    GLenum pname = CheckPname(L,2);
+    GLenum pname = checkvertexpname(L,2);
     switch(pname)
         {
         case GL_VERTEX_ATTRIB_ARRAY_ENABLED:
@@ -198,7 +158,7 @@ static int GetVertexAttrib(lua_State *L)
         case GL_VERTEX_ATTRIB_BINDING:
                         return GetInt(L, index, pname);
         case GL_VERTEX_ATTRIB_ARRAY_TYPE:
-                        return GetEnum(L, index, pname, enumType());
+                        return GetEnum(L, index, pname);
 //      case GL_VERTEX_BINDING_OFFSET: //@@
         default:
             return luaL_argerror(L, 2, "invalid pname");

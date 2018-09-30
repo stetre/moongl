@@ -33,6 +33,10 @@ void *Malloc(lua_State *L, size_t size);
 void* Malloc2(lua_State *L, size_t size, void **ptr2, size_t size2);
 #define Malloc3 moongl_Malloc3
 void* Malloc3(lua_State *L, size_t size, void **ptr2, size_t size2, void **ptr3, size_t size3);
+#define MallocNoErr moongl_MallocNoErr
+void *MallocNoErr(lua_State *L, size_t size);
+#define Strdup moongl_Strdup
+char *Strdup(lua_State *L, const char *s);
 #define Free moongl_Free
 void Free(lua_State *L, void *ptr);
 #define CheckError moongl_CheckError
@@ -63,12 +67,12 @@ int CheckErrorFree3(lua_State *L, void *ptr1, void *ptr2, void *ptr3);
     return 1;                                                           \
     }
 
-#define NEW_TARGET_FUNC(what, e)    /* glGen() + glBind() */                \
+#define NEW_TARGET_FUNC(what, checkxxx)    /* glGen() + glBind() */         \
     static int New##what(lua_State *L)                                      \
     {                                                                       \
     GLuint name;                                                            \
-    GLenum target = enumCheck(L, 1, e);                                     \
-    check_init_called(L);                                           \
+    GLenum target = checkxxx(L, 1);                                         \
+    check_init_called(L);                                                   \
     glGen##what##s(1, &name);                                               \
     CheckError(L);                                                          \
     glBind##what(target, name);                                             \
@@ -105,10 +109,10 @@ int CheckErrorFree3(lua_State *L, void *ptr1, void *ptr2, void *ptr3);
     return 0;                                       \
     }
 
-#define BIND_TARGET_FUNC(what, e)                   \
+#define BIND_TARGET_FUNC(what, checkxxx)            \
 static int Bind##what(lua_State *L)                 \
     {                                               \
-    GLenum target = enumCheck(L, 1, e);             \
+    GLenum target = checkxxx(L, 1);                 \
     GLuint name = luaL_optinteger(L, 2, 0);         \
     glBind##what(target, name);                     \
     CheckError(L);                                  \

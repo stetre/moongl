@@ -25,193 +25,6 @@
 
 #include "internal.h"
 
-ENUM_STRINGS(FuncStrings) = {
-    "never",
-    "always",
-    "less",
-    "greater",
-    "equal",
-    "lequal",
-    "gequal",
-    "notequal",
-    NULL
-};
-ENUM_CODES(FuncCodes) = {
-    GL_NEVER,
-    GL_ALWAYS,
-    GL_LESS,
-    GL_GREATER,
-    GL_EQUAL,
-    GL_LEQUAL,
-    GL_GEQUAL,
-    GL_NOTEQUAL,
-};
-ENUM_T(FuncEnum, FuncStrings, FuncCodes)
-#define CheckFunc(L, arg) enumCheck((L), (arg), &FuncEnum)
-#define PushFunc(L, code) enumPush((L), (code), &FuncEnum)
-
-enum_t *enumStencilFunc(void)
-    { return &FuncEnum; }
-
-ENUM_STRINGS(FaceStrings) = {
-    "front",
-    "back",
-    "front and back",
-    NULL
-};
-ENUM_CODES(FaceCodes) = {
-    GL_FRONT,
-    GL_BACK,
-    GL_FRONT_AND_BACK,
-};
-ENUM_T(FaceEnum, FaceStrings, FaceCodes)
-#define CheckFace(L, arg) enumCheck((L), (arg), &FaceEnum)
-#define PushFace(L, code) enumPush((L), (code), &FaceEnum)
-
-ENUM_STRINGS(ActionStrings) = {
-    "keep",
-    "zero", 
-    "replace", 
-    "incr", 
-    "incr wrap", 
-    "decr", 
-    "decr wrap",
-    "invert",
-    NULL
-};
-ENUM_CODES(ActionCodes) = {
-    GL_KEEP,
-    GL_ZERO, 
-    GL_REPLACE, 
-    GL_INCR, 
-    GL_INCR_WRAP, 
-    GL_DECR, 
-    GL_DECR_WRAP,
-    GL_INVERT
-};
-ENUM_T(ActionEnum, ActionStrings, ActionCodes)
-#define CheckAction(L, arg) enumCheck((L), (arg), &ActionEnum)
-#define PushAction(L, code) enumPush((L), (code), &ActionEnum)
-
-enum_t *enumStencilOp(void)
-    { return &ActionEnum; }
-
-ENUM_STRINGS(ModeStrings) = {
-    "min", 
-    "max",
-    "add", 
-    "subtract", 
-    "reverse subtract",
-    NULL
-};
-ENUM_CODES(ModeCodes) = {
-    GL_MIN, 
-    GL_MAX,
-    GL_FUNC_ADD, 
-    GL_FUNC_SUBTRACT, 
-    GL_FUNC_REVERSE_SUBTRACT,
-};
-ENUM_T(ModeEnum, ModeStrings, ModeCodes)
-#define CheckMode(L, arg) enumCheck((L), (arg), &ModeEnum)
-#define PushMode(L, code) enumPush((L), (code), &ModeEnum)
-
-enum_t *enumBlendMode(void)
-    { return &ModeEnum; }
-
-ENUM_STRINGS(FactorStrings) = {
-    "zero",
-    "one",
-    "src color",
-    "one minus src color",
-    "dst color",
-    "one minus dst color",
-    "src alpha",
-    "one minus src alpha",
-    "dst alpha",
-    "one minus dst alpha",
-    "constant color",
-    "one minus constant color",
-    "constant alpha",
-    "one minus constant alpha",
-    "src alpha saturate",
-    "src1 color",
-    "one minus src1 color",
-    "src1 alpha", 
-    "one minus src1 alpha",
-    NULL
-};
-ENUM_CODES(FactorCodes) = {
-    GL_ZERO,
-    GL_ONE,
-    GL_SRC_COLOR,
-    GL_ONE_MINUS_SRC_COLOR,
-    GL_DST_COLOR,
-    GL_ONE_MINUS_DST_COLOR,
-    GL_SRC_ALPHA,
-    GL_ONE_MINUS_SRC_ALPHA,
-    GL_DST_ALPHA,
-    GL_ONE_MINUS_DST_ALPHA,
-    GL_CONSTANT_COLOR,
-    GL_ONE_MINUS_CONSTANT_COLOR,
-    GL_CONSTANT_ALPHA,
-    GL_ONE_MINUS_CONSTANT_ALPHA,
-    GL_SRC_ALPHA_SATURATE,
-    GL_SRC1_COLOR,
-    GL_ONE_MINUS_SRC1_COLOR,
-    GL_SRC1_ALPHA, 
-    GL_ONE_MINUS_SRC1_ALPHA,
-};
-ENUM_T(FactorEnum, FactorStrings, FactorCodes)
-#define CheckFactor(L, arg) enumCheck((L), (arg), &FactorEnum)
-#define PushFactor(L, code) enumPush((L), (code), &FactorEnum)
-
-enum_t *enumBlendFactor(void)
-    { return &FactorEnum; }
-
-ENUM_STRINGS(OpStrings) = {
-    "clear", 
-    "and", 
-    "and reverse", 
-    "copy",
-    "and inverted", 
-    "noop", 
-    "xor", 
-    "or", 
-    "nor", 
-    "equiv", 
-    "or reverse", 
-    "invert", 
-    "copy inverted", 
-    "or inverted",
-    "nand", 
-    "set", 
-    NULL
-};
-ENUM_CODES(OpCodes) = {
-    GL_CLEAR, 
-    GL_AND, 
-    GL_AND_REVERSE, 
-    GL_COPY,
-    GL_AND_INVERTED, 
-    GL_NOOP, 
-    GL_XOR, 
-    GL_OR, 
-    GL_NOR, 
-    GL_EQUIV, 
-    GL_OR_REVERSE, 
-    GL_INVERT, 
-    GL_COPY_INVERTED, 
-    GL_OR_INVERTED,
-    GL_NAND, 
-    GL_SET, 
-};
-ENUM_T(OpEnum, OpStrings, OpCodes)
-#define CheckOp(L, arg) enumCheck((L), (arg), &OpEnum)
-#define PushOp(L, code) enumPush((L), (code), &OpEnum)
-
-enum_t *enumLogicOp(void)
-    { return &OpEnum; }
-
 static int Scissor(lua_State *L)
     {
     GLint x, y;
@@ -287,12 +100,12 @@ static int SampleMask(lua_State *L)
 static int StencilFunc(lua_State *L)
     {
     GLenum face;
-    GLenum func = CheckFunc(L, 1);
+    GLenum func = checkstencilfunc(L, 1);
     GLint ref = luaL_checkinteger(L, 2);
     GLuint mask = luaL_checkinteger(L, 3);
     if(lua_isstring(L, 4))
         {
-        face = CheckFace(L, 4);
+        face = checkface(L, 4);
         glStencilFuncSeparate(face, func, ref, mask);
         }
     else
@@ -304,12 +117,12 @@ static int StencilFunc(lua_State *L)
 static int StencilOp(lua_State *L)
     {
     GLenum face;
-    GLenum sfail = CheckAction(L, 1);
-    GLenum dpfail = CheckAction(L, 2);
-    GLenum dppass = CheckAction(L, 3);
+    GLenum sfail = checkstencilop(L, 1);
+    GLenum dpfail = checkstencilop(L, 2);
+    GLenum dppass = checkstencilop(L, 3);
     if(lua_isstring(L, 4))
         {
-        face = CheckFace(L, 4);
+        face = checkface(L, 4);
         glStencilOpSeparate(face, sfail, dpfail, dppass);
         }
     else
@@ -320,7 +133,7 @@ static int StencilOp(lua_State *L)
 
 static int DepthFunc(lua_State *L)
     {
-    GLenum func = CheckFunc(L, 1);
+    GLenum func = checkstencilfunc(L, 1);
     glDepthFunc(func);
     CheckError(L);
     return 0;
@@ -334,10 +147,10 @@ static int BlendEquation(lua_State *L)
     if(lua_isinteger(L, 1))
         {
         buf = luaL_checkinteger(L, 1);
-        mode = CheckMode(L, 2);
+        mode = checkblendmode(L, 2);
         if(lua_isstring(L, 3))
             {
-            alpha = CheckMode(L,3);
+            alpha = checkblendmode(L,3);
             glBlendEquationSeparatei(buf, mode, alpha);
             }
         else
@@ -345,10 +158,10 @@ static int BlendEquation(lua_State *L)
         }
     else
         {
-        mode = CheckMode(L, 1);
+        mode = checkblendmode(L, 1);
         if(lua_isstring(L, 2))
             {
-            alpha = CheckMode(L,2);
+            alpha = checkblendmode(L,2);
             glBlendEquationSeparate(mode, alpha);
             }
         else
@@ -366,12 +179,12 @@ static int BlendFunc(lua_State *L)
     if(lua_isinteger(L, 1))
         {
         buf = luaL_checkinteger(L, 1);
-        sfactor = CheckFactor(L, 2);
-        dfactor = CheckFactor(L, 3);
+        sfactor = checkblendfactor(L, 2);
+        dfactor = checkblendfactor(L, 3);
         if(lua_isstring(L, 4))
             {
-            sfactorAlpha = CheckFactor(L, 4);
-            dfactorAlpha = CheckFactor(L, 5);
+            sfactorAlpha = checkblendfactor(L, 4);
+            dfactorAlpha = checkblendfactor(L, 5);
             glBlendFuncSeparatei(buf, sfactor, dfactor, sfactorAlpha, dfactorAlpha);
             }
         else
@@ -379,12 +192,12 @@ static int BlendFunc(lua_State *L)
         }
     else
         {
-        sfactor = CheckFactor(L, 1);
-        dfactor = CheckFactor(L, 2);
+        sfactor = checkblendfactor(L, 1);
+        dfactor = checkblendfactor(L, 2);
         if(lua_isstring(L, 3))
             {
-            sfactorAlpha = CheckFactor(L, 3);
-            dfactorAlpha = CheckFactor(L, 4);
+            sfactorAlpha = checkblendfactor(L, 3);
+            dfactorAlpha = checkblendfactor(L, 4);
             glBlendFuncSeparate(sfactor, dfactor, sfactorAlpha, dfactorAlpha);
             }
         else
@@ -408,7 +221,7 @@ static int BlendColor(lua_State *L)
 
 static int LogicOp(lua_State *L)
     {
-    GLenum opcode = CheckOp(L, 1);
+    GLenum opcode = checklogicop(L, 1);
     glLogicOp(opcode);
     CheckError(L);
     return 0;

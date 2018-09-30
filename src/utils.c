@@ -131,3 +131,58 @@ void *checklightuserdata(lua_State *L, int arg)
     return lua_touserdata(L, arg);
     }
 
+GLuint checktargetorname(lua_State *L, int arg, GLenum *dst, uint32_t domain)
+/* The element at the index arg on the Lua stack may be an enum (string), or an integer.
+ * In the first case the enum code is stored in 'code' and 0 is returned.
+ * In the second case the integer value is returned.
+ */
+    {
+    if(lua_isstring(L, arg))
+        {
+        *dst = enums_check(L, domain, arg);
+        return 0;
+        }
+    return (GLuint)luaL_checkinteger(L, arg);
+    }
+
+size_t sizeoftype(lua_State *L, int type)
+    {
+    switch(type)
+        {
+        case GL_NONE: return 0;
+        case GL_UNSIGNED_BYTE: return sizeof(GLbyte);
+        case GL_BYTE:  return sizeof(GLubyte);
+        case GL_UNSIGNED_SHORT:  return sizeof(GLushort);
+        case GL_SHORT:  return sizeof(GLshort);
+        case GL_UNSIGNED_INT: return sizeof(GLuint);
+        case GL_INT:  return sizeof(GLint);
+        case GL_FIXED: return sizeof(GLfixed);
+        case GL_HALF_FLOAT:  return sizeof(GLhalf);
+        case GL_FLOAT:  return sizeof(GLfloat);
+        case GL_DOUBLE: return sizeof(GLdouble);
+        case GL_UNSIGNED_BYTE_3_3_2:
+        case GL_UNSIGNED_BYTE_2_3_3_REV:  return sizeof(GLubyte);
+        case GL_UNSIGNED_SHORT_5_6_5:
+        case GL_UNSIGNED_SHORT_5_6_5_REV:
+        case GL_UNSIGNED_SHORT_4_4_4_4:
+        case GL_UNSIGNED_SHORT_4_4_4_4_REV:
+        case GL_UNSIGNED_SHORT_5_5_5_1:
+        case GL_UNSIGNED_SHORT_1_5_5_5_REV: return sizeof(GLshort);
+        case GL_UNSIGNED_INT_8_8_8_8: 
+        case GL_UNSIGNED_INT_8_8_8_8_REV: 
+        case GL_UNSIGNED_INT_10_10_10_2: 
+        case GL_UNSIGNED_INT_2_10_10_10_REV:
+        case GL_UNSIGNED_INT_24_8:
+        case GL_UNSIGNED_INT_10F_11F_11F_REV:
+        case GL_UNSIGNED_INT_5_9_9_9_REV: return sizeof(GLuint);
+        case GL_FLOAT_32_UNSIGNED_INT_24_8_REV: return 8; /* 2*32 bit, see 8.4.4.2 */
+        case GL_INT_2_10_10_10_REV: return sizeof(GLint);
+        default:
+            return luaL_error(L, UNEXPECTED_ERROR);
+        }
+    return 0;
+    }
+
+
+
+

@@ -131,35 +131,6 @@ static node_t *CheckSync(lua_State *L, int arg)
  | Bindings                                                                     |
  *------------------------------------------------------------------------------*/
 
-
-ENUM_STRINGS(ConditionStrings) = {
-    "gpu commands complete",
-    NULL
-};
-ENUM_CODES(ConditionCodes) = {
-    GL_SYNC_GPU_COMMANDS_COMPLETE,
-};
-ENUM_T(ConditionEnum, ConditionStrings, ConditionCodes)
-#define CheckCondition(L, arg) enumCheck((L), (arg), &ConditionEnum)
-#define PushCondition(L, code) enumPush((L), (code), &ConditionEnum)
-
-ENUM_STRINGS(StatusStrings) = {
-    "already signaled",
-    "timeout expired",
-    "condition satisfied",
-    "wait failed",
-    NULL
-};
-ENUM_CODES(StatusCodes) = {
-    GL_ALREADY_SIGNALED,
-    GL_TIMEOUT_EXPIRED,
-    GL_CONDITION_SATISFIED,
-    GL_WAIT_FAILED,
-};
-ENUM_T(StatusEnum, StatusStrings, StatusCodes)
-#define CheckStatus(L, arg) enumCheck((L), (arg), &StatusEnum)
-#define PushStatus(L, code) enumPush((L), (code), &StatusEnum)
-
 BITFIELD_STRINGS(FlagStrings) = {
     "flush commands",
     NULL
@@ -171,30 +142,12 @@ BITFIELD_T(FlagBitfield, FlagStrings, FlagCodes)
 #define CheckFlag(L, arg, mand) bitfieldCheck((L), (arg), (mand), &FlagBitfield)
 #define PushFlag(L, code) bitfieldPush((L), (code), &FlagBitfield)
 
-
-ENUM_STRINGS(PnameStrings) = {
-    "type",
-    "status",
-    "condition",
-    "flags",
-    NULL
-};
-ENUM_CODES(PnameCodes) = {
-    GL_OBJECT_TYPE,
-    GL_SYNC_STATUS,
-    GL_SYNC_CONDITION,
-    GL_SYNC_FLAGS,
-};
-ENUM_T(PnameEnum, PnameStrings, PnameCodes)
-#define CheckPname(L, arg) enumCheck((L), (arg), &PnameEnum)
-#define PushPname(L, code) enumPush((L), (code), &PnameEnum)
-
 static int FenceSync(lua_State *L)
     {
     node_t *node;
     GLsync sync; 
     GLbitfield flags = 0;
-    GLenum condition = CheckCondition(L, 1);
+    GLenum condition = checkcondition(L, 1);
     sync = glFenceSync(condition, flags);
     CheckError(L);
     if(sync==0) /* paranoia... */
@@ -243,7 +196,7 @@ static int ClientWaitSync(lua_State *L)
     GLbitfield flags = CheckFlag(L, 3, 0);
     status = glClientWaitSync(node->sync, flags, timeout);
     CheckError(L);
-    PushStatus(L, status);
+    pushsyncstatus(L, status);
     return 1;
     }
 
@@ -304,7 +257,7 @@ static int GetSyncCondition(lua_State *L, GLsync sync, GLenum pname)
     CheckError(L);
     if(length==0)
         return luaL_error(L, UNEXPECTED_ERROR);
-    PushCondition(L, value);
+    pushcondition(L, value);
     return 1;
     }
 
@@ -339,7 +292,7 @@ static int GetSyncFlags(lua_State *L, GLsync sync, GLenum pname)
 static int GetSync(lua_State *L)
     {
     node_t *node = CheckSync(L, 1);
-    GLenum pname = CheckPname(L, 2);
+    GLenum pname = checksyncpname(L, 2);
     switch(pname)
         {
         case GL_OBJECT_TYPE: return GetObjectType(L, node->sync, pname);

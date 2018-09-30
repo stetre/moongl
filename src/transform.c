@@ -25,111 +25,9 @@
 
 #include "internal.h"
 
-#define ModeEnum enumDrawMode()
-#define CheckMode(L, arg) enumCheck((L), (arg), ModeEnum)
-#define PushMode(L, code) enumPush((L), (code), ModeEnum)
-
-#define BufferModeEnum enumBufferMode()
-#define CheckBufferMode(L, arg) enumCheck((L), (arg), BufferModeEnum)
-#define PushBufferMode(L, code) enumPush((L), (code), BufferModeEnum)
-
-ENUM_STRINGS(TargetStrings) = {
-    "transform feedback",
-    NULL
-};
-ENUM_CODES(TargetCodes) = {
-    GL_TRANSFORM_FEEDBACK
-};
-ENUM_T(TargetEnum,TargetStrings, TargetCodes)
-#define CheckTarget(L, arg) enumCheck((L), (arg), &TargetEnum)
-
-ENUM_STRINGS(PrimModeStrings) = {
-    "triangles",
-    "lines",
-    "points",
-    NULL
-};
-ENUM_CODES(PrimModeCodes) = {
-    GL_TRIANGLES,
-    GL_LINES,
-    GL_POINTS,
-};
-ENUM_T(PrimModeEnum, PrimModeStrings, PrimModeCodes)
-#define CheckPrimMode(L, arg) enumCheck((L), (arg), &PrimModeEnum)
-#define PushPrimMode(L, code) enumPush((L), (code), &PrimModeEnum)
-
-ENUM_STRINGS(ProvokeModeStrings) = {
-    "first vertex convention",
-    "last vertex convention",
-/* get() only: */
-    "provoking vertex",
-    "undefined vertex",
-    NULL
-};
-ENUM_CODES(ProvokeModeCodes) = {
-    GL_FIRST_VERTEX_CONVENTION,
-    GL_LAST_VERTEX_CONVENTION,
-    GL_PROVOKING_VERTEX,
-    GL_UNDEFINED_VERTEX,
-};
-ENUM_T(ProvokeModeEnum, ProvokeModeStrings, ProvokeModeCodes)
-#define CheckProvokeMode(L, arg) enumCheck((L), (arg), &ProvokeModeEnum)
-#define PushProvokeMode(L, code) enumPush((L), (code), &ProvokeModeEnum)
-
-enum_t *enumProvokeMode(void)
-    { return &ProvokeModeEnum; }
-
-ENUM_STRINGS(OriginStrings) = {
-    "lower left",
-    "upper left",
-    NULL
-};
-ENUM_CODES(OriginCodes) = {
-    GL_LOWER_LEFT,
-    GL_UPPER_LEFT,
-};
-ENUM_T(OriginEnum, OriginStrings, OriginCodes)
-#define CheckOrigin(L, arg) enumCheck((L), (arg), &OriginEnum)
-#define PushOrigin(L, code) enumPush((L), (code), &OriginEnum)
-
-ENUM_STRINGS(DepthStrings) = {
-    "negative one to one",
-    "zero to one",
-    NULL
-};
-ENUM_CODES(DepthCodes) = {
-    GL_NEGATIVE_ONE_TO_ONE,
-    GL_ZERO_TO_ONE,
-};
-ENUM_T(DepthEnum, DepthStrings, DepthCodes)
-#define CheckDepth(L, arg) enumCheck((L), (arg), &DepthEnum)
-#define PushDepth(L, code) enumPush((L), (code), &DepthEnum)
-
-
-ENUM_STRINGS(PnameStrings) = {
-    "paused",
-    "active",
-    "buffer binding",
-    "buffer start",
-    "buffer size",
-    NULL
-};
-ENUM_CODES(PnameCodes) = {
-    GL_TRANSFORM_FEEDBACK_PAUSED,
-    GL_TRANSFORM_FEEDBACK_ACTIVE,
-    GL_TRANSFORM_FEEDBACK_BUFFER_BINDING,
-    GL_TRANSFORM_FEEDBACK_BUFFER_START,
-    GL_TRANSFORM_FEEDBACK_BUFFER_SIZE,
-};
-ENUM_T(PnameEnum, PnameStrings, PnameCodes)
-#define CheckPname(L, arg) enumCheck((L), (arg), &PnameEnum)
-#define PushPname(L, code) enumPush((L), (code), &PnameEnum)
-
-
-
-NEW_TARGET_FUNC(TransformFeedback, &TargetEnum)
+NEW_TARGET_FUNC(TransformFeedback, checktransformtarget)
 GEN_FUNC(TransformFeedback)
-BIND_TARGET_FUNC(TransformFeedback, &TargetEnum)
+BIND_TARGET_FUNC(TransformFeedback, checktransformtarget)
 DELETE_FUNC(TransformFeedback)
 IS_FUNC(TransformFeedback)
 CREATE_FUNC(TransformFeedback)
@@ -137,7 +35,7 @@ CREATE_FUNC(TransformFeedback)
 
 static int BeginTransformFeedback(lua_State *L)
     {
-    GLenum primitiveMode = CheckPrimMode(L, 1);
+    GLenum primitiveMode = checkprimmode(L, 1);
     glBeginTransformFeedback(primitiveMode);
     CheckError(L);
     return 0;
@@ -173,7 +71,7 @@ static int TransformFeedbackBufferRange(lua_State *L)
 static int DrawTransformFeedback(lua_State *L)
     {
     GLsizei instancecount;
-    GLenum mode = CheckMode(L, 1);
+    GLenum mode = checkdrawmode(L, 1);
     GLuint id = luaL_checkinteger(L, 2);
     if(lua_isnoneornil(L, 3))
         glDrawTransformFeedback(mode, id);
@@ -189,7 +87,7 @@ static int DrawTransformFeedback(lua_State *L)
 static int DrawTransformFeedbackStream(lua_State *L)
     {
     GLsizei instancecount;
-    GLenum mode = CheckMode(L, 1);
+    GLenum mode = checkdrawmode(L, 1);
     GLuint id = luaL_checkinteger(L, 2);
     GLuint stream = luaL_checkinteger(L, 3);
     if(lua_isnoneornil(L, 4))
@@ -211,7 +109,7 @@ static int TransformFeedbackVaryings(lua_State *L)
     GLsizei count, arg, i;
     const GLchar **varyings;
     GLuint program = luaL_checkinteger(L, 1);
-    GLenum mode = CheckBufferMode(L, 2);
+    GLenum mode = checkbuffermode(L, 2);
     arg = 3;
     while(!lua_isnoneornil(L, arg))
         luaL_checkstring(L, arg++);
@@ -261,7 +159,7 @@ static int GetTransformFeedback(lua_State *L)
     GLint param;
     GLint64 param64;
     GLuint xfb = luaL_checkinteger(L, 1);
-    GLenum pname = CheckPname(L, 2);    
+    GLenum pname = checktransformpname(L, 2);
     switch(pname)
         {
         case GL_TRANSFORM_FEEDBACK_PAUSED:
@@ -296,7 +194,7 @@ static int GetTransformFeedback(lua_State *L)
 
 static int ProvokingVertex(lua_State *L)
     {
-    GLenum mode = CheckProvokeMode(L, 1);
+    GLenum mode = checkprovokemode(L, 1);
     glProvokingVertex(mode);
     CheckError(L);
     return 0;
@@ -305,8 +203,8 @@ static int ProvokingVertex(lua_State *L)
 
 static int ClipControl(lua_State *L)
     {
-    GLenum origin = CheckOrigin(L, 1);
-    GLenum depth = CheckDepth(L, 2);
+    GLenum origin = checkorigin(L, 1);
+    GLenum depth = checkdepth(L, 2);
     glClipControl(origin, depth);
     CheckError(L);
     return 0;

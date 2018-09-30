@@ -25,110 +25,6 @@
 
 #include "internal.h"
 
-ENUM_STRINGS(SourceStrings) = {
-    "don't care",
-    "api",
-    "shader compiler",
-    "window system",
-    "third party",
-    "application",
-    "other",
-    NULL
-};
-ENUM_CODES(SourceCodes) = {
-    GL_DONT_CARE,
-    GL_DEBUG_SOURCE_API,
-    GL_DEBUG_SOURCE_SHADER_COMPILER,
-    GL_DEBUG_SOURCE_WINDOW_SYSTEM,
-    GL_DEBUG_SOURCE_THIRD_PARTY,
-    GL_DEBUG_SOURCE_APPLICATION,
-    GL_DEBUG_SOURCE_OTHER,
-};
-ENUM_T(SourceEnum, SourceStrings, SourceCodes)
-#define CheckSource(L, arg) enumCheck((L), (arg), &SourceEnum)
-#define PushSource(L, code) enumPush((L), (code), &SourceEnum)
-
-ENUM_STRINGS(TypeStrings) = {
-    "don't care",
-    "error",
-    "deprecated behavior",
-    "undefined behavior",
-    "performance",
-    "portability",
-    "marker",
-    "push group",
-    "pop group",
-    "other",
-    NULL
-};
-ENUM_CODES(TypeCodes) = {
-    GL_DONT_CARE,
-    GL_DEBUG_TYPE_ERROR,
-    GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR,
-    GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR,
-    GL_DEBUG_TYPE_PERFORMANCE,
-    GL_DEBUG_TYPE_PORTABILITY,
-    GL_DEBUG_TYPE_MARKER,
-    GL_DEBUG_TYPE_PUSH_GROUP,
-    GL_DEBUG_TYPE_POP_GROUP,
-    GL_DEBUG_TYPE_OTHER,
-};
-ENUM_T(TypeEnum, TypeStrings, TypeCodes)
-#define CheckType(L, arg) enumCheck((L), (arg), &TypeEnum)
-#define PushType(L, code) enumPush((L), (code), &TypeEnum)
-
-ENUM_STRINGS(SeverityStrings) = {
-    "don't care",
-    "high",
-    "medium",
-    "low",
-    "notification",
-    NULL
-};
-ENUM_CODES(SeverityCodes) = {
-    GL_DONT_CARE,
-    GL_DEBUG_SEVERITY_HIGH,
-    GL_DEBUG_SEVERITY_MEDIUM,
-    GL_DEBUG_SEVERITY_LOW,
-    GL_DEBUG_SEVERITY_NOTIFICATION,
-};
-ENUM_T(SeverityEnum, SeverityStrings, SeverityCodes)
-#define CheckSeverity(L, arg) enumCheck((L), (arg), &SeverityEnum)
-#define PushSeverity(L, code) enumPush((L), (code), &SeverityEnum)
-
-
-ENUM_STRINGS(IdentifierStrings) = {
-    "buffer", 
-    "framebuffer",
-    "renderbuffer", 
-    "program pipeline", 
-    "program", 
-    "query", 
-    "sampler", 
-    "shader", 
-    "texture", 
-    "transform feedback", 
-    "vertex array", 
-    NULL
-};
-ENUM_CODES(IdentifierCodes) = {
-    GL_BUFFER, 
-    GL_FRAMEBUFFER,
-    GL_RENDERBUFFER, 
-    GL_PROGRAM_PIPELINE, 
-    GL_PROGRAM, 
-    GL_QUERY, 
-    GL_SAMPLER, 
-    GL_SHADER, 
-    GL_TEXTURE, 
-    GL_TRANSFORM_FEEDBACK, 
-    GL_VERTEX_ARRAY, 
-};
-ENUM_T(IdentifierEnum, IdentifierStrings, IdentifierCodes)
-#define CheckIdentifier(L, arg) enumCheck((L), (arg), &IdentifierEnum)
-#define PushIdentifier(L, code) enumPush((L), (code), &IdentifierEnum)
-
-
 /*------------------------------------------------------------------------------*
  | Debug Callback                                                               |
  *------------------------------------------------------------------------------*/
@@ -142,10 +38,10 @@ static void Callback(GLenum source, GLenum type, GLuint id, GLenum severity,
     /* Retrieve the callback */
     lua_getfield(L, LUA_REGISTRYINDEX, CALLBACK);
     /* push arguments */
-    PushSource(L, source);
-    PushType(L, type);
+    pushdebugsource(L, source);
+    pushdebugtype(L, type);
     lua_pushinteger(L, id);
-    PushSeverity(L, severity);
+    pushdebugseverity(L, severity);
     lua_pushlstring(L, message, length);
     /* Execute the callback */
     lua_call(L, 5, 0);
@@ -175,9 +71,9 @@ static int DebugMessageControl(lua_State *L)
     {
     GLsizei arg, i, count;
     GLuint *ids;
-    GLenum source = CheckSource(L, 1);
-    GLenum type = CheckType(L, 2);
-    GLenum severity = CheckSeverity(L, 3);
+    GLenum source = checkdebugsource(L, 1);
+    GLenum type = checkdebugtype(L, 2);
+    GLenum severity = checkdebugseverity(L, 3);
     GLboolean enabled = checkboolean(L, 4);
     arg = 5;
     while(!lua_isnoneornil(L, arg))
@@ -201,9 +97,9 @@ static int DebugMessageControl(lua_State *L)
 static int DebugMessageInsert(lua_State *L)
     {
     size_t length;
-    GLenum source = CheckSource(L, 1);
-    GLenum type = CheckType(L, 2);
-    GLenum severity = CheckSeverity(L, 3);
+    GLenum source = checkdebugsource(L, 1);
+    GLenum type = checkdebugtype(L, 2);
+    GLenum severity = checkdebugseverity(L, 3);
     GLuint id = luaL_checkinteger(L, 4);
     const GLchar *message = luaL_checklstring(L, 5, &length);
     glDebugMessageInsert(source, type, id, severity, (GLsizei)length, message);
@@ -214,7 +110,7 @@ static int DebugMessageInsert(lua_State *L)
 static int PushDebugGroup(lua_State *L)
     {
     size_t length;
-    GLenum source = CheckSource(L, 1);
+    GLenum source = checkdebugsource(L, 1);
     GLuint id = luaL_checkinteger(L, 2);
     const GLchar *message = luaL_checklstring(L, 3, &length);
     glPushDebugGroup(source, id, (GLsizei)length, message);
@@ -227,7 +123,7 @@ VOID_FUNC(PopDebugGroup)
 static int ObjectLabel(lua_State *L)
     {
     size_t length;
-    GLenum identifier = CheckIdentifier(L, 1);
+    GLenum identifier = checkdebugidentifier(L, 1);
     GLuint name = luaL_checkinteger(L, 2);
     const GLchar *label= luaL_checklstring(L, 3, &length);
     glObjectLabel(identifier, name, (GLsizei)length, label);
@@ -259,7 +155,7 @@ static int GetDebugMessageLog(lua_State *L) //@@
 static int GetObjectLabel(lua_State *L)
     {
     GLsizei length, bufsz = MaxLabelLength(L);
-    GLenum identifier = CheckIdentifier(L, 1);
+    GLenum identifier = checkdebugidentifier(L, 1);
     GLuint name = luaL_checkinteger(L, 2);
     GLchar *label = (GLchar*)Malloc(L, bufsz*sizeof(GLchar));
     glGetObjectLabel(identifier, name, bufsz, &length, label);

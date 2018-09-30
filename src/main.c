@@ -57,6 +57,7 @@ int luaopen_moongl(lua_State *L)
 
     /* add gl functions: */
     moongl_open_init(L);
+    moongl_open_enums(L);
     moongl_open_nongl(L);
 
     moongl_open_hint(L);

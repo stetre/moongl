@@ -125,23 +125,10 @@ static int GetAttachedShaders(lua_State *L)
  | program_parameter()                                                          |
  *------------------------------------------------------------------------------*/
 
-ENUM_STRINGS(PPnameStrings) = {
-    "separable",
-    "binary retrievable hint",
-    NULL
-};
-ENUM_CODES(PPnameCodes) = {
-    GL_PROGRAM_SEPARABLE,
-    GL_PROGRAM_BINARY_RETRIEVABLE_HINT,
-};
-ENUM_T(PPnameEnum, PPnameStrings, PPnameCodes)
-#define CheckPPname(L, arg) enumCheck((L), (arg), &PPnameEnum)
-#define PushPPname(L, code) enumPush((L), (code), &PPnameEnum)
-
 static int ProgramParameter(lua_State *L)
     {
     GLuint program = luaL_checkinteger(L, 1);
-    GLenum pname = CheckPPname(L, 2);
+    GLenum pname = checkprogramparameterpname(L, 2);
     GLint value = checkboolean(L, 3);
     glProgramParameteri(program, pname, value);
     CheckError(L);
@@ -152,164 +139,6 @@ static int ProgramParameter(lua_State *L)
 /*------------------------------------------------------------------------------*
  | get_program()                                                                |
  *------------------------------------------------------------------------------*/
-
-ENUM_STRINGS(PnameStrings) = {
-    "active atomic counter buffers",
-    "active attributes",
-    "active attribute max length",
-    "active uniforms",
-    "active uniform blocks",
-    "active uniform block max name length",
-    "active uniform max length",
-    "attached shaders",
-    "validate status",
-    "compute work group size",
-    "delete status",
-    "geometry input type",
-    "geometry output type",
-    "geometry shader invocations",
-    "geometry vertices out",
-    "info log length",
-    "link status",
-    "program separable",
-    "program binary retrievable hint",
-    "tess control output vertices",
-    "tess gen mode",
-    "tess gen spacing",
-    "tess gen vertex order",
-    "tess gen point mode",
-    "program binary length",
-    "transform feedback buffer mode",
-    "transform feedback varyings",
-    "transform feedback varying max length",
-    NULL
-};
-ENUM_CODES(PnameCodes) = {
-    GL_ACTIVE_ATOMIC_COUNTER_BUFFERS,
-    GL_ACTIVE_ATTRIBUTES,
-    GL_ACTIVE_ATTRIBUTE_MAX_LENGTH,
-    GL_ACTIVE_UNIFORMS,
-    GL_ACTIVE_UNIFORM_BLOCKS,
-    GL_ACTIVE_UNIFORM_BLOCK_MAX_NAME_LENGTH,
-    GL_ACTIVE_UNIFORM_MAX_LENGTH,
-    GL_ATTACHED_SHADERS,
-    GL_VALIDATE_STATUS,
-    GL_COMPUTE_WORK_GROUP_SIZE,
-    GL_DELETE_STATUS,
-    GL_GEOMETRY_INPUT_TYPE,
-    GL_GEOMETRY_OUTPUT_TYPE,
-    GL_GEOMETRY_SHADER_INVOCATIONS,
-    GL_GEOMETRY_VERTICES_OUT,
-    GL_INFO_LOG_LENGTH,
-    GL_LINK_STATUS,
-    GL_PROGRAM_SEPARABLE,
-    GL_PROGRAM_BINARY_RETRIEVABLE_HINT,
-    GL_TESS_CONTROL_OUTPUT_VERTICES,
-    GL_TESS_GEN_MODE,
-    GL_TESS_GEN_SPACING,
-    GL_TESS_GEN_VERTEX_ORDER,
-    GL_TESS_GEN_POINT_MODE,
-    GL_PROGRAM_BINARY_LENGTH,
-    GL_TRANSFORM_FEEDBACK_BUFFER_MODE,
-    GL_TRANSFORM_FEEDBACK_VARYINGS,
-    GL_TRANSFORM_FEEDBACK_VARYING_MAX_LENGTH,
-};
-ENUM_T(PnameEnum, PnameStrings, PnameCodes)
-#define CheckPname(L, arg) enumCheck((L), (arg), &PnameEnum)
-#define PushPname(L, code) enumPush((L), (code), &PnameEnum)
-
-ENUM_STRINGS(GeometryInputTypeStrings) = {
-    "points",
-    "lines",
-    "lines adjacency",
-    "triangles",
-    "triangles adjacency",
-    NULL
-};
-ENUM_CODES(GeometryInputTypeCodes) = {
-    GL_POINTS,
-    GL_LINES,
-    GL_LINES_ADJACENCY,
-    GL_TRIANGLES,
-    GL_TRIANGLES_ADJACENCY,
-};
-ENUM_T(GeometryInputTypeEnum, GeometryInputTypeStrings, GeometryInputTypeCodes)
-#define CheckGeometryInputType(L, arg) enumCheck((L), (arg), &GeometryInputTypeEnum)
-#define PushGeometryInputType(L, code) enumPush((L), (code), &GeometryInputTypeEnum)
-
-ENUM_STRINGS(GeometryOutputTypeStrings) = {
-    "points",
-    "line strip",
-    "triangle",
-    NULL
-};
-ENUM_CODES(GeometryOutputTypeCodes) = {
-    GL_POINTS,
-    GL_LINE_STRIP,
-    GL_TRIANGLE_STRIP,
-};
-ENUM_T(GeometryOutputTypeEnum, GeometryOutputTypeStrings, GeometryOutputTypeCodes)
-#define CheckGeometryOutputType(L, arg) enumCheck((L), (arg), &GeometryOutputTypeEnum)
-#define PushGeometryOutputType(L, code) enumPush((L), (code), &GeometryOutputTypeEnum)
-
-ENUM_STRINGS(TessGenModeStrings) = {
-    "quads",
-    "triangles",
-    "isolines",
-    NULL
-};
-ENUM_CODES(TessGenModeCodes) = {
-    GL_QUADS,
-    GL_TRIANGLES,
-    GL_ISOLINES,
-};
-ENUM_T(TessGenModeEnum, TessGenModeStrings, TessGenModeCodes)
-#define CheckTessGenMode(L, arg) enumCheck((L), (arg), &TessGenModeEnum)
-#define PushTessGenMode(L, code) enumPush((L), (code), &TessGenModeEnum)
-
-ENUM_STRINGS(GenSpacingStrings) = {
-    "equal",
-    "fractional even",
-    "fractional odd",
-    NULL
-};
-ENUM_CODES(GenSpacingCodes) = {
-    GL_EQUAL,
-    GL_FRACTIONAL_EVEN,
-    GL_FRACTIONAL_ODD,
-};
-ENUM_T(GenSpacingEnum, GenSpacingStrings, GenSpacingCodes)
-#define CheckGenSpacing(L, arg) enumCheck((L), (arg), &GenSpacingEnum)
-#define PushGenSpacing(L, code) enumPush((L), (code), &GenSpacingEnum)
-
-ENUM_STRINGS(GenVertexOrderStrings) = {
-    "ccw",
-    "cw",
-    NULL
-};
-ENUM_CODES(GenVertexOrderCodes) = {
-    GL_CCW,
-    GL_CW,
-};
-ENUM_T(GenVertexOrderEnum, GenVertexOrderStrings, GenVertexOrderCodes)
-#define CheckGenVertexOrder(L, arg) enumCheck((L), (arg), &GenVertexOrderEnum)
-#define PushGenVertexOrder(L, code) enumPush((L), (code), &GenVertexOrderEnum)
-
-ENUM_STRINGS(BufferModeStrings) = {
-    "separate attribs",
-    "interleaved attribs",
-    NULL
-};
-ENUM_CODES(BufferModeCodes) = {
-    GL_SEPARATE_ATTRIBS,
-    GL_INTERLEAVED_ATTRIBS,
-};
-ENUM_T(BufferModeEnum, BufferModeStrings, BufferModeCodes)
-#define CheckBufferMode(L, arg) enumCheck((L), (arg), &BufferModeEnum)
-#define PushBufferMode(L, code) enumPush((L), (code), &BufferModeEnum)
-
-enum_t *enumBufferMode(void)
-    { return &BufferModeEnum; }
 
 static int GetBoolean(lua_State *L, GLuint program, GLenum pname)
     {
@@ -348,12 +177,12 @@ static int GetInteger3(lua_State *L, GLuint program, GLenum pname)
     return 3;
     }
 
-static int GetEnum(lua_State *L, GLuint program, GLenum pname, enum_t *e)
+static int GetEnum(lua_State *L, GLuint program, GLenum pname, uint32_t domain)
     {
     GLint params;
     glGetProgramiv(program, pname, &params);
     CheckError(L);
-    return enumPush(L, params, e);
+    return enums_push(L, domain, params);
     }
 
 static int GetProgram(lua_State *L)
@@ -363,7 +192,7 @@ static int GetProgram(lua_State *L)
 #define INTEGER3 return GetInteger3(L, program, pname);
 #define ENUM(e) return GetEnum(L, program, pname, e);
     GLuint program = luaL_checkinteger(L, 1);
-    GLenum pname = CheckPname(L, 2);
+    GLenum pname = checkprogrampname(L, 2);
     switch(pname)
         {
         case GL_ACTIVE_ATOMIC_COUNTER_BUFFERS: INTEGER
@@ -377,8 +206,8 @@ static int GetProgram(lua_State *L)
         case GL_VALIDATE_STATUS: BOOLEAN
         case GL_COMPUTE_WORK_GROUP_SIZE: INTEGER3
         case GL_DELETE_STATUS: BOOLEAN
-        case GL_GEOMETRY_INPUT_TYPE: ENUM(&GeometryInputTypeEnum)
-        case GL_GEOMETRY_OUTPUT_TYPE:  ENUM(&GeometryOutputTypeEnum)
+        case GL_GEOMETRY_INPUT_TYPE: ENUM(DOMAIN_GEOMETRY_INPUT_TYPE)
+        case GL_GEOMETRY_OUTPUT_TYPE:  ENUM(DOMAIN_GEOMETRY_OUTPUT_TYPE)
         case GL_GEOMETRY_SHADER_INVOCATIONS: INTEGER
         case GL_GEOMETRY_VERTICES_OUT: INTEGER
         case GL_INFO_LOG_LENGTH: INTEGER
@@ -386,12 +215,12 @@ static int GetProgram(lua_State *L)
         case GL_PROGRAM_SEPARABLE: BOOLEAN
         case GL_PROGRAM_BINARY_RETRIEVABLE_HINT: BOOLEAN
         case GL_TESS_CONTROL_OUTPUT_VERTICES: INTEGER
-        case GL_TESS_GEN_MODE: ENUM(&TessGenModeEnum)
-        case GL_TESS_GEN_SPACING: ENUM(&GenSpacingEnum)
-        case GL_TESS_GEN_VERTEX_ORDER: ENUM(&GenVertexOrderEnum)
+        case GL_TESS_GEN_MODE: ENUM(DOMAIN_TESS_GEN_MODE)
+        case GL_TESS_GEN_SPACING: ENUM(DOMAIN_TESS_GEN_SPACING)
+        case GL_TESS_GEN_VERTEX_ORDER: ENUM(DOMAIN_TESS_GEN_VERTEX_ORDER)
         case GL_TESS_GEN_POINT_MODE: BOOLEAN
         case GL_PROGRAM_BINARY_LENGTH: INTEGER
-        case GL_TRANSFORM_FEEDBACK_BUFFER_MODE: ENUM(&BufferModeEnum)
+        case GL_TRANSFORM_FEEDBACK_BUFFER_MODE: ENUM(DOMAIN_BUFFER_MODE)
         case GL_TRANSFORM_FEEDBACK_VARYINGS: INTEGER
         case GL_TRANSFORM_FEEDBACK_VARYING_MAX_LENGTH: INTEGER
         default: return luaL_error(L, UNEXPECTED_ERROR);
