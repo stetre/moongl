@@ -267,6 +267,17 @@ static int func(lua_State *L)               \
     return 0;                               \
     }
 
+#define FLOAT3_FUNC(func) /* void func(GLfloat, GLfloat, GLfloat) */\
+static int func(lua_State *L)               \
+    {                                       \
+    GLfloat arg1 = luaL_checknumber(L, 1);  \
+    GLfloat arg2 = luaL_checknumber(L, 2);  \
+    GLfloat arg3 = luaL_checknumber(L, 3);  \
+    gl##func(arg1, arg2, arg3);             \
+    CheckError(L);                          \
+    return 0;                               \
+    }
+
 #define DOUBLE_FUNC(func) /* void func(GLdouble) */     \
 static int func(lua_State *L)               \
     {                                       \

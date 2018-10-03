@@ -130,6 +130,9 @@ static int Versions(lua_State *L)
 #ifdef GL_VERSION_4_5
     lua_pushstring(L, "GL_VERSION_4_5"); n++;
 #endif /* GL_VERSION_4_5 */
+#ifdef GL_VERSION_4_6
+    lua_pushstring(L, "GL_VERSION_4_6"); n++;
+#endif /* GL_VERSION_4_6 */
     return n;
     }
 

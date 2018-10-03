@@ -1096,6 +1096,46 @@ typedef void (*GLDEBUGPROC)(GLenum source,GLenum type,GLuint id,GLenum severity,
 
 #endif /* GL_VERSION_4_5 */
 
+/*------------------------------------------------------------------------------*
+ | GL_VERSION_4_5                                                               |
+ *------------------------------------------------------------------------------*/
+
+#ifndef GL_VERSION_4_6
+
+#define GL_SHADER_BINARY_FORMAT_SPIR_V    0x9551
+#define GL_SPIR_V_BINARY                  0x9552
+#define GL_PARAMETER_BUFFER               0x80EE
+#define GL_PARAMETER_BUFFER_BINDING       0x80EF
+#define GL_CONTEXT_FLAG_NO_ERROR_BIT      0x00000008
+#define GL_VERTICES_SUBMITTED             0x82EE
+#define GL_PRIMITIVES_SUBMITTED           0x82EF
+#define GL_VERTEX_SHADER_INVOCATIONS      0x82F0
+#define GL_TESS_CONTROL_SHADER_PATCHES    0x82F1
+#define GL_TESS_EVALUATION_SHADER_INVOCATIONS 0x82F2
+#define GL_GEOMETRY_SHADER_PRIMITIVES_EMITTED 0x82F3
+#define GL_FRAGMENT_SHADER_INVOCATIONS    0x82F4
+#define GL_COMPUTE_SHADER_INVOCATIONS     0x82F5
+#define GL_CLIPPING_INPUT_PRIMITIVES      0x82F6
+#define GL_CLIPPING_OUTPUT_PRIMITIVES     0x82F7
+#define GL_POLYGON_OFFSET_CLAMP           0x8E1B
+#define GL_SPIR_V_EXTENSIONS              0x9553
+#define GL_NUM_SPIR_V_EXTENSIONS          0x9554
+#define GL_TEXTURE_MAX_ANISOTROPY         0x84FE
+#define GL_MAX_TEXTURE_MAX_ANISOTROPY     0x84FF
+#define GL_TRANSFORM_FEEDBACK_OVERFLOW    0x82EC
+#define GL_TRANSFORM_FEEDBACK_STREAM_OVERFLOW 0x82ED
+
+#define glSpecializeShader(shader,pEntryPoint,numSpecializationConstants,pConstantIndex,pConstantValue) \
+    notavailable(L,shader,pEntryPoint,numSpecializationConstants,pConstantIndex,pConstantValue)
+#define glMultiDrawArraysIndirectCount(mode,indirect,drawcount,maxdrawcount,stride) \
+    notavailable(L,mode,indirect,drawcount,maxdrawcount,stride)
+#define glMultiDrawElementsIndirectCount(mode,type,indirect,drawcount,maxdrawcount,stride)  \
+    notavailable(L,mode,type,indirect,drawcount,maxdrawcount,stride)
+#define glPolygonOffsetClamp(factor,units,clamp)    \
+    notavailable(L,factor,units,clamp)
+
+#endif /* GL_VERSION_4_6 */
+
 
 /*@@ MISSING DEFINES on my machine: */
 #ifndef GL_COPY_READ_BUFFER_BINDING

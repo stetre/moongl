@@ -116,6 +116,12 @@ static int ShaderBinary(lua_State *L) //@@
     return 0;
     }
 
+//@@void glSpecializeShader(GLuint shader, const GLchar *pEntryPoint, GLuint numSpecializationConstants, const GLuint *pConstantIndex, const GLuint *pConstantValue);
+static int SpecializeShader(lua_State *L) //@@ 4_6
+    {
+    NOT_AVAILABLE;
+    return 0;
+    }
 
 static int GetShaderInfoLog(lua_State *L)
     {
@@ -195,6 +201,7 @@ static int GetShader(lua_State *L)
         case GL_COMPILE_STATUS: BOOLEAN
         case GL_INFO_LOG_LENGTH: INTEGER
         case GL_SHADER_SOURCE_LENGTH: INTEGER
+        case GL_SPIR_V_BINARY: BOOLEAN //@@ 4_6
         default: return luaL_error(L, UNEXPECTED_ERROR);
         }
     return 0;
@@ -294,6 +301,7 @@ static const struct luaL_Reg Functions[] =
         { "delete_shaders", DeleteShaders },
         { "is_shader", IsShader  },
         { "shader_binary", ShaderBinary },
+        { "specialize_shader", SpecializeShader },
         { "get_shader_info_log", GetShaderInfoLog },
         { "get_shader_source", GetShaderSource },
         { "get_shader", GetShader },

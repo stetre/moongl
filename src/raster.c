@@ -93,6 +93,7 @@ static int PolygonMode(lua_State *L)
     }
 
 FLOAT2_FUNC(PolygonOffset)
+FLOAT3_FUNC(PolygonOffsetClamp) //@@ 4_6
 
 static const struct luaL_Reg Functions[] = 
     {
@@ -105,6 +106,7 @@ static const struct luaL_Reg Functions[] =
         { "front_face", FrontFace },
         { "polygon_mode", PolygonMode },
         { "polygon_offset", PolygonOffset },
+        { "polygon_offset_clamp", PolygonOffsetClamp },
         { NULL, NULL } /* sentinel */
     };
 

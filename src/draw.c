@@ -106,6 +106,12 @@ static int MultiDrawArraysIndirect(lua_State *L)
     return 0;
     }
 
+//@@void glMultiDrawArraysIndirectCount(GLenum mode, const void *indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
+static int MultiDrawArraysIndirectCount(lua_State *L) //@@ 4_6
+    {
+    NOT_AVAILABLE;
+    return 0;
+    }
 
 static int DrawElements(lua_State *L)
 /* draw_elements(mode, count, type, indices [, instancecount [, baseinstance]])
@@ -196,6 +202,12 @@ static int MultiDrawElementsIndirect(lua_State *L)
     return 0;
     }
 
+//@@void glMultiDrawElementsIndirectCount(GLenum mode, GLenum type, const void *indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
+static int MultiDrawElementsIndirectCount(lua_State *L) //@@ 4_6
+    {
+    NOT_AVAILABLE;
+    return 0;
+    }
 
 static int DrawElementsBaseVertex(lua_State *L)
 /* draw_elements_base_vertex(mode,count, type, indices, basevertex [, instancecount, baseinstance]) 
@@ -327,10 +339,12 @@ static const struct luaL_Reg Functions[] =
         { "draw_arrays_indirect", DrawArraysIndirect },
         { "multi_draw_arrays", MultiDrawArrays },
         { "multi_draw_arrays_indirect", MultiDrawArraysIndirect },
+        { "multi_draw_arrays_indirect_count", MultiDrawArraysIndirectCount },
         { "draw_elements", DrawElements },
         { "draw_elements_indirect", DrawElementsIndirect },
         { "multi_draw_elements", MultiDrawElements },
         { "multi_draw_elements_indirect", MultiDrawElementsIndirect },
+        { "multi_draw_elements_indirect_count", MultiDrawElementsIndirectCount },
         { "draw_elements_base_vertex", DrawElementsBaseVertex },
         { "multi_draw_elements_base_vertex", MultiDrawElementsBaseVertex },
         { "draw_range_elements", DrawRangeElements },

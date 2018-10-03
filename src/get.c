@@ -590,7 +590,7 @@ static int Get(lua_State *L)
         case GL_NUM_SHADER_BINARY_FORMATS: return GetInt(L, pname);
         case GL_PROGRAM_BINARY_FORMATS: return GetIntN(L, pname, GL_NUM_PROGRAM_BINARY_FORMATS);
         case GL_PROGRAM_PIPELINE_BINDING: return GetInt(L, pname);
-        case GL_SHADER_BINARY_FORMATS: return GetIntN(L, pname, GL_NUM_SHADER_BINARY_FORMATS);
+		case GL_SHADER_BINARY_FORMATS: return GetIntN(L, pname, GL_NUM_SHADER_BINARY_FORMATS); //@@ 4_6 no: GetEnumN
         case GL_SHADER_COMPILER: return GetBoolean(L, pname);
         case GL_SHADER_STORAGE_BUFFER_OFFSET_ALIGNMENT: return GetInt(L, pname);
         case GL_UNIFORM_BUFFER_OFFSET_ALIGNMENT: return GetInt(L, pname);

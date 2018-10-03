@@ -1261,6 +1261,7 @@ void moongl_open_enums(lua_State *L)
     ADD(COMPILE_STATUS, "compile status");
     ADD(INFO_LOG_LENGTH, "info log length");
     ADD(SHADER_SOURCE_LENGTH, "source length");
+    ADD(SPIR_V_BINARY, "spir v binary"); //@@ 4_6
 
     domain = DOMAIN_PRECISION_FORMAT;
     ADD(LOW_FLOAT, "low float");
