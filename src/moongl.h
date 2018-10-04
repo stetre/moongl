@@ -36,7 +36,7 @@
 
 #include <GL/glew.h>
 
-#define MOONGL_VERSION      "0.5"
+#define MOONGL_VERSION      "0.6"
 
 #endif /* moonglDEFINED */
 

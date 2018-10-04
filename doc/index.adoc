@@ -1,6 +1,6 @@
 = MoonGL Reference Manual
 Stefano Trettel
-v0.5, 2017-05-25
+v0.6, 2018-10-04
 :toc: left
 :toclevels: 2
 :stylesdir: ./
