@@ -29,12 +29,14 @@ BITFIELD_STRINGS(ContextFlagStrings) = {
     "forward compatible",
     "debug",
     "robust access",
+    "no error",
     NULL
 };
 BITFIELD_CODES(ContextFlagCodes) = {
     GL_CONTEXT_FLAG_FORWARD_COMPATIBLE_BIT,
     GL_CONTEXT_FLAG_DEBUG_BIT,
     GL_CONTEXT_FLAG_ROBUST_ACCESS_BIT,
+    GL_CONTEXT_FLAG_NO_ERROR_BIT, //GL_VERSION_4_6
 };
 BITFIELD_T(ContextFlagBitfield, ContextFlagStrings, ContextFlagCodes)
 #define CheckContextFlag(L, arg, mand) bitfieldCheck((L), (arg), (mand), &ContextFlagBitfield)
@@ -103,6 +105,7 @@ static int GetEnumN(lua_State *L, GLenum pname, GLenum numpname, uint32_t domain
     val = (GLint*)Malloc(L, num*sizeof(GLint));
     glGetIntegerv(pname, val);
     CheckErrorFree(L, val);
+    luaL_checkstack(L, num, NULL);
     for(i = 0; i<num; i++)
         enums_push(L, domain, val[i]);
     Free(L, val);
@@ -400,6 +403,7 @@ static int Get(lua_State *L)
         case GL_MIN_MAP_BUFFER_ALIGNMENT: return GetInt(L, pname);
         case GL_MINOR_VERSION: return GetInt(L, pname);
         case GL_NUM_EXTENSIONS: return GetInt(L, pname);
+        case GL_NUM_SPIR_V_EXTENSIONS: return GetInt(L, pname); //GL_VERSION_4_6
         case GL_NUM_SHADING_LANGUAGE_VERSIONS: return GetInt(L, pname);
         case GL_TIMESTAMP: return GetInt(L, pname);
         /* Buffer Binding State */
@@ -408,6 +412,7 @@ static int Get(lua_State *L)
         case GL_COPY_WRITE_BUFFER_BINDING: return GetInt(L, pname);
         case GL_DRAW_INDIRECT_BUFFER_BINDING: return GetInt(L, pname);
         case GL_ELEMENT_ARRAY_BUFFER_BINDING: return GetInt(L, pname);
+        case GL_PARAMETER_BUFFER_BINDING: return GetInt(L, pname); //GL_VERSION_4_6
         case GL_QUERY_BUFFER_BINDING: return GetInt(L, pname);
         case GL_TEXTURE_BUFFER_BINDING: return GetInt(L, pname);
         case GL_VERTEX_ARRAY_BINDING: return GetInt(L, pname);
@@ -590,7 +595,7 @@ static int Get(lua_State *L)
         case GL_NUM_SHADER_BINARY_FORMATS: return GetInt(L, pname);
         case GL_PROGRAM_BINARY_FORMATS: return GetIntN(L, pname, GL_NUM_PROGRAM_BINARY_FORMATS);
         case GL_PROGRAM_PIPELINE_BINDING: return GetInt(L, pname);
-		case GL_SHADER_BINARY_FORMATS: return GetIntN(L, pname, GL_NUM_SHADER_BINARY_FORMATS); //@@ 4_6 no: GetEnumN
+        case GL_SHADER_BINARY_FORMATS: return GetEnumN(L, pname, GL_NUM_SHADER_BINARY_FORMATS, DOMAIN_SHADER_BINARY_FORMAT); //GL_VERSION_4_6
         case GL_SHADER_COMPILER: return GetBoolean(L, pname);
         case GL_SHADER_STORAGE_BUFFER_OFFSET_ALIGNMENT: return GetInt(L, pname);
         case GL_UNIFORM_BUFFER_OFFSET_ALIGNMENT: return GetInt(L, pname);
@@ -615,6 +620,7 @@ static int Get(lua_State *L)
         case GL_POLYGON_OFFSET_FILL: return GetBoolean(L, pname);
         case GL_POLYGON_OFFSET_LINE: return GetBoolean(L, pname);
         case GL_POLYGON_OFFSET_POINT: return GetBoolean(L, pname);
+        case GL_POLYGON_OFFSET_CLAMP: return GetFloat(L, pname); //GL_VERSION_4_6
         case GL_POLYGON_OFFSET_UNITS: return GetFloat(L, pname);
         case GL_POLYGON_SMOOTH: return GetBoolean(L, pname);
         case GL_PROGRAM_POINT_SIZE: return GetBoolean(L, pname);
@@ -727,6 +733,7 @@ static int Get(lua_State *L)
         case GL_MAX_TEXTURE_BUFFER_SIZE: return GetInt(L, pname);
         case GL_MAX_TEXTURE_LOD_BIAS: return GetFloat(L, pname);
         case GL_MAX_TEXTURE_SIZE: return GetInt(L, pname);
+        case GL_MAX_TEXTURE_MAX_ANISOTROPY: return GetFloat(L, pname); //GL_VERSION_4_6
         case GL_NUM_COMPRESSED_TEXTURE_FORMATS: return GetInt(L, pname);
         case GL_SAMPLER_BINDING: return GetInt(L, pname);
         case GL_TEXTURE_BINDING_1D: return GetInt(L, pname);

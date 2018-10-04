@@ -51,6 +51,15 @@ https://www.khronos.org/opengl/wiki/GLAPI/glDeleteShader[glDeleteShader].#
 * _boolean_ = *is_shader*(_shader_)
 ////
 
+[[gl.shader_binary]]
+* *shader_binary*(_{shader~1~, ...}_, <<shaderbinaryformat, _binaryformat_>>, _binary_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glShaderBinary[glShaderBinary].#
+
+[[gl.specialize_shader]]
+* *specialize_shader*(_shader_, _entrypoint_, [_{index}_, _{value}_]) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glSpecializeShader[glSpecializeShader].#
+
+
 '''
 
 Program Objects

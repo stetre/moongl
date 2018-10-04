@@ -126,6 +126,7 @@ static int TextureParameter(lua_State *L)
         case GL_TEXTURE_WRAP_T:
         case GL_TEXTURE_WRAP_R:  
                 return SetEnum(L, texture, target, pname, arg, DOMAIN_WRAP);
+        case GL_TEXTURE_MAX_ANISOTROPY:   return SetFloat(L, texture, target, pname, arg); //GL_VERSION_4_6
         default:
             return luaL_error(L, "cannot set parameter '%s'",  luaL_checkstring(L, arg));
         }
@@ -255,6 +256,7 @@ static int GetTextureParameter(lua_State *L)
         case GL_TEXTURE_VIEW_MIN_LAYER:
         case GL_TEXTURE_VIEW_NUM_LAYERS:    return GetInt(L, texture, target, pname);
         case GL_TEXTURE_TARGET:     return GetInt(L, texture, target, pname);
+        case GL_TEXTURE_MAX_ANISOTROPY:    return GetFloat(L, texture, target, pname); //GL_VERSION_4_6
         default:
             {
             const char *name = luaL_checkstring(L, 2);

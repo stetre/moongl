@@ -379,6 +379,7 @@ static int Enum(lua_State *L)
     CASE(imagecompatibilityclass);
     CASE(imageformatcomptype);
     CASE(viewcompatibilitytype);
+    CASE(shaderbinaryformat);
 #undef CASE
     return 0;
     }
@@ -900,6 +901,7 @@ void moongl_open_enums(lua_State *L)
     ADD(TEXTURE_WRAP_R, "wrap r");
     ADD(TEXTURE_BORDER_COLOR, "border color");
     ADD(TEXTURE_SWIZZLE_RGBA, "swizzle rgba");
+    ADD(TEXTURE_MAX_ANISOTROPY, "max anisotropy"); //GL_VERSION_4_6
     /* get only: */
     ADD(IMAGE_FORMAT_COMPATIBILITY_TYPE,  "image format compatibility type");
     ADD(TEXTURE_IMMUTABLE_FORMAT, "immutable format");
@@ -1220,6 +1222,7 @@ void moongl_open_enums(lua_State *L)
     ADD(PIXEL_UNPACK_BUFFER, "pixel unpack");
     ADD(SHADER_STORAGE_BUFFER, "shader storage");
     ADD(TRANSFORM_FEEDBACK_BUFFER, "transform feedback");
+    ADD(PARAMETER_BUFFER, "parameter"); //GL_VERSION_4_6
 
     domain = DOMAIN_BUFFER_RANGE_TARGET;
     ADD(ATOMIC_COUNTER_BUFFER, "atomic counter");
@@ -1261,7 +1264,7 @@ void moongl_open_enums(lua_State *L)
     ADD(COMPILE_STATUS, "compile status");
     ADD(INFO_LOG_LENGTH, "info log length");
     ADD(SHADER_SOURCE_LENGTH, "source length");
-    ADD(SPIR_V_BINARY, "spir v binary"); //@@ 4_6
+    ADD(SPIR_V_BINARY, "spir v binary"); //GL_VERSION_4_6
 
     domain = DOMAIN_PRECISION_FORMAT;
     ADD(LOW_FLOAT, "low float");
@@ -1348,6 +1351,7 @@ void moongl_open_enums(lua_State *L)
     ADD(TEXTURE_WRAP_S,  "wrap s"); 
     ADD(TEXTURE_WRAP_T,  "wrap t"); 
     ADD(TEXTURE_WRAP_R,  "wrap r"); 
+    ADD(TEXTURE_MAX_ANISOTROPY, "max anisotropy"); //GL_VERSION_4_6
     ADD(TEXTURE_MIN_FILTER,  "min filter"); 
     ADD(TEXTURE_MAG_FILTER,  "mag filter"); 
     ADD(TEXTURE_BORDER_COLOR,  "border color"); 
@@ -1380,6 +1384,7 @@ void moongl_open_enums(lua_State *L)
     ADD(POLYGON_OFFSET_FILL, "polygon offset fill");
     ADD(POLYGON_OFFSET_LINE, "polygon offset line");
     ADD(POLYGON_OFFSET_POINT, "polygon offset point");
+    ADD(POLYGON_OFFSET_CLAMP, "polygon offset clamp"); //GL_VERSION_4_6
     ADD(POLYGON_SMOOTH, "polygon smooth");
     ADD(PRIMITIVE_RESTART, "primitive restart");
     ADD(PRIMITIVE_RESTART_FIXED_INDEX, "primitive restart fixed index");
@@ -1411,13 +1416,27 @@ void moongl_open_enums(lua_State *L)
     ADD(DONT_CARE, "don't care");
 
     domain = DOMAIN_QUERY_TARGET;
+    ADD(TIMESTAMP, "timestamp");
     ADD(ANY_SAMPLES_PASSED,  "any samples passed"); 
     ADD(ANY_SAMPLES_PASSED_CONSERVATIVE,  "any samples passed conservative"); 
     ADD(PRIMITIVES_GENERATED,  "primitives generated"); 
     ADD(SAMPLES_PASSED,  "samples passed"); 
     ADD(TIME_ELAPSED, "time elapsed");
     ADD(TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN, "transform feedback primitives written");
-    ADD(TIMESTAMP, "timestamp");
+    //GL_VERSION_4_6:
+    ADD(VERTICES_SUBMITTED, "vertices submitted");
+    ADD(PRIMITIVES_SUBMITTED, "primitives submitted");
+    ADD(VERTEX_SHADER_INVOCATIONS, "vertex shader invocations");
+    ADD(TESS_CONTROL_SHADER_PATCHES, "tess control shader patches");
+    ADD(TESS_EVALUATION_SHADER_INVOCATIONS, "tess evaluation shader invocations");
+    ADD(GEOMETRY_SHADER_PRIMITIVES_EMITTED, "geometry shader primitives emitted");
+    ADD(FRAGMENT_SHADER_INVOCATIONS, "fragment shader invocations");
+    ADD(COMPUTE_SHADER_INVOCATIONS, "compute shader invocations");
+    ADD(GEOMETRY_SHADER_INVOCATIONS, "geometry shader invocations");
+    ADD(CLIPPING_INPUT_PRIMITIVES, "clipping input primitives");
+    ADD(CLIPPING_OUTPUT_PRIMITIVES, "clipping output primitives");
+    ADD(TRANSFORM_FEEDBACK_OVERFLOW, "transform feedback overflow");
+    ADD(TRANSFORM_FEEDBACK_STREAM_OVERFLOW, "transform feedback stream overflow");
 
     domain = DOMAIN_QUERY_PNAME;
     ADD(CURRENT_QUERY, "current query");
@@ -1600,6 +1619,7 @@ void moongl_open_enums(lua_State *L)
     ADD(MIN_MAP_BUFFER_ALIGNMENT, "min map buffer alignment");
     ADD(MINOR_VERSION, "minor version");
     ADD(NUM_EXTENSIONS, "num extensions");
+    ADD(NUM_SPIR_V_EXTENSIONS, "num spir v extensions"); //GL_VERSION_4_6
     ADD(NUM_SHADING_LANGUAGE_VERSIONS, "num shading language versions");
     ADD(TIMESTAMP, "timestamp");
     /* Buffer Binding State */
@@ -1608,6 +1628,7 @@ void moongl_open_enums(lua_State *L)
     ADD(COPY_WRITE_BUFFER_BINDING, "copy write buffer binding");
     ADD(DRAW_INDIRECT_BUFFER_BINDING, "draw indirect buffer binding");
     ADD(ELEMENT_ARRAY_BUFFER_BINDING, "element array buffer binding");
+    ADD(PARAMETER_BUFFER_BINDING, "parameter buffer binding"); //GL_VERSION_4_6
     ADD(QUERY_BUFFER_BINDING, "query buffer binding");
     ADD(TEXTURE_BUFFER_BINDING, "texture buffer binding");
     ADD(VERTEX_ARRAY_BINDING, "vertex array binding");
@@ -1815,6 +1836,7 @@ void moongl_open_enums(lua_State *L)
     ADD(POLYGON_OFFSET_FILL,  "polygon offset fill"); 
     ADD(POLYGON_OFFSET_LINE,  "polygon offset line"); 
     ADD(POLYGON_OFFSET_POINT,  "polygon offset point"); 
+    ADD(POLYGON_OFFSET_CLAMP, "polygon offset clamp"); //GL_VERSION_4_6
     ADD(POLYGON_OFFSET_UNITS, "polygon offset units");
     ADD(POLYGON_SMOOTH,  "polygon smooth"); 
     ADD(PROGRAM_POINT_SIZE,  "program point size"); 
@@ -1926,6 +1948,7 @@ void moongl_open_enums(lua_State *L)
     ADD(MAX_TEXTURE_BUFFER_SIZE, "max texture buffer size");
     ADD(MAX_TEXTURE_LOD_BIAS, "max texture lod bias");
     ADD(MAX_TEXTURE_SIZE, "max texture size");
+    ADD(MAX_TEXTURE_MAX_ANISOTROPY, "max texture max anisotropy"); //GL_VERSION_4_6
     ADD(NUM_COMPRESSED_TEXTURE_FORMATS, "num compressed texture formats");
     ADD(SAMPLER_BINDING, "sampler binding");
     ADD(TEXTURE_BINDING_1D, "texture binding 1d");
@@ -2123,6 +2146,9 @@ void moongl_open_enums(lua_State *L)
     ADD(VIEW_CLASS_RGTC2_RG, "rgtc2 rg");
     ADD(VIEW_CLASS_BPTC_UNORM, "bptc unorm");
     ADD(VIEW_CLASS_BPTC_FLOAT, "bptc float");
+
+    domain = DOMAIN_SHADER_BINARY_FORMAT; //GL_VERSION_4_6
+    ADD(SHADER_BINARY_FORMAT_SPIR_V, "spir v");
 
 #undef ADD
 

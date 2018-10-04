@@ -32,10 +32,10 @@ endif
 ifdef LINUX
 INCDIR = -I/usr/include
 LIBDIR = -L/usr/lib
-LIBS = -lGLEW -lGLU -lGL -lm
+LIBS = -lGLEW -lGL -lm
 endif
 ifdef MINGW
-LIBS = -lglew32 -lglu32 -lopengl32 -lm -llua
+LIBS = -lglew32 -lopengl32 -lm -llua
 endif
 
 Tgt	:= moongl
@@ -45,8 +45,8 @@ Objs := $(Src:.c=.o)
  
 COPT	+= -O2
 #COPT	+= -O0 -g
+#COPT	+= -Wfatal-errors
 COPT	+= -Wall -Wextra -Wpedantic
-COPT	+= -Wfatal-errors
 COPT    += -std=gnu99
 COPT 	+= -DLUAVER=$(LUAVER)
 ifdef LINUX

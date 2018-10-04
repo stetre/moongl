@@ -99,6 +99,7 @@ Drawing Commands:
 *draw_arrays_indirect*(_mode_, _indirect_) +
 *multi_draw_arrays*(_mode_, _first~1~_, _count~1~_, [_first~2~_, _count~2~_ _..._]) +
 *multi_draw_arrays_indirect*(_mode_, _indirect_, _drawcount_, _stride_) +
+*multi_draw_arrays_indirect_count*(_mode_, _indirect_, _drawcount_, _maxdrawcount_, _stride_) +
 [small]#_mode_: '_points_' for GL_POINTS, '_patches_' for GL_PATCHES, etc. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDrawArrays[glDrawArrays].#
 
@@ -108,6 +109,7 @@ Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDrawArrays[glDrawArrays].#
 *draw_elements_base_vertex*(_mode_, _count_, _type_, _indices_, _basevertex_ , [_instancecount_], [_baseinstance_]) +
 *multi_draw_elements*(_mode_, _type_, _count~1~_, _indices~1~_, [_count~2~_, _indices~2~_, _..._]) +
 *multi_draw_elements_indirect*(_mode_, _type_, _indirect_, _drawcount_, _stride_) +
+*multi_draw_elements_indirect_count*(_mode_, _type_, _indirect_, _drawcount_, _maxdrawcount_, _stride_) +
 *multi_draw_elements_base_vertex*(_mode_, _type_, _count~1~_, _indices~1~_, _basevertex~1~_, [_count~2~_, _indices~2~_, _basevertex~2~_, _..._]) +
 *draw_range_elements*(_mode_, _start_, _end_, _count_, _type_, _indices_) +
 *draw_range_elements_base_vertex*(_mode_, _start_, _end_, _count_, _type_, _indices_, _basevertex_) +

@@ -56,6 +56,13 @@ static int GetString(lua_State *L)
                         return luaL_argerror(L, 2, "out of range");
                     s = glGetStringi(name, index);
                     break;
+        case GL_SPIR_V_EXTENSIONS: //GL_VERSION_4_6
+                    index = luaL_checkinteger(L, 2);
+                    num = getSizei(L, GL_NUM_SPIR_V_EXTENSIONS);
+                    if(index >= num)
+                        return luaL_argerror(L, 2, "out of range");
+                    s = glGetStringi(name, index);
+                    break;
         default:
             return luaL_error(L, UNEXPECTED_ERROR);
         }
@@ -99,10 +106,43 @@ static int GetExtensions(lua_State *L)
     return 1;
     }
 
+static int GetSpirVExtensions(lua_State *L)
+    {
+    GLsizei i, count;
+    const GLubyte *s;
+    GLboolean byname = optboolean(L, 1, 0);
+
+    count = getSizei(L, GL_NUM_SPIR_V_EXTENSIONS);
+    CheckError(L);
+
+    lua_newtable(L);
+
+    for(i=0; i<count; i++)
+        {
+        s = glGetStringi(GL_SPIR_V_EXTENSIONS, i);
+        CheckError(L);
+        if(s == NULL)
+            return luaL_error(L, UNEXPECTED_ERROR);
+        if(byname)
+            {
+            lua_pushboolean(L, 1);
+            lua_setfield(L, -2, (char*)s);
+            }
+        else
+            {
+            lua_pushstring(L, (char*)s);
+            lua_rawseti(L, -2, i+1);
+            }
+        }
+
+    return 1;
+    }
+
 static const struct luaL_Reg Functions[] = 
     {
         { "get_string", GetString },
         { "get_extensions", GetExtensions },
+        { "get_spir_v_extensions", GetSpirVExtensions }, //GL_VERSION_4_6
         { NULL, NULL } /* sentinel */
     };
 

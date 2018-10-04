@@ -1369,6 +1369,22 @@ shaders, and deletes them and the program.</span></p>
 </li>
 </ul>
 </div>
+<div id="gl.shader_binary" class="ulist">
+<ul>
+<li>
+<p><strong>shader_binary</strong>(<em>{shader<sub>1</sub>, &#8230;&#8203;}</em>, <a href="#shaderbinaryformat"><em>binaryformat</em></a>, <em>binary</em>)<br>
+<span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glShaderBinary">glShaderBinary</a>.</span></p>
+</li>
+</ul>
+</div>
+<div id="gl.specialize_shader" class="ulist">
+<ul>
+<li>
+<p><strong>specialize_shader</strong>(<em>shader</em>, <em>entrypoint</em>, [<em>{index}</em>, <em>{value}</em>])<br>
+<span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glSpecializeShader">glSpecializeShader</a>.</span></p>
+</li>
+</ul>
+</div>
 <hr>
 <div class="paragraph">
 <p>Program Objects</p>
@@ -2530,6 +2546,7 @@ Rfr:
 <strong>draw_arrays_indirect</strong>(<em>mode</em>, <em>indirect</em>)<br>
 <strong>multi_draw_arrays</strong>(<em>mode</em>, <em>first<sub>1</sub></em>, <em>count<sub>1</sub></em>, [<em>first<sub>2</sub></em>, <em>count<sub>2</sub></em> <em>&#8230;&#8203;</em>])<br>
 <strong>multi_draw_arrays_indirect</strong>(<em>mode</em>, <em>indirect</em>, <em>drawcount</em>, <em>stride</em>)<br>
+<strong>multi_draw_arrays_indirect_count</strong>(<em>mode</em>, <em>indirect</em>, <em>drawcount</em>, <em>maxdrawcount</em>, <em>stride</em>)<br>
 <span class="small"><em>mode</em>: '<em>points</em>' for GL_POINTS, '<em>patches</em>' for GL_PATCHES, etc.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glDrawArrays">glDrawArrays</a>.</span></p>
 </li>
@@ -2543,6 +2560,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glDrawArrays">glDrawArra
 <strong>draw_elements_base_vertex</strong>(<em>mode</em>, <em>count</em>, <em>type</em>, <em>indices</em>, <em>basevertex</em> , [<em>instancecount</em>], [<em>baseinstance</em>])<br>
 <strong>multi_draw_elements</strong>(<em>mode</em>, <em>type</em>, <em>count<sub>1</sub></em>, <em>indices<sub>1</sub></em>, [<em>count<sub>2</sub></em>, <em>indices<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
 <strong>multi_draw_elements_indirect</strong>(<em>mode</em>, <em>type</em>, <em>indirect</em>, <em>drawcount</em>, <em>stride</em>)<br>
+<strong>multi_draw_elements_indirect_count</strong>(<em>mode</em>, <em>type</em>, <em>indirect</em>, <em>drawcount</em>, <em>maxdrawcount</em>, <em>stride</em>)<br>
 <strong>multi_draw_elements_base_vertex</strong>(<em>mode</em>, <em>type</em>, <em>count<sub>1</sub></em>, <em>indices<sub>1</sub></em>, <em>basevertex<sub>1</sub></em>, [<em>count<sub>2</sub></em>, <em>indices<sub>2</sub></em>, <em>basevertex<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
 <strong>draw_range_elements</strong>(<em>mode</em>, <em>start</em>, <em>end</em>, <em>count</em>, <em>type</em>, <em>indices</em>)<br>
 <strong>draw_range_elements_base_vertex</strong>(<em>mode</em>, <em>start</em>, <em>end</em>, <em>count</em>, <em>type</em>, <em>indices</em>, <em>basevertex</em>)<br>
@@ -2897,6 +2915,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glPolygonMode">glPolygon
 <ul>
 <li>
 <p><strong>polygon_offset</strong>(<em>factor</em>, <em>units</em>)<br>
+<strong>polygon_offset_clamp</strong>(<em>factor</em>, <em>units</em>, <em>clamp</em>)<br>
 <span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glPolygonOffset">glPolygonOffset</a>.</span></p>
 </li>
 </ul>
@@ -3488,7 +3507,8 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetString">glGetString
 <div id="gl.get_extensions" class="ulist">
 <ul>
 <li>
-<p>{extension} = <strong>get_extensions</strong>([<em>byname</em>]) <em>NONGL</em><br>
+<p><em>{extension}</em> = <strong>get_extensions</strong>([<em>byname</em>]) <em>NONGL</em><br>
+<em>{spir_v_extension}</em> = <strong>get_spir_v_extensions</strong>([<em>byname</em>]) <em>NONGL</em><br>
 <span class="small">If <em>byname</em> is false (default), returns an array with the names (strings) of all the supported extensions.<br>
 If <em>byname</em> is true, returns a table of <em>true</em> values indexed with the names of the supported extensions.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetString">glGetString</a>.</span></p>
@@ -3616,6 +3636,9 @@ binary string must be a multiple of <em>gl.sizeof(type)</em>.</span></p>
 <div id="intformat" class="paragraph">
 <p><span class="small"><strong>intformat</strong>: '<em>rgb</em>' for GL_RGB, '<em>stencil index</em>' for GL_STENCIL_INDEX, '<em>r8 snorm</em>' for GL_R8_SNORM, etc.<br>
 Values: '<em>none</em>', '<em>stencil index</em>', '<em>depth component</em>', '<em>depth stencil</em>', '<em>red</em>', '<em>rg</em>', '<em>rgb</em>', '<em>rgba</em>', '<em>r8</em>', '<em>r8 snorm</em>', '<em>r16</em>', '<em>r16 snorm</em>', '<em>rg8</em>', '<em>rg8 snorm</em>', '<em>rg16</em>', '<em>rg16 snorm</em>', '<em>r3 g3 b2</em>', '<em>rgb4</em>', '<em>rgb5</em>', '<em>rgb8</em>', '<em>rgb8 snorm</em>', '<em>rgb10</em>', '<em>rgb12</em>', '<em>rgb16 snorm</em>', '<em>rgba2</em>', '<em>rgba4</em>', '<em>rgb5 a1</em>', '<em>rgba8</em>', '<em>rgba8 snorm</em>', '<em>rgb10 a2</em>', '<em>rgb10 a2ui</em>', '<em>rgba12</em>', '<em>rgba16</em>', '<em>srgb8</em>', '<em>srgb8 alpha8</em>', '<em>r16f</em>', '<em>rg16f</em>', '<em>rgb16f</em>', '<em>rgba16f</em>', '<em>r32f</em>', '<em>rg32f</em>', '<em>rgb32f</em>', '<em>rgba32f</em>', '<em>r11f g11f b10f</em>', '<em>rgb9 e5</em>', '<em>r8i</em>', '<em>r8ui</em>', '<em>r16i</em>', '<em>r16ui</em>', '<em>r32i</em>', '<em>r32ui</em>', '<em>rg8i</em>', '<em>rg8ui</em>', '<em>rg16i</em>', '<em>rg16ui</em>', '<em>rg32i</em>', '<em>rg32ui</em>', '<em>rgb8i</em>', '<em>rgb8ui</em>', '<em>rgb16i</em>', '<em>rgb16ui</em>', '<em>rgb32i</em>', '<em>rgb32ui</em>', '<em>rgba8i</em>', '<em>rgba8ui</em>', '<em>rgba16i</em>', '<em>rgba16ui</em>', '<em>rgba32i</em>', '<em>rgba32ui</em>', '<em>depth component16</em>', '<em>depth component24</em>', '<em>depth component32</em>', '<em>depth component32f</em>', '<em>depth24 stencil8</em>', '<em>depth32f stencil8</em>', '<em>stencil index8</em>', '<em>compressed red</em>', '<em>compressed rg</em>', '<em>compressed rgb</em>', '<em>compressed rgba</em>', '<em>compressed srgb</em>', '<em>compressed srgb alpha</em>', '<em>compressed red rgtc1</em>', '<em>compressed signed red rgtc1</em>', '<em>compressed rg rgtc2</em>', '<em>compressed signed rg rgtc2</em>', '<em>compressed rgba bptc unorm</em>', '<em>compressed srgb alpha bptc unorm</em>', '<em>compressed rgb bptc signed float</em>', '<em>compressed rgb bptc unsigned float</em>', '<em>compressed rgb s3tc dxt1 ext</em>', '<em>compressed srgb s3tc dxt1 ext</em>', '<em>compressed rgba s3tc dxt1 ext</em>', '<em>compressed srgb alpha s3tc dxt1 ext</em>', '<em>compressed rgba s3tc dxt3 ext</em>', '<em>compressed srgb alpha s3tc dxt3 ext</em>', '<em>compressed rgba s3tc dxt5 ext</em>', '<em>compressed srgb alpha s3tc dxt5 ext</em>'.</span></p>
+</div>
+<div id="shaderbinaryformat" class="paragraph">
+<p><span class="small"><strong>shaderbinaryformat</strong>: '<em>spir v</em>'.</span></p>
 </div>
 <div id="shadertype" class="paragraph">
 <p><span class="small"><strong>shadertype</strong>: '<em>vertex</em>', '<em>fragment</em>', '<em>geometry</em>', '<em>tess evaluation</em>', '<em>tess control</em>', '<em>compute</em>'.</span></p>

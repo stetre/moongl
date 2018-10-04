@@ -65,5 +65,6 @@ Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glPolygonMode[glPolygonMode].#
 
 [[gl.polygon_offset]]
 * *polygon_offset*(_factor_, _units_) +
+*polygon_offset_clamp*(_factor_, _units_, _clamp_) +
 [small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glPolygonOffset[glPolygonOffset].#
 

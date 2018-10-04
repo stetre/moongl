@@ -44,7 +44,7 @@ void enums_freelist(lua_State *L, uint32_t *list);
 
 
 /* Enum domains */
-#define DOMAIN_RESULT                           0 //@@
+// #define DOMAIN_                          0 not used
 #define DOMAIN_SHADER_TYPE                  1
 #define DOMAIN_STAGE_PNAME                  2
 #define DOMAIN_SUBROUTINE_PNAME             3
@@ -151,6 +151,7 @@ void enums_freelist(lua_State *L, uint32_t *list);
 #define DOMAIN_IMAGE_COMPATIBILITY_CLASS    104
 #define DOMAIN_IMAGE_FORMAT_COMP_TYPE       105
 #define DOMAIN_VIEW_COMPATIBILITY_TYPE      106
+#define DOMAIN_SHADER_BINARY_FORMAT         107
 
 /* NONGL defines */
 #define NONGL_BOOLEAN 0 /* see uniform.c */
@@ -699,6 +700,11 @@ void enums_freelist(lua_State *L, uint32_t *list);
 #define checkviewcompatibilitytype(L, arg) (GLenum)enums_check((L), DOMAIN_VIEW_COMPATIBILITY_TYPE, (arg))
 #define pushviewcompatibilitytype(L, val) enums_push((L), DOMAIN_VIEW_COMPATIBILITY_TYPE, (uint32_t)(val))
 #define valuesviewcompatibilitytype(L) enums_values((L), DOMAIN_VIEW_COMPATIBILITY_TYPE)
+
+#define testshaderbinaryformat(L, arg, err) (GLenum)enums_test((L), DOMAIN_SHADER_BINARY_FORMAT, (arg), (err))
+#define checkshaderbinaryformat(L, arg) (GLenum)enums_check((L), DOMAIN_SHADER_BINARY_FORMAT, (arg))
+#define pushshaderbinaryformat(L, val) enums_push((L), DOMAIN_SHADER_BINARY_FORMAT, (uint32_t)(val))
+#define valuesshaderbinaryformat(L) enums_values((L), DOMAIN_SHADER_BINARY_FORMAT)
 
 #if 0 /* scaffolding 6yy */
 #define testxxx(L, arg, err) (GLenum)enums_test((L), DOMAIN_XXX, (arg), (err))

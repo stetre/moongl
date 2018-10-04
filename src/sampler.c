@@ -102,6 +102,7 @@ static int SamplerParameter(lua_State *L)
         case GL_TEXTURE_LOD_BIAS: return SetFloat(L, sampler, pname, 3);
         case GL_TEXTURE_COMPARE_MODE:  return SetEnum(L, sampler, pname, 3, DOMAIN_COMPARE_MODE);
         case GL_TEXTURE_COMPARE_FUNC:  return SetEnum(L, sampler, pname, 3, DOMAIN_COMPARE_FUNC);
+        case GL_TEXTURE_MAX_ANISOTROPY:  return SetFloat(L, sampler, pname, 3); //GL_VERSION_4_6
         default:
             return luaL_error(L, UNEXPECTED_ERROR);
         }
@@ -160,6 +161,7 @@ static int GetSamplerParameter(lua_State *L)
         case GL_TEXTURE_LOD_BIAS: return GetFloat(L, sampler, pname);
         case GL_TEXTURE_COMPARE_MODE:  return GetEnum(L, sampler, pname, DOMAIN_COMPARE_MODE);
         case GL_TEXTURE_COMPARE_FUNC: return GetEnum(L, sampler, pname, DOMAIN_COMPARE_FUNC);
+        case GL_TEXTURE_MAX_ANISOTROPY:  return GetFloat(L, sampler, pname); //GL_VERSION_4_6
         default:
             return luaL_error(L, UNEXPECTED_ERROR);
         }

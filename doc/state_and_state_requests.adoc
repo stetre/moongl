@@ -30,7 +30,8 @@ The _index_ argument may be mandatory or optional, depending on _pname_. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetString[glGetString].#
 
 [[gl.get_extensions]]
-* {extension} = *get_extensions*([_byname_]) _NONGL_ +
+* _{extension}_ = *get_extensions*([_byname_]) _NONGL_ +
+_{spir_v_extension}_ = *get_spir_v_extensions*([_byname_]) _NONGL_ +
 [small]#If _byname_ is false (default), returns an array with the names (strings) of all the supported extensions. +
 If _byname_ is true, returns a table of _true_ values indexed with the names of the supported extensions. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetString[glGetString].#

@@ -102,11 +102,30 @@ void Free(lua_State *L, void *ptr)
  | glGetError()                                                                 |
  *------------------------------------------------------------------------------*/
 
+static const char* ErrorString(int err) /* replaces gluErrorString */
+    {
+    switch(err)
+        {
+        case GL_NO_ERROR: return "no error";
+        case GL_INVALID_ENUM: return "invalid enum";
+        case GL_INVALID_VALUE: return "invalid value";
+        case GL_INVALID_OPERATION: return "invalid operation";
+        case GL_INVALID_FRAMEBUFFER_OPERATION: return "invalid framebuffer operation";
+        case GL_OUT_OF_MEMORY: return "out of memory";
+        case GL_STACK_UNDERFLOW: return "stack underflow";
+        case GL_STACK_OVERFLOW: return "stack overflow";
+        default:
+            return "unknown gl error";
+        }
+    return NULL; /* unreachable */
+    }
+
+
 
 int CheckError(lua_State *L)
     {
     int rc = glGetError();
-    if(rc != 0) return luaL_error((L), (char*)gluErrorString(rc));
+    if(rc != 0) return luaL_error((L), (char*)ErrorString(rc));
     return 0;
     }
 
@@ -124,7 +143,7 @@ int CheckErrorFree(lua_State *L, void *ptr)
     if(rc != 0) 
         {
         Free(L, ptr);
-        return luaL_error(L, (char*)gluErrorString(rc));
+        return luaL_error(L, (char*)ErrorString(rc));
         }
     return 0;
     }
@@ -137,7 +156,7 @@ int CheckErrorFree2(lua_State *L, void *ptr1, void *ptr2)
         {
         Free(L, ptr1);
         Free(L, ptr2);
-        return luaL_error(L, (char*)gluErrorString(rc));
+        return luaL_error(L, (char*)ErrorString(rc));
         }
     return 0;
     }
@@ -150,7 +169,7 @@ int CheckErrorFree3(lua_State *L, void *ptr1, void *ptr2, void *ptr3)
         Free(L, ptr1);
         Free(L, ptr2);
         Free(L, ptr3);
-        return luaL_error(L, (char*)gluErrorString(rc));
+        return luaL_error(L, (char*)ErrorString(rc));
         }
     return 0;
     }

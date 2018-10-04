@@ -106,10 +106,15 @@ static int MultiDrawArraysIndirect(lua_State *L)
     return 0;
     }
 
-//@@void glMultiDrawArraysIndirectCount(GLenum mode, const void *indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
-static int MultiDrawArraysIndirectCount(lua_State *L) //@@ 4_6
+static int MultiDrawArraysIndirectCount(lua_State *L) //GL_VERSION_4_6
     {
-    NOT_AVAILABLE;
+    GLenum mode = checkdrawmode(L, 1);
+    GLintptr indirect = luaL_checkinteger(L, 2);
+    GLintptr drawcount = luaL_checkinteger(L, 3);
+    GLsizei maxdrawcount = luaL_checkinteger(L, 4);
+    GLsizei stride = luaL_checkinteger(L, 5);
+    glMultiDrawArraysIndirectCount(mode, (void*)indirect, drawcount, maxdrawcount, stride);
+    CheckError(L);
     return 0;
     }
 
@@ -202,10 +207,16 @@ static int MultiDrawElementsIndirect(lua_State *L)
     return 0;
     }
 
-//@@void glMultiDrawElementsIndirectCount(GLenum mode, GLenum type, const void *indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
-static int MultiDrawElementsIndirectCount(lua_State *L) //@@ 4_6
+static int MultiDrawElementsIndirectCount(lua_State *L) //GL_VERSION_4_6
     {
-    NOT_AVAILABLE;
+    GLenum mode = checkdrawmode(L, 1);
+    GLenum type = checkdrawtype(L, 2);
+    GLintptr indirect = luaL_checkinteger(L, 3);
+    GLintptr drawcount = luaL_checkinteger(L, 4);
+    GLsizei maxdrawcount = luaL_checkinteger(L, 5);
+    GLsizei stride = luaL_checkinteger(L, 6);
+    glMultiDrawElementsIndirectCount(mode, type, (const void *)indirect, drawcount, maxdrawcount, stride);
+    CheckError(L);
     return 0;
     }
 
@@ -222,20 +233,20 @@ static int DrawElementsBaseVertex(lua_State *L)
     GLsizei basevertex = luaL_checkinteger(L, 5);
     if(lua_isnoneornil(L, 6))
         {
-        glDrawElementsBaseVertex(mode, count, type, (const void *)indices, basevertex);
+        glDrawElementsBaseVertex(mode, count, type, (void*)indices, basevertex);
         CheckError(L);
         return 0;
         }
     instancecount = luaL_checkinteger(L, 6);
     if(lua_isnoneornil(L, 7))
         {
-        glDrawElementsInstancedBaseVertex(mode, count, type, (const void *)indices, 
+        glDrawElementsInstancedBaseVertex(mode, count, type, (void*)indices,
                 instancecount, basevertex);
         CheckError(L);
         return 0;
         }
     baseinstance = luaL_checkinteger(L, 7);
-    glDrawElementsInstancedBaseVertexBaseInstance(mode, count, type, (const void *)indices, 
+    glDrawElementsInstancedBaseVertexBaseInstance(mode, count, type, (void*)indices,
             instancecount, basevertex, baseinstance);
     CheckError(L);
     return 0;
@@ -268,7 +279,7 @@ static int MultiDrawElementsBaseVertex(lua_State *L)
         count[i] = lua_tointeger(L, arg++);
         basevertex[i] = lua_tointeger(L, arg++);
         }
-    glMultiDrawElementsBaseVertex(mode, count, type, (const void **)indices, drawcount,basevertex);
+    glMultiDrawElementsBaseVertex(mode, count, type, (void**)indices, drawcount,basevertex);
     Free(L, indices); 
     Free(L, count);
     Free(L, basevertex);
@@ -285,7 +296,7 @@ static int DrawRangeElements(lua_State *L)
     GLsizei count = luaL_checkinteger(L, 4);
     GLenum type = checkdrawtype(L, 5);
     GLintptr indices = luaL_checkinteger(L, 6);
-    glDrawRangeElements(mode, start, end, count, type, (const void *)indices);
+    glDrawRangeElements(mode, start, end, count, type, (void*)indices);
     CheckError(L);
     return 0;
     }
@@ -299,7 +310,7 @@ static int DrawRangeElementsBaseVertex(lua_State *L)
     GLenum type = checkdrawtype(L, 5);
     GLintptr indices = luaL_checkinteger(L, 6);
     GLint basevertex = luaL_checkinteger(L, 7);
-    glDrawRangeElementsBaseVertex(mode, start, end, count, type, (const void *)indices, basevertex);
+    glDrawRangeElementsBaseVertex(mode, start, end, count, type, (void*)indices, basevertex);
     CheckError(L);
     return 0;
     }

@@ -57,7 +57,6 @@ static int CreateShaderProgram(lua_State *L)
     GLuint program;
     check_init_called(L);
     program = glCreateShaderProgramv(type, 1, &string);
-/*@@ check program info log and shader info log? */
     CheckError(L);
     lua_pushinteger(L, program);
     return 1;
@@ -109,18 +108,73 @@ static int DeleteShaders(lua_State *L) /* NONGL */
     return 0;
     }
 
-//void glShaderBinary(GLsizei count, const GLuint *shaders, GLenum binaryformat, const void *binary, GLsizei length);
-static int ShaderBinary(lua_State *L) //@@
+static int ShaderBinary(lua_State *L)
     {
-    NOT_AVAILABLE;
+#define max_shaders 16  /* at most one per shader type */
+    int count, i;
+    GLuint shaders[max_shaders];
+    GLenum binaryformat;
+    const char *binary;
+    size_t length;
+    if(lua_type(L, 1) != LUA_TTABLE)
+        return luaL_argerror(L, 1, "table expected");
+    count = luaL_len(L, 1);
+    if(count > max_shaders)
+        return luaL_argerror(L, 1, "too many shaders");
+    for(i=0; i <count; i++)
+        {
+        lua_geti(L, 1, i+1);
+        shaders[i] = luaL_checkinteger(L, -1);
+        lua_pop(L, 1);
+        }
+    binaryformat = checkshaderbinaryformat(L, 2);
+    binary = luaL_checklstring(L, 3, &length);
+    glShaderBinary((GLsizei)count, shaders, binaryformat, binary, (GLsizei)length);
+    CheckError(L);
     return 0;
+#undef max_shaders
     }
 
-//@@void glSpecializeShader(GLuint shader, const GLchar *pEntryPoint, GLuint numSpecializationConstants, const GLuint *pConstantIndex, const GLuint *pConstantValue);
-static int SpecializeShader(lua_State *L) //@@ 4_6
+static int SpecializeShader(lua_State *L) //GL_VERSION_4_6
     {
-    NOT_AVAILABLE;
+#define max_constants 256
+    GLuint i, n = 0;
+    GLuint *indices = NULL;
+    GLuint *values = NULL;
+    GLuint index[max_constants];
+    GLuint value[max_constants];
+    GLuint name = luaL_checkinteger(L, 1);
+    const char *entrypoint = luaL_checkstring(L, 2);
+    if(!lua_isnoneornil(L, 3))
+        {
+        if(lua_type(L, 3) != LUA_TTABLE)
+            return luaL_argerror(L, 1, "table expected");
+        if(lua_type(L, 4) != LUA_TTABLE)
+            return luaL_argerror(L, 1, "table expected");
+        n = luaL_len(L, 3);
+        if(n > max_constants)
+            return luaL_argerror(L, 1, "too many constants");
+        if(n != luaL_len(L, 4))
+            return luaL_argerror(L, 1, "mismatch between number of indices and of values");
+        if(n>0)
+            {
+            for(i=0; i <n; i++)
+                {
+                lua_geti(L, 3, i+1);
+                index[i] = luaL_checkinteger(L, -1);
+                lua_pop(L, 1);
+                lua_geti(L, 4, i+1);
+                value[i] = luaL_checkinteger(L, -1);
+                lua_pop(L, 1);
+                }
+            indices = index;
+            values = value;
+            }
+        }
+    glSpecializeShader(name, (GLchar*)entrypoint, n, indices, values);
+    CheckError(L);
     return 0;
+#undef max_constants
     }
 
 static int GetShaderInfoLog(lua_State *L)
@@ -201,7 +255,7 @@ static int GetShader(lua_State *L)
         case GL_COMPILE_STATUS: BOOLEAN
         case GL_INFO_LOG_LENGTH: INTEGER
         case GL_SHADER_SOURCE_LENGTH: INTEGER
-        case GL_SPIR_V_BINARY: BOOLEAN //@@ 4_6
+        case GL_SPIR_V_BINARY: BOOLEAN //GL_VERSION_4_6
         default: return luaL_error(L, UNEXPECTED_ERROR);
         }
     return 0;
