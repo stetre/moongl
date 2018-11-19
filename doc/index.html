@@ -1160,7 +1160,7 @@ See <a href="#snippet_rectangle">example</a>.</span></p>
 <div id="gl.buffer_storage" class="ulist">
 <ul>
 <li>
-<p><em>size</em> = <strong>buffer_storage</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#data"><em>data</em></a>, [<em>flag</em>, <em>flag</em>, <em>&#8230;&#8203;</em>])<br>
+<p><em>size</em> = <strong>buffer_storage</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, [<a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>], [<em>flag</em>, <em>flag</em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small"><em>flag</em>: '<em>dynamic range</em>' for GL_DYNAMIC_RANGE_BIT, '<em>map read</em>' for GL_MAP_READ_BIT, etc.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glBufferStorage">glBufferStorage</a>.</span></p>
 </li>
@@ -1169,8 +1169,8 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glBufferStorage">glBuffe
 <div id="gl.buffer_data" class="ulist">
 <ul>
 <li>
-<p><em>size</em> = <strong>buffer_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#data"><em>data</em></a>|<em>size</em>, <em>usage</em>)<br>
-<em>size</em> = <strong>buffer_sub_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <a href="#data"><em>data</em></a>)<br>
+<p><em>size</em> = <strong>buffer_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>|<em>size</em>, <em>usage</em>)<br>
+<em>size</em> = <strong>buffer_sub_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>)<br>
 <span class="small"><em>size</em>: size of memory to allocate for the buffer (in bytes).<br>
 <em>usage</em>: '<em>static draw</em>' for GL_STATIC_DRAW, '<em>static read</em>' for GL_STATIC READ, etc.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glBufferData">glBufferData</a> -
@@ -1182,8 +1182,8 @@ See <a href="#snippet_rectangle">example</a> and <a href="#datahandling">'Data h
 <div id="gl.clear_buffer_data" class="ulist">
 <ul>
 <li>
-<p><strong>clear_buffer_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, [<a href="#data"><em>data</em></a>])<br>
-<strong>clear_buffer_sub_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#intformat"><em>intformat</em></a>), <em>offset</em>, <em>size</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, [<a href="#data"><em>data</em></a>])<br>
+<p><strong>clear_buffer_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, [<a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>])<br>
+<strong>clear_buffer_sub_data</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <a href="#intformat"><em>intformat</em></a>), <em>offset</em>, <em>size</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, [<a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>])<br>
 <span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glClearBufferData">glClearBufferData</a> -
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glClearBufferSubData">glClearBufferSubData</a>.<br>
 See also <a href="#datahandling">'Data handling utilities'</a>.</span></p>
@@ -1229,7 +1229,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glMapBuffer">glMapBuffer
 <div id="gl.mapped_buffer_write" class="ulist">
 <ul>
 <li>
-<p><strong>mapped_buffer_write</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <a href="#data"><em>data</em></a>) <em>NONGL</em><br>
+<p><strong>mapped_buffer_write</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>) <em>NONGL</em><br>
 <a href="#data"><em>data</em></a> = <strong>mapped_buffer_read</strong>(<a href="#buffertarget"><em>target</em></a>|<em>buffer</em>, <em>offset</em>, <em>length</em>) <em>NONGL</em><br>
 <span class="small">Write/read data to/from a mapped buffer (non-OpenGL functions).</span></p>
 </li>
@@ -1882,11 +1882,11 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetSamplerParameter">g
 <div id="gl.texture_image" class="ulist">
 <ul>
 <li>
-<p><strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>offset</em>, <em>width</em>)  1D<br>
-<strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>offset</em>, <em>width</em>, <em>height</em>)  2D<br>
-<strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>offset</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
+<p><strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, [<a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>|<em>offset</em>], <em>width</em>)  1D<br>
+<strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, [<a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>|<em>offset</em>], <em>width</em>, <em>height</em>)  2D<br>
+<strong>texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, [<a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>|<em>offset</em>], <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
 <span class="small">If a <a href="#gl.bind_buffer">buffer</a> is bound to the '<em>pixel unpack</em>' target, then an integer <em>offset</em> parameter must be passed (in this case OpenGL gets the data from that buffer at the given offset).
-Otherwise the <em>data</em> parameter must be passed, either as a binary string containing the data, or as <em>nil</em> for no pixel transfer.<br>
+Otherwise the data may be passed either as a binary string or a pointer, or as <em>nil</em> for no pixel transfer.<br>
 Rfr:
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glTexImage1D">glTexImage1D</a> -
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glTexImage2D">glTexImage2D</a> -
@@ -1913,10 +1913,10 @@ Rfr:
 <div id="gl.texture_sub_image" class="ulist">
 <ul>
 <li>
-<p><strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>offset</em>, <em>xofs</em>, <em>width</em>) 1D<br>
-<strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>offset</em>, <em>xofs</em>, <em>yofs</em>, <em>width</em>, <em>height</em>) 2D<br>
-<strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>|<em>offset</em>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
-<span class="small"><em>data</em>|<em>offset</em>: see <a href="#gl.texture_image">gl.texture_image</a>(&nbsp;).<br>
+<p><strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, [<a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>|<em>offset</em>], <em>xofs</em>, <em>width</em>) 1D<br>
+<strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, [<a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>|<em>offset</em>], <em>xofs</em>, <em>yofs</em>, <em>width</em>, <em>height</em>) 2D<br>
+<strong>texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, [<a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>|<em>offset</em>], <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
+<span class="small"><em>data</em>|<em>dataptr</em>|<em>offset</em>: see <a href="#gl.texture_image">gl.texture_image</a>(&nbsp;).<br>
 Rfr:
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glTexSubImage1D">glTexSubImage1D</a> -
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glTexSubImage2D">glTexSubImage2D</a> -
@@ -1944,9 +1944,9 @@ Rfr:
 <div id="gl.compressed_texture_image" class="ulist">
 <ul>
 <li>
-<p><strong>compressed_texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>, <em>width</em>) 1D<br>
-<strong>compressed_texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>, <em>width</em>, <em>height</em>) 2D<br>
-<strong>compressed_texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
+<p><strong>compressed_texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>, <em>width</em>) 1D<br>
+<strong>compressed_texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>, <em>width</em>, <em>height</em>) 2D<br>
+<strong>compressed_texture_image</strong>(<a href="#texturetarget"><em>target</em></a>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
 <span class="small">Rfr:
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glCompressedTexImage1D">glCompressedTexImage1D</a> -
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glCompressedTexImage2D">glCompressedTexImage2D</a> -
@@ -1957,9 +1957,9 @@ Rfr:
 <div id="gl.compressed_texture_sub_image" class="ulist">
 <ul>
 <li>
-<p><strong>compressed_texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>, <em>xofs</em>, <em>width</em>) 1D<br>
-<strong>compressed_texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>, <em>xofs</em>, <em>yofs</em>, <em>width</em>, <em>height</em>) 2D<br>
-<strong>compressed_texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
+<p><strong>compressed_texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>, <em>xofs</em>, <em>width</em>) 1D<br>
+<strong>compressed_texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>, <em>xofs</em>, <em>yofs</em>, <em>width</em>, <em>height</em>) 2D<br>
+<strong>compressed_texture_sub_image</strong>(<a href="#texturetarget"><em>target</em></a>|<em>texture</em>, <em>level</em>, <a href="#intformat"><em>intformat</em></a>, <a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>) 3D<br>
 <span class="small">Rfr:
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glCompressedTexSubImage1D">glCompressedTexSubImage1D</a> -
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glCompressedTexSubImage2D">glCompressedTexSubImage2D</a> -
@@ -2022,8 +2022,8 @@ Rfr:
 <div id="gl.clear_texture_image" class="ulist">
 <ul>
 <li>
-<p><strong>clear_texture_image</strong>(<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>)<br>
-<strong>clear_texture_sub_image</strong>(<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, <a href="#data"><em>data</em></a>, <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>)<br>
+<p><strong>clear_texture_image</strong>(<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, [<a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>])<br>
+<strong>clear_texture_sub_image</strong>(<em>texture</em>, <em>level</em>, <a href="#format"><em>format</em></a>, <a href="#type"><em>type</em></a>, [<a href="#data"><em>data</em></a>|<a href="#dataptr"><em>dataptr</em></a>], <em>xofs</em>, <em>yofs</em>, <em>zofs</em>, <em>width</em>, <em>height</em>, <em>depth</em>)<br>
 <span class="small">Rfr:
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glClearTexImage">glClearTexImage</a> -
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glClearTexSubImage">glClearTexSubImage</a>.</span></p>
@@ -3610,6 +3610,9 @@ binary string must be a multiple of <em>gl.sizeof(type)</em>.</span></p>
 </div>
 <div id="data" class="paragraph">
 <p><span class="small"><strong>data</strong>: binary string.</span></p>
+</div>
+<div id="dataptr" class="paragraph">
+<p><span class="small"><strong>dataptr</strong>: {ptr, size}, where <em>ptr</em> is a lightuserdata containing a raw pointer to <em>size</em> bytes of memory.</span></p>
 </div>
 </div>
 </div>

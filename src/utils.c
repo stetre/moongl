@@ -145,6 +145,20 @@ GLuint checktargetorname(lua_State *L, int arg, GLenum *dst, uint32_t domain)
     return (GLuint)luaL_checkinteger(L, arg);
     }
 
+const char *checkdataptr(lua_State *L, int arg, size_t *len)
+    {
+    *len = 0;
+    char *data = NULL;
+    if(!lua_istable(L, arg)) return NULL;
+    lua_rawgeti(L, arg, 1);
+    data = checklightuserdata(L, -1);
+    lua_pop(L, 1);
+    lua_rawgeti(L, arg, 2);
+    *len = luaL_checkinteger(L, -1);
+    lua_pop(L, 1);
+    return data;
+    }
+
 size_t sizeoftype(lua_State *L, int type)
     {
     switch(type)

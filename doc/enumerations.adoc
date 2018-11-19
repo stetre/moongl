@@ -7,6 +7,8 @@
 [[data]]
 [small]#*data*: binary string.#
 
+[[dataptr]]
+[small]#*dataptr*: {ptr, size}, where _ptr_ is a lightuserdata containing a raw pointer to _size_ bytes of memory.#
 
 == Enumerations
 

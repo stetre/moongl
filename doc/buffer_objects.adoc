@@ -19,13 +19,13 @@ See <<snippet_rectangle, example>>.#
 Create/Modify Buffer Object Data:
 
 [[gl.buffer_storage]]
-* _size_ = *buffer_storage*(<<buffertarget,_target_>>|_buffer_, <<data,_data_>>, [_flag_, _flag_, _..._]) +
+* _size_ = *buffer_storage*(<<buffertarget,_target_>>|_buffer_, [<<data,_data_>>|<<dataptr, _dataptr_>>], [_flag_, _flag_, _..._]) +
 [small]#_flag_: '_dynamic range_' for GL_DYNAMIC_RANGE_BIT, '_map read_' for GL_MAP_READ_BIT, etc. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBufferStorage[glBufferStorage].#
 
 [[gl.buffer_data]]
-* _size_ = *buffer_data*(<<buffertarget,_target_>>|_buffer_, <<data,_data_>>|_size_, _usage_) +
-_size_ = *buffer_sub_data*(<<buffertarget,_target_>>|_buffer_, _offset_, <<data,_data_>>) +
+* _size_ = *buffer_data*(<<buffertarget,_target_>>|_buffer_, <<data,_data_>>|<<dataptr, _dataptr_>>|_size_, _usage_) +
+_size_ = *buffer_sub_data*(<<buffertarget,_target_>>|_buffer_, _offset_, <<data,_data_>>|<<dataptr, _dataptr_>>) +
 [small]#_size_: size of memory to allocate for the buffer (in bytes). +
 _usage_: '_static draw_' for GL_STATIC_DRAW, '_static read_' for GL_STATIC READ, etc. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBufferData[glBufferData] -
@@ -33,8 +33,8 @@ https://www.khronos.org/opengl/wiki/GLAPI/glBufferSubData[glBufferSubData]. +
 See <<snippet_rectangle, example>> and <<datahandling, 'Data handling utilities'>>.#
 
 [[gl.clear_buffer_data]]
-* *clear_buffer_data*(<<buffertarget,_target_>>|_buffer_, <<intformat, _intformat_>>, <<format, _format_>>, <<type, _type_>>, [<<data,_data_>>]) +
-*clear_buffer_sub_data*(<<buffertarget,_target_>>|_buffer_, <<intformat, _intformat_>>), _offset_, _size_, <<format, _format_>>, <<type, _type_>>, [<<data,_data_>>]) +
+* *clear_buffer_data*(<<buffertarget,_target_>>|_buffer_, <<intformat, _intformat_>>, <<format, _format_>>, <<type, _type_>>, [<<data,_data_>>|<<dataptr, _dataptr_>>]) +
+*clear_buffer_sub_data*(<<buffertarget,_target_>>|_buffer_, <<intformat, _intformat_>>), _offset_, _size_, <<format, _format_>>, <<type, _type_>>, [<<data,_data_>>|<<dataptr, _dataptr_>>]) +
 [small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glClearBufferData[glClearBufferData] -
 https://www.khronos.org/opengl/wiki/GLAPI/glClearBufferSubData[glClearBufferSubData]. +
 See also <<datahandling, 'Data handling utilities'>>.#
@@ -64,7 +64,7 @@ https://www.khronos.org/opengl/wiki/GLAPI/glMapBufferRange[glMapBufferRange].#
 [small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glFlushMappedBufferRange[glFlushMappedBufferRange].#
 
 [[gl.mapped_buffer_write]]
-* *mapped_buffer_write*(<<buffertarget,_target_>>|_buffer_, _offset_, <<data,_data_>>) _NONGL_ +
+* *mapped_buffer_write*(<<buffertarget,_target_>>|_buffer_, _offset_, <<data,_data_>>|<<dataptr,_dataptr_>>) _NONGL_ +
 <<data,_data_>> = *mapped_buffer_read*(<<buffertarget,_target_>>|_buffer_, _offset_, _length_) _NONGL_ +
 [small]#Write/read data to/from a mapped buffer (non-OpenGL functions).#
 

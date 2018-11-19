@@ -32,12 +32,9 @@
  *------------------------------------------------------------------------------*/
 
 static int TextureImage(lua_State *L)
-/* texture_image(target, level, intfmt, format, type, data|offset, width)
- * texture_image(target, level, intfmt, format, type, data|offset, width, height)
- * texture_image(target, level, intfmt, format, type, data|offset, width, height, depth)
- */
     {
     intptr_t data;
+    size_t len;
     GLsizei width, height, depth;
     int arg = 1;
     GLenum target = checktexturetarget(L, arg++);
@@ -50,8 +47,12 @@ static int TextureImage(lua_State *L)
         {
         if(lua_isnil(L, arg)) /* no pixel transfer */
             { data = 0; arg++; }
-        else
+        else if(lua_isstring(L, arg))
             data = (intptr_t)luaL_checkstring(L, arg++);
+        else if(lua_istable(L, arg))
+            data = (intptr_t)checkdataptr(L, arg++, &len);
+        else
+            return luaL_argerror(L, arg, "invalid type");
         }
     else /* a buffer is bound to GL_PIXEL_UNPACK_BUFFER, so data must be an offset */
         data = luaL_checkinteger(L, arg++);
@@ -80,10 +81,6 @@ static int TextureImage(lua_State *L)
  *------------------------------------------------------------------------------*/
 
 static int TextureStorage(lua_State *L)
-/* texture_storage(target|texture, levels, intfmt, width)
- * texture_storage(target|texture, levels, intfmt, width, height)
- * texture_storage(target|texture, levels, intfmt, width, height, depth)
- */
     {
     GLsizei height, depth;
     int arg = 1;
@@ -121,12 +118,9 @@ static int TextureStorage(lua_State *L)
     }
 
 static int TextureSubImage(lua_State *L)
-/* texture_sub_image(target|texture, level, format, type, data|offset, xofs, w)
- * texture_sub_image(target|texture, level, format, type, data|offset, xofs, yofs, w, h)
- * texture_sub_image(target|texture, level, format, type, data|offset, xofs, yofs, zofs, w, h, d)
- */
     {
     intptr_t data;
+    size_t len;
     int arg = 1;
     GLint v1, v2, v3, v4, v5, v6;
     GLenum target;
@@ -139,8 +133,12 @@ static int TextureSubImage(lua_State *L)
         {
         if(lua_isnil(L, arg)) /* no pixel transfer */
             { data = 0; arg++; }
-        else
+        else if(lua_isstring(L, arg))
             data = (intptr_t)luaL_checkstring(L, arg++);
+        else if(lua_istable(L, arg))
+            data = (intptr_t)checkdataptr(L, arg++, &len);
+        else
+            return luaL_argerror(L, arg, "invalid type");
         }
     else /* a buffer is bound to GL_PIXEL_UNPACK_BUFFER, so data must be an offset */
         data = luaL_checkinteger(L, arg++);
@@ -182,19 +180,21 @@ static int TextureSubImage(lua_State *L)
  *------------------------------------------------------------------------------*/
 
 static int CompressedTextureImage(lua_State *L)
-/* compressed_texture_image(target, level, intfmt, data, width)
- * compressed_texture_image(target, level, intfmt, data, width, height)
- * compressed_texture_image(target, level, intfmt, data, width, height, depth)
- */
     {
 #define imagesize (GLsizei)len
+    const void* data;
     size_t len;
     GLsizei height, depth;
     int arg = 1;
     GLenum target = checktexturetarget(L, arg++);
     GLint level = luaL_checkinteger(L, arg++);
     GLenum intfmt = checkinternalformat(L, arg++);
-    const void* data = (void*)luaL_checklstring(L, arg++, &len);
+    if(lua_isstring(L, arg))
+        data = (void*)luaL_checklstring(L, arg++, &len);
+    else if(lua_istable(L, arg))
+        data = (void*)checkdataptr(L, arg++, &len);
+    else
+        return luaL_argerror(L, arg, "invalid type");
     GLsizei width = luaL_checkinteger(L, arg++);
     if(lua_isnoneornil(L, arg))
         {
@@ -218,12 +218,9 @@ static int CompressedTextureImage(lua_State *L)
 
 
 static int CompressedTextureSubImage(lua_State *L)
-/* compressed_texture_subimage(target|texture, level, format, data, xofs, w)
- * compressed_texture_subimage(target|texture, level, format, data, xofs, yofs, w, d)
- * compressed_texture_subimage(target|texture, level, format, data, xofs, yofs, zofs, w, d, h)
- */
     {
 #define imagesize (GLsizei)len
+    const void* data;
     size_t len;
     int arg = 1;
     GLint v1, v2, v3, v4, v5, v6;
@@ -231,7 +228,12 @@ static int CompressedTextureSubImage(lua_State *L)
     GLuint texture = checktargetorname(L, arg++, &target, DOMAIN_TEXTURE_TARGET);
     GLint level = luaL_checkinteger(L, arg++);
     GLenum intfmt = checkinternalformat(L, arg++);
-    const void* data = (void*)luaL_checklstring(L, arg++, &len);
+    if(lua_isstring(L, arg))
+        data = (void*)luaL_checklstring(L, arg++, &len);
+    else if(lua_istable(L, arg))
+        data = (void*)checkdataptr(L, arg++, &len);
+    else
+        return luaL_argerror(L, arg, "invalid type");
     v1 = luaL_checkinteger(L, arg++);
     v2 = luaL_checkinteger(L, arg++);
     if(lua_isnoneornil(L, arg))
@@ -435,11 +437,20 @@ static int InvalidateTextureSubImage(lua_State *L)
 static int ClearTextureImage(lua_State *L)
     {
     int arg = 1;
+    const void* data;
+    size_t len;
     GLuint texture = luaL_checkinteger(L, arg++);
     GLint level = luaL_checkinteger(L, arg++);
     GLenum format = checkformat(L, arg++);
     GLenum type = checktype(L, arg++);
-    const void* data = (void*)luaL_checkstring(L, arg++);
+    if(lua_isnoneornil(L, arg))
+        { data = 0; arg++; }
+    else if(lua_isstring(L, arg))
+        data = (void*)luaL_checkstring(L, arg++);
+    else if(lua_istable(L, arg))
+        data = (void*)checkdataptr(L, arg++, &len);
+    else
+        return luaL_argerror(L, arg, "invalid type");
     glClearTexImage(texture, level, format, type, data);
     CheckError(L);
     return 0;
@@ -448,11 +459,20 @@ static int ClearTextureImage(lua_State *L)
 static int ClearTextureSubImage(lua_State *L)
     {
     int arg = 1;
+    const void* data;
+    size_t len;
     GLuint texture = luaL_checkinteger(L, arg++);
     GLint level = luaL_checkinteger(L, arg++);
     GLenum format = checkformat(L, arg++);
     GLenum type = checktype(L, arg++);
-    const void* data = (void*)luaL_checkstring(L, arg++);
+    if(lua_isnoneornil(L, arg))
+        { data = 0; arg++; }
+    else if(lua_isstring(L, arg))
+        data = (void*)luaL_checkstring(L, arg++);
+    else if(lua_istable(L, arg))
+        data = (void*)checkdataptr(L, arg++, &len);
+    else
+        return luaL_argerror(L, arg, "invalid type");
     GLint xoffset = luaL_checkinteger(L, arg++);
     GLint yoffset = luaL_checkinteger(L, arg++);
     GLint zoffset = luaL_checkinteger(L, arg++);

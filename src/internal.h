@@ -77,6 +77,8 @@ int checkcolor(lua_State *L, int arg, GLfloat dst[4]);
 void *checklightuserdata(lua_State *L, int arg);
 #define checktargetorname moongl_checktargetorname
 GLuint checktargetorname(lua_State *L, int arg, GLenum *dst, uint32_t domain);
+#define checkdataptr moongl_checkdataptr
+const char *checkdataptr(lua_State *L, int arg, size_t *len);
 #define sizeoftype moongl_sizeoftype
 size_t sizeoftype(lua_State *L, int type);
 

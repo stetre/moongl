@@ -133,9 +133,23 @@ static int BufferStorage(lua_State *L)
     GLbitfield flags;
     GLenum target;
     GLuint buffer = checktargetorname(L, 1, &target, DOMAIN_BUFFER_TARGET);
-    data = lua_tolstring(L, 2, &len);
-    size = len;
-    flags = 0;
+    if(lua_isnoneornil(L, 2))
+        {
+        data = NULL;
+        size = 0;
+        }
+    else if(lua_isstring(L, 2))
+        {
+        data = lua_tolstring(L, 2, &len);
+        size = len;
+        }
+    else if(lua_istable(L, 2))
+        {
+        data = checkdataptr(L, 2, &len);
+        size = len;
+        }
+    else
+        return luaL_argerror(L, 2, "invalid type");
     flags = CheckStorageFlags(L, 3, 0);
 
     if(buffer==0)
@@ -169,8 +183,13 @@ static int BufferData(lua_State *L)
         data = lua_tolstring(L, 2, &len);
         size = len;
         }
+    else if(lua_istable(L, 2))
+        {
+        data = checkdataptr(L, 2, &len);
+        size = len;
+        }
     else
-        return luaL_argerror(L, 2, "integer or binary string expected");
+        return luaL_argerror(L, 2, "invalid type");
     usage = checkbufferusage(L, 3);
     
     if(buffer == 0)
@@ -193,10 +212,18 @@ static int BufferSubData(lua_State *L)
     GLenum target;
     GLuint buffer = checktargetorname(L, 1, &target, DOMAIN_BUFFER_TARGET);
     GLintptr offset = lua_tointeger(L, 2);
-    if(!lua_isstring(L, 3))
-        return luaL_argerror(L, 3, "binary string expected");
-    data = lua_tolstring(L, 3, &len);
-    size = len;
+    if(lua_isstring(L, 3))
+        {
+        data = lua_tolstring(L, 3, &len);
+        size = len;
+        }
+    else if(lua_istable(L, 3))
+        {
+        data = checkdataptr(L, 3, &len);
+        size = len;
+        }
+    else
+        return luaL_argerror(L, 3, "invalid type");
     
     if(buffer == 0)
         glBufferSubData(target, offset, size, data);
@@ -211,13 +238,22 @@ static int BufferSubData(lua_State *L)
 
 static int ClearBufferData(lua_State *L)
     {
+    size_t len;
+    const void* data;
     int arg = 1;
     GLenum target;
     GLuint buffer = checktargetorname(L, arg++, &target, DOMAIN_BUFFER_TARGET);
     GLenum internalformat = checkinternalformat(L, arg++);
     GLenum format = checkformat(L, arg++);
     GLenum type = checktype(L, arg++);
-    const void* data = (void*)luaL_optstring(L, arg++, NULL);
+    if(lua_isnoneornil(L, arg))
+        data = NULL;
+    else if(lua_isstring(L, arg))
+        data = lua_tolstring(L, arg, &len);
+    else if(lua_istable(L, arg))
+        data = checkdataptr(L, arg, &len);
+    else
+        return luaL_argerror(L, arg, "invalid type");
     if(buffer == 0)
         glClearBufferData(target, internalformat, format, type, (void*)data);
     else
@@ -229,6 +265,8 @@ static int ClearBufferData(lua_State *L)
 static int ClearBufferSubData(lua_State *L)
     {
     int arg = 1;
+    size_t len;
+    const void* data;
     GLenum target;
     GLuint buffer = checktargetorname(L, arg++, &target, DOMAIN_BUFFER_TARGET);
     GLenum internalformat = checkinternalformat(L, arg++);
@@ -236,7 +274,14 @@ static int ClearBufferSubData(lua_State *L)
     GLsizei size = luaL_checkinteger(L, arg++);
     GLenum format = checkformat(L, arg++);
     GLenum type = checktype(L, arg++);
-    const void* data = (void*)luaL_optstring(L, arg++, NULL);
+    if(lua_isnoneornil(L, arg))
+        data = NULL;
+    else if(lua_isstring(L, arg))
+        data = lua_tolstring(L, arg, &len);
+    else if(lua_istable(L, arg))
+        data = checkdataptr(L, arg, &len);
+    else
+        return luaL_argerror(L, arg, "invalid type");
     if(buffer == 0)
         glClearBufferSubData(target, internalformat, offset, size, format, type, (void*)data);
     else
@@ -507,11 +552,17 @@ static int MapWrite(lua_State *L) /* nongl */
 /* mapped_buffer_write(target|buffer, offset, bstring) */
     {
     size_t length, buflen;
+    const char *data;
     GLenum target;
     GLuint buffer = checktargetorname(L, 1, &target, DOMAIN_BUFFER_TARGET);
     char *ptr = (char*)GetPointer(L, target, buffer);
     GLintptr offset = luaL_checkinteger(L, 2);
-    const char *data = luaL_checklstring(L, 3, &length);    
+    if(lua_isstring(L, 3))
+        data = luaL_checklstring(L, 3, &length);
+    else if(lua_istable(L, 3))
+        data = checkdataptr(L, 3, &length);
+    else
+        return luaL_argerror(L, 3, "invalid data");
     /* access and boundary checks */
     GLbitfield flags = GetAccessFlags(L, target, buffer);
     if(!(flags & GL_MAP_WRITE_BIT))
