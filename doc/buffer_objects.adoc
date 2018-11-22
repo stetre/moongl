@@ -4,7 +4,7 @@
 [[gl.bind_buffer]]
 * _buffer_ = *new_buffer*(<<buffertarget,_target_>>) _NONGL_ +
 _buffer~1~_, _buffer~2~_, _..._ = *gen_buffers*([_n_ = 1]) +
-*create_buffers*(_buffer~1~_, [_buffer~2~_, _..._]) +
+_buffer~1~_, _buffer~2~_, _..._ = *create_buffers*([_n_ = 1]) +
 *bind_buffer*(<<buffertarget,_target_>>, [_buffer_]) +
 *unbind_buffer*(<<buffertarget,_target_>>) _NONGL_ +
 *delete_buffers*(_buffer~1~_, [_buffer~2~_, _..._]) +

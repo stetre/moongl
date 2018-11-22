@@ -6,7 +6,7 @@ Transform Feedback:
 [[gl.bind_transform_feedback]]
 * _xfb_= *new_transform_feedback*(_target_ ) _NONGL_ +
 _xfb~1~_, _xfb~2~_, _..._ = *gen_transform_feedbacks*([_n_ = 1]) +
-*create_transform_feedbacks*(_xfb~1~_, [_xfb~2~_, _..._]) +
+_xfb~1~_, _xfb~2~_, _..._ = *create_transform_feedbacks*([_n_ = 1]) +
 *bind_transform_feedback*(_target_, [_xfb_]) +
 *unbind_transform_feedback*(_target_) _NONGL_ +
 *delete_transform_feedbacks*(_xfb~1~_, [_xfb~2~_, _..._]) +

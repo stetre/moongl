@@ -3,7 +3,7 @@
 
 [[gl.gen_queries]]
 * _id~1~_, _id~2~_, _..._ = *gen_queries*([_n_ = 1]) +
-*create_queries*(_target_, _id~1~_, [_id~2~_, _..._]) +
+_id~1~_, _id~2~_, _..._ = *create_queries*(_target_, [_n_ = 1]) +
 *delete_queries*(_id~1~_, [_id~2~_, _..._]) +
 [small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGenQueries[glGenQueries] -
 https://www.khronos.org/opengl/wiki/GLAPI/glDeleteQueries[glDeleteQueries].#

@@ -121,7 +121,7 @@ Program Pipeline Objects
 [[gl.gen_program_pipelines]]
 * _pipeline_ = *new_program_pipeline*( ) _NONGL_ +
 _pipeline~1~_, _pipeline~2~_, _..._ = *gen_program_pipelines*([_n_ = 1]) +
-*create_program_pipelines*(_pipeline~1~_, [_pipeline~2~_, _..._]) +
+_pipeline~1~_, _pipeline~2~_, _..._ = *create_program_pipelines*([_n_ = 1]) +
 *bind_program_pipeline*(_pipeline_) +
 *unbind_program_pipeline*( ) _NONGL_ +
 *delete_program_pipelines*(_pipeline~1~_, [_pipeline~2~_, _..._]) +

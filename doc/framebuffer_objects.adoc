@@ -6,7 +6,7 @@
 [[gl.bind_framebuffer]]
 * _framebuffer_ = *new_framebuffer*(<<framebuffertarget, _target_>>) _NONGL_ +
 _framebuffer~1~_, _framebuffer~2~_, _..._ = *gen_framebuffers*([_n_ = 1]) +
-*create_framebuffers*(_framebuffer~1~_, [_framebuffer~2~_, _..._]) +
+_framebuffer~1~_, _framebuffer~2~_, _..._ = *create_framebuffers*([_n_ = 1]) +
 *bind_framebuffer*(<<framebuffertarget, _target_>>, [_framebuffer_]) +
 *unbind_framebuffer*(<<framebuffertarget, _target_>>) _NONGL_ +
 *delete_framebuffers*(_framebuffer~1~_, [_framebuffer~2~_, _..._]) +
@@ -43,7 +43,7 @@ Renderbuffer Objects:
 [[gl.bind_renderbuffer]]
 * _renderbuffer_ = *new_renderbuffer*(<<renderbuffertarget, _target_>>) _NONGL_ +
 _renderbuffer~1~_, _renderbuffer~2~_, _..._ = *gen_renderbuffers*([_n_ = 1]) +
-*create_renderbuffers*(_renderbuffer~1~_, [_renderbuffer~2~_, _..._]) +
+_renderbuffer~1~_, _renderbuffer~2~_, _..._ = *create_renderbuffers*([_n_ = 1]) +
 *bind_renderbuffer*(_target_, [_renderbuffer_]) +
 *unbind_renderbuffer*(_target_) _NONGL_ +
 *delete_renderbuffers*(_renderbuffer~1~_, [_renderbuffer~2~_, _..._]) +

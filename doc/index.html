@@ -1089,7 +1089,7 @@ Rfr: <a href="https://www.opengl.org/sdk/docs/man/html/glGetSync.xhtml">glGetSyn
 <ul>
 <li>
 <p><em>id<sub>1</sub></em>, <em>id<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>gen_queries</strong>([<em>n</em> = 1])<br>
-<strong>create_queries</strong>(<em>target</em>, <em>id<sub>1</sub></em>, [<em>id<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
+<em>id<sub>1</sub></em>, <em>id<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>create_queries</strong>(<em>target</em>, [<em>n</em> = 1])<br>
 <strong>delete_queries</strong>(<em>id<sub>1</sub></em>, [<em>id<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
 <span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGenQueries">glGenQueries</a> -
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glDeleteQueries">glDeleteQueries</a>.</span></p>
@@ -1141,7 +1141,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetQuery">glGetQuery</
 <li>
 <p><em>buffer</em> = <strong>new_buffer</strong>(<a href="#buffertarget"><em>target</em></a>) <em>NONGL</em><br>
 <em>buffer<sub>1</sub></em>, <em>buffer<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>gen_buffers</strong>([<em>n</em> = 1])<br>
-<strong>create_buffers</strong>(<em>buffer<sub>1</sub></em>, [<em>buffer<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
+<em>buffer<sub>1</sub></em>, <em>buffer<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>create_buffers</strong>([<em>n</em> = 1])<br>
 <strong>bind_buffer</strong>(<a href="#buffertarget"><em>target</em></a>, [<em>buffer</em>])<br>
 <strong>unbind_buffer</strong>(<a href="#buffertarget"><em>target</em></a>) <em>NONGL</em><br>
 <strong>delete_buffers</strong>(<em>buffer<sub>1</sub></em>, [<em>buffer<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
@@ -1471,7 +1471,7 @@ Rfr:
 <li>
 <p><em>pipeline</em> = <strong>new_program_pipeline</strong>( ) <em>NONGL</em><br>
 <em>pipeline<sub>1</sub></em>, <em>pipeline<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>gen_program_pipelines</strong>([<em>n</em> = 1])<br>
-<strong>create_program_pipelines</strong>(<em>pipeline<sub>1</sub></em>, [<em>pipeline<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
+<em>pipeline<sub>1</sub></em>, <em>pipeline<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>create_program_pipelines</strong>([<em>n</em> = 1])<br>
 <strong>bind_program_pipeline</strong>(<em>pipeline</em>)<br>
 <strong>unbind_program_pipeline</strong>( ) <em>NONGL</em><br>
 <strong>delete_program_pipelines</strong>(<em>pipeline<sub>1</sub></em>, [<em>pipeline<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
@@ -1825,7 +1825,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glActiveTexture">glActiv
 <li>
 <p><em>texture</em> = <strong>new_texture</strong>(<a href="#texturetarget"><em>target</em></a>) <em>NONGL</em><br>
 <em>texture<sub>1</sub></em>, <em>texture<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>gen_textures</strong>([<em>n</em> = 1])<br>
-<strong>create_textures</strong>(<a href="#texturetarget"><em>target</em></a>, <em>texture<sub>1</sub></em>, [<em>texture<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
+<em>texture<sub>1</sub></em>, <em>texture<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>create_textures</strong>(<a href="#texturetarget"><em>target</em></a>, [<em>n</em> = 1])<br>
 <strong>bind_texture</strong>(<a href="#texturetarget"><em>target</em></a>, [<em>texture</em>])<br>
 <strong>bind_textures</strong>(<em>first</em>, <em>texture<sub>1</sub></em>, [<em>texture<sub>2</sub></em>, <em>&#8230;&#8203;</em> ])<br>
 <strong>unbind_texture</strong>(<a href="#texturetarget"><em>target</em></a>) <em>NONGL</em><br>
@@ -1848,7 +1848,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glActiveTexture">glActiv
 <li>
 <p><em>sampler</em> = <strong>new_sampler</strong>(<em>unit</em>) <em>NONGL</em><br>
 <em>sampler<sub>1</sub></em>, <em>sampler<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>gen_samplers</strong>([<em>n</em> = 1])<br>
-<strong>create_samplers</strong>(<em>sampler<sub>1</sub></em>, [<em>sampler<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
+<em>sampler<sub>1</sub></em>, <em>sampler<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>create_samplers</strong>([<em>n</em> = 1])<br>
 <strong>bind_sampler</strong>(<em>unit</em>, [<em>sampler</em>])<br>
 <strong>bind_samplers</strong>(<em>first</em>, <em>sampler<sub>1</sub></em>, [<em>sampler<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
 <strong>unbind_sampler</strong>(<em>unit</em>) <em>NONGL</em><br>
@@ -2221,7 +2221,7 @@ Rfr:
 <li>
 <p><em>framebuffer</em> = <strong>new_framebuffer</strong>(<a href="#framebuffertarget"><em>target</em></a>) <em>NONGL</em><br>
 <em>framebuffer<sub>1</sub></em>, <em>framebuffer<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>gen_framebuffers</strong>([<em>n</em> = 1])<br>
-<strong>create_framebuffers</strong>(<em>framebuffer<sub>1</sub></em>, [<em>framebuffer<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
+<em>framebuffer<sub>1</sub></em>, <em>framebuffer<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>create_framebuffers</strong>([<em>n</em> = 1])<br>
 <strong>bind_framebuffer</strong>(<a href="#framebuffertarget"><em>target</em></a>, [<em>framebuffer</em>])<br>
 <strong>unbind_framebuffer</strong>(<a href="#framebuffertarget"><em>target</em></a>) <em>NONGL</em><br>
 <strong>delete_framebuffers</strong>(<em>framebuffer<sub>1</sub></em>, [<em>framebuffer<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
@@ -2269,7 +2269,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetFramebufferAttachme
 <li>
 <p><em>renderbuffer</em> = <strong>new_renderbuffer</strong>(<a href="#renderbuffertarget"><em>target</em></a>) <em>NONGL</em><br>
 <em>renderbuffer<sub>1</sub></em>, <em>renderbuffer<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>gen_renderbuffers</strong>([<em>n</em> = 1])<br>
-<strong>create_renderbuffers</strong>(<em>renderbuffer<sub>1</sub></em>, [<em>renderbuffer<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
+<em>renderbuffer<sub>1</sub></em>, <em>renderbuffer<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>create_renderbuffers</strong>([<em>n</em> = 1])<br>
 <strong>bind_renderbuffer</strong>(<em>target</em>, [<em>renderbuffer</em>])<br>
 <strong>unbind_renderbuffer</strong>(<em>target</em>) <em>NONGL</em><br>
 <strong>delete_renderbuffers</strong>(<em>renderbuffer<sub>1</sub></em>, [<em>renderbuffer<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
@@ -2421,7 +2421,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glVertexAttrib">glVertex
 <li>
 <p><em>array</em> = <strong>new_vertex_array</strong>( ) <em>NONGL</em><br>
 <em>array<sub>1</sub></em>, <em>array<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>gen_vertex_arrays</strong>([<em>n</em> = 1])<br>
-<strong>create_vertex_arrays</strong>(<em>array<sub>1</sub></em>, [<em>array<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
+<em>array<sub>1</sub></em>, <em>array<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>create_vertex_arrays</strong>([<em>n</em> = 1])<br>
 <strong>bind_vertex_array</strong>([<em>array</em>])<br>
 <strong>unbind_vertex_array</strong>( ) <em>NONGL</em><br>
 <strong>delete_vertex_arrays</strong>(<em>array<sub>1</sub></em>, [<em>array<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
@@ -2707,7 +2707,7 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glGetTransformFeedbackVa
 <li>
 <p><em>xfb</em>= <strong>new_transform_feedback</strong>(<em>target</em> ) <em>NONGL</em><br>
 <em>xfb<sub>1</sub></em>, <em>xfb<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>gen_transform_feedbacks</strong>([<em>n</em> = 1])<br>
-<strong>create_transform_feedbacks</strong>(<em>xfb<sub>1</sub></em>, [<em>xfb<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
+<em>xfb<sub>1</sub></em>, <em>xfb<sub>2</sub></em>, <em>&#8230;&#8203;</em> = <strong>create_transform_feedbacks</strong>([<em>n</em> = 1])<br>
 <strong>bind_transform_feedback</strong>(<em>target</em>, [<em>xfb</em>])<br>
 <strong>unbind_transform_feedback</strong>(<em>target</em>) <em>NONGL</em><br>
 <strong>delete_transform_feedbacks</strong>(<em>xfb<sub>1</sub></em>, [<em>xfb<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>

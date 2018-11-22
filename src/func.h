@@ -87,9 +87,10 @@ int CheckErrorFree3(lua_State *L, void *ptr1, void *ptr2, void *ptr3);
     int i;                                                          \
     GLuint* names;                                                  \
     GLsizei n = luaL_optinteger(L, 1, 1); /* defaults to a single name */   \
-    if(n <= 0)  \
+    if(n <= 0)                                                      \
         return luaL_argerror(L, 1, "positive number expected");     \
     check_init_called(L);                                           \
+    luaL_checkstack(L, n, NULL);                                    \
     names = (GLuint*)Malloc(L, n*sizeof(GLuint));                   \
     glGen##what##s(n, names);                                       \
     CheckErrorFree(L, names);                                       \
@@ -139,7 +140,7 @@ static int Bind##what##s(lua_State *L)                          \
     }
 
 #ifndef GL_VERSION_4_5
-#define CREATE_FUNC(what)                           \
+#define CREATE_FUNC(what)                                           \
     static int Create##what##s(lua_State *L) { NOT_AVAILABLE; }
 #else
 #define CREATE_FUNC(what)                                           \
@@ -147,16 +148,16 @@ static int Create##what##s(lua_State *L)                            \
     {                                                               \
     int i;                                                          \
     GLuint* names;                                                  \
-    GLsizei n = 1;                                                  \
-    while(lua_isinteger(L, n)) n++; /* get the number of names */   \
-    if(--n==0)  return luaL_argerror(L, 1, "integer expected");     \
+    GLsizei n = luaL_optinteger(L, 1, 1);                           \
+    check_init_called(L);                                           \
+    luaL_checkstack(L, n, NULL);                                    \
     names = (GLuint*)Malloc(L, n*sizeof(GLuint));                   \
-    for(i = 0; i < n; i++)                                          \
-            names[i] = lua_tointeger(L, i+1);                       \
     glCreate##what##s(n, names);                                    \
     CheckErrorFree(L, names);                                       \
+    for(i = 0; i < n; i++)                                          \
+        lua_pushinteger(L, names[i]);                               \
     Free(L, names);                                                 \
-    return 0;                                                       \
+    return n;                                                       \
     }
 #endif
 

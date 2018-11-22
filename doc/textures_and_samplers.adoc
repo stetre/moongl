@@ -20,7 +20,7 @@ Texture Objects:
 [[gl.bind_texture]]
 * _texture_ = *new_texture*(<<texturetarget,_target_>>) _NONGL_ +
 _texture~1~_, _texture~2~_, _..._ = *gen_textures*([_n_ = 1]) +
-*create_textures*(<<texturetarget,_target_>>, _texture~1~_, [_texture~2~_, _..._]) +
+_texture~1~_, _texture~2~_, _..._ = *create_textures*(<<texturetarget,_target_>>, [_n_ = 1]) +
 *bind_texture*(<<texturetarget,_target_>>, [_texture_]) +
 *bind_textures*(_first_, _texture~1~_, [_texture~2~_, _..._ ]) +
 *unbind_texture*(<<texturetarget,_target_>>) _NONGL_ +
@@ -45,7 +45,7 @@ Sampler Objects
 [[gl.bind_sampler]]
 * _sampler_ = *new_sampler*(_unit_) _NONGL_ +
 _sampler~1~_, _sampler~2~_, _..._ = *gen_samplers*([_n_ = 1]) +
-*create_samplers*(_sampler~1~_, [_sampler~2~_, _..._]) +
+_sampler~1~_, _sampler~2~_, _..._ = *create_samplers*([_n_ = 1]) +
 *bind_sampler*(_unit_, [_sampler_]) +
 *bind_samplers*(_first_, _sampler~1~_, [_sampler~2~_, _..._]) +
 *unbind_sampler*(_unit_) _NONGL_ +

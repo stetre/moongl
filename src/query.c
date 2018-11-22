@@ -31,23 +31,19 @@ IS_FUNC(Query)
 
 static int CreateQueries(lua_State *L)
     {
-    int i;
+    GLsizei i;
     GLuint* names;
-    GLsizei n = 1;
     GLenum target = checkquerytarget(L, 1);
+    GLsizei n = luaL_optinteger(L, 2, 1);
     check_init_called(L);
-    while(lua_isinteger(L, n)) n++; /* get the number of names */
-    if(--n==0)  return luaL_argerror(L, 2, "integer expected");
+    luaL_checkstack(L, n, NULL);
     names = (GLuint*)Malloc(L, n*sizeof(GLuint));
-    for(i = 0; i < n; i++)
-        {
-        names[i] = lua_tointeger(L, i+2);
-        DBG("CreateQueries(%d)\n", names[i]);
-        }
     glCreateQueries(target, n, names);
     CheckErrorFree(L, names);
+    for(i = 0; i < n; i++)
+        lua_pushinteger(L, names[i]);
     Free(L, names);
-    return 0;
+    return n;
     }
 
 static int BeginQuery(lua_State *L)

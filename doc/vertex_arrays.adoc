@@ -6,7 +6,7 @@ Vertex Array Objects:
 [[gl.bind_vertex_array]]
 * _array_ = *new_vertex_array*( ) _NONGL_ +
 _array~1~_, _array~2~_, _..._ = *gen_vertex_arrays*([_n_ = 1]) +
-*create_vertex_arrays*(_array~1~_, [_array~2~_, _..._]) +
+_array~1~_, _array~2~_, _..._ = *create_vertex_arrays*([_n_ = 1]) +
 *bind_vertex_array*([_array_]) +
 *unbind_vertex_array*( ) _NONGL_ +
 *delete_vertex_arrays*(_array~1~_, [_array~2~_, _..._]) +
