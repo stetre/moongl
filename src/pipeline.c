@@ -65,7 +65,7 @@ static int UseProgramStages(lua_State *L)
     {
     GLuint pipeline = luaL_checkinteger(L, 1);
     GLuint program = luaL_checkinteger(L, 2);
-    GLbitfield stages = 0; CheckStagesCodes(L, 3, 1);
+    GLbitfield stages = CheckStagesCodes(L, 3, 1);
     glUseProgramStages(pipeline, stages, program);
     CheckError(L);
     return 0;
