@@ -1356,8 +1356,10 @@ shaders, and deletes them and the program.</span></p>
 <div id="gl.compile_shader" class="ulist">
 <ul>
 <li>
-<p><strong>compile_shader</strong>(<em>shader</em>)<br>
-<span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glCompileShader">glCompileShader</a>.</span></p>
+<p><strong>compile_shader</strong>(<em>shader</em>, [<em>checkstatus=false</em>])<br>
+<span class="small">If <em>checkstatus=true</em>, also checks the compile status and possibly raises
+an error with the info log.<br>
+Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glCompileShader">glCompileShader</a>.</span></p>
 </li>
 </ul>
 </div>
@@ -1415,8 +1417,10 @@ shaders, and deletes them and the program.</span></p>
 <div id="gl.link_program" class="ulist">
 <ul>
 <li>
-<p><strong>link_program</strong>(<em>program</em>)<br>
-<span class="small">Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glLinkProgram">glLinkProgram</a>.</span></p>
+<p><strong>link_program</strong>(<em>program</em>, [<em>checkstatus=false</em>])<br>
+<span class="small">If <em>checkstatus=true</em>, also checks the link status and possibly raises
+an error with the info log.<br>
+Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glLinkProgram">glLinkProgram</a>.</span></p>
 </li>
 </ul>
 </div>

@@ -58,7 +58,6 @@ static int DeletePrograms(lua_State *L) /* NONGL */
 
 
 static int LinkProgram(lua_State *L)
-/* link_program(program [, check]) */
     {
     char *buf;
     GLint ok, bufsz;

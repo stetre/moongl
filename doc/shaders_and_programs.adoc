@@ -39,8 +39,10 @@ https://www.khronos.org/opengl/wiki/GLAPI/glDeleteShader[glDeleteShader].#
 [small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glShaderSource[glShaderSource].#
 
 [[gl.compile_shader]]
-* *compile_shader*(_shader_) +
-[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glCompileShader[glCompileShader].#
+* *compile_shader*(_shader_, [_checkstatus=false_]) +
+[small]#If _checkstatus=true_, also checks the compile status and possibly raises
+an error with the info log. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glCompileShader[glCompileShader].#
 
 [[gl.release_shader_compiler]]
 * *release_shader_compiler*( ) +
@@ -80,8 +82,10 @@ https://www.khronos.org/opengl/wiki/GLAPI/glAttachShader[glAttachShader] -
 https://www.khronos.org/opengl/wiki/GLAPI/glDetachShader[glDetachShader].#
 
 [[gl.link_program]]
-* *link_program*(_program_) +
-[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glLinkProgram[glLinkProgram].#
+* *link_program*(_program_, [_checkstatus=false_]) +
+[small]#If _checkstatus=true_, also checks the link status and possibly raises
+an error with the info log. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glLinkProgram[glLinkProgram].#
 
 [[gl.use_program]]
 * *use_program*(_program_) +

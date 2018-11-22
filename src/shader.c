@@ -63,7 +63,6 @@ static int CreateShaderProgram(lua_State *L)
     }
 
 static int CompileShader(lua_State *L)
-/* compile_shader(name [, check] */
     {
     char *buf;
     GLint ok, bufsz;
