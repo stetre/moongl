@@ -109,12 +109,12 @@ static int GetRenderbufferParameter(lua_State *L)
     }
 
 
-NEW_TARGET_FUNC(Renderbuffer, checkrenderbuffertarget)
-GEN_FUNC(Renderbuffer)
+NEW_TARGET_FUNC(Renderbuffer, OTYPE_RENDERBUFFER, checkrenderbuffertarget)
+GEN_FUNC(Renderbuffer, OTYPE_RENDERBUFFER)
 BIND_TARGET_FUNC(Renderbuffer, checkrenderbuffertarget)
-DELETE_FUNC(Renderbuffer)
+DELETE_FUNC(Renderbuffer, OTYPE_RENDERBUFFER)
 IS_FUNC(Renderbuffer)
-CREATE_FUNC(Renderbuffer)
+CREATE_FUNC(Renderbuffer, OTYPE_RENDERBUFFER)
 
 
 /*------------------------------------------------------------------------------*

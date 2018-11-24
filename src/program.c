@@ -31,7 +31,21 @@ static int CreateProgram(lua_State *L)
     check_init_called(L);
     ref = glCreateProgram();
     CheckError(L);
+    object_new(L, OTYPE_PROGRAM, ref);
     lua_pushinteger(L, ref);
+    return 1;
+    }
+
+static int CreateShaderProgram(lua_State *L)
+    {
+    GLenum type = checkshadertype(L, 1);
+    const GLchar *string = luaL_checkstring(L, 2);
+    GLuint program;
+    check_init_called(L);
+    program = glCreateShaderProgramv(type, 1, &string);
+    CheckError(L);
+    object_new(L, OTYPE_PROGRAM, program);
+    lua_pushinteger(L, program);
     return 1;
     }
 
@@ -39,23 +53,8 @@ UINT2_FUNC(AttachShader)
 UINT2_FUNC(DetachShader)
 UINT_FUNC(UseProgram)
 UINT_FUNC(ValidateProgram)
-UINT_FUNC(DeleteProgram)
+DELETE_FUNC(Program, OTYPE_PROGRAM)
 IS_FUNC(Program)
-
-static int DeletePrograms(lua_State *L) /* NONGL */
-    {
-    int arg = 1;
-    GLuint prog;
-    while(!lua_isnone(L, arg))
-        {
-        prog = luaL_checkinteger(L, arg++);
-        glDeleteProgram(prog);
-        CheckError(L);
-        }
-    return 0;
-    }
-
-
 
 static int LinkProgram(lua_State *L)
     {
@@ -278,12 +277,13 @@ static int ProgramBinary(lua_State *L)
 static const struct luaL_Reg Functions[] = 
     {
         { "create_program", CreateProgram },
+        { "create_shader_program", CreateShaderProgram },
         { "attach_shader", AttachShader },
         { "detach_shader", DetachShader },
         { "link_program", LinkProgram },
         { "use_program", UseProgram },
         { "validate_program", ValidateProgram },
-        { "delete_program", DeleteProgram },
+        { "delete_program", DeletePrograms },
         { "delete_programs", DeletePrograms },
         { "is_program", IsProgram },
         { "get_program_info_log", GetProgramInfoLog },

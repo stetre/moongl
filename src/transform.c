@@ -25,12 +25,12 @@
 
 #include "internal.h"
 
-NEW_TARGET_FUNC(TransformFeedback, checktransformtarget)
-GEN_FUNC(TransformFeedback)
+NEW_TARGET_FUNC(TransformFeedback, OTYPE_TRANSFORM_FEEDBACK, checktransformtarget)
+GEN_FUNC(TransformFeedback, OTYPE_TRANSFORM_FEEDBACK)
 BIND_TARGET_FUNC(TransformFeedback, checktransformtarget)
-DELETE_FUNC(TransformFeedback)
+DELETE_FUNC(TransformFeedback, OTYPE_TRANSFORM_FEEDBACK)
 IS_FUNC(TransformFeedback)
-CREATE_FUNC(TransformFeedback)
+CREATE_FUNC(TransformFeedback, OTYPE_TRANSFORM_FEEDBACK)
 
 
 static int BeginTransformFeedback(lua_State *L)

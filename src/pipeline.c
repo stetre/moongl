@@ -50,12 +50,12 @@ BITFIELD_T(StagesCodesBitfield, StagesCodesStrings, StagesCodesCodes)
 
 
 
-GEN_FUNC(ProgramPipeline)
-NEW_FUNC(ProgramPipeline)
+GEN_FUNC(ProgramPipeline, OTYPE_PROGRAM_PIPELINE)
+NEW_FUNC(ProgramPipeline, OTYPE_PROGRAM_PIPELINE)
 BIND_FUNC(ProgramPipeline)
-DELETE_FUNC(ProgramPipeline)
+DELETE_FUNC(ProgramPipeline, OTYPE_PROGRAM_PIPELINE)
 IS_FUNC(ProgramPipeline)
-CREATE_FUNC(ProgramPipeline)
+CREATE_FUNC(ProgramPipeline, OTYPE_PROGRAM_PIPELINE)
 
 UINT_FUNC(ValidateProgramPipeline)
 

@@ -25,8 +25,8 @@
 
 #include "internal.h"
 
-GEN_FUNC(Querie)
-DELETE_FUNC(Querie)
+GEN_FUNC(Querie, OTYPE_QUERY)
+DELETE_FUNC(Querie, OTYPE_QUERY)
 IS_FUNC(Query)
 
 static int CreateQueries(lua_State *L)
@@ -41,7 +41,10 @@ static int CreateQueries(lua_State *L)
     glCreateQueries(target, n, names);
     CheckErrorFree(L, names);
     for(i = 0; i < n; i++)
+        {
+        object_new(L, OTYPE_QUERY, names[i]);
         lua_pushinteger(L, names[i]);
+        }
     Free(L, names);
     return n;
     }

@@ -96,8 +96,29 @@ GLsizei getSizei(lua_State *L, GLenum pname);
 GLint programGet(lua_State *L, GLuint program, GLenum pname);
 
 
+/* object.c */
+#define OTYPE_BUFFER                1
+#define OTYPE_VERTEX_ARRAY          2
+#define OTYPE_SAMPLER               3
+#define OTYPE_TEXTURE               4
+#define OTYPE_FRAMEBUFFER           5
+#define OTYPE_RENDERBUFFER          6
+#define OTYPE_PROGRAM               7
+#define OTYPE_SHADER                8
+#define OTYPE_PROGRAM_PIPELINE      9
+#define OTYPE_TRANSFORM_FEEDBACK    10
+#define OTYPE_QUERY                 11
+#define object_new moongl_object_new
+int object_new(lua_State *L, uint32_t otype, uint32_t oname);
+#define object_free moongl_object_free
+void object_free(lua_State *L, uint32_t otype, uint32_t oname);
+#define object_free_all moongl_object_free_all
+void object_free_all(lua_State *L);
+
+/* main.c */
 int luaopen_moongl(lua_State *L);
 void moongl_open_enums(lua_State *L);
+void moongl_open_object(lua_State *L);
 void moongl_open_init(lua_State *L);
 void moongl_open_hint(lua_State *L);
 void moongl_open_capabilities(lua_State *L);

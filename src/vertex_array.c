@@ -587,12 +587,12 @@ static int GetActiveAttrib(lua_State *L)
  | Vertex Array Objects                                                         |
  *------------------------------------------------------------------------------*/
 
-NEW_FUNC(VertexArray)
-GEN_FUNC(VertexArray)
+NEW_FUNC(VertexArray, OTYPE_VERTEX_ARRAY)
+GEN_FUNC(VertexArray, OTYPE_VERTEX_ARRAY)
 BIND_FUNC(VertexArray)
-DELETE_FUNC(VertexArray)
+DELETE_FUNC(VertexArray, OTYPE_VERTEX_ARRAY)
 IS_FUNC(VertexArray)
-CREATE_FUNC(VertexArray)
+CREATE_FUNC(VertexArray, OTYPE_VERTEX_ARRAY)
 
 static int VertexArrayElementBuffer(lua_State *L)
     {

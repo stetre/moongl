@@ -347,12 +347,12 @@ static int InvalidateFramebuffer(lua_State *L)
  *------------------------------------------------------------------------------*/
 
 
-NEW_TARGET_FUNC(Framebuffer, checkframebuffertarget)
-GEN_FUNC(Framebuffer)
+NEW_TARGET_FUNC(Framebuffer, OTYPE_FRAMEBUFFER, checkframebuffertarget)
+GEN_FUNC(Framebuffer, OTYPE_FRAMEBUFFER)
 BIND_TARGET_FUNC(Framebuffer, checkframebuffertarget)
-DELETE_FUNC(Framebuffer)
+DELETE_FUNC(Framebuffer, OTYPE_FRAMEBUFFER)
 IS_FUNC(Framebuffer)
-CREATE_FUNC(Framebuffer)
+CREATE_FUNC(Framebuffer, OTYPE_FRAMEBUFFER)
 
 static int TextureBarrier(lua_State *L) 
     { 

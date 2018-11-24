@@ -79,12 +79,12 @@ BITFIELD_T(AccessFlagsBitfield, AccessFlagsStrings, AccessFlagsCodes)
  | Buffer objects                                                               |
  *------------------------------------------------------------------------------*/
 
-NEW_TARGET_FUNC(Buffer, checkbuffertarget)
-GEN_FUNC(Buffer)
+NEW_TARGET_FUNC(Buffer, OTYPE_BUFFER, checkbuffertarget)
+GEN_FUNC(Buffer, OTYPE_BUFFER)
 BIND_TARGET_FUNC(Buffer, checkbuffertarget)
-DELETE_FUNC(Buffer)
+DELETE_FUNC(Buffer, OTYPE_BUFFER)
 IS_FUNC(Buffer)
-CREATE_FUNC(Buffer)
+CREATE_FUNC(Buffer, OTYPE_BUFFER)
 
 static int BindBufferRange(lua_State *L)
     {

@@ -25,6 +25,18 @@
 
 #include "internal.h"
 
+static lua_State *moongl_L = NULL;
+
+static void AtExit(void)
+    {
+    if(moongl_L)
+        {
+        enums_free_all(moongl_L);
+        object_free_all(moongl_L);
+        moongl_L = NULL;
+        }
+    }
+
 static int AddVersions(lua_State *L)
 /* Add version strings to the gl table */
     {
@@ -52,11 +64,15 @@ static int AddVersions(lua_State *L)
 int luaopen_moongl(lua_State *L)
 /* Lua calls this function to load the module */
     {
+    moongl_L = L;
+    atexit(AtExit);
+
     lua_newtable(L); /* the gl table */
     AddVersions(L);
 
     /* add gl functions: */
     moongl_open_init(L);
+    moongl_open_object(L);
     moongl_open_enums(L);
     moongl_open_nongl(L);
 

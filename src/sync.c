@@ -118,6 +118,8 @@ static void node_free(node_t* node)
     free(node);  
     }
 
+//@@TODO sync_free_all
+
 static node_t *CheckSync(lua_State *L, int arg)
     {
     int id = luaL_checkinteger(L, arg);

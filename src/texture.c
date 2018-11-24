@@ -345,10 +345,10 @@ static int GetTextureLevelParameter(lua_State *L)
  | Gen, bind etc                                                            |
  *--------------------------------------------------------------------------*/
 
-NEW_TARGET_FUNC(Texture, checktexturetarget)
-GEN_FUNC(Texture)
+NEW_TARGET_FUNC(Texture, OTYPE_TEXTURE, checktexturetarget)
+GEN_FUNC(Texture, OTYPE_TEXTURE)
 BIND_TARGET_FUNC(Texture, checktexturetarget)
-DELETE_FUNC(Texture)
+DELETE_FUNC(Texture, OTYPE_TEXTURE)
 IS_FUNC(Texture)
 BINDN_FUNC(Texture)
 UINT2_FUNC(BindTextureUnit)
@@ -365,7 +365,10 @@ static int CreateTextures(lua_State *L)
     glCreateTextures(target, n, names);
     CheckErrorFree(L, names);
     for(i = 0; i < n; i++)
+        {
+        object_new(L, OTYPE_QUERY, names[i]);
         lua_pushinteger(L, names[i]);
+        }
     Free(L, names);
     return n;
     }

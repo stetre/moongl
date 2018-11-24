@@ -25,9 +25,9 @@
 
 #include "internal.h"
 
-GEN_FUNC(Sampler)
-CREATE_FUNC(Sampler)
-DELETE_FUNC(Sampler)
+GEN_FUNC(Sampler, OTYPE_SAMPLER)
+CREATE_FUNC(Sampler, OTYPE_SAMPLER)
+DELETE_FUNC(Sampler, OTYPE_SAMPLER)
 IS_FUNC(Sampler)
 BINDN_FUNC(Sampler)
 
@@ -48,6 +48,7 @@ static int NewSampler(lua_State *L)
     check_init_called(L);
     glGenSamplers(1, &sampler);
     CheckError(L);
+    object_new(L, OTYPE_SAMPLER, sampler);
     glBindSampler(unit, sampler);
     CheckError(L);
     lua_pushinteger(L, sampler);

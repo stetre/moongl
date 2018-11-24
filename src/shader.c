@@ -32,6 +32,7 @@ static int CreateShader(lua_State *L)
     check_init_called(L);
     ref = glCreateShader(type);
     CheckError(L);
+    object_new(L, OTYPE_SHADER, ref);
     lua_pushinteger(L, ref);
     return 1;
     }
@@ -47,19 +48,6 @@ static int ShaderSource(lua_State *L)
     glShaderSource(shader, 1, &string, &length);
     CheckError(L);
     return 0;
-    }
-
-static int CreateShaderProgram(lua_State *L)
-/* ref = create_shader_program(type, string) */
-    {
-    GLenum type = checkshadertype(L, 1);
-    const GLchar *string = luaL_checkstring(L, 2);
-    GLuint program;
-    check_init_called(L);
-    program = glCreateShaderProgramv(type, 1, &string);
-    CheckError(L);
-    lua_pushinteger(L, program);
-    return 1;
     }
 
 static int CompileShader(lua_State *L)
@@ -91,21 +79,8 @@ static int CompileShader(lua_State *L)
     }
 
 VOID_FUNC(ReleaseShaderCompiler)
-UINT_FUNC(DeleteShader)
+DELETE_FUNC(Shader, OTYPE_SHADER)
 IS_FUNC(Shader)
-
-static int DeleteShaders(lua_State *L) /* NONGL */
-    {
-    int arg = 1;
-    GLuint shader;
-    while(!lua_isnone(L, arg))
-        {
-        shader = luaL_checkinteger(L, arg++);
-        glDeleteShader(shader);
-        CheckError(L);
-        }
-    return 0;
-    }
 
 static int ShaderBinary(lua_State *L)
     {
@@ -346,11 +321,10 @@ static int DispatchComputeIndirect(lua_State *L)
 static const struct luaL_Reg Functions[] = 
     {
         { "create_shader", CreateShader },
-        { "create_shader_program", CreateShaderProgram },
         { "shader_source", ShaderSource },
         { "compile_shader", CompileShader },
         { "release_shader_compiler", ReleaseShaderCompiler },
-        { "delete_shader", DeleteShader },
+        { "delete_shader", DeleteShaders },
         { "delete_shaders", DeleteShaders },
         { "is_shader", IsShader  },
         { "shader_binary", ShaderBinary },

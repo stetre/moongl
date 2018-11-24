@@ -54,20 +54,21 @@ int CheckErrorFree3(lua_State *L, void *ptr1, void *ptr2, void *ptr3);
  | Gen, Bind & C                                                                |
  *------------------------------------------------------------------------------*/
 
-#define NEW_FUNC(what)  /* glGen() + glBind() */                        \
+#define NEW_FUNC(what, otype)  /* glGen() + glBind() */                 \
     static int New##what(lua_State *L)                                  \
     {                                                                   \
     GLuint name;                                                        \
-    check_init_called(L);                                           \
+    check_init_called(L);                                               \
     glGen##what##s(1, &name);                                           \
     CheckError(L);                                                      \
+    object_new(L, otype, name);                                         \
     glBind##what(name);                                                 \
     CheckError(L);                                                      \
     lua_pushinteger(L, name);                                           \
     return 1;                                                           \
     }
 
-#define NEW_TARGET_FUNC(what, checkxxx)    /* glGen() + glBind() */         \
+#define NEW_TARGET_FUNC(what, otype, checkxxx)    /* glGen() + glBind() */  \
     static int New##what(lua_State *L)                                      \
     {                                                                       \
     GLuint name;                                                            \
@@ -75,13 +76,14 @@ int CheckErrorFree3(lua_State *L, void *ptr1, void *ptr2, void *ptr3);
     check_init_called(L);                                                   \
     glGen##what##s(1, &name);                                               \
     CheckError(L);                                                          \
+    object_new(L, otype, name);                                             \
     glBind##what(target, name);                                             \
     CheckError(L);                                                          \
     lua_pushinteger(L, name);                                               \
     return 1;                                                               \
     }
 
-#define GEN_FUNC(what)  \
+#define GEN_FUNC(what, otype)                                       \
     static int Gen##what##s(lua_State *L)                           \
     {                                                               \
     int i;                                                          \
@@ -95,7 +97,10 @@ int CheckErrorFree3(lua_State *L, void *ptr1, void *ptr2, void *ptr3);
     glGen##what##s(n, names);                                       \
     CheckErrorFree(L, names);                                       \
     for(i = 0; i < n; i++)                                          \
+        {                                                           \
+        object_new(L, otype, names[i]);                             \
         lua_pushinteger(L, names[i]);                               \
+        }                                                           \
     Free(L, names);                                                 \
     return n;                                                       \
     }
@@ -140,10 +145,10 @@ static int Bind##what##s(lua_State *L)                          \
     }
 
 #ifndef GL_VERSION_4_5
-#define CREATE_FUNC(what)                                           \
+#define CREATE_FUNC(what, otype)                                    \
     static int Create##what##s(lua_State *L) { NOT_AVAILABLE; }
 #else
-#define CREATE_FUNC(what)                                           \
+#define CREATE_FUNC(what, otype)                                    \
 static int Create##what##s(lua_State *L)                            \
     {                                                               \
     int i;                                                          \
@@ -155,26 +160,25 @@ static int Create##what##s(lua_State *L)                            \
     glCreate##what##s(n, names);                                    \
     CheckErrorFree(L, names);                                       \
     for(i = 0; i < n; i++)                                          \
+        {                                                           \
+        object_new(L, otype, names[i]);                             \
         lua_pushinteger(L, names[i]);                               \
+        }                                                           \
     Free(L, names);                                                 \
     return n;                                                       \
     }
 #endif
 
-#define DELETE_FUNC(what)                                           \
+#define DELETE_FUNC(what, otype)                                    \
     static int Delete##what##s(lua_State *L)                        \
     {                                                               \
-    int i;                                                          \
-    GLuint* names;                                                  \
-    GLsizei n = 1;                                                  \
-    while(lua_isinteger(L, n)) n++; /* get the number of names */   \
-    if(--n==0)  return luaL_argerror(L, 1, "integer expected");     \
-    names = (GLuint*)Malloc(L, n*sizeof(GLuint));                   \
-    for(i = 0; i < n; i++)                                          \
-        names[i] = lua_tointeger(L, i+1);                           \
-    glDelete##what##s(n, names);                                    \
-    CheckErrorFree(L, names);                                       \
-    Free(L, names);                                                 \
+    GLuint name;                                                    \
+    int arg = 1;                                                    \
+    while(!lua_isnoneornil(L, arg))                                 \
+        {                                                           \
+        name = luaL_checkinteger(L, arg++);                         \
+        object_free(L, otype, name);                                \
+        }                                                           \
     return 0;                                                       \
     }
 
