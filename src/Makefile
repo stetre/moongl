@@ -125,8 +125,9 @@ install:
 	@-cp -fpv $(Tgt).h $(H_DIR)
 	@-cp -fpvr ../$(Tgt) $(L_DIR)
 ifdef MACOS
-	@-cp -fpv $(Tgt).$(DLL_EXT) $(C_DIR)
-	@-ln -fsv $(C_DIR)/$(Tgt).$(DLL_EXT) $(S_DIR)/lib$(Tgt).$(DLL_EXT)
+	@-cp -fpv $(Tgt).$(DLL_EXT) $(C_DIR)/$(Tgt).so
+	@-ln -fsv $(C_DIR)/$(Tgt).so $(S_DIR)/lib$(Tgt).$(DLL_EXT)
+
 endif
 ifdef LINUX
 	@-cp -fpv $(Tgt).$(DLL_EXT) $(C_DIR)
