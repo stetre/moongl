@@ -1,3 +1,4 @@
+*.dylib
 *.log
 *.so
 *.dll
