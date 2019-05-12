@@ -2,7 +2,7 @@
 
 MoonGL is a Lua binding library for [OpenGL](https://www.opengl.org/).
 
-It runs on GNU/Linux and on Windows (MSYS2/MinGW) and requires 
+It runs on GNU/Linux, MacOS and on Windows (MSYS2/MinGW) and requires 
 [Lua](http://www.lua.org/) (>=5.3), 
 [OpenGL](https://www.opengl.org/) (>=3.3), and
 [GLEW](http://glew.sourceforge.net/).
@@ -20,7 +20,8 @@ MIT/X11 license (same as Lua). See [LICENSE](./LICENSE).
 
 See the [Reference Manual](https://stetre.github.io/moongl/doc/index.html).
 
-#### Getting and installing
+-----------
+## Getting and installing on Linux and Windows/MinGW
 
 Setup the build environment as described [here](https://github.com/stetre/moonlibs), then:
 
@@ -30,6 +31,34 @@ $ cd moongl
 moongl$ make
 moongl$ make install # or 'sudo make install' (Ubuntu)
 ```
+-----------
+
+## Getting and installing on MacOS
+Clone moongl from the Git repository
+```sh
+$ git clone https://github.com/stetre/moongl
+```
+If MacOS says that _The Git command requires the command line developer tools_, click _Install_ and Agree to the License Agrement.
+
+Install Homebrew
+```sh
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+Install lua & glew libraries
+```sh
+brew install lua@5.3
+brew install luarocks
+brew install glew
+```
+
+Make the moongl library
+```sh
+$ cd moongl
+moongl$ make MACOS=1
+moongl$ make MACOS=1 install
+```
+-----------
 
 #### Example
 
