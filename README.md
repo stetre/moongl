@@ -57,7 +57,7 @@ Make the moongl library
 ```sh
 $ cd moongl
 moongl$ make MACOS=1
-moongl$ make MACOS=1 install
+moongl$ sudo make MACOS=1 install
 ```
 -----------
 
