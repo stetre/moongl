@@ -1,13 +1,13 @@
-# On MacOS use the command shell : "make MACOS=1;sudo make MACOS=1 install" 
 
 ifdef MINGW_PREFIX
 MINGW=1
 else
-ifdef MACOS
-MACOS=1
-else
-LINUX=1
-endif
+ OS=$(shell uname)
+ ifeq ($(OS),Darwin)
+ MACOS=1
+ else
+ LINUX=1
+ endif
 endif
 
 # Lua version
