@@ -49,6 +49,7 @@ Install lua & glew libraries
 ```sh
 brew install lua@5.3
 brew install luarocks
+brew install glfw
 brew install glew
 ```
 
