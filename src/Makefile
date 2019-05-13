@@ -1,17 +1,39 @@
+# On MacOS use the command shell : "make MACOS=1;sudo make MACOS=1 install" 
 
 ifdef MINGW_PREFIX
 MINGW=1
 else
+ifdef MACOS
+MACOS=1
+else
 LINUX=1
+endif
 endif
 
 # Lua version
 LUAVER?=5.3
 
+ifdef MACOS
+DLL_EXT=dylib
+endif
+
+ifdef LINUX
+DLL_EXT=so
+endif
+
+ifdef MINGW
+DLL_EXT=dll
+endif
+
 # Base install directory
+ifdef MACOS
+PREFIX?=/usr/local
+endif
+
 ifdef LINUX
 PREFIX?=/usr/local
 endif
+
 ifdef MINGW
 PREFIX?=$(MINGW_PREFIX)
 endif
@@ -29,11 +51,18 @@ ifeq ($(D),1)
 DEBUG=1
 endif
 
-ifdef LINUX
-INCDIR = -I/usr/include -I/usr/include/lua$(LUAVER)
-LIBDIR = -L/usr/lib
-LIBS = -lGLEW -lGL -lm
+ifdef MACOS
+INCDIR = -I/usr/include -I/usr/include/lua$(LUAVER) -I$(PREFIX)/include/lua$(LUAVER)
+LIBDIR = -L/usr/lib -L$(PREFIX)/lib
+LIBS = -lGLEW  -lm -llua$(LUAVER)
 endif
+
+ifdef LINUX
+INCDIR = -I/usr/include -I/usr/include/lua$(LUAVER) -I$(PREFIX)/include/lua$(LUAVER)
+LIBDIR = -L/usr/lib
+LIBS = -lGLEW  -lm
+endif
+
 ifdef MINGW
 LIBS = -lglew32 -lopengl32 -lm -llua
 endif
@@ -49,13 +78,21 @@ COPT	+= -O2
 COPT	+= -Wall -Wextra -Wpedantic
 COPT    += -std=gnu99
 COPT 	+= -DLUAVER=$(LUAVER)
+
+ifdef MACOS
+COPT    += -fpic
+COPT	+= -DMACOS
+endif
+
 ifdef LINUX
 COPT    += -fpic
 COPT	+= -DLINUX
 endif
+
 ifdef MINGW
 COPT	+= -DMINGW
 endif
+
 ifdef DEBUG
 COPT	+= -DDEBUG
 COPT 	+= -Wshadow -Wsign-compare -Wundef -Wwrite-strings
@@ -77,7 +114,7 @@ where:
 	@echo $(S_DIR)
 
 clean:
-	@-rm -f *.so *.dll *.o *.err *.map *.S *~ *.log
+	@-rm -f *.so *.dll *.o *.err *.map *.S *~ *.log *.dylib
 	@-rm -f $(Tgt).symbols
 
 install:
@@ -87,9 +124,14 @@ install:
 	@-mkdir -pv $(L_DIR)
 	@-cp -fpv $(Tgt).h $(H_DIR)
 	@-cp -fpvr ../$(Tgt) $(L_DIR)
+ifdef MACOS
+	@-cp -fpv $(Tgt).$(DLL_EXT) $(C_DIR)
+	@-ln -fsv $(C_DIR)/$(Tgt).$(DLL_EXT) $(S_DIR)/lib$(Tgt).$(DLL_EXT)
+	@-ln -fsv $(C_DIR)/$(Tgt).$(DLL_EXT) $(C_DIR)/$(Tgt).so
+endif
 ifdef LINUX
-	@-cp -fpv $(Tgt).so $(C_DIR)
-	@-ln -fsv $(C_DIR)/$(Tgt).so $(S_DIR)/lib$(Tgt).so
+	@-cp -fpv $(Tgt).$(DLL_EXT) $(C_DIR)
+	@-ln -fsv $(C_DIR)/$(Tgt).$(DLL_EXT) $(S_DIR)/lib$(Tgt).$(DLL_EXT)
 endif
 ifdef MINGW
 	@-cp -fpv $(Tgt).dll $(C_DIR)
@@ -97,19 +139,23 @@ endif
 
 uninstall:
 	@-rm -f $(H_DIR)/$(Tgt).h
-	@-rm -f $(C_DIR)/$(Tgt).so
-	@-rm -f $(S_DIR)/lib$(Tgt).so
+	@-rm -f $(C_DIR)/$(Tgt).$(DLL_EXT)
+	@-rm -f $(S_DIR)/lib$(Tgt).$(DLL_EXT)
 	@-rm -fr $(L_DIR)/$(Tgt)
 	@-rm -f $(C_DIR)/$(Tgt).dll
+	@-rm -f $(C_DIR)/$(Tgt).so
 
 build:	clean $(Tgt) 
 
 symbols: build
-	@objdump -T $(Tgt).so > $(Tgt).symbols
+	@objdump -T $(Tgt).$(DLL_EXT) > $(Tgt).symbols
 
 $(Tgt):		$(Objs)
+ifdef MACOS
+	@-$(CC) -framework OpenGL -framework GLUT  -shared -o $(Tgt).$(DLL_EXT) $(Objs) $(LIBDIR) $(LIBS)
+endif
 ifdef LINUX
-	@-$(CC) -shared -o $(Tgt).so $(Objs) $(LIBDIR) $(LIBS)
+	@-$(CC) -shared -o $(Tgt).$(DLL_EXT) $(Objs) $(LIBDIR) $(LIBS)
 endif
 ifdef MINGW
 	@-$(CC) -shared -o $(Tgt).dll $(Objs) $(LIBDIR) $(LIBS)
