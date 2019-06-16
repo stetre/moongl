@@ -279,7 +279,7 @@ static int MultiDrawElementsBaseVertex(lua_State *L)
         count[i] = lua_tointeger(L, arg++);
         basevertex[i] = lua_tointeger(L, arg++);
         }
-    glMultiDrawElementsBaseVertex(mode, count, type, (void**)indices, drawcount,basevertex);
+    glMultiDrawElementsBaseVertex(mode, count, type, (const void* const*)indices, drawcount,basevertex);
     Free(L, indices); 
     Free(L, count);
     Free(L, basevertex);
