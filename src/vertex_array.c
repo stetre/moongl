@@ -277,7 +277,7 @@ static int VertexAttribPointer(lua_State *L)
 
 
 static int VertexAttribPointerI(lua_State *L)
-/* vertex_attrib_pointer_i(index, size, type, stride, pointer) */
+/* vertex_attrib_i_pointer(index, size, type, stride, pointer) */
     {
     GLuint index = luaL_checkinteger(L, 1);
     GLint size = luaL_checkinteger(L, 2); /* no. of components */
@@ -645,7 +645,7 @@ static const struct luaL_Reg Functions[] =
         { "enable_vertex_attrib_array", EnableVertexAttribArray },
         { "disable_vertex_attrib_array", DisableVertexAttribArray },
         { "vertex_attrib_pointer", VertexAttribPointer },
-        { "vertex_attrib_pointer_i", VertexAttribPointerI },
+        { "vertex_attrib_i_pointer", VertexAttribPointerI },
         { "vertex_attrib_format", VertexAttribFormat },
         { "bind_vertex_buffer", BindVertexBuffer },
         { "bind_vertex_buffers", BindVertexBuffers },
