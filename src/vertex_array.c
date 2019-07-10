@@ -276,6 +276,33 @@ static int VertexAttribPointer(lua_State *L)
     }
 
 
+static int VertexAttribPointerI(lua_State *L)
+/* vertex_attrib_i_pointer(index, size, type, stride, pointer) */
+    {
+    GLuint index = luaL_checkinteger(L, 1);
+    GLint size = luaL_checkinteger(L, 2); /* no. of components */
+    GLenum type = checktype(L, 3);
+    GLsizei stride = luaL_checkinteger(L, 4);
+    intptr_t pointer = luaL_checkinteger(L, 5);
+
+    switch(type)
+        {
+        case GL_BYTE:
+        case GL_UNSIGNED_BYTE:
+        case GL_SHORT:
+        case GL_UNSIGNED_SHORT:
+        case GL_INT:
+        case GL_UNSIGNED_INT:
+                glVertexAttribIPointer(index, size, type, stride, (void*)pointer);
+                break;
+        default:
+            return luaL_error(L, UNEXPECTED_ERROR);
+        }
+    CheckError(L);
+    return 0;
+    }
+
+
 static int VertexAttribFormat(lua_State *L)
 /* vertex_attrib_format(index, size, type, normalized, offset)
  * vertex_attrib_format(array, index, size, type, normalized, offset) 
@@ -618,6 +645,7 @@ static const struct luaL_Reg Functions[] =
         { "enable_vertex_attrib_array", EnableVertexAttribArray },
         { "disable_vertex_attrib_array", DisableVertexAttribArray },
         { "vertex_attrib_pointer", VertexAttribPointer },
+        { "vertex_attrib_i_pointer", VertexAttribPointerI },
         { "vertex_attrib_format", VertexAttribFormat },
         { "bind_vertex_buffer", BindVertexBuffer },
         { "bind_vertex_buffers", BindVertexBuffers },
