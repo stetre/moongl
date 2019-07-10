@@ -51,6 +51,7 @@ https://www.khronos.org/opengl/wiki/GLAPI/glBindVertexBuffers[glBindVertexBuffer
 
 [[gl.vertex_attrib_pointer]]
 * *vertex_attrib_pointer*(_index_, _size_, _type_, _normalized_, _stride_, _pointer_) +
+*vertex_attrib_i_pointer*(_index_, _size_, _type_, _stride_, _pointer_) +
 [small]#_size_: 1, 2, 3, 4, or 0 for GL_BGRA. +
 _type_: '_byte_', '_ubyte_', '_short_', '_ushort_', '_int_', '_uint_', '_float_', 
 '_double_', '_half float_', '_fixed_', '_int 2 10 10 10 rev_', '_uint 2 10 10 10 rev_', 
