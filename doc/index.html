@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.6.1">
+<meta name="generator" content="Asciidoctor 1.5.5">
 <meta name="author" content="Stefano Trettel">
 <title>MoonGL Reference Manual</title>
 <style>
@@ -858,7 +858,7 @@ table is named <strong>gl</strong>, i.e. that it is loaded with:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="lua"><span></span> <span class="tok-n">gl</span> <span class="tok-o">=</span> <span class="tok-nb">require</span><span class="tok-p">(</span><span class="tok-s2">&quot;moongl&quot;</span><span class="tok-p">)</span></code></pre>
+<pre class="pygments highlight"><code data-lang="lua"> <span class="tok-n">gl</span> <span class="tok-o">=</span> <span class="tok-nb">require</span><span class="tok-p">(</span><span class="tok-s2">&quot;moongl&quot;</span><span class="tok-p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3672,7 +3672,7 @@ of MoonGL functionalities in practice.</p>
 <div id="snippet_init" class="listingblock">
 <div class="title">OpenGL initialization with MoonGLFW.</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="lua"><span></span><span class="tok-n">gl</span> <span class="tok-o">=</span> <span class="tok-nb">require</span><span class="tok-p">(</span><span class="tok-s2">&quot;moongl&quot;</span><span class="tok-p">)</span>
+<pre class="pygments highlight"><code data-lang="lua"><span class="tok-n">gl</span> <span class="tok-o">=</span> <span class="tok-nb">require</span><span class="tok-p">(</span><span class="tok-s2">&quot;moongl&quot;</span><span class="tok-p">)</span>
 <span class="tok-n">glfw</span> <span class="tok-o">=</span> <span class="tok-nb">require</span><span class="tok-p">(</span><span class="tok-s2">&quot;moonglfw&quot;</span><span class="tok-p">)</span>
 
 <span class="tok-c1">-- Create a window and make its GL context current:</span>
@@ -3688,7 +3688,7 @@ of MoonGL functionalities in practice.</p>
 <div id="snippet_is_supported" class="listingblock">
 <div class="title">Usage of is_supported( ).</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="lua"><span></span><span class="tok-kr">if</span> <span class="tok-ow">not</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">is_supported</span><span class="tok-p">(</span><span class="tok-s2">&quot;GL_VERSION_4_5&quot;</span><span class="tok-p">)</span> <span class="tok-kr">then</span>
+<pre class="pygments highlight"><code data-lang="lua"><span class="tok-kr">if</span> <span class="tok-ow">not</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">is_supported</span><span class="tok-p">(</span><span class="tok-s2">&quot;GL_VERSION_4_5&quot;</span><span class="tok-p">)</span> <span class="tok-kr">then</span>
   <span class="tok-nb">error</span><span class="tok-p">(</span><span class="tok-s2">&quot;Sorry, OpenGL 4.5 is not supported by your system&quot;</span><span class="tok-p">)</span>
 <span class="tok-kr">end</span></code></pre>
 </div>
@@ -3696,7 +3696,7 @@ of MoonGL functionalities in practice.</p>
 <div id="snippet_clear" class="listingblock">
 <div class="title">Clearing the framebuffer.</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="lua"><span></span><span class="tok-c1">-- specify the clear value for the color buffer:</span>
+<pre class="pygments highlight"><code data-lang="lua"><span class="tok-c1">-- specify the clear value for the color buffer:</span>
 <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">clear_color</span><span class="tok-p">(</span><span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-mf">1.0</span><span class="tok-p">)</span>
 
 <span class="tok-c1">-- specify the clear value for the depth buffer:</span>
@@ -3709,7 +3709,7 @@ of MoonGL functionalities in practice.</p>
 <div id="snippet_rectangle" class="listingblock">
 <div class="title">Defining a rectangle.</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="lua"><span></span><span class="tok-n">vertices</span> <span class="tok-o">=</span> <span class="tok-p">{</span>
+<pre class="pygments highlight"><code data-lang="lua"><span class="tok-n">vertices</span> <span class="tok-o">=</span> <span class="tok-p">{</span>
 <span class="tok-c1">-- position:        color:          texture coords:    0 ____ 1</span>
   <span class="tok-o">-</span><span class="tok-mf">0.5</span><span class="tok-p">,</span>  <span class="tok-mf">0.5</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span>  <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span>  <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-c1">-- 0      |   /|</span>
    <span class="tok-mf">0.5</span><span class="tok-p">,</span>  <span class="tok-mf">0.5</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span>  <span class="tok-mf">0.0</span><span class="tok-p">,</span> <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">0.0</span><span class="tok-p">,</span>  <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-c1">-- 1      | /  |</span>
@@ -3746,7 +3746,7 @@ of MoonGL functionalities in practice.</p>
 <div id="snippet_uniform" class="listingblock">
 <div class="title">Assigning values to uniform variables.</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="lua"><span></span><span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-s1">&#39;uint&#39;</span><span class="tok-p">,</span> <span class="tok-mi">123</span><span class="tok-p">)</span>
+<pre class="pygments highlight"><code data-lang="lua"><span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-mi">0</span><span class="tok-p">,</span> <span class="tok-s1">&#39;uint&#39;</span><span class="tok-p">,</span> <span class="tok-mi">123</span><span class="tok-p">)</span>
 <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-mi">1</span><span class="tok-p">,</span> <span class="tok-s1">&#39;float&#39;</span><span class="tok-p">,</span> <span class="tok-mf">1.234</span><span class="tok-p">)</span>
 <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">uniform</span><span class="tok-p">(</span><span class="tok-mi">2</span><span class="tok-p">,</span> <span class="tok-s1">&#39;bool&#39;</span><span class="tok-p">,</span> <span class="tok-kc">true</span><span class="tok-p">)</span>
 
@@ -3759,8 +3759,7 @@ of MoonGL functionalities in practice.</p>
 <div id="snippet_uniform_matrix" class="listingblock">
 <div class="title">Assigning values to uniform matrices.</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="lua"><span></span>
-<span class="tok-n">M</span> <span class="tok-o">=</span> <span class="tok-p">{</span> <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">2.0</span><span class="tok-p">,</span> <span class="tok-mf">3.0</span>  <span class="tok-c1">-- row-major order</span>
+<pre class="pygments highlight"><code data-lang="lua"><span class="tok-n">M</span> <span class="tok-o">=</span> <span class="tok-p">{</span> <span class="tok-mf">1.0</span><span class="tok-p">,</span> <span class="tok-mf">2.0</span><span class="tok-p">,</span> <span class="tok-mf">3.0</span>  <span class="tok-c1">-- row-major order</span>
       <span class="tok-mf">4.0</span><span class="tok-p">,</span> <span class="tok-mf">5.0</span><span class="tok-p">,</span> <span class="tok-mf">6.0</span>
       <span class="tok-mf">7.0</span><span class="tok-p">,</span> <span class="tok-mf">8.0</span><span class="tok-p">,</span> <span class="tok-mf">9.0</span> <span class="tok-p">}</span>
 
@@ -3770,7 +3769,7 @@ of MoonGL functionalities in practice.</p>
 <div id="snippet_new_texture" class="listingblock">
 <div class="title">Creating and using a texture (loaded with MoonImage).</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="lua"><span></span><span class="tok-c1">-- 1) Creating the texture:</span>
+<pre class="pygments highlight"><code data-lang="lua"><span class="tok-c1">-- 1) Creating the texture:</span>
 <span class="tok-n">tex_id</span> <span class="tok-o">=</span> <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">new_texture</span><span class="tok-p">(</span><span class="tok-s1">&#39;2d&#39;</span><span class="tok-p">)</span>
 <span class="tok-c1">-- configure it:</span>
 <span class="tok-n">gl</span><span class="tok-p">.</span><span class="tok-n">texture_parameter</span><span class="tok-p">(</span><span class="tok-s1">&#39;2d&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;wrap s&#39;</span><span class="tok-p">,</span> <span class="tok-s1">&#39;repeat&#39;</span><span class="tok-p">)</span>
