@@ -16,7 +16,9 @@ local window = glfw.create_window(100, 100)
 glfw.make_context_current(window)
 gl.init()
 
--- these work only after gl.init() (i.e. glewInit()):
+-- The following calls work only after gl.init() (i.e. glewInit()):
+print(gl.version()) -- OpenGL version supported by MoonGL+GLEW+driver
+print("Versions supported by the OpenGL implementation:")
 print("version:  "..gl.get_string("version"))
 print("renderer: "..gl.get_string("renderer"))
 print("vendor:   "..gl.get_string("vendor"))

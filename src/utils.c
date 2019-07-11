@@ -34,11 +34,9 @@ int noprintf(const char *fmt, ...)
 
 int notavailable(lua_State *L, ...) 
     { 
-    GLuint major, minor;
-    major = getUint(L, GL_MAJOR_VERSION);
-    minor = getUint(L, GL_MINOR_VERSION);
-    return luaL_error(L, 
-        "function not available in this OpenGL version (v%d.%d)", major, minor); 
+    GLuint major = VERSION_MAJOR(moongl_version);
+    GLuint minor = VERSION_MINOR(moongl_version);
+    return luaL_error(L, "function not available in this OpenGL version (%d.%d)", major, minor);
     }
 
 

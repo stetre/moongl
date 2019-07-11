@@ -26,6 +26,7 @@
 #include "internal.h"
 
 static int Initialized = 0;
+GLuint moongl_version; /* version supported by GLEW+driver */
 
 int check_init_called(lua_State *L)
 /* Guard against a missing call of gl.init() (we get a SEGV if we call
@@ -38,6 +39,7 @@ int check_init_called(lua_State *L)
 
 static int Init(lua_State *L)
     {
+    GLuint major, minor, version;
     GLenum err;
 #if 0
     if(lua_isboolean(L, 1))
@@ -52,6 +54,14 @@ static int Init(lua_State *L)
         return luaL_error(L, "glewInit error: %s", glewGetErrorString(err));
     glGetError(); /* just to be sure... */
     Initialized = 1;
+
+    /* get the version supported by the driver */
+    major = getUint(L, GL_MAJOR_VERSION);
+    minor = getUint(L, GL_MINOR_VERSION);
+    version = MAKE_VERSION(major, minor);
+    if(version < moongl_version) moongl_version = version;
+    if(moongl_version < MAKE_VERSION(3,3))
+        return luaL_error(L, "MoonGL requires OpenGL >= 3.3");
     return 0;
     }
 
@@ -72,6 +82,16 @@ static int GetExtension(lua_State *L)
     return 1;
     }
 #endif
+
+static int Version(lua_State *L)
+    {
+    GLuint major, minor;
+    check_init_called(L);
+    major = VERSION_MAJOR(moongl_version);
+    minor = VERSION_MINOR(moongl_version);
+    lua_pushfstring(L, "OpenGL %d.%d", major, minor);
+    return 1;
+    }
 
 static int Versions(lua_State *L)
     {
@@ -136,18 +156,63 @@ static int Versions(lua_State *L)
     return n;
     }
 
+static int AddVersions(lua_State *L)
+/* Add version strings to the gl table */
+    {
+    lua_pushstring(L, "_VERSION");
+    lua_pushstring(L, "MoonGL "MOONGL_VERSION);
+    lua_settable(L, -3);
+
+    lua_pushstring(L, "_GLEW_VERSION");
+#if 1
+    lua_pushfstring(L, "GLEW %s", glewGetString(GLEW_VERSION));
+    //CheckError(L); @@ problemi in MINGW
+#else
+    lua_pushfstring(L, "GLEW %s (major=%s, minor=%s, micro=%s)",
+                    glewGetString(GLEW_VERSION),
+                    glewGetString(GLEW_VERSION_MAJOR),
+                    glewGetString(GLEW_VERSION_MINOR),
+                    glewGetString(GLEW_VERSION_MICRO)
+                    );
+#endif
+    lua_settable(L, -3);
+
+    /* Initialize moongl_version with the latest version supported by GLEW */
+#ifdef GL_VERSION_4_6
+    moongl_version = MAKE_VERSION(4, 6);
+#elif defined(GL_VERSION_4_5)
+    moongl_version = MAKE_VERSION(4, 5);
+#elif defined(GL_VERSION_4_4)
+    moongl_version = MAKE_VERSION(4, 4);
+#elif defined(GL_VERSION_4_3)
+    moongl_version = MAKE_VERSION(4, 3);
+#elif defined(GL_VERSION_4_2)
+    moongl_version = MAKE_VERSION(4, 2);
+#elif defined(GL_VERSION_4_1)
+    moongl_version = MAKE_VERSION(4, 1);
+#elif defined(GL_VERSION_4_0)
+    moongl_version = MAKE_VERSION(4, 0);
+#elif defined(GL_VERSION_3_3)
+    moongl_version = MAKE_VERSION(3, 3);
+#else
+    luaL_error(L, "MoonGL requires OpenGL >= 3.3");
+#endif
+    return 0;
+    }
+
 static const struct luaL_Reg Functions[] = 
     {
         { "init", Init },
         { "is_supported", IsSupported },
-/*       { "get_extension", GetExtension },  for glew version < 1.3.0 only */
+/*      { "get_extension", GetExtension },  for glew version < 1.3.0 only */
         { "versions", Versions },
+        { "version", Version },
         { NULL, NULL } /* sentinel */
     };
 
 void moongl_open_init(lua_State *L)
     {
+    AddVersions(L);
     luaL_setfuncs(L, Functions, 0);
     }
-
 

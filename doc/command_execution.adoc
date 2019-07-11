@@ -14,13 +14,16 @@ See <<snippet_init, example>>.#
 [small]#Binding to http://glew.sourceforge.net/basic.html[glewIsSupported]() (accepts the same strings).# 
 [small]#See <<snippet_is_supported, example>>.#
 
+* _string_ = *version*( ) +
+[small]#Returns a string describing the latest *OpenGL version* supported by the combination of
+MoonGL, GLEW, and the OpenGL implementation being used (e.g. '_OpenGL 4.5_').
+This function can be used only after initialization. +
+(Note that the <<gl.get, get>>() function returns the version supported by the OpenGL implementation
+being used, which may differ from the version returned by this function).#
 
-* The *gl* table contains the following version fields for *version information*: +
-[small]#pass:[-] *pass:[gl._VERSION]*: a string describing the MoonGL version (e.g. '_MoonGL 0.4_'), and +
-pass:[-] *pass:[gl._GLEW_VERSION]*: a string describing the GLEW version (e.g. '_GLEW 1.13.0_').#
-
-* To retrieve the *OpenGL version*, use the <<gl.get, get>>() function (this can be
-done only after initialization).
+* The *gl* table contains the following fields for version information: +
+[small]#pass:[-] *pass:[gl._VERSION]*: a string describing the *MoonGL version* (e.g. '_MoonGL 0.4_'), and +
+pass:[-] *pass:[gl._GLEW_VERSION]*: a string describing the *GLEW version* (e.g. '_GLEW 1.13.0_').#
 
 == Command Execution
 

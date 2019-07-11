@@ -116,6 +116,10 @@ void object_free(lua_State *L, uint32_t otype, uint32_t oname);
 void object_free_all(lua_State *L);
 
 /* main.c */
+#define MAKE_VERSION(major, minor) (((major) << 8) | (minor))
+#define VERSION_MAJOR(version) ((GLuint)(version) >> 8)
+#define VERSION_MINOR(version) ((GLuint)(version) & 0x0ff)
+extern GLuint moongl_version;
 int luaopen_moongl(lua_State *L);
 void moongl_open_enums(lua_State *L);
 void moongl_open_object(lua_State *L);

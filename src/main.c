@@ -37,30 +37,6 @@ static void AtExit(void)
         }
     }
 
-static int AddVersions(lua_State *L)
-/* Add version strings to the gl table */
-    {
-    lua_pushstring(L, "_VERSION");
-    lua_pushstring(L, "MoonGL "MOONGL_VERSION);
-    lua_settable(L, -3);
-
-    lua_pushstring(L, "_GLEW_VERSION");
-#if 1
-    lua_pushfstring(L, "GLEW %s", glewGetString(GLEW_VERSION));
-    //CheckError(L); @@ problemi in MINGW
-#else
-    lua_pushfstring(L, "GLEW %s (major=%s, minor=%s, micro=%s)", 
-                    glewGetString(GLEW_VERSION),
-                    glewGetString(GLEW_VERSION_MAJOR),
-                    glewGetString(GLEW_VERSION_MINOR),
-                    glewGetString(GLEW_VERSION_MICRO)
-                    );
-#endif
-    lua_settable(L, -3);
-    return 0;
-    }
-
-
 int luaopen_moongl(lua_State *L)
 /* Lua calls this function to load the module */
     {
@@ -68,7 +44,6 @@ int luaopen_moongl(lua_State *L)
     atexit(AtExit);
 
     lua_newtable(L); /* the gl table */
-    AddVersions(L);
 
     /* add gl functions: */
     moongl_open_init(L);

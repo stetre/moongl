@@ -979,13 +979,17 @@ See <a href="#snippet_init">example</a>.</span></p>
 <span class="small">See <a href="#snippet_is_supported">example</a>.</span></p>
 </li>
 <li>
-<p>The <strong>gl</strong> table contains the following version fields for <strong>version information</strong>:<br>
-<span class="small">- <strong>gl._VERSION</strong>: a string describing the MoonGL version (e.g. '<em>MoonGL 0.4</em>'), and<br>
-- <strong>gl._GLEW_VERSION</strong>: a string describing the GLEW version (e.g. '<em>GLEW 1.13.0</em>').</span></p>
+<p><em>string</em> = <strong>version</strong>( )<br>
+<span class="small">Returns a string describing the latest <strong>OpenGL version</strong> supported by the combination of
+MoonGL, GLEW, and the OpenGL implementation being used (e.g. '<em>OpenGL 4.5</em>').
+This function can be used only after initialization.<br>
+(Note that the <a href="#gl.get">get</a>() function returns the version supported by the OpenGL implementation
+being used, which may differ from the version returned by this function).</span></p>
 </li>
 <li>
-<p>To retrieve the <strong>OpenGL version</strong>, use the <a href="#gl.get">get</a>() function (this can be
-done only after initialization).</p>
+<p>The <strong>gl</strong> table contains the following fields for version information:<br>
+<span class="small">- <strong>gl._VERSION</strong>: a string describing the <strong>MoonGL version</strong> (e.g. '<em>MoonGL 0.4</em>'), and<br>
+- <strong>gl._GLEW_VERSION</strong>: a string describing the <strong>GLEW version</strong> (e.g. '<em>GLEW 1.13.0</em>').</span></p>
 </li>
 </ul>
 </div>
