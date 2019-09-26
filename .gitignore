@@ -9,3 +9,5 @@ core.*
 local/
 tutorials/
 src/TODO
+examples/glslcookbook/01-getting-started/*.bin
+examples/glslcookbook/cache/*-*
