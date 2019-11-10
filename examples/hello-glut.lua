@@ -2,7 +2,7 @@
 -- MoonGL example: hello-glut.lua
 
 gl= require("moongl")
-glut = require("moonglut")
+glut = require("moonglut") -- Note that MoonGLUT is now discontinued (use MoonGLFW instead).
 
 function Reshape(_, w, h) 
    print("window reshaped to "..w.."x"..h)

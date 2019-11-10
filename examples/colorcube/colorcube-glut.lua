@@ -18,7 +18,7 @@
 -- In this version, we send the angles to the vertex shader and compute 
 -- the rotation matrix there.
 
-glut = require("moonglut")
+glut = require("moonglut") -- Note that MoonGLUT is now discontinued (use MoonGLFW instead).
 glmath = require("moonglmath")
 gl = require("moongl")
 
