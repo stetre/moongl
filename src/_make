@@ -1,1 +1,1 @@
-make D=$1 && sudo make install
+make D=$1 LUAVER=5.4 && sudo make LUAVER=5.4 install
