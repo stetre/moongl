@@ -47,16 +47,35 @@ static GLenum* CheckBufList(lua_State *L, int arg, GLsizei *n)
 /* the caller must Free() the returned bufs */
     {
     GLenum *bufs;
-    int i = arg;
-    while(!lua_isnoneornil(L, i))
-        { checkbuffer(L, i); i++; }
-    if(i==arg) /* raise an error */
-        checkbuffer(L, arg); 
-    *n = i - arg;
-    bufs = (GLenum*)Malloc(L, (*n)*sizeof(GLenum));
-    i = 0;
-    for(i = 0; i < (*n); i++)
-        bufs[i] = checkbuffer(L, arg + i);
+    int i, err;
+    if(lua_istable(L, arg))
+        {
+        *n = luaL_len(L, arg);
+        if(*n==0) /* raise an error */
+            checkbuffer(L, arg);
+        bufs = (GLenum*)Malloc(L, (*n)*sizeof(GLenum));
+        for(i = 0; i < (*n); i++)
+            {
+            lua_rawgeti(L, arg, i+1);
+            bufs[i] = testbuffer(L, -1, &err);
+            if(err) /* raise an error */
+                { Free(L, bufs); checkbuffer(L, -1); }
+            lua_pop(L, 1);
+            }
+        }
+    else
+        {
+        i = arg;
+        while(!lua_isnoneornil(L, i))
+            { checkbuffer(L, i); i++; }
+        if(i==arg) /* raise an error */
+            checkbuffer(L, arg);
+        *n = i - arg;
+        bufs = (GLenum*)Malloc(L, (*n)*sizeof(GLenum));
+        i = 0;
+        for(i = 0; i < (*n); i++)
+            bufs[i] = checkbuffer(L, arg + i);
+        }
     return bufs;
     }
 

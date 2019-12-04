@@ -7,8 +7,10 @@ Selecting Buffers for Writing:
 * *draw_buffer*(_buf_) +
 *draw_buffer*(_framebuffer_, _buf_) +
 *draw_buffers*(_buf~1~_, [_buf~2~_, _..._]) +
+*draw_buffers*({_buf~1~_, [_buf~2~_, _..._]}) +
 *draw_buffers*(_framebuffer_, _buf~1~_, [_buf~2~_, _..._]) +
-[small]#_buf_: '_none_' for GL_NONE, '_front left_' for GL_FRONT_LEFT, '_color attachment i_' for GL_COLOR_ATTACHMENTi, etc. +
+*draw_buffers*(_framebuffer_, {_buf~1~_, [_buf~2~_, _..._]}) +
+[small]#_buf~k~_: '_none_' for GL_NONE, '_front left_' for GL_FRONT_LEFT, '_color attachment i_' for GL_COLOR_ATTACHMENTi, etc. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDrawBuffer[glDrawBuffer],
 https://www.khronos.org/opengl/wiki/GLAPI/glDrawBuffers[glDrawBuffers].#
 

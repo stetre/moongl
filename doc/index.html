@@ -3169,8 +3169,10 @@ Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glHint">glHint</a>.</spa
 <p><strong>draw_buffer</strong>(<em>buf</em>)<br>
 <strong>draw_buffer</strong>(<em>framebuffer</em>, <em>buf</em>)<br>
 <strong>draw_buffers</strong>(<em>buf<sub>1</sub></em>, [<em>buf<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
+<strong>draw_buffers</strong>({<em>buf<sub>1</sub></em>, [<em>buf<sub>2</sub></em>, <em>&#8230;&#8203;</em>]})<br>
 <strong>draw_buffers</strong>(<em>framebuffer</em>, <em>buf<sub>1</sub></em>, [<em>buf<sub>2</sub></em>, <em>&#8230;&#8203;</em>])<br>
-<span class="small"><em>buf</em>: '<em>none</em>' for GL_NONE, '<em>front left</em>' for GL_FRONT_LEFT, '<em>color attachment i</em>' for GL_COLOR_ATTACHMENTi, etc.<br>
+<strong>draw_buffers</strong>(<em>framebuffer</em>, {<em>buf<sub>1</sub></em>, [<em>buf<sub>2</sub></em>, <em>&#8230;&#8203;</em>]})<br>
+<span class="small"><em>buf<sub>k</sub></em>: '<em>none</em>' for GL_NONE, '<em>front left</em>' for GL_FRONT_LEFT, '<em>color attachment i</em>' for GL_COLOR_ATTACHMENTi, etc.<br>
 Rfr: <a href="https://www.khronos.org/opengl/wiki/GLAPI/glDrawBuffer">glDrawBuffer</a>,
 <a href="https://www.khronos.org/opengl/wiki/GLAPI/glDrawBuffers">glDrawBuffers</a>.</span></p>
 </li>
