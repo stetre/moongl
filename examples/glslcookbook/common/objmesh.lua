@@ -100,7 +100,8 @@ local function ToGLMesh(objpositions, objnormals, objfaces, objtexcoords, objtan
    return positions, normals, faces, texcoords, tangents
 end
 
-local function ConvertToAdjancencyFormat(faces)
+local function ConvertToAdjancencyFormatOLD(faces)
+-- This implementation is too slow, especially with Lua 
    local f = {}
    -- Copy and make room for adjacency info
    for i = 0, #faces-1, 3 do
@@ -112,10 +113,11 @@ local function ConvertToAdjancencyFormat(faces)
       f[i*2+6] = huge
    end
    -- Find matching edges
-   for i = 1, #f, 6 do -- for(uint i = 0; i < f.size(); i+=6)
+   for i = 1, #f, 6 do
       local a1, b1, c1 = f[i], f[i+2], f[i+4] -- a triangle
+         print(string.format("%d %%", math.floor(i/#f*100)))
       -- Scan subsequent triangles
-      for j = i+6, #f, 6 do --for(uint j = i+6; j < f.size(); j+=6)
+      for j = i+6, #f, 6 do
          local a2, b2, c2 = f[j], f[j+2], f[j+4]
          if (a1==a2 and b1==b2) or (a1==b2 and b1==a2) then f[i+1], f[j+1] = c2, c1 end -- Edge1==Edge1
          if (a1==b2 and b1==c2) or (a1==c2 and b1==b2) then f[i+1], f[j+3] = a2, c1 end -- Edge1==Edge2
@@ -137,6 +139,28 @@ local function ConvertToAdjancencyFormat(faces)
    return f
 end
 
+local function ConvertToAdjancencyFormat(faces)
+   local adj = {}
+   for i = 1, #faces, 3 do
+      local a, b, c = faces[i], faces[i+1], faces[i+2] -- a triangle
+      adj[fmt("%d.%d", a, b)] = c
+      adj[fmt("%d.%d", b, c)] = a
+      adj[fmt("%d.%d", c, a)] = b
+   end
+   local f = {}
+   for i = 1, #faces, 3 do
+      local a, b, c = faces[i], faces[i+1], faces[i+2] -- a triangle
+      local k = #f
+      f[#f+1] = a
+      f[#f+1] = adj[fmt("%d.%d", b, a)] or c
+      f[#f+1] = b
+      f[#f+1] = adj[fmt("%d.%d", c, b)] or a
+      f[#f+1] = c
+      f[#f+1] = adj[fmt("%d.%d", a, c)] or b
+   end
+   return f
+end
+      
 -- matching patterns
 local FLOAT="%-?%d*%.?%d*[Ee]?%-?%d*"
 local V_PATTERN = "v%s+("..FLOAT..")%s+("..FLOAT..")%s+("..FLOAT..")"
