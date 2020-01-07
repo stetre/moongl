@@ -138,12 +138,12 @@ ifdef MINGW
 endif
 
 uninstall:
-	@-rm -f $(H_DIR)/$(Tgt).h
-	@-rm -f $(C_DIR)/$(Tgt).$(DLL_EXT)
-	@-rm -f $(S_DIR)/lib$(Tgt).$(DLL_EXT)
-	@-rm -fr $(L_DIR)/$(Tgt)
-	@-rm -f $(C_DIR)/$(Tgt).dll
-	@-rm -f $(C_DIR)/$(Tgt).so
+	@-rm -fv $(H_DIR)/$(Tgt).h
+	@-rm -fv $(C_DIR)/$(Tgt).$(DLL_EXT)
+	@-rm -fv $(S_DIR)/lib$(Tgt).$(DLL_EXT)
+	@-rm -fvr $(L_DIR)/$(Tgt)
+	@-rm -fv $(C_DIR)/$(Tgt).dll
+	@-rm -fv $(C_DIR)/$(Tgt).so
 
 build:	clean $(Tgt) 
 
