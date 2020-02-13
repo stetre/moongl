@@ -71,6 +71,7 @@ static rec_t *root(void)
 #endif
  
 static int trace_objects = 0;
+static int track_objects = 1;
 
 static char *tracename(uint32_t otype)
     {
@@ -96,8 +97,21 @@ static char *tracename(uint32_t otype)
 int object_new(lua_State *L, uint32_t otype, uint32_t oname)
     {
     rec_t *rec;
+    if(trace_objects)
+        printf("create %s %d\n", tracename(otype), oname);
+
+    if(track_objects==0)
+        return 0;
     if(search(otype, oname))
-        return unexpected(L); /* duplicate value?! */
+        {
+        /* duplicate value: this should mean that we are working with
+         * multiple concurrent GL contexts, so we stop tracking objects
+         * (we wouldn't be able to delete them at exit anyway, since
+         * we have no control on the current context).
+         */
+        track_objects = 0;
+        return 0; // unexpected(L);
+        }
 
     if((rec = (rec_t*)Malloc(L, sizeof(rec_t))) == NULL) 
         return luaL_error(L, errstring(ERR_MEMORY));
@@ -107,46 +121,54 @@ int object_new(lua_State *L, uint32_t otype, uint32_t oname)
     rec->oname = oname;
     insert(rec);
 
-    if(trace_objects)
-        printf("create %s %d\n", tracename(otype), oname);
     return 0;
     }
 
 void object_free(lua_State *L, uint32_t otype, uint32_t oname)
     {
+    rec_t *rec;
     GLuint name = oname;    
-    rec_t *rec = search(otype, oname);
-    if(rec)
+    if(trace_objects)
+        printf("delete %s %d\n", tracename(otype), oname);
+    if(track_objects)
         {
-        removeeee(rec);
-        Free(L, rec);
-        switch(otype)
-            {   
-            case OTYPE_BUFFER: glDeleteBuffers(1, &name); break;
-            case OTYPE_VERTEX_ARRAY: glDeleteVertexArrays(1, &name); break;
-            case OTYPE_SAMPLER: glDeleteSamplers(1, &name); break;
-            case OTYPE_TEXTURE: glDeleteTextures(1, &name); break;
-            case OTYPE_FRAMEBUFFER: glDeleteFramebuffers(1, &name); break;
-            case OTYPE_RENDERBUFFER: glDeleteRenderbuffers(1, &name); break;
-            case OTYPE_PROGRAM: glDeleteProgram(name); break;
-            case OTYPE_SHADER: glDeleteShader(name); break;
-            case OTYPE_PROGRAM_PIPELINE: glDeleteProgramPipelines(1, &name); break;
-            case OTYPE_TRANSFORM_FEEDBACK: glDeleteTransformFeedbacks(1, &name); break;
-            case OTYPE_QUERY: glDeleteQueries(1, &name); break;
-            default:
-                unexpected(L);
-            }
-        CheckError(L);
-        if(trace_objects)
-            printf("delete %s %d\n", tracename(otype), oname);
+        rec = search(otype, oname);
+        if(rec)
+            { removeeee(rec); Free(L, rec); }
         }
+
+    switch(otype)
+        {
+        case OTYPE_BUFFER: glDeleteBuffers(1, &name); break;
+        case OTYPE_VERTEX_ARRAY: glDeleteVertexArrays(1, &name); break;
+        case OTYPE_SAMPLER: glDeleteSamplers(1, &name); break;
+        case OTYPE_TEXTURE: glDeleteTextures(1, &name); break;
+        case OTYPE_FRAMEBUFFER: glDeleteFramebuffers(1, &name); break;
+        case OTYPE_RENDERBUFFER: glDeleteRenderbuffers(1, &name); break;
+        case OTYPE_PROGRAM: glDeleteProgram(name); break;
+        case OTYPE_SHADER: glDeleteShader(name); break;
+        case OTYPE_PROGRAM_PIPELINE: glDeleteProgramPipelines(1, &name); break;
+        case OTYPE_TRANSFORM_FEEDBACK: glDeleteTransformFeedbacks(1, &name); break;
+        case OTYPE_QUERY: glDeleteQueries(1, &name); break;
+        default:
+            unexpected(L);
+        }
+    CheckError(L);
     }
 
 void object_free_all(lua_State *L)
     {
     rec_t *rec;
-    while((rec = first(0, 0)))
-        object_free(L, rec->otype, rec->oname);
+    if(track_objects)
+        {
+        while((rec = first(0, 0)))
+            object_free(L, rec->otype, rec->oname);
+        }
+    else /* just remove any object inserted before object tracking was disabled */
+        {
+        while((rec = first(0, 0)))
+            { removeeee(rec); Free(L, rec); }
+        }
     }
 
 /*------------------------------------------------------------------------------*
