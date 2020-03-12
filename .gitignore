@@ -11,3 +11,5 @@ tutorials/
 src/TODO
 examples/glslcookbook/01-getting-started/*.bin
 examples/glslcookbook/cache/*-*
+examples/learnopengl/resources/objects/
+examples/learnopengl/resources/textures/
