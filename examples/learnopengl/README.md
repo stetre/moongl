@@ -17,4 +17,5 @@ The following libraries from the [MoonLibs](https://github.com/stetre/moonlibs) 
 * [MoonGLFW](https://github.com/stetre/moonglfw): bindings to GLFW, for window/surface creation and input handling.
 * [MoonGLMATH](https://github.com/stetre/moonglmath): graphics math library, for vertex transformations.
 * [MoonImage](https://github.com/stetre/moonimage): bindings to stb_image, for image loading.
+* [MoonAssimp](https://github.com/stetre/moonassimp): bindings to Assimp, for model loading.
 
