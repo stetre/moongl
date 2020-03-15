@@ -18,6 +18,6 @@ return function(path)
    gl.texture_parameter('2d', 'wrap t', 'repeat')
    gl.texture_parameter('2d', 'min filter', 'linear mipmap linear')
    gl.texture_parameter('2d', 'mag filter', 'linear')
-   return texid;
+   return texid
 end
 

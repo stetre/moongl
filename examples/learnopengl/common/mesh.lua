@@ -1,4 +1,5 @@
--- Mesh object
+
+
 local gl = require("moongl")
 local glmath = require("moonglmath")
 
@@ -68,6 +69,10 @@ return function(vertices, indices, textures)
             gl.unbind_vertex_array()
             gl.active_texture(0)
          end,
+
+         vao = function(mesh) return vao end,
+         textures = function(mesh) return textures end,
+         count = function(mesh) return count end,
 
          delete = function(mesh)
             if not vao then return end

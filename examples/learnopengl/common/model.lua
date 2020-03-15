@@ -1,4 +1,4 @@
--- Object model loader
+-- ASSIMP-based model loader
 package.path = package.path..";../?.lua"
 local gl = require("moongl")
 local ai = require("moonassimp")
@@ -81,12 +81,13 @@ return function(path)
    textures_loaded = {} -- contains already loaded textures (to avoid loading them twice or more)
    meshes = {} -- the meshes that compose the model
    process_node(root)
-   local meshes = meshes -- closure
+   local meshes = meshes
    return setmetatable({}, {
       __index = {
          draw = function(model, prog)
             for _, mesh in ipairs(meshes) do mesh:draw(prog) end
          end,
+         meshes = function(model) return meshes end,
          delete = function(model)   
             if not meshes then return end
             for _, mesh in ipairs(meshes) do mesh:delete(prog) end
