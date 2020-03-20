@@ -718,7 +718,7 @@ void moongl_open_enums(lua_State *L)
     ADD(SRGB, "srgb");
     ADD(SRGB8, "srgb8");
     ADD(SRGB8_ALPHA8, "srgb8 alpha8");
-    ADD(SRGB, "srgb");
+    //ADD(SRGB, "srgb");
     ADD(SRGB_ALPHA, "srgb alpha");
     ADD(R16F, "r16f");
     ADD(RG16F, "rg16f");
