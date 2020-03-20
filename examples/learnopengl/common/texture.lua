@@ -2,12 +2,16 @@
 local gl = require("moongl")
 local mi = require("moonimage")
 
-return function(path) 
+return function(path, gamma_correction) 
    local data, w, h, channels = mi.load(path)
    -- print(path, w, h, channels, #data, w*h*#channels)
    local intformat, format
-   if channels=='rgba' then intformat, format = 'rgba', 'rgba'
-   elseif channels=='rgb' then intformat, format = 'rgb', 'rgb'
+   if channels=='rgba' then
+      intformat = gamma_correction and 'srgb alpha' or 'rgba'
+      format = 'rgba'
+   elseif channels=='rgb' then
+      intformat = gamma_correction and 'srgb' or 'rgb'
+      format = 'rgb'
    elseif channels=='y' then intformat, format = 'red', 'red'
    elseif channels=='ya' then intformat, format = 'rg', 'rg' -- is this correct?
    end
