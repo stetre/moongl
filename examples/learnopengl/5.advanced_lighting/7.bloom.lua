@@ -5,6 +5,8 @@ local glfw = require("moonglfw")
 local glmath = require("moonglmath")
 local new_camera = require("common.camera")
 local new_texture = require("common.texture")
+local new_cube = require("common.cube")
+local new_quad = require("common.quad")
 
 -- A few shortcuts:
 local vec3, mat4 = glmath.vec3, glmath.mat4
@@ -99,11 +101,13 @@ for i=1, 2 do
    assert(gl.check_framebuffer_status('draw read')=='complete', "Framebuffer not complete!")
 end
 
-
 -- load textures
 -- note that we're loading the texture as an SRGB texture:
 local wood_texture = new_texture("../resources/textures/wood.png", true) 
 local container_texture = new_texture("../resources/textures/container2.png", true) 
+
+local cube = new_cube()
+local quad = new_quad()
 
 -- get the locations of the uniforms:
 local loc1 = {}
@@ -162,99 +166,6 @@ local exposure = 1.0
 local function keypressed(x) return glfw.get_key(window, x)=='press' end
 local function keyreleased(x) return glfw.get_key(window, x)=='release' end
 
-
-local cube_vao, cube_vbo
-local function render_cube()
--- renders a 1x1 3D cube in NDC.
-   if not cube_vao then -- initialize
-      local vertices = {
-         -- back face
-        -1.0, -1.0, -1.0,  0.0,  0.0, -1.0, 0.0, 0.0, -- bottom-left
-         1.0,  1.0, -1.0,  0.0,  0.0, -1.0, 1.0, 1.0, -- top-right
-         1.0, -1.0, -1.0,  0.0,  0.0, -1.0, 1.0, 0.0, -- bottom-right         
-         1.0,  1.0, -1.0,  0.0,  0.0, -1.0, 1.0, 1.0, -- top-right
-        -1.0, -1.0, -1.0,  0.0,  0.0, -1.0, 0.0, 0.0, -- bottom-left
-        -1.0,  1.0, -1.0,  0.0,  0.0, -1.0, 0.0, 1.0, -- top-left
-        -- front face
-        -1.0, -1.0,  1.0,  0.0,  0.0,  1.0, 0.0, 0.0, -- bottom-left
-         1.0, -1.0,  1.0,  0.0,  0.0,  1.0, 1.0, 0.0, -- bottom-right
-         1.0,  1.0,  1.0,  0.0,  0.0,  1.0, 1.0, 1.0, -- top-right
-         1.0,  1.0,  1.0,  0.0,  0.0,  1.0, 1.0, 1.0, -- top-right
-        -1.0,  1.0,  1.0,  0.0,  0.0,  1.0, 0.0, 1.0, -- top-left
-        -1.0, -1.0,  1.0,  0.0,  0.0,  1.0, 0.0, 0.0, -- bottom-left
-        -- left face
-        -1.0,  1.0,  1.0, -1.0,  0.0,  0.0, 1.0, 0.0, -- top-right
-        -1.0,  1.0, -1.0, -1.0,  0.0,  0.0, 1.0, 1.0, -- top-left
-        -1.0, -1.0, -1.0, -1.0,  0.0,  0.0, 0.0, 1.0, -- bottom-left
-        -1.0, -1.0, -1.0, -1.0,  0.0,  0.0, 0.0, 1.0, -- bottom-left
-        -1.0, -1.0,  1.0, -1.0,  0.0,  0.0, 0.0, 0.0, -- bottom-right
-        -1.0,  1.0,  1.0, -1.0,  0.0,  0.0, 1.0, 0.0, -- top-right
-        -- right face
-         1.0,  1.0,  1.0,  1.0,  0.0,  0.0, 1.0, 0.0, -- top-left
-         1.0, -1.0, -1.0,  1.0,  0.0,  0.0, 0.0, 1.0, -- bottom-right
-         1.0,  1.0, -1.0,  1.0,  0.0,  0.0, 1.0, 1.0, -- top-right         
-         1.0, -1.0, -1.0,  1.0,  0.0,  0.0, 0.0, 1.0, -- bottom-right
-         1.0,  1.0,  1.0,  1.0,  0.0,  0.0, 1.0, 0.0, -- top-left
-         1.0, -1.0,  1.0,  1.0,  0.0,  0.0, 0.0, 0.0, -- bottom-left     
-        -- bottom face
-        -1.0, -1.0, -1.0,  0.0, -1.0,  0.0, 0.0, 1.0, -- top-right
-         1.0, -1.0, -1.0,  0.0, -1.0,  0.0, 1.0, 1.0, -- top-left
-         1.0, -1.0,  1.0,  0.0, -1.0,  0.0, 1.0, 0.0, -- bottom-left
-         1.0, -1.0,  1.0,  0.0, -1.0,  0.0, 1.0, 0.0, -- bottom-left
-        -1.0, -1.0,  1.0,  0.0, -1.0,  0.0, 0.0, 0.0, -- bottom-right
-        -1.0, -1.0, -1.0,  0.0, -1.0,  0.0, 0.0, 1.0, -- top-right
-        -- top face
-        -1.0,  1.0, -1.0,  0.0,  1.0,  0.0, 0.0, 1.0, -- top-left
-         1.0,  1.0 , 1.0,  0.0,  1.0,  0.0, 1.0, 0.0, -- bottom-right
-         1.0,  1.0, -1.0,  0.0,  1.0,  0.0, 1.0, 1.0, -- top-right     
-         1.0,  1.0,  1.0,  0.0,  1.0,  0.0, 1.0, 0.0, -- bottom-right
-        -1.0,  1.0, -1.0,  0.0,  1.0,  0.0, 0.0, 1.0, -- top-left
-        -1.0,  1.0,  1.0,  0.0,  1.0,  0.0, 0.0, 0.0  -- bottom-left        
-      } 
-      cube_vao = gl.new_vertex_array()
-      cube_vbo = gl.new_buffer('array')
-      gl.buffer_data('array', gl.packf(vertices), 'static draw')
-      -- link vertex attributes
-      gl.enable_vertex_attrib_array(0)
-      gl.vertex_attrib_pointer(0, 3, 'float', false, 8*gl.sizeof('float'), 0)
-      gl.enable_vertex_attrib_array(1)
-      gl.vertex_attrib_pointer(1, 3, 'float', false, 8*gl.sizeof('float'), 3*gl.sizeof('float'))
-      gl.enable_vertex_attrib_array(2)
-      gl.vertex_attrib_pointer(2, 2, 'float', false, 8*gl.sizeof('float'), 6*gl.sizeof('float'))
-      gl.bind_buffer('array', 0)
-      gl.unbind_vertex_array()
-   end
-   -- render Cube
-   gl.bind_vertex_array(cube_vao)
-   gl.draw_arrays('triangles', 0, 36)
-   gl.unbind_vertex_array()
-end
-
-local quad_vao, quad_vbo
-local function render_quad()
--- renders a 1x1 XY quad in NDC
-   if not quad_vao then
-      local vertices = {
-         -- positions        -- texture Coords
-        -1.0,  1.0, 0.0, 0.0, 1.0,
-        -1.0, -1.0, 0.0, 0.0, 0.0,
-         1.0,  1.0, 0.0, 1.0, 1.0,
-         1.0, -1.0, 0.0, 1.0, 0.0,
-       }
-      -- setup plane VAO
-      quad_vao = gl.new_vertex_array()
-      quad_vbo = gl.new_buffer('array')
-      gl.buffer_data('array', gl.packf(vertices), 'static draw')
-      gl.enable_vertex_attrib_array(0)
-      gl.vertex_attrib_pointer(0, 3, 'float', false, 5*gl.sizeof('float'), 0)
-      gl.enable_vertex_attrib_array(1)
-      gl.vertex_attrib_pointer(1, 2, 'float', false, 5*gl.sizeof('float'), 3*gl.sizeof('float'))
-   end
-   gl.bind_vertex_array(quad_vao)
-   gl.draw_arrays('triangle strip', 0, 4)
-   gl.bind_vertex_array(0)
-end
-
 -- render loop
 print("Press 'space' to toggle bloom")
 print("Press Q or E to decrease/increase exposure")
@@ -298,24 +209,24 @@ while not glfw.window_should_close(window) do
    end
    -- create one large cube that acts as the floor
    gl.uniform_matrix4f(loc1.model, true, translate(0.0, -1.0, 0.0)*scale(12.5, 0.5, 12.5))
-   render_cube()
+   cube:draw()
    -- then create multiple cubes as the scenery
    gl.bind_texture('2d', container_texture);
    gl.uniform_matrix4f(loc1.model, true, translate(0.0, 1.5, 0.0)*scale(0.5))
-   render_cube()
+   cube:draw()
    gl.uniform_matrix4f(loc1.model, true, translate(2.0, 0.0, 1.0)*scale(0.5))
-   render_cube()
+   cube:draw()
    gl.uniform_matrix4f(loc1.model, true, translate(-1.0, -1.0, 2.0)*
                         rotate(rad(60.0), vec3(1.0, 0.0, 1.0):normalize()))
-   render_cube()
+   cube:draw()
    gl.uniform_matrix4f(loc1.model, true, translate(0.0, 2.7, 4.0)*
                         rotate(rad(23.0), vec3(1.0, 0.0, 1.0):normalize())*scale(1.25))
-   render_cube()
+   cube:draw()
    gl.uniform_matrix4f(loc1.model, true, translate(-2.0, 1.0, -3.0)*
                      rotate(rad(124.0), vec3(1.0, 0.0, 1.0):normalize()))
-   render_cube()
+   cube:draw()
    gl.uniform_matrix4f(loc1.model, true, translate(-3.0, 0.0, 0.0)*scale(0.5))
-   render_cube()
+   cube:draw()
 
    -- finally show all the light sources as bright cubes
    gl.use_program(prog2)
@@ -324,7 +235,7 @@ while not glfw.window_should_close(window) do
    for i=0,#lightPositions-1 do
       gl.uniform_matrix4f(loc2.model, true, translate(lightPositions[i+1])*scale(0.25))
       gl.uniformf(loc2.lightColor, lightColors[i+1])
-      render_cube()
+      cube:draw()
    end
 
    -- 2. blur bright fragments with two-pass Gaussian Blur 
@@ -337,7 +248,7 @@ while not glfw.window_should_close(window) do
       gl.uniformb(loc3.horizontal, horizontal)
       -- bind texture of other framebuffer (or scene if first iteration):
       gl.bind_texture('2d', i==1 and colorBuffers[2] or pingpongColorbuffers[horizontal and 1 or 2])
-      render_quad()
+      quad:draw()
       horizontal = not horizontal
    end
 
@@ -352,12 +263,10 @@ while not glfw.window_should_close(window) do
    gl.bind_texture('2d', pingpongColorbuffers[horizontal and 1 or 2])
    gl.uniformb(loc4.bloom, bloom)
    gl.uniformf(loc4.exposure, exposure)
-   render_quad()
+   quad:draw()
 
    -- swap buffers and poll IO events
    glfw.swap_buffers(window)
    glfw.poll_events()
 end
 
-gl.delete_vertex_arrays(cube_vao, quad_vao)
-gl.delete_buffers(cube_vbo, quad_vbo)

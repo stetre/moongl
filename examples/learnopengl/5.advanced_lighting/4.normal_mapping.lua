@@ -5,6 +5,7 @@ local glfw = require("moonglfw")
 local glmath = require("moonglmath")
 local new_camera = require("common.camera")
 local new_texture = require("common.texture")
+local new_quad = require("common.quad")
 
 -- A few shortcuts:
 local vec2, vec3, mat4 = glmath.vec2, glmath.vec3, glmath.mat4
@@ -38,6 +39,8 @@ gl.delete_shaders(vsh, fsh)
 -- load textures
 local diffuse_map = new_texture("../resources/textures/brickwall.jpg")
 local normal_map  = new_texture("../resources/textures/brickwall_normal.jpg")
+
+local quad = new_quad(true)
 
 -- get the locations of the uniforms:
 local loc = {} -- holds the locations for prog (indexed by the uniform variables names)
@@ -76,78 +79,6 @@ local last_frame_time = 0.0 -- last frame time
 local function keypressed(x) return glfw.get_key(window, x)=='press' end
 local function keyreleased(x) return glfw.get_key(window, x)=='release' end
 
-
-
--- renders a 1x1 quad in NDC with manually calculated tangent vectors
-local quad_vao, quad_vbo
-local function render_quad()
-   if not quad_vao then
-      -- positions
-      local pos1 = vec3(-1.0,  1.0, 0.0)
-      local pos2 = vec3(-1.0, -1.0, 0.0)
-      local pos3 = vec3( 1.0, -1.0, 0.0)
-      local pos4 = vec3( 1.0,  1.0, 0.0)
-      -- texture coordinates
-      local uv1 = vec2(0.0, 1.0)
-      local uv2 = vec2(0.0, 0.0)
-      local uv3 = vec2(1.0, 0.0)  
-      local uv4 = vec2(1.0, 1.0)
-      -- normal vector
-      local nm = vec3(0.0, 0.0, 1.0)
-      -- calculate tangent/bitangent vectors of both triangles
-      local edge1 = pos2 - pos1
-      local edge2 = pos3 - pos1
-      local deltaUV1 = uv2 - uv1
-      local deltaUV2 = uv3 - uv1
-      local f = 1.0 / (deltaUV1.x * deltaUV2.y - deltaUV2.x * deltaUV1.y)
-      local tangent1 = vec3(f*(deltaUV2.y * edge1.x - deltaUV1.y * edge2.x),
-                            f*(deltaUV2.y * edge1.y - deltaUV1.y * edge2.y),
-                            f*(deltaUV2.y * edge1.z - deltaUV1.y * edge2.z)):normalize()
-      local bitangent1 = vec3(f*(-deltaUV2.x * edge1.x + deltaUV1.x * edge2.x),
-                              f*(-deltaUV2.x * edge1.y + deltaUV1.x * edge2.y),
-                              f*(-deltaUV2.x * edge1.z + deltaUV1.x * edge2.z)):normalize()
-
-      local edge1 = pos3 - pos1
-      local edge2 = pos4 - pos1
-      local deltaUV1 = uv3 - uv1
-      local deltaUV2 = uv4 - uv1
-      local f = 1.0 / (deltaUV1.x * deltaUV2.y - deltaUV2.x * deltaUV1.y)
-      local tangent2 = vec3(f*(deltaUV2.y * edge1.x - deltaUV1.y * edge2.x),
-                            f*(deltaUV2.y * edge1.y - deltaUV1.y * edge2.y),
-                            f*(deltaUV2.y * edge1.z - deltaUV1.y * edge2.z)):normalize()
-      local bitangent2 = vec3(f*(-deltaUV2.x * edge1.x + deltaUV1.x * edge2.x),
-                              f*(-deltaUV2.x * edge1.y + deltaUV1.x * edge2.y),
-                              f*(-deltaUV2.x * edge1.z + deltaUV1.x * edge2.z)):normalize()
-
-      local quad_vertices = {
-         pos1, nm, uv1, tangent1, bitangent1,
-         pos2, nm, uv2, tangent1, bitangent1,
-         pos3, nm, uv3, tangent1, bitangent1,
-         pos1, nm, uv1, tangent2, bitangent2,
-         pos3, nm, uv3, tangent2, bitangent2,
-         pos4, nm, uv4, tangent2, bitangent2,
-      }
-      -- configure plane VAO
-      quad_vao = gl.new_vertex_array()
-      quad_vbo = gl.new_buffer('array')
-      gl.buffer_data('array', gl.packf(quad_vertices), 'static draw')
-      gl.enable_vertex_attrib_array(0)
-      gl.vertex_attrib_pointer(0, 3, 'float', false, 14*gl.sizeof('float'), 0)
-      gl.enable_vertex_attrib_array(1)
-      gl.vertex_attrib_pointer(1, 3, 'float', false, 14*gl.sizeof('float'), 3*gl.sizeof('float'))
-      gl.enable_vertex_attrib_array(2)
-      gl.vertex_attrib_pointer(2, 2, 'float', false, 14*gl.sizeof('float'), 6*gl.sizeof('float'))
-      gl.enable_vertex_attrib_array(3)
-      gl.vertex_attrib_pointer(3, 3, 'float', false, 14*gl.sizeof('float'), 8*gl.sizeof('float'))
-      gl.enable_vertex_attrib_array(4)
-      gl.vertex_attrib_pointer(4, 3, 'float', false, 14*gl.sizeof('float'), 11*gl.sizeof('float'))
-   end
-   gl.bind_vertex_array(quad_vao)
-   gl.draw_arrays('triangles', 0, 6)
-   gl.unbind_vertex_array()
-end
-
-
 -- render loop
 while not glfw.window_should_close(window) do
    local t = glfw.get_time()
@@ -179,12 +110,12 @@ while not glfw.window_should_close(window) do
    gl.bind_texture('2d', diffuse_map)
    gl.active_texture(1)
    gl.bind_texture('2d', normal_map)
-   render_quad()
+   quad:draw()
 
    -- render light source (simply re-renders a smaller plane at the light's position
    -- for debugging/visualization)
    gl.uniform_matrix4f(loc.model, true, translate(light_pos)*scale(0.1))
-   render_quad()
+   quad:draw()
 
    -- swap buffers and poll IO events
    glfw.swap_buffers(window)
