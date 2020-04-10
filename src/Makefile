@@ -76,6 +76,7 @@ COPT	+= -O2
 #COPT	+= -O0 -g
 #COPT	+= -Wfatal-errors
 COPT	+= -Wall -Wextra -Wpedantic
+COPT	+= -DCOMPAT53_PREFIX=moongl_compat_
 COPT    += -std=gnu99
 COPT 	+= -DLUAVER=$(LUAVER)
 
