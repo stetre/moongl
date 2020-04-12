@@ -49,10 +49,10 @@ end
 
 function Camera.process_mouse(camera, xoffset, yoffset, constrain_pitch)
 -- Processes input received from a mouse input system.
--- Beware that constraint_pitch defaults to nil (=false) unlike in the original.
+-- Beware that constrain_pitch defaults to nil (=false) unlike in the original.
    camera.yaw = camera.yaw + xoffset*camera.sensitivity
    camera.pitch = camera.pitch + yoffset*camera.sensitivity
-   if constraint_pitch then 
+   if constrain_pitch then
       -- make sure that when pitch is out of bounds, screen doesn't get flipped
       camera.pitch = clamp(camera.pitch, -89.0, 89.0)
    end
