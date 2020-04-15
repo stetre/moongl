@@ -294,6 +294,8 @@ static int GetFragDataIndex(lua_State *L)
     const GLchar *name = luaL_checkstring(L, 2);
     GLint index = glGetFragDataIndex(program, name);
     CheckError(L);
+    if(index == -1) // GL_INVALID_INDEX
+        { lua_pushfstring(L, "invalid name '%s'", name); return lua_error(L); }
     lua_pushinteger(L, index);
     return 1;
     }

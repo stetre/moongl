@@ -152,6 +152,8 @@ static int GetSubroutineIndex(lua_State *L)
     const GLchar *name = luaL_checkstring(L, 3);
     GLuint index = glGetSubroutineIndex(program, shadertype, name);
     CheckError(L);
+    if(index == GL_INVALID_INDEX)
+        { lua_pushfstring(L, "invalid name '%s'", name); return lua_error(L); }
     lua_pushinteger(L, index);
     return 1;
     }

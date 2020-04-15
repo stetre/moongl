@@ -328,6 +328,8 @@ static int GetUniformBlockIndex(lua_State *L)
     const char *name = luaL_checkstring(L, 2);
     GLuint index = glGetUniformBlockIndex(program, name);
     CheckError(L);
+    if(index == GL_INVALID_INDEX)
+        { lua_pushfstring(L, "invalid name '%s'", name); return lua_error(L); }
     lua_pushinteger(L, index);
     return 1;
     }

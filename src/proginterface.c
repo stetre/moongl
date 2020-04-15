@@ -72,6 +72,8 @@ static int GetProgramResourceIndex(lua_State *L)
     const char *name = luaL_checkstring(L, 3);
     GLuint index = glGetProgramResourceIndex(prog, itf, name);
     CheckError(L);
+    if(index == GL_INVALID_INDEX)
+        { lua_pushfstring(L, "invalid name '%s'", name); return lua_error(L); }
     lua_pushinteger(L, index);
     return 1;
     }
@@ -110,6 +112,8 @@ static int GetProgramResourceLocationIndex(lua_State *L)
     const char *name = luaL_checkstring(L, 3);
     GLint index = glGetProgramResourceLocationIndex(prog, itf, name);
     CheckError(L);
+    if(index == -1) // GL_INVALID_INDEX
+        { lua_pushfstring(L, "invalid name '%s'", name); return lua_error(L); }
     lua_pushinteger(L, index);
     return 1;
     }
