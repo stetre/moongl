@@ -31,13 +31,15 @@ Stencil Test:
 * *stencil_func*(_func_, _ref_, _mask_, [_face_]) +
 [small]#_func_: '_never_' for GL_NEVER, '_always_' for GL_ALWAYS, etc. +
 _face_: '_front_', '_back_', '_front and back_'. +
-Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glStencilFunc[glStencilFunc].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glStencilFunc[glStencilFunc] -
+https://www.khronos.org/opengl/wiki/GLAPI/glStencilFuncSeparate[glStencilFuncSeparate].#
 
 [[gl.stencil_op]]
 * *stencil_op*(_sfail_, _dpfail_, _dppass_, [_face_]) +
 [small]#_sfail_, _dpfail_, _dppass_: '_keep_' for GL_KEEP, '_incr wrap_' for GL_INCR_WRAP, etc. +
 _face_: '_front_', '_back_', '_front and back_'. +
-Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glStencilOp[glStencilOp].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glStencilOp[glStencilOp] -
+https://www.khronos.org/opengl/wiki/GLAPI/glStencilOpSeparate[glStencilOpSeparate].#
 
 '''
 
