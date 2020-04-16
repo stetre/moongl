@@ -212,7 +212,7 @@ Rfr:
 https://www.khronos.org/opengl/wiki/GLAPI/glGetTexLevelParameter[glGetTexLevelParameter].#
 
 [[gl.get_texture_image]]
-* <<data,_data_>> = *get_texture_image*(<<texturetarget,_target_>>|_texture_, _level_, <<type,_type_>>, _n_) +
+* <<data,_data_>> = *get_texture_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, _n_) +
 [small]#_n_: data size or offset in buffer. +
 If a <<gl.bind_buffer, buffer>> is bound to the '_pixel pack_' target, then _n_ is
 interpreted as an offset and this function returns _nil_ (in this case OpenGL copies
