@@ -173,10 +173,10 @@ static int BufferData(lua_State *L)
     GLenum target, usage;
     GLuint buffer = checktargetorname(L, 1, &target, DOMAIN_BUFFER_TARGET);
 
-    if(lua_isinteger(L, 2))
+    if(lua_type(L, 2)==LUA_TNUMBER)
         {
         data = NULL;
-        size = lua_tointeger(L, 2);
+        size = luaL_checkinteger(L, 2);
         }
     else if(lua_isstring(L, 2))
         {
