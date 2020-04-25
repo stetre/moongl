@@ -1,7 +1,9 @@
 -- Texture utilities
+package.path = package.path..";../?.lua"
 local gl = require("moongl")
 local glmath = require("moonglmath")
 local mi = require("moonimage")
+local random = require("common.random")
 
 -------------------------------------------------------------------------------
 local function load_texture(filename)
@@ -45,7 +47,6 @@ local function load_cube_map(basename, extension)
    gl.unbind_texture('cube map')
    return texid, width, height
 end
-
 
 -------------------------------------------------------------------------------
 local function load_hdr_cube_map(basename)
@@ -117,11 +118,29 @@ local function noise_2d_periodic(base_freq, persistence, width, height)
    return noise_2d(base_freq, persistence, width, height, true)
 end
 
+-------------------------------------------------------------------------------
+
+local function random_1d(size)
+-- Creates a 1D texture of random floating point values in the range [0, 1)
+   local data = {}
+   for i=0, size do
+      data[i] = random.uniform()
+   end
+   data = gl.packf(data)
+   local texid = gl.new_texture('1d')
+   gl.texture_storage('1d', 1, 'r32f', size)
+   gl.texture_sub_image('1d', 0, 'red', 'float', data, 0, size)
+   gl.texture_parameter('1d', 'mag filter', 'nearest')
+   gl.texture_parameter('1d', 'min filter', 'nearest')
+   return texid
+end
+
 return {
    load_texture = load_texture,
    load_hdr_cube_map = load_hdr_cube_map,
    load_cube_map = load_cube_map,
    noise_2d = noise_2d,
    noise_2d_periodic = noise_2d_periodic,
+   random_1d = random_1d,
 }
 

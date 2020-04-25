@@ -78,6 +78,11 @@ local function new(radius, nslices, nstacks)
       __index = {
       ------------------------------------------------
       vao = function(self) return vao end,
+      p_vbo = function(self) return p_vbo end,
+      n_vbo = function(self) return n_vbo end,
+      tc_vbo = function(self) return tc_vbo end,
+      ebo = function(self) return ebo end,
+      count = function(self) return count end,
       positions = function(self) return positions end,
       normals = function(self) return normals end,
       texcoords = function(self) return texcoords end,

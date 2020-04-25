@@ -22,12 +22,19 @@ local function uniform_circle()
 end
 
 local function shuffle(t) 
-   --@@ shuffle the elements of table t so that each ordering has the same probability
-   -- std::shuffle()
-   error("TODO")
+-- Shuffles the elements of table t (in place) so that each ordering has the same probability
+-- Rfr: https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm
+   local n = #t
+   local j
+   for i = 1, n-1 do
+      j = random(i, n) -- random integer s.t. i <= j < n+1
+      t[i], t[j] = t[j], t[i]
+   end
 end
 
 return {
+   seed = randomseed,
+   uniform = random,
    uniform_hemisphere = uniform_hemisphere,
    uniform_circle = uniform_circle,
    shuffle = shuffle,
