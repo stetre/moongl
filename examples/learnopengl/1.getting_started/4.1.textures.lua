@@ -58,7 +58,7 @@ gl.bind_texture('2d', texture) -- all upcoming GL_TEXTURE_2D operations now have
 -- set the texture wrapping parameters
 gl.texture_parameter('2d', 'wrap s', 'repeat')
 gl.texture_parameter('2d', 'wrap t', 'repeat')
-gl.texture_parameter('2d', 'min filter', 'linear')
+gl.texture_parameter('2d', 'min filter', 'linear mipmap linear')
 gl.texture_parameter('2d', 'mag filter', 'linear')
 -- load image, create texture and generate mipmaps
 local data, w, h, channels = mi.load("../resources/textures/container.jpg")
