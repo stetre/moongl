@@ -147,5 +147,6 @@ end
 
 gl.delete_vertex_arrays(plane_vao)
 gl.delete_buffers(plane_vbo)
+gl.delete_program(prog)
 
 

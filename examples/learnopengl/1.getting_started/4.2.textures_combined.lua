@@ -114,4 +114,4 @@ end
 -- optional: de-allocate all resources once they've outlived their purpose:
 gl.delete_vertex_arrays(vao)
 gl.delete_buffers(vbo, ebo)
-
+gl.delete_program(prog)

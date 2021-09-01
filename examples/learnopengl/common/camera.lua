@@ -63,9 +63,7 @@ end
 function Camera.process_scroll(camera, yoffset)
 -- Processes input received from a mouse scroll-wheel event.
 -- Only requires input on the vertical wheel-axis
-   local zoom = camera.zoom
-   if zoom >= 1.0 and zoom <= 45.0 then zoom = zoom - yoffset end
-   camera.zoom = clamp(zoom, 1.0, 45.0)
+   camera.zoom = clamp(camera.zoom-yoffset, 1.0, 45.0)
 end
 
 return function(position, up, yaw, pitch) 

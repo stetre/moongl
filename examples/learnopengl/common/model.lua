@@ -40,7 +40,7 @@ local function process_mesh(aimesh)
    
    for i=1, aimesh:num_vertices() do
       local position = {aimesh:position(i)}
-      local normal = {aimesh:normal(i)}
+      local normal = aimesh:has_normals() and {aimesh:normal(i)} or {0, 0, 0}
       local tangent = {aimesh:tangent(i)}
       local bitangent = {aimesh:bitangent(i)}
       local u, v
@@ -74,7 +74,7 @@ end
 
 return function(path)
 -- Constructor, expects a filepath to a 3D model.
-   local scene = assert(ai.import_file(path, 'triangulate', 'flip uvs', 'calc tangent space'))
+   local scene = assert(ai.import_file(path, 'triangulate', 'flip uvs', 'gen smooth normals', 'calc tangent space'))
    assert((scene:flags()&ai.SCENE_FLAGS_INCOMPLETE)==0, "scene is incomplete")
    local root = assert(scene:root_node(), "missing root node")
    directory = string.match(path, '(.*/)')

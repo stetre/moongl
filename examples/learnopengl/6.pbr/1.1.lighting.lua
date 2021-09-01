@@ -122,7 +122,7 @@ while not glfw.window_should_close(window) do
    for row=0,nrRows-1 do 
       gl.uniformf(loc.metallic, row/nrRows)
       for col=0, nrColumns-1 do 
-         -- we clamp the roughness to 0.025 - 1.0 as perfectly smooth surfaces (roughness of 0.0)
+         -- we clamp the roughness to 0.05 - 1.0 as perfectly smooth surfaces (roughness of 0.0)
          -- tend to look a bit off on direct lighting.
          gl.uniformf(loc.roughness, clamp(col/nrColumns, 0.05, 1.0))
          local model = translate((col-(nrColumns/2))*spacing, (row-(nrRows/2))*spacing, 0.0)

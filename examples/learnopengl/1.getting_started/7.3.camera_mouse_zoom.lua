@@ -165,10 +165,7 @@ end)
 
 glfw.set_scroll_callback(window, function(window, xoffset, yoffset)
    -- whenever the mouse scroll wheel scrolls, this callback is called
-   if fov >= 1.0 and fov <= 45.0 then
-      fov = fov - yoffset
-      fov = clamp(fov, 1.0, 45.0)
-   end
+   fov = clamp(fov - yoffset, 1.0, 45.0)
 end)
 
 -- tell GLFW to capture our mouse:
@@ -240,4 +237,5 @@ end
 -- optional: de-allocate all resources once they've outlived their purpose:
 gl.delete_vertex_arrays(vao)
 gl.delete_buffers(vbo)
+gl.delete_program(prog)
 

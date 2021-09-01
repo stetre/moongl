@@ -343,8 +343,8 @@ while not glfw.window_should_close(window) do
    gl.active_texture(2)
    gl.bind_texture('2d', brdfLUTTexture)
 
-   -- render rows*column number of spheres with material properties defined by textures
-   -- (they all have the same material properties)
+   -- render rows*column number of spheres with varying metallic/roughness values scaled
+   -- by rows and columns, respectively
    for row=0, nrRows-1 do
       gl.uniformf(loc1.metallic, row/nrRows)
       for col=0, nrColumns-1 do

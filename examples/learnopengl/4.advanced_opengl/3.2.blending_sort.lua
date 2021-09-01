@@ -244,4 +244,5 @@ end
 
 gl.delete_vertex_arrays(cube_vao, plane_vao, transparent_vao)
 gl.delete_buffers(cube_vbo, plane_vbo, transparent_vbo)
+gl.delete_program(prog)
 

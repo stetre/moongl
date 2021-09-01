@@ -252,4 +252,6 @@ end
 
 gl.delete_vertex_arrays(cube_vao, skybox_vao)
 gl.delete_buffers(cube_vbo, skybox_vbo)
+gl.delete_program(prog)
+gl.delete_program(prog1)
 

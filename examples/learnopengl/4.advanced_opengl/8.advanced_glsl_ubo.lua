@@ -197,4 +197,8 @@ end
 
 gl.delete_vertex_arrays(cube_vao)
 gl.delete_buffers(cube_vbo, ubo)
+gl.delete_program(prog_red)
+gl.delete_program(prog_green)
+gl.delete_program(prog_blue)
+gl.delete_program(prog_yellow)
 

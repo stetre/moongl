@@ -217,3 +217,5 @@ end
 -- optional: de-allocate all resources once they've outlived their purpose:
 gl.delete_vertex_arrays(cube_vao, light_vao)
 gl.delete_buffers(vbo)
+gl.delete_program(prog1)
+gl.delete_program(prog2)

@@ -287,4 +287,6 @@ gl.delete_vertex_arrays(cube_vao, plane_vao, quad_vao)
 gl.delete_buffers(cube_vbo, plane_vbo, quad_vbo)
 gl.delete_framebuffers(fbo)
 gl.delete_renderbuffers(rbo)
+gl.delete_program(prog)
+gl.delete_program(prog1)
 

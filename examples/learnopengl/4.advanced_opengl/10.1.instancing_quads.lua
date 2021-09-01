@@ -104,4 +104,4 @@ end
 
 gl.delete_vertex_arrays(quad_vao)
 gl.delete_buffers(quad_vbo, instance_vbo)
-
+gl.delete_program(prog)

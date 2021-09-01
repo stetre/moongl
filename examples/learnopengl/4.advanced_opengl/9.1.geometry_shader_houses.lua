@@ -80,4 +80,5 @@ end
 
 gl.delete_vertex_arrays(vao)
 gl.delete_buffers(vbo)
+gl.delete_program(prog)
 

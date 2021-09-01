@@ -213,8 +213,8 @@ while not glfw.window_should_close(window) do
    gl.uniform_matrix4f(loc1.view, true, view)
    gl.uniformf(loc1.camPos, camera.position)
 
-   -- render rows*column number of spheres with material properties defined by textures
-   -- (they all have the same material properties)
+   -- render rows*column number of spheres with varying metallic/roughness values scaled
+   -- by rows and columns, respectively
    for row=0, nrRows-1 do
       gl.uniformf(loc1.metallic, row/nrRows)
       for col=0, nrColumns-1 do
