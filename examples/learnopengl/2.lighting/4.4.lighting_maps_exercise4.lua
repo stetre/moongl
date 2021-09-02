@@ -29,12 +29,12 @@ gl.init() -- this loads all OpenGL function pointers
 
 -- build, compile, and link our shader programs --------------------------------
 -- lighting shader program:
-local prog1, vsh, fsh = gl.make_program({vertex="shaders/4.3.lighting_maps.vert",
-                                         fragment="shaders/4.3.lighting_maps.frag"})
+local prog1, vsh, fsh = gl.make_program({vertex="shaders/4.4.lighting_maps.vert",
+                                         fragment="shaders/4.4.lighting_maps.frag"})
 gl.delete_shaders(vsh, fsh)
 -- lamp shader program:
-local prog2, vsh, fsh = gl.make_program({vertex="shaders/4.3.light_cube.vert",
-                                         fragment="shaders/4.3.light_cube.frag"})
+local prog2, vsh, fsh = gl.make_program({vertex="shaders/4.4.light_cube.vert",
+                                         fragment="shaders/4.4.light_cube.frag"})
 gl.delete_shaders(vsh, fsh)
 
 -- set up vertex data (and buffer(s)) and configure vertex attributes ---------

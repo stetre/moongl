@@ -15,8 +15,8 @@ glfw.set_framebuffer_size_callback(window, function (window, width, height)
 end)
 
 -- build, compile, and link our shader program ---------------------------------
-local prog, vsh, fsh = gl.make_program({vertex="shaders/4.4.texture.vert",
-                                         fragment="shaders/4.4.texture.frag"})
+local prog, vsh, fsh = gl.make_program({vertex="shaders/4.5.texture.vert",
+                                         fragment="shaders/4.5.texture.frag"})
 gl.delete_shaders(vsh, fsh)
 
 -- set up vertex data (and buffer(s)) and configure vertex attributes ---------

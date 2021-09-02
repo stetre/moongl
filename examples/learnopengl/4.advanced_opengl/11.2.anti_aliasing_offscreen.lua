@@ -27,13 +27,13 @@ gl.init() -- this loads all OpenGL function pointers
 
 -- build, compile, and link our shader programs --------------------------------
 local prog, vsh, fsh = gl.make_program({
-   vertex="shaders/11.anti_aliasing.vert",
-   fragment="shaders/11.anti_aliasing.frag",
+   vertex="shaders/11.2.anti_aliasing.vert",
+   fragment="shaders/11.2.anti_aliasing.frag",
 })
 gl.delete_shaders(vsh, fsh)
 local prog1, vsh, fsh = gl.make_program({
-   vertex="shaders/11.aa_post.vert",
-   fragment="shaders/11.aa_post.frag",
+   vertex="shaders/11.2.aa_post.vert",
+   fragment="shaders/11.2.aa_post.frag",
 })
 gl.delete_shaders(vsh, fsh)
 
