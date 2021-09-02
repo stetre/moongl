@@ -3,6 +3,7 @@ package.path = package.path..";../?.lua"
 local gl = require("moongl")
 local glfw = require("moonglfw")
 local glmath = require("moonglmath")
+local mi = require("moonimage")
 local new_camera = require("common.camera")
 local new_model = require("common.model")
 local new_cube = require("common.cube")
@@ -83,17 +84,18 @@ assert(gl.check_framebuffer_status('draw read')=='complete', "Framebuffer not co
 gl.unbind_framebuffer('draw read')
 
 -- load models
-local nanosuit = new_model("../resources/objects/nanosuit/nanosuit.obj")
+mi.flip_vertically_on_load(true)
+local backpack = new_model("../resources/objects/backpack/backpack.obj")
 local objectPositions = {
-   vec3(-3.0,  -3.0, -3.0),
-   vec3( 0.0,  -3.0, -3.0),
-   vec3( 3.0,  -3.0, -3.0),
-   vec3(-3.0,  -3.0,  0.0),
-   vec3( 0.0,  -3.0,  0.0),
-   vec3( 3.0,  -3.0,  0.0),
-   vec3(-3.0,  -3.0,  3.0),
-   vec3( 0.0,  -3.0,  3.0),
-   vec3( 3.0,  -3.0,  3.0),
+   vec3(-3.0,  -0.5, -3.0),
+   vec3( 0.0,  -0.5, -3.0),
+   vec3( 3.0,  -0.5, -3.0),
+   vec3(-3.0,  -0.5,  0.0),
+   vec3( 0.0,  -0.5,  0.0),
+   vec3( 3.0,  -0.5,  0.0),
+   vec3(-3.0,  -0.5,  3.0),
+   vec3( 0.0,  -0.5,  3.0),
+   vec3( 3.0,  -0.5,  3.0),
 }
 
 local cube = new_cube()
@@ -178,7 +180,7 @@ while not glfw.window_should_close(window) do
    gl.uniform_matrix4f(loc1.view, true, view)
    for _, pos in ipairs(objectPositions) do
       gl.uniform_matrix4f(loc1.model, true, translate(pos)*scale(0.25))
-      nanosuit:draw(prog1)
+      backpack:draw(prog1)
    end
    gl.unbind_framebuffer('draw read')
 

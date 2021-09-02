@@ -17,7 +17,7 @@ local perspective = glmath.perspective
 local rad, sin, cos = math.rad, math.sin, math.cos
 local min, max, sqrt = math.min, math.max, math.sqrt
 
-local SCR_WIDTH, SCR_HEIGHT = 1280, 720
+local SCR_WIDTH, SCR_HEIGHT = 800, 600
 -- camera:
 local camera = new_camera(vec3(0.0, 0.0, 5.0))
 local last_x, last_y = SCR_WIDTH/2, SCR_HEIGHT/2 -- initially at the center
@@ -49,7 +49,7 @@ make_program = nil
 local gBuffer = gl.new_framebuffer('draw read')
 -- position color buffer
 local gPosition = gl.new_texture('2d')
-gl.texture_image('2d', 0, 'rgb16f', 'rgb', 'float', nil, SCR_WIDTH, SCR_HEIGHT)
+gl.texture_image('2d', 0, 'rgba16f', 'rgba', 'float', nil, SCR_WIDTH, SCR_HEIGHT)
 gl.texture_parameter('2d', 'min filter', 'nearest')
 gl.texture_parameter('2d', 'mag filter', 'nearest')
 gl.texture_parameter('2d', 'wrap s', 'clamp to edge')
@@ -57,13 +57,13 @@ gl.texture_parameter('2d', 'wrap t', 'clamp to edge')
 gl.framebuffer_texture_2d('draw read', 'color attachment 0', '2d', gPosition, 0)
 -- normal color buffer
 local gNormal = gl.new_texture('2d')
-gl.texture_image('2d', 0, 'rgb16f', 'rgb', 'float', nil, SCR_WIDTH, SCR_HEIGHT)
+gl.texture_image('2d', 0, 'rgba16f', 'rgba', 'float', nil, SCR_WIDTH, SCR_HEIGHT)
 gl.texture_parameter('2d', 'min filter', 'nearest')
 gl.texture_parameter('2d', 'mag filter', 'nearest')
 gl.framebuffer_texture_2d('draw read', 'color attachment 1', '2d', gNormal, 0)
 -- color + specular color buffer
 local gAlbedo = gl.new_texture('2d')
-gl.texture_image('2d', 0, 'rgb', 'rgb', 'ubyte', nil, SCR_WIDTH, SCR_HEIGHT)
+gl.texture_image('2d', 0, 'rgba', 'rgba', 'ubyte', nil, SCR_WIDTH, SCR_HEIGHT)
 gl.texture_parameter('2d', 'min filter', 'nearest')
 gl.texture_parameter('2d', 'mag filter', 'nearest')
 gl.framebuffer_texture_2d('draw read', 'color attachment 2', '2d', gAlbedo, 0)
@@ -81,7 +81,7 @@ gl.unbind_framebuffer('draw read')
 local ssaoFBO = gl.new_framebuffer('draw read')
 -- SSAO color buffer
 local ssaoColorBuffer = gl.new_texture('2d')
-gl.texture_image('2d', 0, 'red', 'rgb', 'float', nil, SCR_WIDTH, SCR_HEIGHT)
+gl.texture_image('2d', 0, 'red', 'red', 'float', nil, SCR_WIDTH, SCR_HEIGHT)
 gl.texture_parameter('2d', 'min filter', 'nearest')
 gl.texture_parameter('2d', 'mag filter', 'nearest')
 gl.framebuffer_texture_2d('draw read', 'color attachment 0', '2d', ssaoColorBuffer, 0)
@@ -89,7 +89,7 @@ assert(gl.check_framebuffer_status('draw read')=='complete', "Framebuffer not co
 -- and blur stage
 local ssaoBlurFBO = gl.new_framebuffer('draw read')
 local ssaoColorBufferBlur= gl.new_texture('2d')
-gl.texture_image('2d', 0, 'red', 'rgb', 'float', nil, SCR_WIDTH, SCR_HEIGHT)
+gl.texture_image('2d', 0, 'red', 'red', 'float', nil, SCR_WIDTH, SCR_HEIGHT)
 gl.texture_parameter('2d', 'min filter', 'nearest')
 gl.texture_parameter('2d', 'mag filter', 'nearest')
 gl.framebuffer_texture_2d('draw read', 'color attachment 0', '2d', ssaoColorBufferBlur, 0)
@@ -97,7 +97,7 @@ assert(gl.check_framebuffer_status('draw read')=='complete', "Framebuffer not co
 gl.unbind_framebuffer('draw read')
 
 -- load models
-local nanosuit = new_model("../resources/objects/nanosuit/nanosuit.obj")
+local backpack = new_model("../resources/objects/backpack/backpack.obj")
 
 local cube = new_cube()
 local quad = new_quad()
@@ -121,7 +121,7 @@ for i=1,16 do
    ssaoNoise[i] = noise
 end
 local noiseTexture = gl.new_texture('2d')
-gl.texture_image('2d', 0, 'rgb32f', 'rgb', 'float', gl.packf(ssaoNoise), 4, 4)
+gl.texture_image('2d', 0, 'rgba32f', 'rgba', 'float', gl.packf(ssaoNoise), 4, 4)
 gl.texture_parameter('2d', 'min filter', 'nearest');
 gl.texture_parameter('2d', 'mag filter', 'nearest');
 gl.texture_parameter('2d', 'wrap s', 'repeat')
@@ -214,10 +214,10 @@ while not glfw.window_should_close(window) do
    gl.uniformb(loc1.invertedNormals, true) -- invert normals as we're inside the cube
    cube:draw()
    gl.uniformb(loc1.invertedNormals, false)
-   -- nanosuit model on the floor
-   local model = translate(0.0, 0.0, 5.0)*rotate(rad(-90.0), 1, 0, 0)*scale(0.5)
+   -- backpack model on the floor
+   local model = translate(0.0, 0.5, 0.0)*rotate(rad(-90.0), 1, 0, 0)*scale(1.0)
    gl.uniform_matrix4f(loc1.model, true, model)
-   nanosuit:draw(prog1)
+   backpack:draw(prog1)
    gl.unbind_framebuffer('draw read')
 
    -- 2. generate SSAO texture
@@ -256,8 +256,6 @@ while not glfw.window_should_close(window) do
    gl.uniformf(loc2["light.Position"], lightPosView)
    gl.uniformf(loc2["light.Color"], lightColor)
    -- Update attenuation parameters
-   local constant = 1.0 -- note that we don't send this to the shader, 
-                        -- we assume it is always 1.0 (in our case)
    local linear, quadratic = 0.09, 0.032
    gl.uniformf(loc2["light.Linear"], linear)
    gl.uniformf(loc2["light.Quadratic"], quadratic)

@@ -17,7 +17,7 @@ local perspective = glmath.perspective
 local rad, sin, cos = math.rad, math.sin, math.cos
 local min, max = math.min, math.max
 
-local SCR_WIDTH, SCR_HEIGHT = 1280, 720
+local SCR_WIDTH, SCR_HEIGHT = 800, 600
 -- camera:
 local camera = new_camera(vec3(0.0, 0.0, 5.0))
 local last_x, last_y = SCR_WIDTH/2, SCR_HEIGHT/2 -- initially at the center
@@ -64,7 +64,7 @@ local hdrFBO = gl.new_framebuffer('draw read')
 local colorBuffers = { gl.gen_textures(2)}
 for i, tex in ipairs(colorBuffers) do
    gl.bind_texture('2d', tex)
-   gl.texture_image('2d', 0, 'rgb16f', 'rgb', 'float', nil, SCR_WIDTH, SCR_HEIGHT)
+   gl.texture_image('2d', 0, 'rgba16f', 'rgba', 'float', nil, SCR_WIDTH, SCR_HEIGHT)
    gl.texture_parameter('2d', 'min filter', 'linear')
    gl.texture_parameter('2d', 'mag filter', 'linear')
    -- we clamp to the edge as the blur filter would otherwise sample repeated texture values!
@@ -90,7 +90,7 @@ local pingpongColorbuffers = {gl.gen_textures(2)}
 for i=1, 2 do
    gl.bind_framebuffer('draw read', pingpongFBO[i])
    gl.bind_texture('2d', pingpongColorbuffers[i])
-   gl.texture_image('2d', 0, 'rgb16f', 'rgb', 'float', nil, SCR_WIDTH, SCR_HEIGHT)
+   gl.texture_image('2d', 0, 'rgba16f', 'rgba', 'float', nil, SCR_WIDTH, SCR_HEIGHT)
    gl.texture_parameter('2d', 'min filter', 'linear')
    gl.texture_parameter('2d', 'mag filter', 'linear')
    -- we clamp to the edge as the blur filter would otherwise sample repeated texture values!
@@ -247,7 +247,7 @@ while not glfw.window_should_close(window) do
       gl.bind_framebuffer('draw read', pingpongFBO[horizontal and 2 or 1])
       gl.uniformb(loc3.horizontal, horizontal)
       -- bind texture of other framebuffer (or scene if first iteration):
-      gl.bind_texture('2d', i==1 and colorBuffers[2] or pingpongColorbuffers[horizontal and 1 or 2])
+      gl.bind_texture('2d', i==1 and colorBuffers[2] or (pingpongColorbuffers[horizontal and 1 or 2]))
       quad:draw()
       horizontal = not horizontal
    end
