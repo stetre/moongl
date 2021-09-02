@@ -32,8 +32,8 @@ local prog1, vsh, fsh = gl.make_program({vertex="shaders/1.colors.vert",
                                          fragment="shaders/1.colors.frag"})
 gl.delete_shaders(vsh, fsh)
 -- lamp shader program:
-local prog2, vsh, fsh = gl.make_program({vertex="shaders/1.lamp.vert",
-                                         fragment="shaders/1.lamp.frag"})
+local prog2, vsh, fsh = gl.make_program({vertex="shaders/1.light_cube.vert",
+                                         fragment="shaders/1.light_cube.frag"})
 gl.delete_shaders(vsh, fsh)
 
 -- set up vertex data (and buffer(s)) and configure vertex attributes ---------
