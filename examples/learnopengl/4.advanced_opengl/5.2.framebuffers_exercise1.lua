@@ -131,7 +131,7 @@ gl.vertex_attrib_pointer(1, 2, 'float', false, 4*gl.sizeof('float'), 2*gl.sizeof
 gl.unbind_vertex_array()
 
 -- load textures
-local cube_texture = new_texture("../resources/textures/marble.jpg")
+local cube_texture = new_texture("../resources/textures/container.jpg")
 local floor_texture = new_texture("../resources/textures/metal.png")
 
 -- get the locations of the uniforms:
@@ -227,12 +227,12 @@ while not glfw.window_should_close(window) do
    -- and get the view matrix (note that we disable pitch constrains for this specific case,
    -- otherwise we can't reverse camera's pitch values later):
    camera.yaw = camera.yaw + 180.0     
-   camera.pitch = camera.pitch + 180.0
+-- camera.pitch = camera.pitch + 180.0
    camera:process_mouse(0, 0, false) 
    local view = camera:view()
    -- rotate the camera back to its original orientation and update its vectors
    camera.yaw = camera.yaw - 180.0     
-   camera.pitch = camera.pitch - 180.0 -- rotate back to its original orientation
+-- camera.pitch = camera.pitch - 180.0 -- rotate back to its original orientation
    camera:process_mouse(0, 0, true) 
    local projection = perspective(rad(camera.zoom), SCR_WIDTH/SCR_HEIGHT, 0.1, 100.0)
    gl.uniform_matrix4f(loc.view, true, view)

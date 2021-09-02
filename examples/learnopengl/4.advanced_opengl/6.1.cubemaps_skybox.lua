@@ -144,7 +144,7 @@ gl.vertex_attrib_pointer(0, 3, 'float', false, 3*gl.sizeof('float'), 0)
 gl.unbind_vertex_array()
 
 -- load textures
-local cube_texture = new_texture("../resources/textures/marble.jpg")
+local cube_texture = new_texture("../resources/textures/container.jpg")
 local cubemap_texture = new_cubemap({
    "../resources/textures/skybox/right.jpg",
    "../resources/textures/skybox/left.jpg",

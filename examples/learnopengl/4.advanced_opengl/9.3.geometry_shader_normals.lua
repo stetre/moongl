@@ -3,6 +3,7 @@ package.path = package.path..";../?.lua"
 local gl = require("moongl")
 local glfw = require("moonglfw")
 local glmath = require("moonglmath")
+local mi = require("moonimage")
 local new_camera = require("common.camera")
 local new_model = require("common.model")
 
@@ -14,7 +15,7 @@ local clamp = glmath.clamp
 local perspective = glmath.perspective
 local rad, sin, cos = math.rad, math.sin, math.cos
 
-local SCR_WIDTH, SCR_HEIGHT = 1280, 720
+local SCR_WIDTH, SCR_HEIGHT = 800, 600
 -- camera:
 local camera = new_camera(vec3(0.0, 0.0, 3.0))
 local last_x, last_y = SCR_WIDTH/2, SCR_HEIGHT/2 -- initially at the center
@@ -40,7 +41,8 @@ local prog1, vsh, fsh, gsh = gl.make_program({
 gl.delete_shaders(vsh, fsh, gsh)
 
 -- load models
-local nanosuit = new_model("../resources/objects/nanosuit/nanosuit.obj")
+mi.flip_vertically_on_load(true)
+local backpack = new_model("../resources/objects/backpack/backpack.obj")
 
 -- get the locations of the uniforms:
 local loc = {} -- holds the locations for prog (indexed by the uniform variables names)
@@ -68,7 +70,7 @@ glfw.set_cursor_pos_callback(window, function(window, xpos, ypos)
    local xoffset = xpos - last_x
    local yoffset = last_y - ypos -- reversed since y-coordinates go from bottom to top
    last_x, last_y = xpos, ypos
-   camera:process_mouse(xoffset, yoffset, true)
+   --camera:process_mouse(xoffset, yoffset, true)
 end)
 
 -- tell GLFW to capture our mouse:
@@ -107,14 +109,14 @@ while not glfw.window_should_close(window) do
    gl.uniform_matrix4f(loc.projection, true, projection)
    gl.uniform_matrix4f(loc.model, true, model) 
    gl.uniform_matrix4f(loc.view, true, view)
-   nanosuit:draw(prog)
+   backpack:draw(prog)
 
    -- draw model with normal-visualizing shader
    gl.use_program(prog1)
    gl.uniform_matrix4f(loc1.projection, true, projection)
    gl.uniform_matrix4f(loc1.model, true, model) 
    gl.uniform_matrix4f(loc1.view, true, view)
-   nanosuit:draw(prog1)
+   backpack:draw(prog1)
 
    -- swap buffers and poll IO events
    glfw.swap_buffers(window)

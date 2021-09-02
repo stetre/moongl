@@ -130,7 +130,7 @@ gl.vertex_attrib_pointer(1, 2, 'float', false, 4*gl.sizeof('float'), 2*gl.sizeof
 gl.unbind_vertex_array()
 
 -- load textures
-local cube_texture = new_texture("../resources/textures/marble.jpg")
+local cube_texture = new_texture("../resources/textures/container.jpg")
 local floor_texture = new_texture("../resources/textures/metal.png")
 
 -- get the locations of the uniforms:

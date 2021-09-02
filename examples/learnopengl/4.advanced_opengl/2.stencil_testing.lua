@@ -224,6 +224,7 @@ while not glfw.window_should_close(window) do
 
    gl.unbind_vertex_array()
    gl.stencil_mask(0xFF)
+   gl.stencil_func('always', 1, 0xFF)
    gl.enable('depth test')
 
    -- swap buffers and poll IO events
