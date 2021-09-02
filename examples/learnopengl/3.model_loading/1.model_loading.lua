@@ -2,6 +2,7 @@
 local gl = require("moongl")
 local glfw = require("moonglfw")
 local glmath = require("moonglmath")
+local mi = require("moonimage")
 package.path = package.path..";../?.lua" -- hack to require from ../common
 local new_camera = require("common.camera")
 local new_model = require("common.model")
@@ -31,7 +32,9 @@ local prog, vsh, fsh = gl.make_program({vertex="shaders/1.model_loading.vert",
 gl.delete_shaders(vsh, fsh)
 
 -- load models
-local nanosuit = new_model("../resources/objects/nanosuit/nanosuit.obj")
+mi.flip_vertically_on_load(true)
+local backpack = new_model("../resources/objects/backpack/backpack.obj")
+-- local backpack = new_model("../resources/objects/nanosuit/nanosuit.obj")
 
 -- To draw in wireframe polygons, run the script with the '-w' option as firts arg:
 if arg[1]=='-w' then
@@ -94,13 +97,14 @@ while not glfw.window_should_close(window) do
    gl.clear_color(0.05, 0.05, 0.05, 1.0)
    gl.clear('color', 'depth')
    gl.use_program(prog)
-   local model = translate(0.0, -1.75, 0.0)*scale(0.2)
+   local model = translate(0.0, 0.0, 0.0)*scale(1.0) -- for backpack
+   -- local model = translate(0.0, -1.75, 0.0)*scale(0.2) -- for nanosuit
    local view = camera:view()
    local projection = perspective(rad(camera.zoom), SCR_WIDTH/SCR_HEIGHT, 0.1, 100.0)
    gl.uniform_matrix4f(loc.model, true, model)
    gl.uniform_matrix4f(loc.view, true, view)
    gl.uniform_matrix4f(loc.projection, true, projection)
-   nanosuit:draw(prog)
+   backpack:draw(prog)
    gl.unbind_vertex_array()
 
    -- swap buffers and poll IO events
