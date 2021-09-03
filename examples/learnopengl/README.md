@@ -18,4 +18,5 @@ The following libraries from the [MoonLibs](https://github.com/stetre/moonlibs) 
 * [MoonGLMATH](https://github.com/stetre/moonglmath): graphics math library, for vertex transformations.
 * [MoonImage](https://github.com/stetre/moonimage): bindings to stb_image, for image loading.
 * [MoonAssimp](https://github.com/stetre/moonassimp): bindings to Assimp, for model loading.
+* [MoonFreeType](https://github.com/stetre/moonfreetype): bindings to FreeType, for font loading.
 
