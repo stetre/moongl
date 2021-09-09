@@ -2,8 +2,9 @@
 local gl = require("moongl")
 local glmath = require("moonglmath")
 
-return function(vertices, indices, textures)
--- vertices = {vertex}, where vertex=14 floats (position, normal, texcoords, tangent, bitangent)
+return function(vertices, indices, textures, boneids, boneweights)
+-- vertices = {vertex}, where vertex = 14 floats (position, normal, texcoords, tangent, bitangent),
+-- boneids = { nvertices * 4 uint }, boneweights = { nvertices * 4 floats } (optional)
 -- indices = {integer}
 -- textures {texture}, where texture = { id=integer, name=string }
    local vertices = gl.pack('float', vertices)
@@ -29,6 +30,17 @@ return function(vertices, indices, textures)
    gl.vertex_attrib_pointer(3, 3, 'float', false, 14*float, 8*float)
    gl.enable_vertex_attrib_array(4) -- bitangent
    gl.vertex_attrib_pointer(4, 3, 'float', false, 14*float, 11*float)
+   local vbo1, vbo2 -- additional buffers to hold bones attributes
+   if boneids then
+      vbo1 = gl.new_buffer('array')
+      gl.buffer_data('array', gl.pack('uint', boneids), 'static draw')
+      gl.enable_vertex_attrib_array(5) -- boneids
+      gl.vertex_attrib_i_pointer(5, 4, 'uint', 0, 0)
+      vbo2 = gl.new_buffer('array')
+      gl.buffer_data('array', gl.pack('float', boneweights), 'static draw')
+      gl.enable_vertex_attrib_array(6) -- boneweights
+      gl.vertex_attrib_pointer(6, 4, 'float', false, 0, 0)
+   end
    gl.unbind_vertex_array()
 
    local diffuseNr, specularNr, normalNr, heightNr = 1, 1, 1, 1
@@ -76,8 +88,8 @@ return function(vertices, indices, textures)
          delete = function(mesh)
             if not vao then return end
             gl.delete_vertex_arrays(vao)
-            gl.delete_buffers(vbo, ebo)
-            textures, count, vba, vbo, ebo = nil
+            gl.delete_buffers(vbo, ebo, vbo1, vbo2)
+            textures, count, vba, vbo, ebo, vbo1, vbo2 = nil
          end
          },
 
