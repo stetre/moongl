@@ -19,4 +19,6 @@ The following libraries from the [MoonLibs](https://github.com/stetre/moonlibs) 
 * [MoonImage](https://github.com/stetre/moonimage): bindings to stb_image, for image loading.
 * [MoonAssimp](https://github.com/stetre/moonassimp): bindings to Assimp, for model loading.
 * [MoonFreeType](https://github.com/stetre/moonfreetype): bindings to FreeType, for font loading.
+* [MoonAL](https://github.com/stetre/moonal): bindings to OpenAL, for sound rendering.
+* [MoonSndFile](https://github.com/stetre/moonsndfile): bindings to libsndfile, for loading sound files.
 
