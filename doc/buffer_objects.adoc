@@ -20,14 +20,13 @@ Create/Modify Buffer Object Data:
 
 [[gl.buffer_storage]]
 * _size_ = *buffer_storage*(<<buffertarget,_target_>>|_buffer_, [<<data,_data_>>|<<dataptr, _dataptr_>>], [_flag_, _flag_, _..._]) +
-[small]#_flag_: '_dynamic range_' for GL_DYNAMIC_RANGE_BIT, '_map read_' for GL_MAP_READ_BIT, etc. +
+[small]#_flag_: '_dynamic storage_', '_map read_', '_map write_', '_map persistent_', '_map coherent_', '_client storage_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBufferStorage[glBufferStorage].#
 
 [[gl.buffer_data]]
-* _size_ = *buffer_data*(<<buffertarget,_target_>>|_buffer_, <<data,_data_>>|<<dataptr, _dataptr_>>|_size_, _usage_) +
+* _size_ = *buffer_data*(<<buffertarget,_target_>>|_buffer_, <<data,_data_>>|<<dataptr, _dataptr_>>|_size_, <<bufferusage, _usage_>>) +
 _size_ = *buffer_sub_data*(<<buffertarget,_target_>>|_buffer_, _offset_, <<data,_data_>>|<<dataptr, _dataptr_>>) +
 [small]#_size_: size of memory to allocate for the buffer (in bytes). +
-_usage_: '_static draw_' for GL_STATIC_DRAW, '_static read_' for GL_STATIC READ, etc. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glBufferData[glBufferData] -
 https://www.khronos.org/opengl/wiki/GLAPI/glBufferSubData[glBufferSubData]. +
 See <<snippet_rectangle, example>> and <<datahandling, 'Data handling utilities'>>.#
@@ -54,7 +53,7 @@ Map/Unmap Buffer Data:
 _ptr_ = *map_buffer_range*(<<buffertarget,_target_>>|_buffer_, _offset_, _length_, [_accessbit~1~_, _..._]) +
 *unmap_buffer*(<<buffertarget,_target_>>|_buffer_) +
 [small]#_access_: '_read only_', '_write only_', '_read write_', +
-_accessbit_: '_read_' for GL_MAP_READ_BIT, '_invalidate buffer_' for GL_INVALIDATE_BUFFER_BIT, etc. +
+_accessbit_: '_read_', '_write_', '_persistent_', '_coherent_', '_invalidate buffer_', '_invalidate range_', '_flush explicit_', '_unsynchronized_'. +
 The returned _ptr_ value is a lightuserdata containing the raw pointer to the mapped memory (use at your peril). +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glMapBuffer[glMapBuffer] -
 https://www.khronos.org/opengl/wiki/GLAPI/glMapBufferRange[glMapBufferRange].#
@@ -101,7 +100,7 @@ Buffer Object Queries:
 
 [[gl.get_buffer_parameter]]
 * _value_, _..._ = *get_buffer_parameter*(<<buffertarget,_target_>>|_buffer_, _pname_) +
-[small]#_pname_: '_size_' for GL_BUFFER_SIZE, '_storage flags_' for GL_BUFFER_STORAGE_FLAGS, etc. +
+[small]#_pname_: '_size_', '_usage_', '_access_', '_access flags_', '_immutable storage_', '_mapped_', '_map pointer_', '_map offset_', '_map length_', '_storage flags_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetBufferParameter[glGetBufferParameter].#
 
 '''

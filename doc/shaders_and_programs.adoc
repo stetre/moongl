@@ -136,8 +136,8 @@ https://www.khronos.org/opengl/wiki/GLAPI/glDeleteProgramPipelines[glDeleteProgr
 ////
 
 [[gl.use_program_stages]]
-* *use_program_stages*(_pipeline_, _program_, _stage_, _..._) +
-[small]#_stage_: '_vertex_'  for GL_VERTEX_SHADER_BIT, '_tess control_' for GL_TESS_CONTROL_SHADER_BIT, etc. +
+* *use_program_stages*(_pipeline_, _program_, [_stage~1~_, _..._]) +
+[small]#_stage_: '_vertex_', '_fragment_', '_geometry_', '_tess control_', '_tess evaluation_', '_compute_', '_all_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glUseProgramStages[glUseProgramStages].#
 
 [[gl.active_shader_program]]
@@ -162,7 +162,7 @@ https://www.khronos.org/opengl/wiki/GLAPI/glGetUniformIndices[glGetUniformIndice
 
 [[gl.get_active_uniforms]]
 * _value~1~_, _..._ = *get_active_uniforms*(_program_, _pname_, _index~1~_, [_index~2~_, _..._]) +
-[small]#_pname_: '_type_' for GL_UNIFORM_TYPE, '_name length_' for GL_UNIFORM_NAME_LENGTH, etc. +
+[small]#_pname_: '_type_', '_size_', '_name length_', '_block index_', '_offset_', '_array stride_', '_matrix stride_', '_is row major_', '_atomic counter buffer index_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniforms[glGetActiveUniforms].#
 
 [[gl.get_uniform_block_index]]
@@ -173,14 +173,12 @@ https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniformBlockName[glGetActiv
 
 [[gl.get_active_uniform_block]]
 * _value_ = *get_active_uniform_block*(_program_, _index_, _pname_) +
-[small]#_pname_: '_binding_' for GL_UNIFORM_BLOCK_BINDING, '_data size_' for 
-GL_UNIFORM_BLOCK_DATA_SIZE, etc. +
+[small]#_pname_: '_binding_', '_data size_', '_name length_', '_active uniforms_', '_active uniform indices_', '_referenced by vertex shader_', '_referenced by tess control shader_', '_referenced by tess evaluation shader_', '_referenced by geometry shader_', '_referenced by fragment shader_', '_referenced by compute shader_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveUniformBlock[glGetActiveUniformBlock].#
 
 [[gl.get_active_atomic_counter_buffer]]
 * _value_ = *get_active_atomic_counter_buffer*(_program_, _index_, _pname_) +
-[small]#_pname_: '_binding_' for GL_ATOMIC_COUNTER_BUFFER_BINDING, '_data size_' for 
-GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE, etc. +
+[small]#_pname_: '_binding_', '_data size_', '_active atomic counters_', '_active atomic counter indices_', '_referenced by vertex shader_', '_referenced by tess control shader_', '_referenced by tess evaluation shader_', '_referenced by geometry shader_', '_referenced by fragment shader_', '_referenced by compute shader_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveAtomicCounterBuffer[glGetActiveAtomicCounterBuffer].#
 
 '''
@@ -246,7 +244,7 @@ https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineUniformName[glGet
 [[gl.get_active_subroutine_uniform]]
 * _value_, _..._ = 
 *get_active_subroutine_uniform*(_program_, <<shadertype, _shadertype_>>, _index_, _pname_) +
-[small]#_pname_: '_compatible subroutines_' for GL_COMPATIBLE_SUBROUTINES, etc. +
+[small]#_pname_: '_num compatible subroutines_', '_compatible subroutines_', '_uniform size_', '_uniform name length_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetActiveSubroutineUniform[glGetActiveSubroutineUniform].#
 
 [[gl.uniform_subroutines]]
@@ -260,7 +258,7 @@ Shared Memory Access
 [[gl.memory_barrier]]
 * *memory_barrier*(_bit~1~_, _bit~2~_, _..._) +
 *memory_barrier_by_region*(_bit~1~_, _bit~2~_, _..._) +
-[small]#_bit~k~_: '_all_' for GL_ALL_BARRIER_BITS, '_vertex attrib array_' for GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT, etc. +
+[small]#_bit~k~_: '_all_', '_vertex attrib array_', '_element array_', '_uniform_', '_texture fetch_', '_shader image access_', '_command_', '_pixel buffer_', '_texture update_', '_buffer update_', '_client mapped buffer_', '_query buffer_', '_framebuffer_', '_transform feedback_', '_atomic counter_', '_shader storage_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glMemoryBarrier[glMemoryBarrier].#
 
 '''
@@ -275,6 +273,7 @@ _location_ = *get_program_resource_location*(_program_, _interface_, _name_) +
 _index_ = *get_program_resource_location_index*(_program_, _interface_, _name_) +
 _value_, _..._ = *get_program_resource*(_program_, _interface_, _index_, _property_) +
 [small]#_interface_: '_uniform_' for GL_UNIFORM, '_uniform block_' for GL_UNIFORM_BLOCK, etc. +
+_pname_: '_active resources_', '_max name length_', '_max num active variables_', '_max num compatible subroutines_'. +
 _property_: '_array size_' for GL_ARRAY_SIZE, '_array stride_' for GL_ARRAY_STRIDE, etc. +
 Rfr: https://www.khronos.org/opengl/wiki/Category:Core_API_Ref_Shader_Program_Query[Shader Program Query].#
 

@@ -22,18 +22,17 @@ https://www.khronos.org/opengl/wiki/GLAPI/glDeleteFramebuffers[glDeleteFramebuff
 
 [[gl.framebuffer_parameter]]
 * *framebuffer_parameter*(<<framebuffertarget, _target_>>|_framebuffer_, _pname_, _value_) +
-[small]#_pname_: '_default width_' for GL_FRAMEBUFFER_DEFAULT_WIDTH, etc. +
+[small]#_pname_: '_default width_', '_default height_', '_default layers_', '_default samples_', '_default fixed sample locations_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glFramebufferParameter[glFramebufferParameter].#
 
 [[gl.get_framebuffer_parameter]]
 * _value_, _..._ = *get_framebuffer_parameter*(<<framebuffertarget, _target_>>|_framebuffer_, _pname_) +
-[small]#_pname_: '_default width_' for GL_FRAMEBUFFER_DEFAULT_WIDTH, etc. +
+[small]#_pname_: '_default width_', '_default height_', '_default layers_', '_default samples_', '_default fixed sample locations_', '_doublebuffer_', '_implementation color read format_', '_implementation color read type_', '_samples_', '_sample buffers_', '_stereo_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetFramebufferParameter[glGetFramebufferParameter].#
 
 [[gl.get_framebuffer_attachment_parameter]]
-* _value_, _..._ = *get_framebuffer_attachment_parameter*(<<framebuffertarget, _target_>>|_framebuffer_, _attachment_, _pname_) +
-[small]#_attachment_: '_depth_' for GL_DEPTH, '_front left_' for GL_FRONT_LEFT, etc. +
-_pname_: '_object type_' for GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE, etc. +
+* _value_, _..._ = *get_framebuffer_attachment_parameter*(<<framebuffertarget, _target_>>|_framebuffer_, <<attachment, _attachment_>>, _pname_) +
+[small]#_pname_: '_object type_', '_object name_', '_component type_', '_red size_', '_green size_', '_blue size_', '_alpha size_', '_depth size_', '_stencil size_', '_color encoding_', '_texture layer_', '_texture level_', '_layered_', '_texture cube map face_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetFramebufferAttachmentParameter[glGetFramebufferAttachmentParameter].#
 
 '''
@@ -68,7 +67,7 @@ https://www.khronos.org/opengl/wiki/GLAPI/glRenderbufferStorageMultisample[glRen
 
 [[gl.get_renderbuffer_parameter]]
 * _value_, _..._ = *get_renderbuffer_parameter*(<<renderbuffertarget, _target_>>|_renderbuffer_, _pname_) +
-[small]#_pname_: '_width_' for GL_RENDERBUFFER_WIDTH, '_internal format_' for GL_RENDERBUFFER_INTERNAL_FORMAT, etc. +
+[small]#_pname_: '_width_', '_height_', '_internal format_', '_samples_', '_red size_', '_green size_', '_blue size_', '_alpha size_', '_depth size_', '_stencil size_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetRenderbufferParameter[glGetRenderbufferParameter].#
 
 '''
@@ -76,23 +75,22 @@ Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetRenderbufferParameter[glGetR
 Attaching Renderbuffer Images:
 
 [[gl.framebuffer_renderbuffer]]
-* *framebuffer_renderbuffer*(<<framebuffertarget, _target_>>|_framebuffer_, _attachment_, <<renderbuffertarget, _renderbuffertarget_>>, _renderbuffer_) +
-[small]#_attachment_: '_depth_' for GL_DEPTH_ATTACHMENT, '_color attachment i_' for GL_COLOR_ATTACHMENTi, etc. +
-Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glFramebufferRenderbuffer[glFramebufferRenderbuffer].#
+* *framebuffer_renderbuffer*(<<framebuffertarget, _target_>>|_framebuffer_, <<attachment, _attachment_>>, <<renderbuffertarget, _renderbuffertarget_>>, _renderbuffer_) +
+[small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glFramebufferRenderbuffer[glFramebufferRenderbuffer].#
 
 '''
 
 Attaching Texture Images:
 
 [[gl.framebuffer_texture]]
-* *framebuffer_texture*(<<framebuffertarget, _target_>>|_framebuffer_, _attachment_, _texture_, _level_) +
-*framebuffer_texture_1d*(<<framebuffertarget, _target_>>, _attachment_, <<texturetarget, _textarget_>>, _texture_, _level_) +
-*framebuffer_texture_2d*(<<framebuffertarget, _target_>>, _attachment_, <<texturetarget, _textarget_>>, _texture_, _level_) +
-*framebuffer_texture_3d*(<<framebuffertarget, _target_>>, _attachment_, <<texturetarget, _textarget_>>, _texture_, _level_, _layer_) +
+* *framebuffer_texture*(<<framebuffertarget, _target_>>|_framebuffer_, <<attachment, _attachment_>>, _texture_, _level_) +
+*framebuffer_texture_1d*(<<framebuffertarget, _target_>>, <<attachment, _attachment_>>, <<texturetarget, _textarget_>>, _texture_, _level_) +
+*framebuffer_texture_2d*(<<framebuffertarget, _target_>>, <<attachment, _attachment_>>, <<texturetarget, _textarget_>>, _texture_, _level_) +
+*framebuffer_texture_3d*(<<framebuffertarget, _target_>>, <<attachment, _attachment_>>, <<texturetarget, _textarget_>>, _texture_, _level_, _layer_) +
 [small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glFramebufferTexture[glFramebufferTexture].#
 
 [[gl.framebuffer_texture_layer]]
-*  *framebuffer_texture_layer*(<<framebuffertarget, _target_>>|_framebuffer_, _attachment_, _texture_, _level_, _layer_) +
+*  *framebuffer_texture_layer*(<<framebuffertarget, _target_>>|_framebuffer_, <<attachment, _attachment_>>, _texture_, _level_, _layer_) +
 [small]#Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glFramebufferTextureLayer[glFramebufferTextureLayer].#
 
 '''
@@ -109,7 +107,7 @@ Framebuffer Completeness:
 
 [[gl.check_framebuffer_status]]
 * _status_ = *check_framebuffer_status*(<<framebuffertarget, _target_>>, [_framebuffer_]) +
-[small]#_status_: '_complete_' for GL_FRAMEBUFFER_COMPLETE, '_incomplete attachment_' for GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT, etc. +
+[small]#_status_: '_complete_', '_undefined_', '_incomplete attachment_', '_incomplete missing attachment_', '_incomplete draw buffer_', '_incomplete read buffer_', '_unsupported_', '_incomplete multisample_', '_incomplete layer targets_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glCheckFramebufferStatus[glCheckFramebufferStatus].#
 
 

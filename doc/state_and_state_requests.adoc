@@ -41,10 +41,8 @@ Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetString[glGetString].#
 Internal Format Queries:
 
 [[gl.get_internalformat]]
-* _value_, _..._ = *get_internalformat*(_target_, _intformat_, _pname_) +
-[small]#_target_: '_1d_' for GL_TEXTURE_1D, '_1d array_' for GL_TEXTURE_1D_ARRAY, etc. +
-_intformat_: '_stencil index_' for GL_STENCIL_INDEX, '_r8 snorm_' for GL_R8_SNORM, etc. +
-_pname_: '_num sample counts_' for GL_NUM_SAMPLE_COUNTS, '_samples_' for GL_SAMPLES, etc. +
+* _value_, _..._ = *get_internalformat*(<<texturetarget, _texturetarget_>>, <<intformat, _intformat_>>, _pname_) +
+[small]#_pname_: '_num sample counts_' for GL_NUM_SAMPLE_COUNTS, '_samples_' for GL_SAMPLES, etc. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetInternalformat[glGetInternalformat].#
 
 '''

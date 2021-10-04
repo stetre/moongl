@@ -12,9 +12,18 @@
 
 == Enumerations
 
+
+[[attachment]]
+[small]#*attachment*: 
+'_none_', '_front left_', '_front right_', '_back left_', '_back right_', '_front_', '_back_', '_left_', '_right_', '_front and back_', '_color attachment 0_', '_color attachment 1_', _..._, '_color attachment 15_', '_color_', '_depth_', '_stencil_', '_depth attachment_', '_stencil attachment_', '_depth stencil attachment_'.#
+
 [[buffertarget]]
 [small]#*buffer target*: 
 '_array_', '_uniform_', '_atomic counter_', '_query_', '_copy read_', '_copy write_', '_dispatch indirect_', '_draw indirect_', '_element array_', '_texture_', '_pixel pack_', '_pixel unpack_', '_shader storage_', '_transform feedback_'.#
+
+[[bufferusage]]
+[small]#*buffer usage*: 
+'_static draw_', '_static read_', '_static copy_', '_dynamic draw_', '_dynamic read_', '_dynamic copy_', '_stream draw_', '_stream read_', '_stream copy_'.#
 
 [[capability]]
 [small]#*capability*: 
@@ -33,14 +42,18 @@
 [small]#*intformat*: '_rgb_' for GL_RGB, '_stencil index_' for GL_STENCIL_INDEX, '_r8 snorm_' for GL_R8_SNORM, etc. +
 Values: '_none_', '_stencil index_', '_depth component_', '_depth stencil_', '_red_', '_rg_', '_rgb_', '_rgba_', '_r8_', '_r8 snorm_', '_r16_', '_r16 snorm_', '_rg8_', '_rg8 snorm_', '_rg16_', '_rg16 snorm_', '_r3 g3 b2_', '_rgb4_', '_rgb5_', '_rgb8_', '_rgb8 snorm_', '_rgb10_', '_rgb12_', '_rgb16 snorm_', '_rgba2_', '_rgba4_', '_rgb5 a1_', '_rgba8_', '_rgba8 snorm_', '_rgb10 a2_', '_rgb10 a2ui_', '_rgba12_', '_rgba16_', '_srgb8_', '_srgb8 alpha8_', '_srgb_', '_srgb alpha_', '_r16f_', '_rg16f_', '_rgb16f_', '_rgba16f_', '_r32f_', '_rg32f_', '_rgb32f_', '_rgba32f_', '_r11f g11f b10f_', '_rgb9 e5_', '_r8i_', '_r8ui_', '_r16i_', '_r16ui_', '_r32i_', '_r32ui_', '_rg8i_', '_rg8ui_', '_rg16i_', '_rg16ui_', '_rg32i_', '_rg32ui_', '_rgb8i_', '_rgb8ui_', '_rgb16i_', '_rgb16ui_', '_rgb32i_', '_rgb32ui_', '_rgba8i_', '_rgba8ui_', '_rgba16i_', '_rgba16ui_', '_rgba32i_', '_rgba32ui_', '_depth component16_', '_depth component24_', '_depth component32_', '_depth component32f_', '_depth24 stencil8_', '_depth32f stencil8_', '_stencil index8_', '_compressed red_', '_compressed rg_', '_compressed rgb_', '_compressed rgba_', '_compressed srgb_', '_compressed srgb alpha_', '_compressed red rgtc1_', '_compressed signed red rgtc1_', '_compressed rg rgtc2_', '_compressed signed rg rgtc2_', '_compressed rgba bptc unorm_', '_compressed srgb alpha bptc unorm_', '_compressed rgb bptc signed float_', '_compressed rgb bptc unsigned float_', '_compressed rgb s3tc dxt1 ext_', '_compressed srgb s3tc dxt1 ext_', '_compressed rgba s3tc dxt1 ext_', '_compressed srgb alpha s3tc dxt1 ext_', '_compressed rgba s3tc dxt3 ext_', '_compressed srgb alpha s3tc dxt3 ext_', '_compressed rgba s3tc dxt5 ext_', '_compressed srgb alpha s3tc dxt5 ext_'.#
 
+[[querytarget]]
+[small]#*query target*:
+'_timestamp_', '_any samples passed_', '_any samples passed conservative_', '_primitives generated_', '_samples passed_', '_time elapsed_', '_transform feedback primitives written_', '_vertices submitted_', '_primitives submitted_', '_vertex shader invocations_', '_tess control shader patches_', '_tess evaluation shader invocations_', '_geometry shader primitives emitted_', '_fragment shader invocations_', '_compute shader invocations_', '_geometry shader invocations_', '_clipping input primitives_', '_clipping output primitives_', '_transform feedback overflow_', '_transform feedback stream overflow_'.#
+
+[[renderbuffertarget]]
+[small]#*renderbuffer target*: '_renderbuffer_'.#
+
 [[shaderbinaryformat]]
 [small]#*shaderbinaryformat*: '_spir v_'.#
 
 [[shadertype]]
 [small]#*shadertype*: '_vertex_', '_fragment_', '_geometry_', '_tess evaluation_', '_tess control_', '_compute_'.#
-
-[[renderbuffertarget]]
-[small]#*renderbuffer target*: '_renderbuffer_'.#
 
 [[texturetarget]]
 [small]#*texture target*: '_1d_', '_2d_', '_3d_', '_1d array_', '_2d array_', '_rectangle_', '_cube map_', '_cube map array_', '_2d multisample_', '_2d multisample array_', '_cube map positive x_', '_cube map positive y_', '_cube map positive z_', '_cube map negative x_', '_cube map negative y_', '_cube map negative z_', '_proxy 1d_', '_proxy 2d_', '_proxy 3d_', '_proxy 1d array_', '_proxy 2d array_', '_proxy rectangle_', '_proxy cube map_', '_proxy cube map array_', '_proxy 2d multisample_', '_proxy 2d multisample array_', '_buffer_', '_renderbuffer_'.#

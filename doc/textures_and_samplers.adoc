@@ -64,13 +64,11 @@ https://www.khronos.org/opengl/wiki/GLAPI/glDeleteSamplers[glDeleteSamplers].#
 
 [[gl.sampler_parameter]]
 * *sampler_parameter*(_sampler_, _pname_, _val~1~_, [_val~2~_, _..._]) +
-[small]#_pname_: '_wrap x_' for GL_TEXTURE_WRAP_X, '_min filter_' for GL_TEXTURE_MIN_FILTERS, etc. +
-Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glSamplerParameter[glSamplerParameter].#
-
-[[gl.get_sampler_parameter]]
-* _value_, _..._ = *get_sampler_parameter*(_sampler_, _pname_) +
-[small]#_pname_: '_wrap x_' for GL_TEXTURE_WRAP_X, '_min filter_' for GL_TEXTURE_MIN_FILTERS, etc. +
-Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetSamplerParameter[glGetSamplerParameter].#
+_value_, _..._ = *get_sampler_parameter*(_sampler_, _pname_) +
+[small]#_pname_:
+'_wrap s_', '_wrap t_', '_wrap r_', '_max anisotropy_', '_min filter_', '_mag filter_', '_border color_', '_min lod_', '_max lod_', '_lod bias_', '_compare mode_', '_compare func_'. +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glSamplerParameter[glSamplerParameter] -
+https://www.khronos.org/opengl/wiki/GLAPI/glGetSamplerParameter[glGetSamplerParameter].#
 
 '''
 
@@ -191,7 +189,7 @@ Texture Parameters
 
 [[gl.texture_parameter]]
 * *texture_parameter*(<<texturetarget,_target_>>|_texture_, _pname_, _val~1~_, _..._) +
-[small]#_pname_: '_depth stencil texture mode_', '_base level_' for GL_TEXTURE_BASE_LEVEL, '_compare func_' for GL_TEXTURE_COMPARE_FUNC, etc. +
+[small]#_pname_: '_base level_', '_wrap s_', '_wrap t_', '_wrap r_', '_border color_', '_depth stencil mode_', '_compare func_', '_compare mode_', '_lod bias_', '_min filter_', '_mag filter_', '_min lod_', '_max lod_', '_max level_', '_swizzle r_', '_swizzle g_', '_swizzle b_', '_swizzle a_', '_swizzle rgba_', '_max anisotropy_'. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glTexParameter[glTexParameter].#
 [small]#See <<snippet_new_texture, example>>.#
 
@@ -208,8 +206,28 @@ https://www.khronos.org/opengl/wiki/GLAPI/glGetTexParameter[glGetTexParameter].#
 [[gl.get_texture_level_parameter]]
 * _value_ = *get_texture_level_parameter*(<<texturetarget,_target_>>|_texture_, _level_, _pname_) +
 [small]#_pname_: '_width_' for GL_TEXTURE_WIDTH, '_fixed sample locations_' for GL_TEXTURE_FIXED_SAMPLE_LOCATIONS, etc. +
-Rfr: 
-https://www.khronos.org/opengl/wiki/GLAPI/glGetTexLevelParameter[glGetTexLevelParameter].#
+'_width_', 
+'_height_', 
+'_depth_', 
+'_fixed sample locations_', 
+'_internal format_', 
+'_shared size_', 
+'_compressed_', 
+'_compressed image size_', 
+'_samples_', 
+'_buffer offset_', 
+'_buffer size_', 
+'_red size_', 
+'_green size_', 
+'_blue size_', 
+'_alpha size_', 
+'_depth size_', 
+'_red type_', 
+'_green type_', 
+'_blue type_', 
+'_alpha type_', 
+'_depth type_'.  +
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glGetTexLevelParameter[glGetTexLevelParameter].#
 
 [[gl.get_texture_image]]
 * <<data,_data_>> = *get_texture_image*(<<texturetarget,_target_>>|_texture_, _level_, <<format, _format_>>, <<type,_type_>>, _n_) +

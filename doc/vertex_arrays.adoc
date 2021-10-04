@@ -101,11 +101,7 @@ Drawing Commands:
 *multi_draw_arrays*(_mode_, _first~1~_, _count~1~_, [_first~2~_, _count~2~_ _..._]) +
 *multi_draw_arrays_indirect*(_mode_, _indirect_, _drawcount_, _stride_) +
 *multi_draw_arrays_indirect_count*(_mode_, _indirect_, _drawcount_, _maxdrawcount_, _stride_) +
-[small]#_mode_: '_points_' for GL_POINTS, '_patches_' for GL_PATCHES, etc. +
-Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDrawArrays[glDrawArrays].#
-
-[[gl.draw_elements]]
-* *draw_elements*(_mode_, _count_, _type_, _indices_, [_instancecount_], [_baseinstance_]) +
+*draw_elements*(_mode_, _count_, _type_, _indices_, [_instancecount_], [_baseinstance_]) +
 *draw_elements_indirect*(_mode_, _type_, _indirect_) +
 *draw_elements_base_vertex*(_mode_, _count_, _type_, _indices_, _basevertex_ , [_instancecount_], [_baseinstance_]) +
 *multi_draw_elements*(_mode_, _type_, _count~1~_, _indices~1~_, [_count~2~_, _indices~2~_, _..._]) +
@@ -114,9 +110,9 @@ Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDrawArrays[glDrawArrays].#
 *multi_draw_elements_base_vertex*(_mode_, _type_, _count~1~_, _indices~1~_, _basevertex~1~_, [_count~2~_, _indices~2~_, _basevertex~2~_, _..._]) +
 *draw_range_elements*(_mode_, _start_, _end_, _count_, _type_, _indices_) +
 *draw_range_elements_base_vertex*(_mode_, _start_, _end_, _count_, _type_, _indices_, _basevertex_) +
-[small]#_mode_: '_points_' for GL_POINTS, '_patches_' for GL_PATCHES, etc. +
+[small]#_mode_: '_points_', '_patches_', '_line strip_', '_line loop_', '_triangle strip_', '_triangle fan_', '_lines_', '_lines adjacency_', '_triangles_', '_triangles adjacency_', '_line strip adjacency_', '_triangle strip adjacency_'. +
 _type_: '_ubyte_', '_ushort_', '_uint_'. +
-Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDrawElements[glDrawElements].#
+Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDrawArrays[glDrawArrays] - https://www.khronos.org/opengl/wiki/GLAPI/glDrawElements[glDrawElements].#
 
 '''
 

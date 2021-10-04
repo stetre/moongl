@@ -27,10 +27,9 @@ pass:[-] *pass:[gl._GLEW_VERSION]*: a string describing the *GLEW version* (e.g.
 
 == Command Execution
 
-
 [[gl.get_graphics_reset_status]]
 * _status_ = *get_graphics_reset_status*( ) +
-[small]#_status_: '_no error_' for GL_NO_ERROR, '_guilty context reset_' for GL_GUILTY_CONTEXT_RESET, etc.# +
+[small]#_status_: '_no error_', '_guilty context reset_', '_innocent context reset_', '_unknown context reset_'.# +
 [small]#Rfr: https://www.opengl.org/sdk/docs/man/html/glGetGraphicsResetStatus.xhtml[glGetGraphicsResetStatus].#
 
 * <<gl.get, get>>

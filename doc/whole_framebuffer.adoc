@@ -10,7 +10,7 @@ Selecting Buffers for Writing:
 *draw_buffers*({_buf~1~_, [_buf~2~_, _..._]}) +
 *draw_buffers*(_framebuffer_, _buf~1~_, [_buf~2~_, _..._]) +
 *draw_buffers*(_framebuffer_, {_buf~1~_, [_buf~2~_, _..._]}) +
-[small]#_buf~k~_: '_none_' for GL_NONE, '_front left_' for GL_FRONT_LEFT, '_color attachment i_' for GL_COLOR_ATTACHMENTi, etc. +
+[small]#_buf~k~_: <<attachment, attachment>>. +
 Rfr: https://www.khronos.org/opengl/wiki/GLAPI/glDrawBuffer[glDrawBuffer],
 https://www.khronos.org/opengl/wiki/GLAPI/glDrawBuffers[glDrawBuffers].#
 
@@ -80,10 +80,9 @@ See <<snippet_clear, example>>.#
 Invalidating Framebuffers:
 
 [[gl.invalidate_framebuffer]]
-* *invalidate_framebuffer*(<<framebuffertarget, _target_>>|_framebuffer_, _attachment~1~_, [_attachment~2~_, _..._ ]) +
-*invalidate_sub_framebuffer*(<<framebuffertarget, _target_>>|_framebuffer_, _x_, _y_, _width_, _height_, _attachment~1~_, [_attachment~2~_, _..._ ]) +
-[small]#_attachment_: '_color attachment i_' for GL_COLOR_ATTACHMENTi, '_depth_' for GL_DEPTH, etc. +
-Rfr:
+* *invalidate_framebuffer*(<<framebuffertarget, _target_>>|_framebuffer_, <<attachment, _attachment~1~_>>, [<<attachment, _attachment~2~_>>, _..._ ]) +
+*invalidate_sub_framebuffer*(<<framebuffertarget, _target_>>|_framebuffer_, _x_, _y_, _width_, _height_, <<attachment, _attachment~1~_>>, [<<attachment, _attachment~2~_>>, _..._ ]) +
+[small]#Rfr:
 https://www.khronos.org/opengl/wiki/GLAPI/glInvalidateFramebuffer[glInvalidateFramebuffer],
 https://www.khronos.org/opengl/wiki/GLAPI/glInvalidateSubFramebuffer[glInvalidateSubFramebuffer].#
 
