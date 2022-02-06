@@ -11,7 +11,11 @@ else
 endif
 
 # Lua version
-LUAVER?=5.3
+LUAVER?=$(shell lua -e 'print(string.match(_VERSION, "%d+%.%d+") or "5.3")')
+ifeq ($(LUAVER),)
+# lua-interpreter not found
+LUAVER=5.3
+endif
 
 ifdef MACOS
 DLL_EXT=dylib
